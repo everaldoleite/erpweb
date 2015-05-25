@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEmpresaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_codigo}" for="codigo" />
+                    <h:inputText id="codigo" value="#{empresaController.selected.codigo}" title="#{bundle.EditEmpresaTitle_codigo}" required="true" requiredMessage="#{bundle.EditEmpresaRequiredMessage_codigo}"/>
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_razaoSocial}" for="razaoSocial" />*
+                    <h:inputText id="razaoSocial" value="#{empresaController.selected.razaoSocial}" title="#{bundle.EditEmpresaTitle_razaoSocial}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_nomeFantasia}" for="nomeFantasia" />
+                    <h:inputText id="nomeFantasia" value="#{empresaController.selected.nomeFantasia}" title="#{bundle.EditEmpresaTitle_nomeFantasia}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_tipoLogradouro}" for="tipoLogradouro" />
+                    <h:inputText id="tipoLogradouro" value="#{empresaController.selected.tipoLogradouro}" title="#{bundle.EditEmpresaTitle_tipoLogradouro}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_logradouro}" for="logradouro" />
+                    <h:inputText id="logradouro" value="#{empresaController.selected.logradouro}" title="#{bundle.EditEmpresaTitle_logradouro}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{empresaController.selected.numero}" title="#{bundle.EditEmpresaTitle_numero}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_bairro}" for="bairro" />
+                    <h:inputText id="bairro" value="#{empresaController.selected.bairro}" title="#{bundle.EditEmpresaTitle_bairro}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_cep}" for="cep" />
+                    <h:inputText id="cep" value="#{empresaController.selected.cep}" title="#{bundle.EditEmpresaTitle_cep}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_uf}" for="uf" />
+                    <h:inputText id="uf" value="#{empresaController.selected.uf}" title="#{bundle.EditEmpresaTitle_uf}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_cidade}" for="cidade" />
+                    <h:inputText id="cidade" value="#{empresaController.selected.cidade}" title="#{bundle.EditEmpresaTitle_cidade}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_ddd}" for="ddd" />
+                    <h:inputText id="ddd" value="#{empresaController.selected.ddd}" title="#{bundle.EditEmpresaTitle_ddd}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_telefone}" for="telefone" />
+                    <h:inputText id="telefone" value="#{empresaController.selected.telefone}" title="#{bundle.EditEmpresaTitle_telefone}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_tipoPessoa}" for="tipoPessoa" />
+                    <h:inputText id="tipoPessoa" value="#{empresaController.selected.tipoPessoa}" title="#{bundle.EditEmpresaTitle_tipoPessoa}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_cnpjEmpresa}" for="cnpjEmpresa" />
+                    <h:inputText id="cnpjEmpresa" value="#{empresaController.selected.cnpjEmpresa}" title="#{bundle.EditEmpresaTitle_cnpjEmpresa}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_cpfEmpresa}" for="cpfEmpresa" />
+                    <h:inputText id="cpfEmpresa" value="#{empresaController.selected.cpfEmpresa}" title="#{bundle.EditEmpresaTitle_cpfEmpresa}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_inscricaoEstadual}" for="inscricaoEstadual" />
+                    <h:inputText id="inscricaoEstadual" value="#{empresaController.selected.inscricaoEstadual}" title="#{bundle.EditEmpresaTitle_inscricaoEstadual}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_nomeRepresentanteLegal}" for="nomeRepresentanteLegal" />
+                    <h:inputText id="nomeRepresentanteLegal" value="#{empresaController.selected.nomeRepresentanteLegal}" title="#{bundle.EditEmpresaTitle_nomeRepresentanteLegal}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_documentoRepresentanteCPF}" for="documentoRepresentanteCPF" />
+                    <h:inputText id="documentoRepresentanteCPF" value="#{empresaController.selected.documentoRepresentanteCPF}" title="#{bundle.EditEmpresaTitle_documentoRepresentanteCPF}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_documentoRepresentanteRG}" for="documentoRepresentanteRG" />
+                    <h:inputText id="documentoRepresentanteRG" value="#{empresaController.selected.documentoRepresentanteRG}" title="#{bundle.EditEmpresaTitle_documentoRepresentanteRG}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_dataInclusao}" for="dataInclusao" />
+                    <h:inputText id="dataInclusao" value="#{empresaController.selected.dataInclusao}" title="#{bundle.EditEmpresaTitle_dataInclusao}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_dataAlteracao}" for="dataAlteracao" />
+                    <h:inputText id="dataAlteracao" value="#{empresaController.selected.dataAlteracao}" title="#{bundle.EditEmpresaTitle_dataAlteracao}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_cepPagamento}" for="cepPagamento" />
+                    <h:inputText id="cepPagamento" value="#{empresaController.selected.cepPagamento}" title="#{bundle.EditEmpresaTitle_cepPagamento}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_estadoPagamento}" for="estadoPagamento" />
+                    <h:inputText id="estadoPagamento" value="#{empresaController.selected.estadoPagamento}" title="#{bundle.EditEmpresaTitle_estadoPagamento}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_tipoLogradouroPagamento}" for="tipoLogradouroPagamento" />
+                    <h:inputText id="tipoLogradouroPagamento" value="#{empresaController.selected.tipoLogradouroPagamento}" title="#{bundle.EditEmpresaTitle_tipoLogradouroPagamento}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_logradouroPagamento}" for="logradouroPagamento" />
+                    <h:inputText id="logradouroPagamento" value="#{empresaController.selected.logradouroPagamento}" title="#{bundle.EditEmpresaTitle_logradouroPagamento}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_numeroPagamento}" for="numeroPagamento" />
+                    <h:inputText id="numeroPagamento" value="#{empresaController.selected.numeroPagamento}" title="#{bundle.EditEmpresaTitle_numeroPagamento}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_cidadePagamento}" for="cidadePagamento" />
+                    <h:inputText id="cidadePagamento" value="#{empresaController.selected.cidadePagamento}" title="#{bundle.EditEmpresaTitle_cidadePagamento}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_cepEntrega}" for="cepEntrega" />
+                    <h:inputText id="cepEntrega" value="#{empresaController.selected.cepEntrega}" title="#{bundle.EditEmpresaTitle_cepEntrega}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_razaoSocialEntrega}" for="razaoSocialEntrega" />
+                    <h:inputText id="razaoSocialEntrega" value="#{empresaController.selected.razaoSocialEntrega}" title="#{bundle.EditEmpresaTitle_razaoSocialEntrega}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_inscricaoEstadualEntrega}" for="inscricaoEstadualEntrega" />
+                    <h:inputText id="inscricaoEstadualEntrega" value="#{empresaController.selected.inscricaoEstadualEntrega}" title="#{bundle.EditEmpresaTitle_inscricaoEstadualEntrega}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_estadoEntrega}" for="estadoEntrega" />
+                    <h:inputText id="estadoEntrega" value="#{empresaController.selected.estadoEntrega}" title="#{bundle.EditEmpresaTitle_estadoEntrega}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_cidadeEntrega}" for="cidadeEntrega" />
+                    <h:inputText id="cidadeEntrega" value="#{empresaController.selected.cidadeEntrega}" title="#{bundle.EditEmpresaTitle_cidadeEntrega}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_documentoEntrega}" for="documentoEntrega" />
+                    <h:inputText id="documentoEntrega" value="#{empresaController.selected.documentoEntrega}" title="#{bundle.EditEmpresaTitle_documentoEntrega}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_dataFollowUp}" for="dataFollowUp" />
+                    <h:inputText id="dataFollowUp" value="#{empresaController.selected.dataFollowUp}" title="#{bundle.EditEmpresaTitle_dataFollowUp}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_capitalSocial}" for="capitalSocial" />
+                    <h:inputText id="capitalSocial" value="#{empresaController.selected.capitalSocial}" title="#{bundle.EditEmpresaTitle_capitalSocial}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_numeroEmpregados}" for="numeroEmpregados" />
+                    <h:inputText id="numeroEmpregados" value="#{empresaController.selected.numeroEmpregados}" title="#{bundle.EditEmpresaTitle_numeroEmpregados}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_homepage}" for="homepage" />
+                    <h:inputText id="homepage" value="#{empresaController.selected.homepage}" title="#{bundle.EditEmpresaTitle_homepage}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_emailComercial}" for="emailComercial" />
+                    <h:inputText id="emailComercial" value="#{empresaController.selected.emailComercial}" title="#{bundle.EditEmpresaTitle_emailComercial}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_emailAtendimento}" for="emailAtendimento" />
+                    <h:inputText id="emailAtendimento" value="#{empresaController.selected.emailAtendimento}" title="#{bundle.EditEmpresaTitle_emailAtendimento}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_inscricaoMunicipal}" for="inscricaoMunicipal" />
+                    <h:inputText id="inscricaoMunicipal" value="#{empresaController.selected.inscricaoMunicipal}" title="#{bundle.EditEmpresaTitle_inscricaoMunicipal}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_naturezaOperacao}" for="naturezaOperacao" />
+                    <h:inputText id="naturezaOperacao" value="#{empresaController.selected.naturezaOperacao}" title="#{bundle.EditEmpresaTitle_naturezaOperacao}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_bloqueioEmpresa}" for="bloqueioEmpresa" />
+                    <h:inputText id="bloqueioEmpresa" value="#{empresaController.selected.bloqueioEmpresa}" title="#{bundle.EditEmpresaTitle_bloqueioEmpresa}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_motivoBloqueio}" for="motivoBloqueio" />
+                    <h:inputText id="motivoBloqueio" value="#{empresaController.selected.motivoBloqueio}" title="#{bundle.EditEmpresaTitle_motivoBloqueio}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_usuarioBloqueio}" for="usuarioBloqueio" />
+                    <h:inputText id="usuarioBloqueio" value="#{empresaController.selected.usuarioBloqueio}" title="#{bundle.EditEmpresaTitle_usuarioBloqueio}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_dataBloqueio}" for="dataBloqueio" />
+                    <h:inputText id="dataBloqueio" value="#{empresaController.selected.dataBloqueio}" title="#{bundle.EditEmpresaTitle_dataBloqueio}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_bloqueioAtendimento}" for="bloqueioAtendimento" />
+                    <h:inputText id="bloqueioAtendimento" value="#{empresaController.selected.bloqueioAtendimento}" title="#{bundle.EditEmpresaTitle_bloqueioAtendimento}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_bloqueioVendas}" for="bloqueioVendas" />
+                    <h:inputText id="bloqueioVendas" value="#{empresaController.selected.bloqueioVendas}" title="#{bundle.EditEmpresaTitle_bloqueioVendas}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_bloqueioFaturamento}" for="bloqueioFaturamento" />
+                    <h:inputText id="bloqueioFaturamento" value="#{empresaController.selected.bloqueioFaturamento}" title="#{bundle.EditEmpresaTitle_bloqueioFaturamento}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_bloqueioComercial}" for="bloqueioComercial" />
+                    <h:inputText id="bloqueioComercial" value="#{empresaController.selected.bloqueioComercial}" title="#{bundle.EditEmpresaTitle_bloqueioComercial}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_bloqueioTotal}" for="bloqueioTotal" />
+                    <h:inputText id="bloqueioTotal" value="#{empresaController.selected.bloqueioTotal}" title="#{bundle.EditEmpresaTitle_bloqueioTotal}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_banco}" for="banco" />
+                    <h:inputText id="banco" value="#{empresaController.selected.banco}" title="#{bundle.EditEmpresaTitle_banco}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_agencia}" for="agencia" />
+                    <h:inputText id="agencia" value="#{empresaController.selected.agencia}" title="#{bundle.EditEmpresaTitle_agencia}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_contaCorrente}" for="contaCorrente" />
+                    <h:inputText id="contaCorrente" value="#{empresaController.selected.contaCorrente}" title="#{bundle.EditEmpresaTitle_contaCorrente}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_transportePreferencial}" for="transportePreferencial" />
+                    <h:inputText id="transportePreferencial" value="#{empresaController.selected.transportePreferencial}" title="#{bundle.EditEmpresaTitle_transportePreferencial}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_statusEmpresa}" for="statusEmpresa" />
+                    <h:inputText id="statusEmpresa" value="#{empresaController.selected.statusEmpresa}" title="#{bundle.EditEmpresaTitle_statusEmpresa}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_revendedor}" for="revendedor" />
+                    <h:inputText id="revendedor" value="#{empresaController.selected.revendedor}" title="#{bundle.EditEmpresaTitle_revendedor}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_dataReserva}" for="dataReserva" />
+                    <h:inputText id="dataReserva" value="#{empresaController.selected.dataReserva}" title="#{bundle.EditEmpresaTitle_dataReserva}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_codigoVendedorFidelidade}" for="codigoVendedorFidelidade" />
+                    <h:inputText id="codigoVendedorFidelidade" value="#{empresaController.selected.codigoVendedorFidelidade}" title="#{bundle.EditEmpresaTitle_codigoVendedorFidelidade}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_limiteCredito}" for="limiteCredito" />
+                    <h:inputText id="limiteCredito" value="#{empresaController.selected.limiteCredito}" title="#{bundle.EditEmpresaTitle_limiteCredito}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_codigoPagamento}" for="codigoPagamento" />
+                    <h:inputText id="codigoPagamento" value="#{empresaController.selected.codigoPagamento}" title="#{bundle.EditEmpresaTitle_codigoPagamento}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_dataInicialLimiteCredito}" for="dataInicialLimiteCredito" />
+                    <h:inputText id="dataInicialLimiteCredito" value="#{empresaController.selected.dataInicialLimiteCredito}" title="#{bundle.EditEmpresaTitle_dataInicialLimiteCredito}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_dataFinalLimiteCredito}" for="dataFinalLimiteCredito" />
+                    <h:inputText id="dataFinalLimiteCredito" value="#{empresaController.selected.dataFinalLimiteCredito}" title="#{bundle.EditEmpresaTitle_dataFinalLimiteCredito}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_dataAvaliacaoLimiteCredito}" for="dataAvaliacaoLimiteCredito" />
+                    <h:inputText id="dataAvaliacaoLimiteCredito" value="#{empresaController.selected.dataAvaliacaoLimiteCredito}" title="#{bundle.EditEmpresaTitle_dataAvaliacaoLimiteCredito}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_responsavelLimiteCredito}" for="responsavelLimiteCredito" />
+                    <h:inputText id="responsavelLimiteCredito" value="#{empresaController.selected.responsavelLimiteCredito}" title="#{bundle.EditEmpresaTitle_responsavelLimiteCredito}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_observacaoLimiteCredito}" for="observacaoLimiteCredito" />
+                    <h:inputText id="observacaoLimiteCredito" value="#{empresaController.selected.observacaoLimiteCredito}" title="#{bundle.EditEmpresaTitle_observacaoLimiteCredito}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_tipoLimiteCredito}" for="tipoLimiteCredito" />
+                    <h:inputText id="tipoLimiteCredito" value="#{empresaController.selected.tipoLimiteCredito}" title="#{bundle.EditEmpresaTitle_tipoLimiteCredito}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_aceitaCobranca}" for="aceitaCobranca" />
+                    <h:inputText id="aceitaCobranca" value="#{empresaController.selected.aceitaCobranca}" title="#{bundle.EditEmpresaTitle_aceitaCobranca}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_tipoEmpresaSubstituto}" for="tipoEmpresaSubstituto" />
+                    <h:inputText id="tipoEmpresaSubstituto" value="#{empresaController.selected.tipoEmpresaSubstituto}" title="#{bundle.EditEmpresaTitle_tipoEmpresaSubstituto}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_bairroEntrega}" for="bairroEntrega" />
+                    <h:inputText id="bairroEntrega" value="#{empresaController.selected.bairroEntrega}" title="#{bundle.EditEmpresaTitle_bairroEntrega}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_emailNotaMunicipal}" for="emailNotaMunicipal" />
+                    <h:inputText id="emailNotaMunicipal" value="#{empresaController.selected.emailNotaMunicipal}" title="#{bundle.EditEmpresaTitle_emailNotaMunicipal}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_emailNotaFederal}" for="emailNotaFederal" />
+                    <h:inputText id="emailNotaFederal" value="#{empresaController.selected.emailNotaFederal}" title="#{bundle.EditEmpresaTitle_emailNotaFederal}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_ultimoFaturamento}" for="ultimoFaturamento" />
+                    <h:inputText id="ultimoFaturamento" value="#{empresaController.selected.ultimoFaturamento}" title="#{bundle.EditEmpresaTitle_ultimoFaturamento}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_dataUltimoFaturamento}" for="dataUltimoFaturamento" />
+                    <h:inputText id="dataUltimoFaturamento" value="#{empresaController.selected.dataUltimoFaturamento}" title="#{bundle.EditEmpresaTitle_dataUltimoFaturamento}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_pasta}" for="pasta" />
+                    <h:inputText id="pasta" value="#{empresaController.selected.pasta}" title="#{bundle.EditEmpresaTitle_pasta}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_codigoInterno}" for="codigoInterno" />
+                    <h:inputText id="codigoInterno" value="#{empresaController.selected.codigoInterno}" title="#{bundle.EditEmpresaTitle_codigoInterno}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_perfil}" for="perfil" />
+                    <h:inputText id="perfil" value="#{empresaController.selected.perfil}" title="#{bundle.EditEmpresaTitle_perfil}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_atuacao}" for="atuacao" />
+                    <h:inputText id="atuacao" value="#{empresaController.selected.atuacao}" title="#{bundle.EditEmpresaTitle_atuacao}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_idTRANSPORTADOR}" for="idTRANSPORTADOR" />
+                    <h:selectOneMenu id="idTRANSPORTADOR" value="#{empresaController.selected.idTRANSPORTADOR}" title="#{bundle.EditEmpresaTitle_idTRANSPORTADOR}" required="true" requiredMessage="#{bundle.EditEmpresaRequiredMessage_idTRANSPORTADOR}">
+                        <f:selectItems value="#{transportadorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_idSEGMENTO}" for="idSEGMENTO" />
+                    <h:selectOneMenu id="idSEGMENTO" value="#{empresaController.selected.idSEGMENTO}" title="#{bundle.EditEmpresaTitle_idSEGMENTO}" required="true" requiredMessage="#{bundle.EditEmpresaRequiredMessage_idSEGMENTO}">
+                        <f:selectItems value="#{segmentoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{empresaController.update}" value="#{bundle.EditEmpresaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEmpresaViewLink}"/>
+                <br />
+                <h:commandLink action="#{empresaController.prepareList}" value="#{bundle.EditEmpresaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEmpresaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

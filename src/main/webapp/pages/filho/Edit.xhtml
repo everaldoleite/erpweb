@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFilhoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFilhoLabel_idFILHO}" for="idFILHO" />
+                    <h:inputText id="idFILHO" value="#{filhoController.selected.idFILHO}" title="#{bundle.EditFilhoTitle_idFILHO}" required="true" requiredMessage="#{bundle.EditFilhoRequiredMessage_idFILHO}"/>
+                    <h:outputLabel value="#{bundle.EditFilhoLabel_descf}" for="descf" />
+                    <h:inputText id="descf" value="#{filhoController.selected.descf}" title="#{bundle.EditFilhoTitle_descf}" />
+                    <h:outputLabel value="#{bundle.EditFilhoLabel_idPAI}" for="idPAI" />
+                    <h:selectOneMenu id="idPAI" value="#{filhoController.selected.idPAI}" title="#{bundle.EditFilhoTitle_idPAI}" required="true" requiredMessage="#{bundle.EditFilhoRequiredMessage_idPAI}">
+                        <f:selectItems value="#{paiController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{filhoController.update}" value="#{bundle.EditFilhoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFilhoViewLink}"/>
+                <br />
+                <h:commandLink action="#{filhoController.prepareList}" value="#{bundle.EditFilhoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFilhoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
