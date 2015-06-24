@@ -13,11 +13,6 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-        <script src="../../js/ie-emulation-modes-warning.js"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -32,24 +27,25 @@
 
         <h:outputScript library="js" name="jquery-min.js" />
         <h:outputScript library="js" name="jquery-validate.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+        
+        
         <style type="text/css">.ui-growl{top:10%;}</style>
 
     </h:head>
 
     <h:body>
         <div class="container-fluid">
-            <div class="row"><!-- 2 + 10 + 2-->
+            <div class="row"><!-- 2 + 12-->
                 <div class="col-md-2" />     
-                <div class="col-md-10" >
+                <div class="col-md-10">
                     <h3>
-                        <ui:insert name="title">Default Title</ui:insert>
+                        <ui:insert name="title"></ui:insert>
                     </h3>
                 </div>     
-                <div class="col-md-2" />     
             </div>
 
         </div> 
-        <!-- inicio header -->
         <ui:insert name="header">
             <div>
                 <nav class="navbar navbar-default navbar-fixed-top">
@@ -72,7 +68,10 @@
                                         <li><a href="#">Clientes</a></li>
                                         <li><a href="#">Fornecedores</a></li>
                                         <li><a href="#">Transportadoras</a></li>
+                                        <li><a href="#">Funcionários</a></li>
                                         <li><a href="#">Produtos</a></li>
+                                        <li><a href="#">Plano de Contas</a></li>
+                                        <li><a href="#">Centro de Custo</a></li>
                                         <li><a href="#">Serviços</a></li>
                                         <li><a href="#">Contratos</a></li>
                                         <li><a href="#">Preços</a></li>
@@ -81,31 +80,57 @@
                                         <li><a href="#">Parametros Gerais</a></li>
                                     </ul>
                                 </li>
-
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estoques <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Pedidos de Compra</a></li>
+                                        <li><a href="#">Custo Médio</a></li>
+                                        <li><a href="#">Postos de Estoque</a></li>
+                                        <li><a href="#">Aquisição de Itens</a></li>
+                                        <li><a href="#">Inventário</a></li>
+                                        <li><a href="#">Importação de Notas Fiscais</a></li>
+                                        <li><a href="#">Cotação de Materiais</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ordem de Serviço <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Ordem de Serviço</a></li>
+                                        <li><a href="#">Baixa de Ordem de Serviço</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Vendas/Faturamento <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Orçamentos</a></li>
+                                        <li><a href="#">Pedidos de Venda</a></li>
+                                        <li><a href="#">Romaneiro de Entrega</a></li>
+                                        <li><a href="#">Comissões</a></li>
+                                        <li><a href="#">Nota Fiscal</a></li>
+                                        <li><a href="#">Devoluções</a></li>
+                                        <li><a href="#">Ordem de Faturamento</a></li>
+                                        <li><a href="#">Fluxo de Caixa</a></li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-header">Nota Fiscal</li>
+                                        <li><a href="#">DANFE</a></li>
+                                        <li><a href="#">Comunicação Fisco</a></li>
+                                        <li><a href="#">Status Nota Fiscal</a></li>
+                                    </ul>
+                                </li>
+                                
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Financeiro <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Ordem de Faturamento</a></li>
-                                        <li><a href="#">Controle de Comissões</a></li>
-                                        <li><a href="#">Cobrança Eletronica</a></li>
-                                        <li><a href="#">Contas Bancárias</a></li>
+                                        <li><a href="#">Contas a Receber</a></li>
+                                        <li><a href="#">Contas a Pagar</a></li>
+                                        <li><a href="#">Titulos/Duplicatas</a></li>
                                         <li class="divider"></li>
-                                        <li class="dropdown-header">Títulos</li>
-                                        <li><a href="#">Títulos a Receber</a></li>
-                                        <li><a href="#">Títulos a Pagar</a></li>
+                                        <li class="dropdown-header">Bancos</li>
+                                        <li><a href="#">Conciliação Bancária</a></li>
+                                        <li><a href="#">Emissão de Boletos</a></li>
+                                        
                                     </ul>
                                 </li>
-
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Comercial <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Prospects</a></li>
-                                        <li><a href="#">Orçamento</a></li>
-                                        <li><a href="#">Pedido de Venda</a></li>
-                                        <li><a href="#">Comissionamento</a></li>
-                                    </ul>
-                                </li>
-
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Relatórios <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
@@ -120,11 +145,11 @@
                                         <li><a href="#">Serviços mais vendidos</a></li>
                                         <li><a href="#">Faturamento por Cliente</a></li>
                                         <li><a href="#">Vendas por Clientes</a></li>
-
                                     </ul>
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
+                                <li><a href="./"><img width="18" src="images/warning-147699_640.png" />&nbsp;Pendências</a></li>
                                 <li class="active"><a href="./">Usuário <span class="sr-only">(current)</span></a></li>
                             </ul>
                         </div>
@@ -132,7 +157,7 @@
                 </nav>
             </div>
         </ui:insert>
-        <!-- fim header -->
+
         <div class="container-fluid">
             <div class="row"><!-- 2 + 10 + 2-->
                 <div class="col-md-2" />     
@@ -151,11 +176,6 @@
                 <div class="col-md-10" >
                     <!-- inicio footer -->
                     <ui:insert name="footer">
-                        <script src="../../js/jquery.js"></script>
-                        <script src="../../js/bootstrap.min.js"></script>
-                        <script src="../../js/jquery.mask.min.js"></script>
-                        <script src="../../js/inputmask.js"></script>
-                        <script src="../../js/jquery.inputmask.js"></script>
                         <p class="text-muted">Copyright &copy; 2015</p>
                     </ui:insert>
                     <!-- fim footer -->

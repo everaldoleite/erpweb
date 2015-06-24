@@ -27,46 +27,46 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author everaldo
  */
 @Entity
-@Table(name = "SEGMENTO")
+@Table(name = "TIPO_TRANSPORTE")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Segmento.findAll", query = "SELECT s FROM Segmento s"),
-    @NamedQuery(name = "Segmento.findByIdCodigoSegmento", query = "SELECT s FROM Segmento s WHERE s.idCodigoSegmento = :idCodigoSegmento"),
-    @NamedQuery(name = "Segmento.findByDescricaoSegmento", query = "SELECT s FROM Segmento s WHERE s.descricaoSegmento = :descricaoSegmento")})
-public class Segmento implements Serializable {
+    @NamedQuery(name = "TipoTransporte.findAll", query = "SELECT t FROM TipoTransporte t"),
+    @NamedQuery(name = "TipoTransporte.findByIdTipoTransporte", query = "SELECT t FROM TipoTransporte t WHERE t.idTipoTransporte = :idTipoTransporte"),
+    @NamedQuery(name = "TipoTransporte.findByDescricaoTipoTransporte", query = "SELECT t FROM TipoTransporte t WHERE t.descricaoTipoTransporte = :descricaoTipoTransporte")})
+public class TipoTransporte implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idCodigoSegmento")
-    private Integer idCodigoSegmento;
+    @Column(name = "idTipoTransporte")
+    private Integer idTipoTransporte;
     @Size(max = 45)
-    @Column(name = "descricaoSegmento")
-    private String descricaoSegmento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCodigoSegmento")
+    @Column(name = "descricaoTipoTransporte")
+    private String descricaoTipoTransporte;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoTransporte")
     private Collection<Cliente> clienteCollection;
 
-    public Segmento() {
+    public TipoTransporte() {
     }
 
-    public Segmento(Integer idCodigoSegmento) {
-        this.idCodigoSegmento = idCodigoSegmento;
+    public TipoTransporte(Integer idTipoTransporte) {
+        this.idTipoTransporte = idTipoTransporte;
     }
 
-    public Integer getIdCodigoSegmento() {
-        return idCodigoSegmento;
+    public Integer getIdTipoTransporte() {
+        return idTipoTransporte;
     }
 
-    public void setIdCodigoSegmento(Integer idCodigoSegmento) {
-        this.idCodigoSegmento = idCodigoSegmento;
+    public void setIdTipoTransporte(Integer idTipoTransporte) {
+        this.idTipoTransporte = idTipoTransporte;
     }
 
-    public String getDescricaoSegmento() {
-        return descricaoSegmento;
+    public String getDescricaoTipoTransporte() {
+        return descricaoTipoTransporte;
     }
 
-    public void setDescricaoSegmento(String descricaoSegmento) {
-        this.descricaoSegmento = descricaoSegmento;
+    public void setDescricaoTipoTransporte(String descricaoTipoTransporte) {
+        this.descricaoTipoTransporte = descricaoTipoTransporte;
     }
 
     @XmlTransient
@@ -81,18 +81,18 @@ public class Segmento implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idCodigoSegmento != null ? idCodigoSegmento.hashCode() : 0);
+        hash += (idTipoTransporte != null ? idTipoTransporte.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Segmento)) {
+        if (!(object instanceof TipoTransporte)) {
             return false;
         }
-        Segmento other = (Segmento) object;
-        if ((this.idCodigoSegmento == null && other.idCodigoSegmento != null) || (this.idCodigoSegmento != null && !this.idCodigoSegmento.equals(other.idCodigoSegmento))) {
+        TipoTransporte other = (TipoTransporte) object;
+        if ((this.idTipoTransporte == null && other.idTipoTransporte != null) || (this.idTipoTransporte != null && !this.idTipoTransporte.equals(other.idTipoTransporte))) {
             return false;
         }
         return true;
@@ -100,7 +100,7 @@ public class Segmento implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.erpweb.persistence.entities.Segmento[ idCodigoSegmento=" + idCodigoSegmento + " ]";
+        return "br.com.erpweb.persistence.entities.TipoTransporte[ idTipoTransporte=" + idTipoTransporte + " ]";
     }
     
 }

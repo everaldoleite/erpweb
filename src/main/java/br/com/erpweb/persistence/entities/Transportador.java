@@ -30,45 +30,45 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Transportador.findAll", query = "SELECT t FROM Transportador t"),
-    @NamedQuery(name = "Transportador.findByIdTRANSPORTADOR", query = "SELECT t FROM Transportador t WHERE t.idTRANSPORTADOR = :idTRANSPORTADOR")})
+    @NamedQuery(name = "Transportador.findByIdCodigoTransportador", query = "SELECT t FROM Transportador t WHERE t.idCodigoTransportador = :idCodigoTransportador")})
 public class Transportador implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idTRANSPORTADOR")
-    private Integer idTRANSPORTADOR;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTRANSPORTADOR")
-    private Collection<Empresa> empresaCollection;
+    @Column(name = "idCodigoTransportador")
+    private Integer idCodigoTransportador;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCodigoTransportador")
+    private Collection<Cliente> clienteCollection;
 
     public Transportador() {
     }
 
-    public Transportador(Integer idTRANSPORTADOR) {
-        this.idTRANSPORTADOR = idTRANSPORTADOR;
+    public Transportador(Integer idCodigoTransportador) {
+        this.idCodigoTransportador = idCodigoTransportador;
     }
 
-    public Integer getIdTRANSPORTADOR() {
-        return idTRANSPORTADOR;
+    public Integer getIdCodigoTransportador() {
+        return idCodigoTransportador;
     }
 
-    public void setIdTRANSPORTADOR(Integer idTRANSPORTADOR) {
-        this.idTRANSPORTADOR = idTRANSPORTADOR;
+    public void setIdCodigoTransportador(Integer idCodigoTransportador) {
+        this.idCodigoTransportador = idCodigoTransportador;
     }
 
     @XmlTransient
-    public Collection<Empresa> getEmpresaCollection() {
-        return empresaCollection;
+    public Collection<Cliente> getClienteCollection() {
+        return clienteCollection;
     }
 
-    public void setEmpresaCollection(Collection<Empresa> empresaCollection) {
-        this.empresaCollection = empresaCollection;
+    public void setClienteCollection(Collection<Cliente> clienteCollection) {
+        this.clienteCollection = clienteCollection;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idTRANSPORTADOR != null ? idTRANSPORTADOR.hashCode() : 0);
+        hash += (idCodigoTransportador != null ? idCodigoTransportador.hashCode() : 0);
         return hash;
     }
 
@@ -79,7 +79,7 @@ public class Transportador implements Serializable {
             return false;
         }
         Transportador other = (Transportador) object;
-        if ((this.idTRANSPORTADOR == null && other.idTRANSPORTADOR != null) || (this.idTRANSPORTADOR != null && !this.idTRANSPORTADOR.equals(other.idTRANSPORTADOR))) {
+        if ((this.idCodigoTransportador == null && other.idCodigoTransportador != null) || (this.idCodigoTransportador != null && !this.idCodigoTransportador.equals(other.idCodigoTransportador))) {
             return false;
         }
         return true;
@@ -87,7 +87,7 @@ public class Transportador implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.erpweb.persistence.entities.Transportador[ idTRANSPORTADOR=" + idTRANSPORTADOR + " ]";
+        return "br.com.erpweb.persistence.entities.Transportador[ idCodigoTransportador=" + idCodigoTransportador + " ]";
     }
     
 }
