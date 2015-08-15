@@ -6,9 +6,7 @@
 package br.com.erpweb.persistence.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +14,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,7 +27,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Transportador.findAll", query = "SELECT t FROM Transportador t"),
-    @NamedQuery(name = "Transportador.findByIdCodigoTransportador", query = "SELECT t FROM Transportador t WHERE t.idCodigoTransportador = :idCodigoTransportador")})
+    @NamedQuery(name = "Transportador.findByIdCodigoTransportador", query = "SELECT t FROM Transportador t WHERE t.idCodigoTransportador = :idCodigoTransportador"),
+    @NamedQuery(name = "Transportador.findByDescricaoTransportador", query = "SELECT t FROM Transportador t WHERE t.descricaoTransportador = :descricaoTransportador")})
 public class Transportador implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,8 +36,9 @@ public class Transportador implements Serializable {
     @Basic(optional = false)
     @Column(name = "idCodigoTransportador")
     private Integer idCodigoTransportador;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCodigoTransportador")
-    private Collection<Cliente> clienteCollection;
+    @Size(max = 45)
+    @Column(name = "descricaoTransportador")
+    private String descricaoTransportador;
 
     public Transportador() {
     }
@@ -56,13 +55,12 @@ public class Transportador implements Serializable {
         this.idCodigoTransportador = idCodigoTransportador;
     }
 
-    @XmlTransient
-    public Collection<Cliente> getClienteCollection() {
-        return clienteCollection;
+    public String getDescricaoTransportador() {
+        return descricaoTransportador;
     }
 
-    public void setClienteCollection(Collection<Cliente> clienteCollection) {
-        this.clienteCollection = clienteCollection;
+    public void setDescricaoTransportador(String descricaoTransportador) {
+        this.descricaoTransportador = descricaoTransportador;
     }
 
     @Override

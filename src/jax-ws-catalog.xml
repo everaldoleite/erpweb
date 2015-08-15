@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/home/everaldo/Downloads/NfeRecepcao2.wsdl" uri="wsdl/NfeRecepcao2.wsdl"/>
+    <system systemId="file:/home/everaldo/Downloads/NfeStatusServico2.wsdl" uri="wsdl/NfeStatusServico2.wsdl"/>
+</catalog>

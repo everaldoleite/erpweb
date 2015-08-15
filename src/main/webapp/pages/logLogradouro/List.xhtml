@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLogLogradouroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListLogLogradouroEmpty}" rendered="#{logLogradouroController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{logLogradouroController.items.rowCount > 0}">
+                    <h:outputText value="#{logLogradouroController.pagination.pageFirstItem + 1}..#{logLogradouroController.pagination.pageLastItem + 1}/#{logLogradouroController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{logLogradouroController.previous}" value="#{bundle.Previous} #{logLogradouroController.pagination.pageSize}" rendered="#{logLogradouroController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{logLogradouroController.next}" value="#{bundle.Next} #{logLogradouroController.pagination.pageSize}" rendered="#{logLogradouroController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{logLogradouroController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_logNuSequencial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.logNuSequencial}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_ufeSg}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ufeSg}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_logNo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.logNo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_logNome}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.logNome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_baiNuSequencialFim}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.baiNuSequencialFim}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_cep}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cep}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_logComplemento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.logComplemento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_logTipoLogradouro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.logTipoLogradouro}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_logStatusTipoLog}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.logStatusTipoLog}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_logNoSemAcento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.logNoSemAcento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_indUop}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.indUop}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_indGru}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.indGru}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_temp}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.temp}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_baiNuSequencialIni}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.baiNuSequencialIni}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogLogradouroTitle_locNuSequencial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.locNuSequencial}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{logLogradouroController.prepareView}" value="#{bundle.ListLogLogradouroViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{logLogradouroController.prepareEdit}" value="#{bundle.ListLogLogradouroEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{logLogradouroController.destroy}" value="#{bundle.ListLogLogradouroDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{logLogradouroController.prepareCreate}" value="#{bundle.ListLogLogradouroCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListLogLogradouroIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

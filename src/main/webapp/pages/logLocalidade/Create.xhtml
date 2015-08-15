@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateLogLocalidadeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateLogLocalidadeLabel_locNuSequencial}" for="locNuSequencial" />
+                    <h:inputText id="locNuSequencial" value="#{logLocalidadeController.selected.locNuSequencial}" title="#{bundle.CreateLogLocalidadeTitle_locNuSequencial}" required="true" requiredMessage="#{bundle.CreateLogLocalidadeRequiredMessage_locNuSequencial}"/>
+                    <h:outputLabel value="#{bundle.CreateLogLocalidadeLabel_locNosub}" for="locNosub" />
+                    <h:inputText id="locNosub" value="#{logLocalidadeController.selected.locNosub}" title="#{bundle.CreateLogLocalidadeTitle_locNosub}" />
+                    <h:outputLabel value="#{bundle.CreateLogLocalidadeLabel_locNo}" for="locNo" />
+                    <h:inputText id="locNo" value="#{logLocalidadeController.selected.locNo}" title="#{bundle.CreateLogLocalidadeTitle_locNo}" />
+                    <h:outputLabel value="#{bundle.CreateLogLocalidadeLabel_cep}" for="cep" />
+                    <h:inputText id="cep" value="#{logLocalidadeController.selected.cep}" title="#{bundle.CreateLogLocalidadeTitle_cep}" />
+                    <h:outputLabel value="#{bundle.CreateLogLocalidadeLabel_locInSituacao}" for="locInSituacao" />
+                    <h:inputText id="locInSituacao" value="#{logLocalidadeController.selected.locInSituacao}" title="#{bundle.CreateLogLocalidadeTitle_locInSituacao}" />
+                    <h:outputLabel value="#{bundle.CreateLogLocalidadeLabel_locInTipoLocalidade}" for="locInTipoLocalidade" />
+                    <h:inputText id="locInTipoLocalidade" value="#{logLocalidadeController.selected.locInTipoLocalidade}" title="#{bundle.CreateLogLocalidadeTitle_locInTipoLocalidade}" required="true" requiredMessage="#{bundle.CreateLogLocalidadeRequiredMessage_locInTipoLocalidade}"/>
+                    <h:outputLabel value="#{bundle.CreateLogLocalidadeLabel_locNuSequencialSub}" for="locNuSequencialSub" />
+                    <h:inputText id="locNuSequencialSub" value="#{logLocalidadeController.selected.locNuSequencialSub}" title="#{bundle.CreateLogLocalidadeTitle_locNuSequencialSub}" />
+                    <h:outputLabel value="#{bundle.CreateLogLocalidadeLabel_temp}" for="temp" />
+                    <h:inputText id="temp" value="#{logLocalidadeController.selected.temp}" title="#{bundle.CreateLogLocalidadeTitle_temp}" />
+                    <h:outputLabel value="#{bundle.CreateLogLocalidadeLabel_ufeSg}" for="ufeSg" />
+                    <h:selectOneMenu id="ufeSg" value="#{logLocalidadeController.selected.ufeSg}" title="#{bundle.CreateLogLocalidadeTitle_ufeSg}" >
+                        <f:selectItems value="#{logFaixaUfController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{logLocalidadeController.create}" value="#{bundle.CreateLogLocalidadeSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{logLocalidadeController.prepareList}" value="#{bundle.CreateLogLocalidadeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateLogLocalidadeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

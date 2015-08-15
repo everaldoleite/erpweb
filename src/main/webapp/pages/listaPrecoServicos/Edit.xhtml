@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditListaPrecoServicosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditListaPrecoServicosLabel_idListaPrecosServicos}" for="idListaPrecosServicos" />
+                    <h:inputText id="idListaPrecosServicos" value="#{listaPrecoServicosController.selected.idListaPrecosServicos}" title="#{bundle.EditListaPrecoServicosTitle_idListaPrecosServicos}" required="true" requiredMessage="#{bundle.EditListaPrecoServicosRequiredMessage_idListaPrecosServicos}"/>
+                    <h:outputLabel value="#{bundle.EditListaPrecoServicosLabel_descricaoLista}" for="descricaoLista" />
+                    <h:inputText id="descricaoLista" value="#{listaPrecoServicosController.selected.descricaoLista}" title="#{bundle.EditListaPrecoServicosTitle_descricaoLista}" />
+                    <h:outputLabel value="#{bundle.EditListaPrecoServicosLabel_statusListaPrecos}" for="statusListaPrecos" />
+                    <h:inputText id="statusListaPrecos" value="#{listaPrecoServicosController.selected.statusListaPrecos}" title="#{bundle.EditListaPrecoServicosTitle_statusListaPrecos}" />
+                    <h:outputLabel value="#{bundle.EditListaPrecoServicosLabel_coeficiente1}" for="coeficiente1" />
+                    <h:inputText id="coeficiente1" value="#{listaPrecoServicosController.selected.coeficiente1}" title="#{bundle.EditListaPrecoServicosTitle_coeficiente1}" />
+                    <h:outputLabel value="#{bundle.EditListaPrecoServicosLabel_coeficiente2}" for="coeficiente2" />
+                    <h:inputText id="coeficiente2" value="#{listaPrecoServicosController.selected.coeficiente2}" title="#{bundle.EditListaPrecoServicosTitle_coeficiente2}" />
+                    <h:outputLabel value="#{bundle.EditListaPrecoServicosLabel_coeficiente3}" for="coeficiente3" />
+                    <h:inputText id="coeficiente3" value="#{listaPrecoServicosController.selected.coeficiente3}" title="#{bundle.EditListaPrecoServicosTitle_coeficiente3}" />
+                    <h:outputLabel value="#{bundle.EditListaPrecoServicosLabel_coeficiente4}" for="coeficiente4" />
+                    <h:inputText id="coeficiente4" value="#{listaPrecoServicosController.selected.coeficiente4}" title="#{bundle.EditListaPrecoServicosTitle_coeficiente4}" />
+                    <h:outputLabel value="#{bundle.EditListaPrecoServicosLabel_coeficiente5}" for="coeficiente5" />
+                    <h:inputText id="coeficiente5" value="#{listaPrecoServicosController.selected.coeficiente5}" title="#{bundle.EditListaPrecoServicosTitle_coeficiente5}" />
+                    <h:outputLabel value="#{bundle.EditListaPrecoServicosLabel_coeficiente6}" for="coeficiente6" />
+                    <h:inputText id="coeficiente6" value="#{listaPrecoServicosController.selected.coeficiente6}" title="#{bundle.EditListaPrecoServicosTitle_coeficiente6}" />
+                    <h:outputLabel value="#{bundle.EditListaPrecoServicosLabel_comissao}" for="comissao" />
+                    <h:inputText id="comissao" value="#{listaPrecoServicosController.selected.comissao}" title="#{bundle.EditListaPrecoServicosTitle_comissao}" />
+                    <h:outputLabel value="#{bundle.EditListaPrecoServicosLabel_observacao}" for="observacao" />
+                    <h:inputText id="observacao" value="#{listaPrecoServicosController.selected.observacao}" title="#{bundle.EditListaPrecoServicosTitle_observacao}" />
+                    <h:outputLabel value="#{bundle.EditListaPrecoServicosLabel_fator}" for="fator" />
+                    <h:inputText id="fator" value="#{listaPrecoServicosController.selected.fator}" title="#{bundle.EditListaPrecoServicosTitle_fator}" />
+                    <h:outputLabel value="#{bundle.EditListaPrecoServicosLabel_dataValidade}" for="dataValidade" />
+                    <h:inputText id="dataValidade" value="#{listaPrecoServicosController.selected.dataValidade}" title="#{bundle.EditListaPrecoServicosTitle_dataValidade}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                </h:panelGrid>
+                <h:commandLink action="#{listaPrecoServicosController.update}" value="#{bundle.EditListaPrecoServicosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditListaPrecoServicosViewLink}"/>
+                <br />
+                <h:commandLink action="#{listaPrecoServicosController.prepareList}" value="#{bundle.EditListaPrecoServicosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditListaPrecoServicosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

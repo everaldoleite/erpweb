@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Cadastro de Cliente"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form prependId="false">
+                <p:tabView class="col-md-10">
+                    <p:tab title="Dados Básicos" class="form-control">
+                        <div class="col-md-12">
+                            <p:outputLabel value="Nome ou Razão Social" for="razaoSocial" />
+                            <p:inputText id="razaoSocial" value="#{clienteController.selected.razaoSocial}" title="#{bundle.CreateClienteTitle_razaoSocial}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_razaoSocial}" class="form-control">
+                                <p:clientValidator />
+                                <f:validateLength minimum="3" />
+                            </p:inputText>
+                        </div>
+                        <div>&nbsp;</div>
+                        <div>
+                            <div class="col-md-4">
+                                <p:outputLabel for="tipoPessoa" value="Tipo Pessoa:" />
+                                <p:selectOneRadio id="tipoPessoa" value="#{clienteController.selected.tipoPessoa}"  layout="grid" columns="2" required="true">
+                                    <f:selectItem itemLabel="Pessoa Jurídica" itemValue="J" />
+                                    <f:selectItem itemLabel="Pessoa Física" itemValue="F"/>                            
+                                    <p:ajax listener="#{clienteController.atualizaTipoPessoa()}" update="cnpjEmpresa, cpfEmpresa, inscricaoEstadual, nomeFantasia" />
+                                </p:selectOneRadio>
+                            </div>                    
+                            <div class="col-md-4">                    
+                                <p:outputLabel value="C.N.P.J.:" for="cnpjEmpresa" />
+                                <p:inputMask mask="99.999.999/9999-99" id="cnpjEmpresa" value="#{clienteController.selected.cnpjEmpresa}" title="#{bundle.CreateClienteTitle_cnpjEmpresa}" class="form-control" disabled="#{clienteController.pessoaJuridica}" />
+                            </div>
+                            <div class="col-md-4">                    
+                                <p:outputLabel value="C.P.F.:" for="cpfEmpresa" />
+                                <p:inputMask mask="999.999.999-99" id="cpfEmpresa" value="#{clienteController.selected.cpfEmpresa}" title="#{bundle.CreateClienteTitle_cpfEmpresa}" class="form-control" disabled="#{clienteController.pessoaFisica}" />
+                            </div>
+                        </div>
+                        <div>&nbsp;</div>
+                        <div class="col-md-12">
+                            <p:outputLabel value="Nome Fantasia:" for="nomeFantasia" />
+                            <p:inputText id="nomeFantasia" value="#{clienteController.selected.nomeFantasia}" title="#{bundle.CreateClienteTitle_nomeFantasia}" class="form-control" disabled="#{clienteController.pessoaJuridica}" />
+                        </div>
+                        <div>&nbsp;</div>
+                        <div>
+                            <div class="col-md-6">
+                                <p:outputLabel for="telefone" value="Telefone:" />
+                                <p:inputMask id="telefone" value="#{clienteController.selected.telefone}" mask="(999) 9999-9999" class="form-control" />
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-md-6">
+                                <p:outputLabel value="Inscrição Estadual:" for="inscricaoEstadual" />
+                                <p:inputMask mask="999.999.999.999" id="inscricaoEstadual" value="#{clienteController.selected.inscricaoEstadual}" title="#{bundle.CreateClienteTitle_inscricaoEstadual}" class="form-control" disabled="#{clienteController.pessoaJuridica}" />
+                            </div>
+                        </div>
+                        <div>&nbsp;</div>      
+                        <div class="col-md-12">
+                            <p:outputLabel value="Nome Representante Legal" for="nomeRepresentanteLegal" />
+                            <p:inputText id="nomeRepresentanteLegal" value="#{clienteController.selected.nomeRepresentanteLegal}" title="#{bundle.CreateClienteTitle_nomeRepresentanteLegal}" class="form-control"/>
+                        </div>
+                        <div>&nbsp;</div>
+                        <div>
+                            <div class="col-md-6">                    
+                                <p:outputLabel value="C.P.F. Representante Legal" for="documentoRepresentanteCPF" />
+                                <p:inputText id="documentoRepresentanteCPF" value="#{clienteController.selected.documentoRepresentanteCPF}" title="#{bundle.CreateClienteTitle_documentoRepresentanteCPF}"  class="form-control" />
+                            </div>
+                            <div class="col-md-6">                    
+                                <p:outputLabel value="R.G. Representante Legal" for="documentoRepresentanteRG" />
+                                <p:inputText id="documentoRepresentanteRG" value="#{clienteController.selected.documentoRepresentanteRG}" title="#{bundle.CreateClienteTitle_documentoRepresentanteRG}" class="form-control" />
+                            </div>
+                        </div>
+                        <div>&nbsp;</div>
+                        <!-- Data de Inclusão -->
+                    </p:tab>
+                    <p:tab title="Dados Financeiros">
+
+                    </p:tab>
+                </p:tabView>
+<br/>
+                <div class="col-md-10">
+                    <div class="col-md-2">
+                        <p:commandButton action="#{clienteController.create}" value="Salvar" immediate="true"/>
+                    </div>
+                    <div class="col-md-2">
+                        <p:commandButton action="#{clienteController.prepareList}" value="Lista" immediate="true"/>
+                    </div>
+                    <div class="col-md-6">
+                        <p:commandButton onclick="PF('dialogContato').show()" action="#{clienteController.create}" value="Contatos" />
+                    </div>
+                </div>
+                <p:dialog header="Contatos" widgetVar="dialogContato" modal="true">
+                    
+                    
+                    
+                    
+                </p:dialog>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

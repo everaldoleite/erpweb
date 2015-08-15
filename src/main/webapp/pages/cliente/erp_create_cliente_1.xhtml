@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Cadastro de Cliente"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div style="height: 600px;">
+                <h:form prependId="false">
+                    <p:growl id="msgCli"/>
+                    <p:tabView class="col-md-10">
+                        <p:tab title="Dados Básicos">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Nome ou Razão Social" for="razaoSocial" />
+                                    <p:inputText id="razaoSocial" value="#{clienteController.selected.razaoSocial}" autocomplete="off" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_razaoSocial}" class="form-control">
+                                        <p:clientValidator />
+                                        <f:validateLength minimum="3" />
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel for="tipoPessoa" value="Tipo Pessoa:" />
+                                    <p:selectOneRadio id="tipoPessoa" value="#{clienteController.selected.tipoPessoa}" layout="grid" columns="2" required="true">
+                                        <f:selectItem itemLabel="Pessoa Jurídica" itemValue="J" />
+                                        <f:selectItem itemLabel="Pessoa Física" itemValue="F"/>                            
+                                        <p:ajax listener="#{clienteController.atualizaTipoPessoa()}" update="cnpjEmpresa, cpfEmpresa, inscricaoEstadual, nomeFantasia" />
+                                    </p:selectOneRadio>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="C.N.P.J.:" for="cnpjEmpresa" />
+                                    <p:inputMask mask="99.999.999/9999-99" id="cnpjEmpresa" autocomplete="off" value="#{clienteController.selected.cnpjEmpresa}" class="form-control" disabled="#{clienteController.pessoaFisica}" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="C.P.F.:" for="cpfEmpresa" />
+                                    <p:inputMask mask="999.999.999-99" id="cpfEmpresa" value="#{clienteController.selected.cpfEmpresa}" class="form-control" disabled="#{clienteController.pessoaJuridica}" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel for="telefone" value="Telefone:" />
+                                    <p:inputMask id="telefone" value="#{clienteController.selected.telefone}" mask="(999) 9999-9999" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Inscrição Estadual:" for="inscricaoEstadual" />
+                                    <p:inputMask mask="999.999.999.999" id="inscricaoEstadual" value="#{clienteController.selected.inscricaoEstadual}" required="true" class="form-control" disabled="#{clienteController.pessoaFisica}" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Nome Fantasia:" for="nomeFantasia" />
+                                    <p:inputText id="nomeFantasia" value="#{clienteController.selected.nomeFantasia}" class="form-control" disabled="#{clienteController.pessoaFisica}" />
+                                </div>
+                            </div>     
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Nome Representante Legal:" for="nomeRepresentanteLegal" />
+                                    <p:inputText id="nomeRepresentanteLegal" value="#{clienteController.selected.nomeRepresentanteLegal}" disabled="#{clienteController.pessoaJuridica}" class="form-control"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="C.P.F. Representante Legal" for="documentoRepresentanteCPF" />
+                                    <p:inputText id="documentoRepresentanteCPF" value="#{clienteController.selected.documentoRepresentanteCPF}" disabled="#{clienteController.pessoaJuridica}" class="form-control" />
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-md-6">                    
+                                    <p:outputLabel value="R.G. Representante Legal" for="documentoRepresentanteRG" />
+                                    <p:inputText id="documentoRepresentanteRG" value="#{clienteController.selected.documentoRepresentanteRG}" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Segmento: " for="idCodigoSegmento" />&nbsp;<h:outputLink>Detalhes</h:outputLink>
+                                    <h:selectOneMenu id="idCodigoSegmento" value="#{clienteController.selected.idCodigoSegmento}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idCodigoSegmento}" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{segmentoController.data}" var="segmento" itemLabel="#{segmento.descricaoSegmento}" itemValue="#{segmento.idCodigoSegmento}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>    
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Optante pelo SIMPLES: " for="optanteSimples" />
+                                    <p:selectOneRadio id="optanteSimples" value="#{clienteController.selected.optanteSimples}"  layout="grid" columns="2" required="true" requiredMessage="Opção pelo SIMPLES é requerida" class="form-control">
+                                        <f:selectItem itemLabel="Sim" itemValue="1" />
+                                        <f:selectItem itemLabel="Não" itemValue="0" />                            
+                                    </p:selectOneRadio>
+                                </div>                                
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Tipo de Estabelecimento: " for="tipoEstabelecimento" />
+                                    <p:selectOneRadio id="tipoEstabelecimento" value="#{clienteController.selected.tipoEstabelecimento}"  layout="grid" columns="2" required="true" requiredMessage="Opção tributária é requerida" class="form-control">
+                                        <f:selectItem itemLabel="Substituto" itemValue="1" />
+                                        <f:selectItem itemLabel="Substituido" itemValue="0" />                            
+                                    </p:selectOneRadio>
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Optante pelo SIMPLES-DANFE: " for="opcaoSimplesDANFE" />
+                                    <p:selectOneRadio id="opcaoSimplesDANFE" value="#{clienteController.selected.opcaoSimplesDANFE}"  layout="grid" columns="2" class="form-control">
+                                        <f:selectItem itemLabel="Sim" itemValue="1" />
+                                        <f:selectItem itemLabel="Não" itemValue="0" />                            
+                                    </p:selectOneRadio>
+                                </div>                                
+                            </div>                            
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="e-mail Depto. Comercial" for="emailComercial" />
+                                    <p:inputText id="emailComercial" value="#{clienteController.selected.emailComercial}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="e-mail Atendimento" for="emailAtendimento" />
+                                    <p:inputText id="emailAtendimento" value="#{clienteController.selected.emailAtendimento}" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel for="revendedor" value="Revendedor:" />
+                                    <p:selectOneRadio id="revendedor" value="#{clienteController.selected.revendedor}" >
+                                        <f:selectItem itemLabel="Sim" itemValue="1" />
+                                        <f:selectItem itemLabel="Não" itemValue="0" />
+                                    </p:selectOneRadio>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel for="statusEmpresa" value="Status Empresa:" />
+                                    <p:selectOneRadio id="statusEmpresa" value="#{clienteController.selected.statusEmpresa}" >
+                                        <f:selectItem itemLabel="Ativa" itemValue="1" />
+                                        <f:selectItem itemLabel="Inativa" itemValue="0" />
+                                    </p:selectOneRadio>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Inscrição Suframa:" for="inscricaoSuframa" />
+                                    <p:inputText id="inscricaoSuframa" value="#{clienteController.selected.inscricaoSuframa}" class="form-control" />
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Endereço">
+                            <div class="row">
+                                <div class="col-md-4">                            
+                                    <p:outputLabel value="CEP:" for="cep" />&nbsp;
+                                    <p:inputMask mask="99999-999" id="cep" value="#{clienteController.selected.cep}" class="form-inline" />
+                                </div>
+                                <div class="col-md-8">                            
+                                    <p:commandButton onclick="PF('dialogContato').show()" value="Buscar Endereço" icon="ui-icon-search" />
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">                            
+                                    <p:outputLabel value="Tipo:" for="tipoLogradouro" />
+                                    <p:inputText disabled="true" id="tipoLogradouro" value="#{clienteController.selected.cep}" class="form-control"/>
+                                </div>
+                                <div class="col-md-6">                            
+                                    <p:outputLabel value="Logradouro:" for="logradouro" />
+                                    <p:inputText disabled="true" id="logradouro" value="#{clienteController.selected.logradouro}" class="form-control"/>
+                                </div>                                
+                                <div class="col-md-2">                            
+                                    <p:outputLabel value="Número:" for="numero" />
+                                    <p:inputText id="numero" value="#{clienteController.selected.numero}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">                            
+                                    <p:outputLabel value="Bairro:" for="bairro" />
+                                    <p:inputText disabled="true" id="bairro" value="#{clienteController.selected.bairro}" class="form-control" />
+                                </div>
+                                <div class="col-md-6">                            
+                                    <p:outputLabel value="Cidade:" for="cidade" />
+                                    <p:inputText disabled="true" id="cidade" value="#{clienteController.selected.cidade}" class="form-control"/>
+                                </div>                                
+                                <div class="col-md-2">                            
+                                    <p:outputLabel value="UF:" for="uf" />
+                                    <p:inputText disabled="true" id="uf" value="#{clienteController.selected.uf}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">                            
+                                    <p:outputLabel value="Complemento:" for="complemento" />
+                                    <p:inputText id="complemento" value="#{clienteController.selected.complemento}" class="form-control"/>
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Dados Financeiros">
+                            <div class="row">
+                                <div class="col-md-6">                    
+                                    <p:outputLabel value="Capital Social (R$): " for="capitalSocial" />
+                                    <p:inputText id="capitalSocial" value="#{clienteController.selected.capitalSocial}" title="#{bundle.CreateClienteTitle_capitalSocial}" class="form-control" >
+                                        <f:convertNumber currencyCode="R$ " type="currency"/>  
+                                    </p:inputText>
+                                </div>
+                                <div class="col-md-6">                    
+                                    <p:outputLabel value="Pontuação da empresa: " for="rankingScore" />
+                                    <p:rating value="#{clienteController.selected.rankingScore}" id="rankingScore" readonly="true" />
+                                </div>
+                            </div>    
+                            <div class="row">
+                                <div class="col-md-4">                    
+                                    <p:outputLabel value="Tipo de Limite de Crédito" for="tipoLimiteCredito" />
+                                    <h:selectOneMenu id="tipoLimiteCredito" value="#{clienteController.selected.tipoLimiteCredito}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idCondicaoPagamento}" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItem itemLabel="NÃO UTILIZA" itemValue="0" />
+                                        <f:selectItem itemLabel="MENSAL" itemValue="1" />
+                                        <f:selectItem itemLabel="POR FATURAMENTO" itemValue="2" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Limite de Crédito (R$):" for="limiteCredito" />
+                                    <p:inputText id="limiteCredito" value="#{clienteController.selected.limiteCredito}" title="#{bundle.CreateClienteTitle_limiteCredito}" >
+                                        <f:convertNumber currencyCode="R$ " type="currency"/>  
+                                    </p:inputText>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:commandButton value="Avaliar Credito" immediate="true" class="form-inline" icon="ui-icon-calculator" />
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">                    
+                                    <p:outputLabel value="Observação do Limite de Crédito:" for="observacaoLimiteCredito" />
+                                    <p:inputTextarea id="observacaoLimiteCredito" value="#{clienteController.selected.observacaoLimiteCredito}" title="#{bundle.CreateClienteTitle_observacaoLimiteCredito}" class="form-control"/>                            
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Dados Comerciais">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Condição de Pagamento:" for="idCondicaoPagamento" />&nbsp;<h:outputLink>Detalhes</h:outputLink>
+                                    <h:selectOneMenu id="idCondicaoPagamento" value="#{clienteController.selected.idCondicaoPagamento}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idCondicaoPagamento}" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                        
+                                        <f:selectItems value="#{condicaoPagamentoController.data}" var="condicao" itemLabel="#{condicao.descricaoCondicaoPagamento}" itemValue="#{condicao.idCondicaoPagamento}" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel for="geraBoleto" value="Geração de Boletos:" />
+                                    <p:selectOneRadio id="geraBoleto" value="#{clienteController.selected.geraBoleto}"  layout="grid" columns="2" required="true">
+                                        <f:selectItem itemLabel="Sim" itemValue="1" />
+                                        <f:selectItem itemLabel="Não" itemValue="0" />                            
+                                    </p:selectOneRadio>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:panel menuTitle="Bloqueios:">
+                                        <p:outputLabel value="Bloqueios" />&nbsp;
+                                        <p:selectBooleanCheckbox itemLabel="Atendimento" id="bloqueioAtendimento" value="#{clienteController.selected.bloqueioAtendimento}" />&nbsp;
+                                        <p:selectBooleanCheckbox itemLabel="Vendas" id="bloqueioVendas" value="#{clienteController.selected.bloqueioVendas}" />&nbsp;
+                                        <p:selectBooleanCheckbox itemLabel="Faturamento" id="bloqueioFaturamento" value="#{clienteController.selected.bloqueioFaturamento}" />&nbsp;
+                                        <p:selectBooleanCheckbox itemLabel="Comercial" id="bloqueioComercial" value="#{clienteController.selected.bloqueioComercial}" />
+                                    </p:panel>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel for="motivoBloqueio" value="Motivo de Bloqueio:" />
+                                    <p:inputTextarea cols="90" id="motivoBloqueio" value="#{clienteController.selected.motivoBloqueio}" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Tipo de Transporte:" for="idTipoTransporte" />
+                                    <h:selectOneMenu id="idTipoTransporte" value="#{clienteController.selected.idCodigoTransportador}" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                                                                
+                                        <f:selectItems value="#{tipoTransporteController.data}" var="tipotrans" itemLabel="#{tipotrans.descricaoTipoTransporte}" itemValue="#{tipotrans.idTipoTransporte}" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Transportadora Preferencial:" for="idCodigoTransportador" />
+                                    <h:selectOneMenu id="idCodigoTransportador" value="#{clienteController.selected.idCodigoTransportador}" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                                                                
+                                        <f:selectItems value="#{transportadorController.data}" var="tranp" itemLabel="#{tranp.descricaoTransportador}" itemValue="#{tranp.idCodigoTransportador}" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Vendedor (Fidelização):" for="idVendedorFidelidade" />
+                                    <h:selectOneMenu id="idVendedorFidelidade" value="#{clienteController.selected.idVendedorFidelidade}" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                                                                
+                                        <f:selectItems value="#{vendedorController.data}" var="vendedor" itemLabel="#{vendedor.nomeVendedor}" itemValue="#{vendedor.idVendedor}" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Acesso Itens Promocionais:" for="acessoItensPromocionais" />&nbsp;
+                                    <p:selectBooleanCheckbox id="acessoItensPromocionais" value="#{clienteController.selected.acessoItensPromocionais}" />
+                                </div>                                
+                            </div>                            
+                        </p:tab>
+                        <p:tab title="Outros Dados">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="e-mail para envio Nota Municipal:" for="emailNotaMunicipal" />
+                                    <p:inputText id="emailNotaMunicipal" value="#{clienteController.selected.emailNotaMunicipal}" title="#{bundle.CreateClienteTitle_emailNotaMunicipal}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="e-mail para envio Nota Federal:" for="emailNotaFederal" />
+                                    <p:inputText id="emailNotaFederal" value="#{clienteController.selected.emailNotaFederal}" title="#{bundle.CreateClienteTitle_emailNotaFederal}" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Home-page:" for="homepage" />
+                                    <p:inputText id="homepage" value="#{clienteController.selected.homepage}" title="#{bundle.CreateClienteTitle_homepage}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Número de Empregados:" for="numeroEmpregados" />
+                                    <p:inputText id="numeroEmpregados" value="#{clienteController.selected.numeroEmpregados}" title="#{bundle.CreateClienteTitle_numeroEmpregados}" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Código Interno:" for="codigoInterno" />
+                                    <p:inputText id="codigoInterno" value="#{clienteController.selected.codigoInterno}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Perfil:" for="perfil" />
+                                    <p:inputTextarea id="perfil" value="#{clienteController.selected.perfil}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Atuação:" for="atuacao" />
+                                    <p:inputTextarea id="atuacao" value="#{clienteController.selected.atuacao}" class="form-control"/>
+                                </div>
+                            </div>
+                        </p:tab>
+                    </p:tabView>
+                    <div class="col-md-12" style="padding: 10px;">
+                        <div class="col-md-2">
+                            <p:commandButton action="#{clienteController.create}" value="Salvar" immediate="true" icon="ui-icon-disk" title="Salvar"/>
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{clienteController.prepareList}" value="Lista"  immediate="true" icon="ui-icon-bookmark" title="Lista" />
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton onclick="PF('dialogContato').show()" value="Contatos" icon="ui-icon-person" disabled="true"/>
+                        </div>
+                    </div>
+                    <p:dialog header="Contatos" widgetVar="dialogContato" modal="true" >
+                        <h:form>
+                            <p:outputLabel value="#{bundle.EditBancoLabel_idBanco}" for="idBanco" />
+                            <p:inputText id="idBanco" value="#{bancoController.selected.idBanco}" title="#{bundle.EditBancoTitle_idBanco}" required="true" requiredMessage="#{bundle.EditBancoRequiredMessage_idBanco}"/>
+                            <p:outputLabel value="#{bundle.EditBancoLabel_descricaoBanco}" for="descricaoBanco" />
+                            <p:inputText id="descricaoBanco" value="#{bancoController.selected.descricaoBanco}" title="#{bundle.EditBancoTitle_descricaoBanco}" />
+                        </h:form>
+                    </p:dialog>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

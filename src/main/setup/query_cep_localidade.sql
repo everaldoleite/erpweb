@@ -1,0 +1,1 @@
+SELECT * FROM erpweb.log_localidade where cep='08032360';

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateNaturezaOperacaoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_idNaturezaOperacao}" for="idNaturezaOperacao" />
+                    <h:inputText id="idNaturezaOperacao" value="#{naturezaOperacaoController.selected.idNaturezaOperacao}" title="#{bundle.CreateNaturezaOperacaoTitle_idNaturezaOperacao}" required="true" requiredMessage="#{bundle.CreateNaturezaOperacaoRequiredMessage_idNaturezaOperacao}"/>
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_codigoOperacao}" for="codigoOperacao" />
+                    <h:inputText id="codigoOperacao" value="#{naturezaOperacaoController.selected.codigoOperacao}" title="#{bundle.CreateNaturezaOperacaoTitle_codigoOperacao}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_descricaoOperacao}" for="descricaoOperacao" />
+                    <h:inputText id="descricaoOperacao" value="#{naturezaOperacaoController.selected.descricaoOperacao}" title="#{bundle.CreateNaturezaOperacaoTitle_descricaoOperacao}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_descricaoInterna}" for="descricaoInterna" />
+                    <h:inputText id="descricaoInterna" value="#{naturezaOperacaoController.selected.descricaoInterna}" title="#{bundle.CreateNaturezaOperacaoTitle_descricaoInterna}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_cfop}" for="cfop" />
+                    <h:inputText id="cfop" value="#{naturezaOperacaoController.selected.cfop}" title="#{bundle.CreateNaturezaOperacaoTitle_cfop}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_aliquotaICMS}" for="aliquotaICMS" />
+                    <h:inputText id="aliquotaICMS" value="#{naturezaOperacaoController.selected.aliquotaICMS}" title="#{bundle.CreateNaturezaOperacaoTitle_aliquotaICMS}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_baseCalculoICMS}" for="baseCalculoICMS" />
+                    <h:inputText id="baseCalculoICMS" value="#{naturezaOperacaoController.selected.baseCalculoICMS}" title="#{bundle.CreateNaturezaOperacaoTitle_baseCalculoICMS}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_baseCalculoICMSOutras}" for="baseCalculoICMSOutras" />
+                    <h:inputText id="baseCalculoICMSOutras" value="#{naturezaOperacaoController.selected.baseCalculoICMSOutras}" title="#{bundle.CreateNaturezaOperacaoTitle_baseCalculoICMSOutras}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_baseCalculoICMSIsento}" for="baseCalculoICMSIsento" />
+                    <h:inputText id="baseCalculoICMSIsento" value="#{naturezaOperacaoController.selected.baseCalculoICMSIsento}" title="#{bundle.CreateNaturezaOperacaoTitle_baseCalculoICMSIsento}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_baseCalculoIPI}" for="baseCalculoIPI" />
+                    <h:inputText id="baseCalculoIPI" value="#{naturezaOperacaoController.selected.baseCalculoIPI}" title="#{bundle.CreateNaturezaOperacaoTitle_baseCalculoIPI}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_baseCalculoIPIOutras}" for="baseCalculoIPIOutras" />
+                    <h:inputText id="baseCalculoIPIOutras" value="#{naturezaOperacaoController.selected.baseCalculoIPIOutras}" title="#{bundle.CreateNaturezaOperacaoTitle_baseCalculoIPIOutras}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_baseCalculoIPIIsento}" for="baseCalculoIPIIsento" />
+                    <h:inputText id="baseCalculoIPIIsento" value="#{naturezaOperacaoController.selected.baseCalculoIPIIsento}" title="#{bundle.CreateNaturezaOperacaoTitle_baseCalculoIPIIsento}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_opcaoInclusaoIPIBaseICMS}" for="opcaoInclusaoIPIBaseICMS" />
+                    <h:inputText id="opcaoInclusaoIPIBaseICMS" value="#{naturezaOperacaoController.selected.opcaoInclusaoIPIBaseICMS}" title="#{bundle.CreateNaturezaOperacaoTitle_opcaoInclusaoIPIBaseICMS}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_aliquotaISS}" for="aliquotaISS" />
+                    <h:inputText id="aliquotaISS" value="#{naturezaOperacaoController.selected.aliquotaISS}" title="#{bundle.CreateNaturezaOperacaoTitle_aliquotaISS}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_aliquotaIR}" for="aliquotaIR" />
+                    <h:inputText id="aliquotaIR" value="#{naturezaOperacaoController.selected.aliquotaIR}" title="#{bundle.CreateNaturezaOperacaoTitle_aliquotaIR}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_aliquotaINSS}" for="aliquotaINSS" />
+                    <h:inputText id="aliquotaINSS" value="#{naturezaOperacaoController.selected.aliquotaINSS}" title="#{bundle.CreateNaturezaOperacaoTitle_aliquotaINSS}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_aliquotaPIS}" for="aliquotaPIS" />
+                    <h:inputText id="aliquotaPIS" value="#{naturezaOperacaoController.selected.aliquotaPIS}" title="#{bundle.CreateNaturezaOperacaoTitle_aliquotaPIS}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_aliquotaCOFINS}" for="aliquotaCOFINS" />
+                    <h:inputText id="aliquotaCOFINS" value="#{naturezaOperacaoController.selected.aliquotaCOFINS}" title="#{bundle.CreateNaturezaOperacaoTitle_aliquotaCOFINS}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_aliquotaCSLL}" for="aliquotaCSLL" />
+                    <h:inputText id="aliquotaCSLL" value="#{naturezaOperacaoController.selected.aliquotaCSLL}" title="#{bundle.CreateNaturezaOperacaoTitle_aliquotaCSLL}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_retemISS}" for="retemISS" />
+                    <h:inputText id="retemISS" value="#{naturezaOperacaoController.selected.retemISS}" title="#{bundle.CreateNaturezaOperacaoTitle_retemISS}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_retemINSS}" for="retemINSS" />
+                    <h:inputText id="retemINSS" value="#{naturezaOperacaoController.selected.retemINSS}" title="#{bundle.CreateNaturezaOperacaoTitle_retemINSS}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_retemPIS}" for="retemPIS" />
+                    <h:inputText id="retemPIS" value="#{naturezaOperacaoController.selected.retemPIS}" title="#{bundle.CreateNaturezaOperacaoTitle_retemPIS}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_retemCOFINS}" for="retemCOFINS" />
+                    <h:inputText id="retemCOFINS" value="#{naturezaOperacaoController.selected.retemCOFINS}" title="#{bundle.CreateNaturezaOperacaoTitle_retemCOFINS}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_retemCSLL}" for="retemCSLL" />
+                    <h:inputText id="retemCSLL" value="#{naturezaOperacaoController.selected.retemCSLL}" title="#{bundle.CreateNaturezaOperacaoTitle_retemCSLL}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_origemST}" for="origemST" />
+                    <h:inputText id="origemST" value="#{naturezaOperacaoController.selected.origemST}" title="#{bundle.CreateNaturezaOperacaoTitle_origemST}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_tributacaoST}" for="tributacaoST" />
+                    <h:inputText id="tributacaoST" value="#{naturezaOperacaoController.selected.tributacaoST}" title="#{bundle.CreateNaturezaOperacaoTitle_tributacaoST}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_opcaoContasReceber}" for="opcaoContasReceber" />
+                    <h:inputText id="opcaoContasReceber" value="#{naturezaOperacaoController.selected.opcaoContasReceber}" title="#{bundle.CreateNaturezaOperacaoTitle_opcaoContasReceber}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_opcaoComissao}" for="opcaoComissao" />
+                    <h:inputText id="opcaoComissao" value="#{naturezaOperacaoController.selected.opcaoComissao}" title="#{bundle.CreateNaturezaOperacaoTitle_opcaoComissao}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_opcaoPermiteAlteracao}" for="opcaoPermiteAlteracao" />
+                    <h:inputText id="opcaoPermiteAlteracao" value="#{naturezaOperacaoController.selected.opcaoPermiteAlteracao}" title="#{bundle.CreateNaturezaOperacaoTitle_opcaoPermiteAlteracao}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_opcaoAtualizaEstoque}" for="opcaoAtualizaEstoque" />
+                    <h:inputText id="opcaoAtualizaEstoque" value="#{naturezaOperacaoController.selected.opcaoAtualizaEstoque}" title="#{bundle.CreateNaturezaOperacaoTitle_opcaoAtualizaEstoque}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_dispensaICMS}" for="dispensaICMS" />
+                    <h:inputText id="dispensaICMS" value="#{naturezaOperacaoController.selected.dispensaICMS}" title="#{bundle.CreateNaturezaOperacaoTitle_dispensaICMS}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_retemIR}" for="retemIR" />
+                    <h:inputText id="retemIR" value="#{naturezaOperacaoController.selected.retemIR}" title="#{bundle.CreateNaturezaOperacaoTitle_retemIR}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_opcaoNotaEletronicaServico}" for="opcaoNotaEletronicaServico" />
+                    <h:inputText id="opcaoNotaEletronicaServico" value="#{naturezaOperacaoController.selected.opcaoNotaEletronicaServico}" title="#{bundle.CreateNaturezaOperacaoTitle_opcaoNotaEletronicaServico}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_tipoNotaServico}" for="tipoNotaServico" />
+                    <h:inputText id="tipoNotaServico" value="#{naturezaOperacaoController.selected.tipoNotaServico}" title="#{bundle.CreateNaturezaOperacaoTitle_tipoNotaServico}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_situacaoNotaEletronicaServico}" for="situacaoNotaEletronicaServico" />
+                    <h:inputText id="situacaoNotaEletronicaServico" value="#{naturezaOperacaoController.selected.situacaoNotaEletronicaServico}" title="#{bundle.CreateNaturezaOperacaoTitle_situacaoNotaEletronicaServico}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_codigoServico}" for="codigoServico" />
+                    <h:inputText id="codigoServico" value="#{naturezaOperacaoController.selected.codigoServico}" title="#{bundle.CreateNaturezaOperacaoTitle_codigoServico}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_codigoServicoFederal}" for="codigoServicoFederal" />
+                    <h:inputText id="codigoServicoFederal" value="#{naturezaOperacaoController.selected.codigoServicoFederal}" title="#{bundle.CreateNaturezaOperacaoTitle_codigoServicoFederal}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_destino}" for="destino" />
+                    <h:inputText id="destino" value="#{naturezaOperacaoController.selected.destino}" title="#{bundle.CreateNaturezaOperacaoTitle_destino}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_localPrestacaoServico}" for="localPrestacaoServico" />
+                    <h:inputText id="localPrestacaoServico" value="#{naturezaOperacaoController.selected.localPrestacaoServico}" title="#{bundle.CreateNaturezaOperacaoTitle_localPrestacaoServico}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_opcaoServicoPrestadoViaPublica}" for="opcaoServicoPrestadoViaPublica" />
+                    <h:inputText id="opcaoServicoPrestadoViaPublica" value="#{naturezaOperacaoController.selected.opcaoServicoPrestadoViaPublica}" title="#{bundle.CreateNaturezaOperacaoTitle_opcaoServicoPrestadoViaPublica}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_exibirTributos}" for="exibirTributos" />
+                    <h:inputText id="exibirTributos" value="#{naturezaOperacaoController.selected.exibirTributos}" title="#{bundle.CreateNaturezaOperacaoTitle_exibirTributos}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_status}" for="status" />
+                    <h:inputText id="status" value="#{naturezaOperacaoController.selected.status}" title="#{bundle.CreateNaturezaOperacaoTitle_status}" />
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_idMensagemFaturamento}" for="idMensagemFaturamento" />
+                    <h:selectOneMenu id="idMensagemFaturamento" value="#{naturezaOperacaoController.selected.idMensagemFaturamento}" title="#{bundle.CreateNaturezaOperacaoTitle_idMensagemFaturamento}" required="true" requiredMessage="#{bundle.CreateNaturezaOperacaoRequiredMessage_idMensagemFaturamento}">
+                        <f:selectItems value="#{mensagemFaturamentoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_idTipoTitulo}" for="idTipoTitulo" />
+                    <h:selectOneMenu id="idTipoTitulo" value="#{naturezaOperacaoController.selected.idTipoTitulo}" title="#{bundle.CreateNaturezaOperacaoTitle_idTipoTitulo}" required="true" requiredMessage="#{bundle.CreateNaturezaOperacaoRequiredMessage_idTipoTitulo}">
+                        <f:selectItems value="#{tipoTituloController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_idtipoMovimentoEstoque}" for="idtipoMovimentoEstoque" />
+                    <h:selectOneMenu id="idtipoMovimentoEstoque" value="#{naturezaOperacaoController.selected.idtipoMovimentoEstoque}" title="#{bundle.CreateNaturezaOperacaoTitle_idtipoMovimentoEstoque}" required="true" requiredMessage="#{bundle.CreateNaturezaOperacaoRequiredMessage_idtipoMovimentoEstoque}">
+                        <f:selectItems value="#{tipoMovimentoEstoqueController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_idtipoMovimentoEstoqueCancelamento}" for="idtipoMovimentoEstoqueCancelamento" />
+                    <h:selectOneMenu id="idtipoMovimentoEstoqueCancelamento" value="#{naturezaOperacaoController.selected.idtipoMovimentoEstoqueCancelamento}" title="#{bundle.CreateNaturezaOperacaoTitle_idtipoMovimentoEstoqueCancelamento}" required="true" requiredMessage="#{bundle.CreateNaturezaOperacaoRequiredMessage_idtipoMovimentoEstoqueCancelamento}">
+                        <f:selectItems value="#{tipoMovimentoEstoqueController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_idsubstituicaoTributariaPIS}" for="idsubstituicaoTributariaPIS" />
+                    <h:selectOneMenu id="idsubstituicaoTributariaPIS" value="#{naturezaOperacaoController.selected.idsubstituicaoTributariaPIS}" title="#{bundle.CreateNaturezaOperacaoTitle_idsubstituicaoTributariaPIS}" required="true" requiredMessage="#{bundle.CreateNaturezaOperacaoRequiredMessage_idsubstituicaoTributariaPIS}">
+                        <f:selectItems value="#{substituicaoTributariaPisCofinsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNaturezaOperacaoLabel_idsubstituicaoTributariaCOFINS}" for="idsubstituicaoTributariaCOFINS" />
+                    <h:selectOneMenu id="idsubstituicaoTributariaCOFINS" value="#{naturezaOperacaoController.selected.idsubstituicaoTributariaCOFINS}" title="#{bundle.CreateNaturezaOperacaoTitle_idsubstituicaoTributariaCOFINS}" required="true" requiredMessage="#{bundle.CreateNaturezaOperacaoRequiredMessage_idsubstituicaoTributariaCOFINS}">
+                        <f:selectItems value="#{substituicaoTributariaPisCofinsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{naturezaOperacaoController.create}" value="#{bundle.CreateNaturezaOperacaoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{naturezaOperacaoController.prepareList}" value="#{bundle.CreateNaturezaOperacaoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateNaturezaOperacaoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

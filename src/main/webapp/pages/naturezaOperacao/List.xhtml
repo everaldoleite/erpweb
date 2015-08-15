@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListNaturezaOperacaoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListNaturezaOperacaoEmpty}" rendered="#{naturezaOperacaoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{naturezaOperacaoController.items.rowCount > 0}">
+                    <h:outputText value="#{naturezaOperacaoController.pagination.pageFirstItem + 1}..#{naturezaOperacaoController.pagination.pageLastItem + 1}/#{naturezaOperacaoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{naturezaOperacaoController.previous}" value="#{bundle.Previous} #{naturezaOperacaoController.pagination.pageSize}" rendered="#{naturezaOperacaoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{naturezaOperacaoController.next}" value="#{bundle.Next} #{naturezaOperacaoController.pagination.pageSize}" rendered="#{naturezaOperacaoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{naturezaOperacaoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_idNaturezaOperacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNaturezaOperacao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_codigoOperacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoOperacao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_descricaoOperacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricaoOperacao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_descricaoInterna}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricaoInterna}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_cfop}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cfop}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_aliquotaICMS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aliquotaICMS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_baseCalculoICMS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.baseCalculoICMS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_baseCalculoICMSOutras}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.baseCalculoICMSOutras}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_baseCalculoICMSIsento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.baseCalculoICMSIsento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_baseCalculoIPI}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.baseCalculoIPI}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_baseCalculoIPIOutras}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.baseCalculoIPIOutras}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_baseCalculoIPIIsento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.baseCalculoIPIIsento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_opcaoInclusaoIPIBaseICMS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opcaoInclusaoIPIBaseICMS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_aliquotaISS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aliquotaISS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_aliquotaIR}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aliquotaIR}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_aliquotaINSS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aliquotaINSS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_aliquotaPIS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aliquotaPIS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_aliquotaCOFINS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aliquotaCOFINS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_aliquotaCSLL}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aliquotaCSLL}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_retemISS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retemISS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_retemINSS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retemINSS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_retemPIS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retemPIS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_retemCOFINS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retemCOFINS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_retemCSLL}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retemCSLL}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_origemST}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.origemST}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_tributacaoST}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tributacaoST}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_opcaoContasReceber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opcaoContasReceber}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_opcaoComissao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opcaoComissao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_opcaoPermiteAlteracao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opcaoPermiteAlteracao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_opcaoAtualizaEstoque}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opcaoAtualizaEstoque}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_dispensaICMS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dispensaICMS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_retemIR}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retemIR}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_opcaoNotaEletronicaServico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opcaoNotaEletronicaServico}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_tipoNotaServico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoNotaServico}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_situacaoNotaEletronicaServico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.situacaoNotaEletronicaServico}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_codigoServico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoServico}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_codigoServicoFederal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoServicoFederal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_destino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.destino}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_localPrestacaoServico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.localPrestacaoServico}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_opcaoServicoPrestadoViaPublica}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opcaoServicoPrestadoViaPublica}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_exibirTributos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.exibirTributos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_idMensagemFaturamento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMensagemFaturamento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_idTipoTitulo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoTitulo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_idtipoMovimentoEstoque}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idtipoMovimentoEstoque}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_idtipoMovimentoEstoqueCancelamento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idtipoMovimentoEstoqueCancelamento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_idsubstituicaoTributariaPIS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsubstituicaoTributariaPIS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_idsubstituicaoTributariaCOFINS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsubstituicaoTributariaCOFINS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{naturezaOperacaoController.prepareView}" value="#{bundle.ListNaturezaOperacaoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{naturezaOperacaoController.prepareEdit}" value="#{bundle.ListNaturezaOperacaoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{naturezaOperacaoController.destroy}" value="#{bundle.ListNaturezaOperacaoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{naturezaOperacaoController.prepareCreate}" value="#{bundle.ListNaturezaOperacaoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListNaturezaOperacaoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

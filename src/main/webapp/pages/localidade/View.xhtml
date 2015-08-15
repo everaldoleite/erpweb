@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLocalidadeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLocalidadeLabel_idLocalidade}"/>
+                    <h:outputText value="#{localidadeController.selected.idLocalidade}" title="#{bundle.ViewLocalidadeTitle_idLocalidade}"/>
+                    <h:outputText value="#{bundle.ViewLocalidadeLabel_cep}"/>
+                    <h:outputText value="#{localidadeController.selected.cep}" title="#{bundle.ViewLocalidadeTitle_cep}"/>
+                    <h:outputText value="#{bundle.ViewLocalidadeLabel_tipoLogradouro}"/>
+                    <h:outputText value="#{localidadeController.selected.tipoLogradouro}" title="#{bundle.ViewLocalidadeTitle_tipoLogradouro}"/>
+                    <h:outputText value="#{bundle.ViewLocalidadeLabel_logradouro}"/>
+                    <h:outputText value="#{localidadeController.selected.logradouro}" title="#{bundle.ViewLocalidadeTitle_logradouro}"/>
+                    <h:outputText value="#{bundle.ViewLocalidadeLabel_numero}"/>
+                    <h:outputText value="#{localidadeController.selected.numero}" title="#{bundle.ViewLocalidadeTitle_numero}"/>
+                    <h:outputText value="#{bundle.ViewLocalidadeLabel_bairro}"/>
+                    <h:outputText value="#{localidadeController.selected.bairro}" title="#{bundle.ViewLocalidadeTitle_bairro}"/>
+                    <h:outputText value="#{bundle.ViewLocalidadeLabel_cidade}"/>
+                    <h:outputText value="#{localidadeController.selected.cidade}" title="#{bundle.ViewLocalidadeTitle_cidade}"/>
+                    <h:outputText value="#{bundle.ViewLocalidadeLabel_uf}"/>
+                    <h:outputText value="#{localidadeController.selected.uf}" title="#{bundle.ViewLocalidadeTitle_uf}"/>
+                    <h:outputText value="#{bundle.ViewLocalidadeLabel_status}"/>
+                    <h:outputText value="#{localidadeController.selected.status}" title="#{bundle.ViewLocalidadeTitle_status}"/>
+                    <h:outputText value="#{bundle.ViewLocalidadeLabel_complemento}"/>
+                    <h:outputText value="#{localidadeController.selected.complemento}" title="#{bundle.ViewLocalidadeTitle_complemento}"/>
+                    <h:outputText value="#{bundle.ViewLocalidadeLabel_codigoIBGE}"/>
+                    <h:outputText value="#{localidadeController.selected.codigoIBGE}" title="#{bundle.ViewLocalidadeTitle_codigoIBGE}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{localidadeController.destroyAndView}" value="#{bundle.ViewLocalidadeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewLocalidadeEditLink}"/>
+                <br />
+                <h:commandLink action="#{localidadeController.prepareCreate}" value="#{bundle.ViewLocalidadeCreateLink}" />
+                <br />
+                <h:commandLink action="#{localidadeController.prepareList}" value="#{bundle.ViewLocalidadeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewLocalidadeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

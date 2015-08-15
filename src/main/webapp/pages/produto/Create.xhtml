@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProdutoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_idProduto}" for="idProduto" />
+                    <h:inputText id="idProduto" value="#{produtoController.selected.idProduto}" title="#{bundle.CreateProdutoTitle_idProduto}" required="true" requiredMessage="#{bundle.CreateProdutoRequiredMessage_idProduto}"/>
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_partNumber}" for="partNumber" />
+                    <h:inputText id="partNumber" value="#{produtoController.selected.partNumber}" title="#{bundle.CreateProdutoTitle_partNumber}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_descricaoProduto}" for="descricaoProduto" />
+                    <h:inputText id="descricaoProduto" value="#{produtoController.selected.descricaoProduto}" title="#{bundle.CreateProdutoTitle_descricaoProduto}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_marca}" for="marca" />
+                    <h:inputText id="marca" value="#{produtoController.selected.marca}" title="#{bundle.CreateProdutoTitle_marca}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_situacao}" for="situacao" />
+                    <h:inputText id="situacao" value="#{produtoController.selected.situacao}" title="#{bundle.CreateProdutoTitle_situacao}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_unidadeEstoque}" for="unidadeEstoque" />
+                    <h:inputText id="unidadeEstoque" value="#{produtoController.selected.unidadeEstoque}" title="#{bundle.CreateProdutoTitle_unidadeEstoque}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_unidadeEntrada}" for="unidadeEntrada" />
+                    <h:inputText id="unidadeEntrada" value="#{produtoController.selected.unidadeEntrada}" title="#{bundle.CreateProdutoTitle_unidadeEntrada}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_pesoBruto}" for="pesoBruto" />
+                    <h:inputText id="pesoBruto" value="#{produtoController.selected.pesoBruto}" title="#{bundle.CreateProdutoTitle_pesoBruto}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_pesoLiquido}" for="pesoLiquido" />
+                    <h:inputText id="pesoLiquido" value="#{produtoController.selected.pesoLiquido}" title="#{bundle.CreateProdutoTitle_pesoLiquido}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_dimensao}" for="dimensao" />
+                    <h:inputText id="dimensao" value="#{produtoController.selected.dimensao}" title="#{bundle.CreateProdutoTitle_dimensao}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_calculoPrecoCusto}" for="calculoPrecoCusto" />
+                    <h:inputText id="calculoPrecoCusto" value="#{produtoController.selected.calculoPrecoCusto}" title="#{bundle.CreateProdutoTitle_calculoPrecoCusto}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_pedidoAutomatico}" for="pedidoAutomatico" />
+                    <h:inputText id="pedidoAutomatico" value="#{produtoController.selected.pedidoAutomatico}" title="#{bundle.CreateProdutoTitle_pedidoAutomatico}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_tipoMoeda}" for="tipoMoeda" />
+                    <h:inputText id="tipoMoeda" value="#{produtoController.selected.tipoMoeda}" title="#{bundle.CreateProdutoTitle_tipoMoeda}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_dataManutencao}" for="dataManutencao" />
+                    <h:inputText id="dataManutencao" value="#{produtoController.selected.dataManutencao}" title="#{bundle.CreateProdutoTitle_dataManutencao}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_rendimento}" for="rendimento" />
+                    <h:inputText id="rendimento" value="#{produtoController.selected.rendimento}" title="#{bundle.CreateProdutoTitle_rendimento}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_tipoOrigemProduto}" for="tipoOrigemProduto" />
+                    <h:inputText id="tipoOrigemProduto" value="#{produtoController.selected.tipoOrigemProduto}" title="#{bundle.CreateProdutoTitle_tipoOrigemProduto}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_tipoTributacao}" for="tipoTributacao" />
+                    <h:inputText id="tipoTributacao" value="#{produtoController.selected.tipoTributacao}" title="#{bundle.CreateProdutoTitle_tipoTributacao}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_tipoProduto}" for="tipoProduto" />
+                    <h:inputText id="tipoProduto" value="#{produtoController.selected.tipoProduto}" title="#{bundle.CreateProdutoTitle_tipoProduto}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_mpBem}" for="mpBem" />
+                    <h:inputText id="mpBem" value="#{produtoController.selected.mpBem}" title="#{bundle.CreateProdutoTitle_mpBem}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_dataUltimaVenda}" for="dataUltimaVenda" />
+                    <h:inputText id="dataUltimaVenda" value="#{produtoController.selected.dataUltimaVenda}" title="#{bundle.CreateProdutoTitle_dataUltimaVenda}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_especificacaoProduto}" for="especificacaoProduto" />
+                    <h:inputText id="especificacaoProduto" value="#{produtoController.selected.especificacaoProduto}" title="#{bundle.CreateProdutoTitle_especificacaoProduto}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_indicadorEstoque}" for="indicadorEstoque" />
+                    <h:inputText id="indicadorEstoque" value="#{produtoController.selected.indicadorEstoque}" title="#{bundle.CreateProdutoTitle_indicadorEstoque}" />
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_idCategoria}" for="idCategoria" />
+                    <h:selectOneMenu id="idCategoria" value="#{produtoController.selected.idCategoria}" title="#{bundle.CreateProdutoTitle_idCategoria}" required="true" requiredMessage="#{bundle.CreateProdutoRequiredMessage_idCategoria}">
+                        <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_idGrupo}" for="idGrupo" />
+                    <h:selectOneMenu id="idGrupo" value="#{produtoController.selected.idGrupo}" title="#{bundle.CreateProdutoTitle_idGrupo}" required="true" requiredMessage="#{bundle.CreateProdutoRequiredMessage_idGrupo}">
+                        <f:selectItems value="#{grupoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_idNcm}" for="idNcm" />
+                    <h:selectOneMenu id="idNcm" value="#{produtoController.selected.idNcm}" title="#{bundle.CreateProdutoTitle_idNcm}" required="true" requiredMessage="#{bundle.CreateProdutoRequiredMessage_idNcm}">
+                        <f:selectItems value="#{ncmController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateProdutoLabel_idSubGrupo}" for="idSubGrupo" />
+                    <h:selectOneMenu id="idSubGrupo" value="#{produtoController.selected.idSubGrupo}" title="#{bundle.CreateProdutoTitle_idSubGrupo}" required="true" requiredMessage="#{bundle.CreateProdutoRequiredMessage_idSubGrupo}">
+                        <f:selectItems value="#{subGrupoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{produtoController.create}" value="#{bundle.CreateProdutoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{produtoController.prepareList}" value="#{bundle.CreateProdutoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProdutoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

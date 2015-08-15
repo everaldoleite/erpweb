@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateListaPrecoProdutosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateListaPrecoProdutosLabel_idListaPrecosProdutos}" for="idListaPrecosProdutos" />
+                    <h:inputText id="idListaPrecosProdutos" value="#{listaPrecoProdutosController.selected.idListaPrecosProdutos}" title="#{bundle.CreateListaPrecoProdutosTitle_idListaPrecosProdutos}" required="true" requiredMessage="#{bundle.CreateListaPrecoProdutosRequiredMessage_idListaPrecosProdutos}"/>
+                    <h:outputLabel value="#{bundle.CreateListaPrecoProdutosLabel_descricaoLista}" for="descricaoLista" />
+                    <h:inputText id="descricaoLista" value="#{listaPrecoProdutosController.selected.descricaoLista}" title="#{bundle.CreateListaPrecoProdutosTitle_descricaoLista}" />
+                    <h:outputLabel value="#{bundle.CreateListaPrecoProdutosLabel_statusListaPrecos}" for="statusListaPrecos" />
+                    <h:inputText id="statusListaPrecos" value="#{listaPrecoProdutosController.selected.statusListaPrecos}" title="#{bundle.CreateListaPrecoProdutosTitle_statusListaPrecos}" />
+                    <h:outputLabel value="#{bundle.CreateListaPrecoProdutosLabel_coeficiente1}" for="coeficiente1" />
+                    <h:inputText id="coeficiente1" value="#{listaPrecoProdutosController.selected.coeficiente1}" title="#{bundle.CreateListaPrecoProdutosTitle_coeficiente1}" />
+                    <h:outputLabel value="#{bundle.CreateListaPrecoProdutosLabel_coeficiente2}" for="coeficiente2" />
+                    <h:inputText id="coeficiente2" value="#{listaPrecoProdutosController.selected.coeficiente2}" title="#{bundle.CreateListaPrecoProdutosTitle_coeficiente2}" />
+                    <h:outputLabel value="#{bundle.CreateListaPrecoProdutosLabel_coeficiente3}" for="coeficiente3" />
+                    <h:inputText id="coeficiente3" value="#{listaPrecoProdutosController.selected.coeficiente3}" title="#{bundle.CreateListaPrecoProdutosTitle_coeficiente3}" />
+                    <h:outputLabel value="#{bundle.CreateListaPrecoProdutosLabel_coeficiente4}" for="coeficiente4" />
+                    <h:inputText id="coeficiente4" value="#{listaPrecoProdutosController.selected.coeficiente4}" title="#{bundle.CreateListaPrecoProdutosTitle_coeficiente4}" />
+                    <h:outputLabel value="#{bundle.CreateListaPrecoProdutosLabel_coeficiente5}" for="coeficiente5" />
+                    <h:inputText id="coeficiente5" value="#{listaPrecoProdutosController.selected.coeficiente5}" title="#{bundle.CreateListaPrecoProdutosTitle_coeficiente5}" />
+                    <h:outputLabel value="#{bundle.CreateListaPrecoProdutosLabel_coeficiente6}" for="coeficiente6" />
+                    <h:inputText id="coeficiente6" value="#{listaPrecoProdutosController.selected.coeficiente6}" title="#{bundle.CreateListaPrecoProdutosTitle_coeficiente6}" />
+                    <h:outputLabel value="#{bundle.CreateListaPrecoProdutosLabel_comissao}" for="comissao" />
+                    <h:inputText id="comissao" value="#{listaPrecoProdutosController.selected.comissao}" title="#{bundle.CreateListaPrecoProdutosTitle_comissao}" />
+                    <h:outputLabel value="#{bundle.CreateListaPrecoProdutosLabel_observacao}" for="observacao" />
+                    <h:inputText id="observacao" value="#{listaPrecoProdutosController.selected.observacao}" title="#{bundle.CreateListaPrecoProdutosTitle_observacao}" />
+                    <h:outputLabel value="#{bundle.CreateListaPrecoProdutosLabel_fator}" for="fator" />
+                    <h:inputText id="fator" value="#{listaPrecoProdutosController.selected.fator}" title="#{bundle.CreateListaPrecoProdutosTitle_fator}" />
+                    <h:outputLabel value="#{bundle.CreateListaPrecoProdutosLabel_localEstoque}" for="localEstoque" />
+                    <h:inputText id="localEstoque" value="#{listaPrecoProdutosController.selected.localEstoque}" title="#{bundle.CreateListaPrecoProdutosTitle_localEstoque}" />
+                    <h:outputLabel value="#{bundle.CreateListaPrecoProdutosLabel_dataValidade}" for="dataValidade" />
+                    <h:inputText id="dataValidade" value="#{listaPrecoProdutosController.selected.dataValidade}" title="#{bundle.CreateListaPrecoProdutosTitle_dataValidade}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{listaPrecoProdutosController.create}" value="#{bundle.CreateListaPrecoProdutosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{listaPrecoProdutosController.prepareList}" value="#{bundle.CreateListaPrecoProdutosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateListaPrecoProdutosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

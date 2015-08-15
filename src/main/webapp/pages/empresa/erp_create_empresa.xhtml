@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Cadastro da Empresa"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div style="height: 600px;">
+                <h:form prependId="false" id="empresaForm" enctype="multipart/form-data">
+                    <p:growl id="msg" autoUpdate="true"/>
+                    <p:tabView class="col-md-10" id="tabview">
+                        <p:tab title="Dados Básicos">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel for="tipoPessoa" value="Tipo Pessoa:" />
+                                    <h:selectOneRadio id="tipoPessoa" value="#{empresaController.selected.tipoPessoa}" layout="grid" required="true" class="form-inline">
+                                        <f:selectItem itemLabel="Pessoa Jurídica" itemValue="J" />
+                                        <f:selectItem itemLabel="Pessoa Física" itemValue="F"/>                            
+                                        <p:ajax listener="#{empresaController.atualizaTipoPessoa()}" update="@form" />
+                                    </h:selectOneRadio>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Nome ou Razão Social:" for="nomeRazaoSocial" />
+                                    <p:inputText id="nomeRazaoSocial" maxlength="60" 
+                                                 value="#{empresaController.selected.nomeRazaoSocial}" 
+                                                 autocomplete="off" 
+                                                 required="true" 
+                                                 requiredMessage="O nome/razão social é exigido." 
+                                                 class="form-control" />
+                                    <p:watermark for="nomeRazaoSocial" value="Ex.: PEPSICO IND LTDA (igual ao cadastro RF)"  />                                    
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Telefone:" for="telefoneEmpresa" />
+                                    <p:inputMask mask="(99) 9999-9999" id="telefoneEmpresa" maxlength="20"
+                                                 value="#{empresaController.selected.telefoneEmpresa}" 
+                                                 autocomplete="off" class="form-control" required="true" requiredMessage="Telefone é exigido."/>
+                                    <p:watermark for="telefoneEmpresa" value="(99) 9999-9999"  />
+
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="CPF:" for="cpfEmpresa" rendered="#{empresaController.pessoaFisica}"/>
+                                    <p:inputMask mask="999.999.999-99" id="cpfEmpresa" maxlength="15" 
+                                                 value="#{empresaController.selected.cpfEmpresa}" 
+                                                 autocomplete="off" 
+                                                 required="true" rendered="#{empresaController.pessoaFisica}"
+                                                 requiredMessage="O CPF é exigido." 
+                                                 class="form-control" validator="cpfValidator" converter="cpfConverter" >
+                                    </p:inputMask>
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="RG:" for="rgEmpresa" rendered="#{empresaController.pessoaFisica}"/>
+                                    <p:inputText id="rgEmpresa" maxlength="15" 
+                                                 value="#{empresaController.selected.rgEmpresa}" 
+                                                 autocomplete="off" 
+                                                 required="true" rendered="#{empresaController.pessoaFisica}"
+                                                 requiredMessage="O RG é exigido." 
+                                                 class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Nome Fantasia:" for="nomeFantasia" rendered="#{empresaController.pessoaJuridica}"/>
+                                    <p:inputText id="nomeFantasia" maxlength="60" 
+                                                 value="#{empresaController.selected.nomeFantasia}" 
+                                                 autocomplete="off" 
+                                                 required="true" 
+                                                 rendered="#{empresaController.pessoaJuridica}"
+                                                 requiredMessage="A descrição da operação é requerida" class="form-control" >
+                                    </p:inputText>
+                                    <p:watermark for="nomeFantasia" value="Ex.: PEPSI"  />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="CNPJ:" for="documentoEmpresa" rendered="#{empresaController.pessoaJuridica}"/>
+                                    <p:inputMask mask="99.999.999/9999-99" id="documentoEmpresa"
+                                                 value="#{empresaController.selected.documentoEmpresa}" autocomplete="off" 
+                                                 rendered="#{empresaController.pessoaJuridica}" validator="cnpjValidator" converter="cnpjConverter"
+                                                 required="true" requiredMessage="Documento da empresa é exigido." class="form-control" />
+                                    <p:watermark for="documentoEmpresa" value="99.999.999/9999-99"  />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="UF - I.E.:" for="ufInscricaoEstadual" rendered="#{empresaController.pessoaJuridica}"/>
+                                    <h:selectOneMenu id="ufInscricaoEstadual" value="#{empresaController.selected.ufInscricaoEstadual}" required="true" rendered="#{empresaController.pessoaJuridica}" class="form-control">
+                                        <f:selectItems value="#{dataUtil.NFs}" />                            
+                                        <p:ajax listener="#{empresaController.atualizaMascaraIE}" update="inscricaoEstadual inscricaoEstadualST" />
+                                    </h:selectOneMenu>
+                                </div>                                
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Inscrição Estadual:" for="inscricaoEstadual" rendered="#{empresaController.pessoaJuridica}"/>
+                                    <p:inputMask mask="#{empresaController.mascara}" id="inscricaoEstadual" 
+                                                 value="#{empresaController.selected.inscricaoEstadual}" 
+                                                 autocomplete="off" required="true" 
+                                                 rendered="#{empresaController.pessoaJuridica}"
+                                                 requiredMessage="A Inscrição Estadual é requerida" class="form-control" >
+                                    </p:inputMask>
+                                    <p:watermark for="inscricaoEstadual" value="999.999.999.999"  />                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Inscrição Estadual (Substituição tributária)" for="inscricaoEstadualST" rendered="#{empresaController.pessoaJuridica}"/>
+                                    <p:inputMask mask="#{empresaController.mascara}" id="inscricaoEstadualST" 
+                                                 value="#{empresaController.selected.inscricaoEstadualST}" 
+                                                 autocomplete="off" 
+                                                 rendered="#{empresaController.pessoaJuridica}"
+                                                 class="form-control" />
+                                    <p:watermark for="inscricaoEstadualST" value="999.999.999.999"  />                                                                        
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Inscrição Municipal:" for="inscricaoMunicipal" rendered="#{empresaController.pessoaJuridica}"/>
+                                    <p:inputText id="inscricaoMunicipal" maxlength="20"
+                                                 value="#{empresaController.selected.inscricaoMunicipal}" 
+                                                 autocomplete="off"
+                                                 rendered="#{empresaController.pessoaJuridica}"
+                                                 class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Regime Tributário:" for="regimeTributario" rendered="#{empresaController.pessoaJuridica}"/>
+                                    <h:selectOneMenu id="regimeTributario" value="#{empresaController.selected.regimeTributario}" required="true" rendered="#{empresaController.pessoaJuridica}" class="form-control">
+                                        <f:selectItem itemLabel="Regime Normal" itemValue="0"/>                            
+                                        <f:selectItem itemLabel="Simples Nacional" itemValue="1" />
+                                        <f:selectItem itemLabel="Simples Nacional - Excesso de sublimite de receita bruta" itemValue="2"/>                            
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Opção SIMPLES:" for="opcaoSimplesDANFE" rendered="#{empresaController.pessoaJuridica}"/>
+                                    <h:selectOneMenu id="opcaoSimplesDANFE" value="#{empresaController.selected.opcaoSimplesDANFE}" required="true" rendered="#{empresaController.pessoaJuridica}" class="form-control">
+                                        <f:selectItem itemLabel="Não optante pelo simples" itemValue="0"/>                            
+                                        <f:selectItem itemLabel="Optante Simples Nacional (1%)" itemValue="1" />
+                                        <f:selectItem itemLabel="Optante Simples Nacional (0,5%)" itemValue="2"/>                            
+                                        <f:selectItem itemLabel="Optante Simples Municipal" itemValue="3"/>                            
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Endereço">
+                            <div class="row">
+                                <div class="col-md-4">                            
+                                    <p:outputLabel value="CEP:" for="cepEmpresa" />&nbsp;
+                                    <p:inputText required="true" id="cepEmpresa" autocomplete="off"
+                                                 requiredMessage="CEP deve ser informado" maxlength="8"
+                                                 value="#{empresaController.selected.cepEmpresa}" 
+                                                 class="form-inline" >
+                                        <p:ajax listener="#{empresaController.buscaEnderecos}" event="keyup" update="codigoMunicipioIBGE tipoLogradouro logradouroEmpresa bairroEmpresa ufEmpresa municipioEmpresa" />
+                                    </p:inputText>
+                                    <p:watermark  for="cepEmpresa" value="99999999 (sem traços)" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">                            
+                                    <p:outputLabel value="Tipo:" for="tipoLogradouro" />
+                                    <p:inputText required="true" disabled="true" id="tipoLogradouro" value="#{empresaController.selected.tipoLogradouro}" class="form-control"/>
+                                </div>
+                                <div class="col-md-6">                            
+                                    <p:outputLabel value="Logradouro:" for="logradouroEmpresa" />
+                                    <p:inputText required="true" disabled="true" id="logradouroEmpresa" value="#{empresaController.selected.logradouroEmpresa}" class="form-control"/>
+                                </div>                                
+                                <div class="col-md-2">                            
+                                    <p:outputLabel value="Número:" for="numeroLogradouroEmpresa" />
+                                    <p:inputText required="true" id="numeroLogradouroEmpresa" requiredMessage="O número é exigido" value="#{empresaController.selected.numeroLogradouroEmpresa}" class="form-control" autocomplete="off"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">                            
+                                    <p:outputLabel value="Complemento:" for="complemento" />
+                                    <p:inputText id="complemento" value="#{empresaController.selected.complementoEmpresa}" class="form-control" autocomplete="off"/>
+                                </div>
+                                <div class="col-md-6">                            
+                                    <p:outputLabel value="Bairro:" for="bairroEmpresa" />
+                                    <p:inputText required="true" disabled="true" id="bairroEmpresa" value="#{empresaController.selected.bairroEmpresa}" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">                            
+                                    <p:outputLabel value="UF:" for="ufEmpresa" />
+                                    <p:inputText required="true" disabled="true" id="ufEmpresa" value="#{empresaController.selected.ufEmpresa}" class="form-control"/>
+                                </div>
+                                <div class="col-md-6">                            
+                                    <p:outputLabel value="Municipio:" for="municipioEmpresa" />
+                                    <p:inputText required="true" disabled="true" id="municipioEmpresa" value="#{empresaController.selected.municipioEmpresa}" class="form-control"/>
+                                </div>                                
+                                <div class="col-md-4">                            
+                                    <p:outputLabel value="País:" for="paisEmpresa" />
+                                    <p:inputText required="true" id="paisEmpresa" disabled="true" value="#{empresaController.selected.paisEmpresa}" class="form-control"  />
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">                            
+                                    <p:outputLabel value="Código IBGE:" for="codigoMunicipioIBGE" />
+                                    <p:inputText required="true" disabled="true" id="codigoMunicipioIBGE" value="#{empresaController.selected.codigoMunicipioIBGE}" class="form-control"/>
+                                </div>
+                            </div>                            
+                        </p:tab>
+                        <p:tab title="Logotipo" rendered="#{empresaController.pessoaJuridica}">
+                            <div class="row">
+                                <div class="col-md-12" style="height: 200px;">
+                                    <p:outputLabel value="Importar Logotipo:" for="imagem" />&nbsp;
+                                    <p:fileUpload id="imagem" fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="false" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                                </div>
+                            </div>
+                        </p:tab>
+                    </p:tabView>
+                    <div class="col-md-12" style="padding: 10px;">
+                        <div class="col-md-2">
+                            <p:commandButton action="#{empresaController.create}" validateClient="true" ajax="false" update="msg" value="Salvar" icon="ui-icon-disk" title="Salvar"/>
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{empresaController.prepareList}" value="Lista"  immediate="true" icon="ui-icon-bookmark" title="Lista" />
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

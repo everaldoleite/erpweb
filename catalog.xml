@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/home/everaldo/NetBeansProjects/erpweb/erpweb/../../../Área%20de%20Trabalho/leiauteNFe_v2.00.xsd" uri="src/main/resources/jaxb/LeiauteNFe/leiauteNFe_v2.00.xsd"/>
+    <system systemId="file:/home/everaldo/NetBeansProjects/erpweb/erpweb/../../../Área%20de%20Trabalho/nfe_v1.06.xsd" uri="src/main/resources/jaxb/LeiauteNFe/nfe_v1.06.xsd"/>
+    <system systemId="file:/home/everaldo/Área%20de%20Trabalho/nfeNFe_v1.06.xsd" uri="src/main/resources/jaxb/LeiauteNFe/nfeNFe_v1.06.xsd"/>
+    <system systemId="file:/home/everaldo/Área%20de%20Trabalho/xmldsig-core-schema_v1.00.xsd" uri="src/main/resources/jaxb/LeiauteNFe/xmldsig-core-schema_v1.00.xsd"/>
+    <system systemId="file:/home/everaldo/Área%20de%20Trabalho/tiposNFe_v1.04.xsd" uri="src/main/resources/jaxb/LeiauteNFe/tiposNFe_v1.04.xsd"/>
+    <system systemId="file:/home/everaldo/NetBeansProjects/erpweb/erpweb/../../../Área%20de%20Trabalho/nfe_v2.00.xsd" uri="src/main/resources/jaxb/LeiauteNfe/nfe_v2.00.xsd"/>
+    <system systemId="file:/home/everaldo/Área%20de%20Trabalho/leiauteNFe_v2.00.xsd" uri="src/main/resources/jaxb/LeiauteNfe/leiauteNFe_v2.00.xsd"/>
+    <system systemId="file:/home/everaldo/Área%20de%20Trabalho/tiposBasico_v1.03.xsd" uri="src/main/resources/jaxb/LeiauteNfe/tiposBasico_v1.03.xsd"/>
+    <system systemId="file:/home/everaldo/NetBeansProjects/erpweb/erpweb/../../../Área%20de%20Trabalho/nfe_v3.10.xsd" uri="src/main/resources/jaxb/LeiautNFe/nfe_v3.10.xsd"/>
+    <system systemId="file:/home/everaldo/Área%20de%20Trabalho/leiauteNFe_v3.10.xsd" uri="src/main/resources/jaxb/LeiautNFe/leiauteNFe_v3.10.xsd"/>
+    <system systemId="file:/home/everaldo/Área%20de%20Trabalho/xmldsig-core-schema_v1.01.xsd" uri="src/main/resources/jaxb/LeiautNFe/xmldsig-core-schema_v1.01.xsd"/>
+    <system systemId="file:/home/everaldo/Área%20de%20Trabalho/tiposBasico_v3.10.xsd" uri="src/main/resources/jaxb/LeiautNFe/tiposBasico_v3.10.xsd"/>
+    <system systemId="file:/home/everaldo/NetBeansProjects/erpweb/erpweb/../../../Downloads/xsd/PL_008f/nfe_v3.10.xsd" uri="src/main/resources/jaxb/LeiauteNfe310/nfe_v3.10.xsd"/>
+    <system systemId="file:/home/everaldo/Downloads/xsd/PL_008f/leiauteNFe_v3.10.xsd" uri="src/main/resources/jaxb/LeiauteNfe310/leiauteNFe_v3.10.xsd"/>
+    <system systemId="file:/home/everaldo/Downloads/xsd/PL_008f/xmldsig-core-schema_v1.01.xsd" uri="src/main/resources/jaxb/LeiauteNfe310/xmldsig-core-schema_v1.01.xsd"/>
+    <system systemId="file:/home/everaldo/Downloads/xsd/PL_008f/tiposBasico_v3.10.xsd" uri="src/main/resources/jaxb/LeiauteNfe310/tiposBasico_v3.10.xsd"/>
+</catalog>

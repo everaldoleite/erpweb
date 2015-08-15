@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListListaPrecoProdutosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListListaPrecoProdutosEmpty}" rendered="#{listaPrecoProdutosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{listaPrecoProdutosController.items.rowCount > 0}">
+                    <h:outputText value="#{listaPrecoProdutosController.pagination.pageFirstItem + 1}..#{listaPrecoProdutosController.pagination.pageLastItem + 1}/#{listaPrecoProdutosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{listaPrecoProdutosController.previous}" value="#{bundle.Previous} #{listaPrecoProdutosController.pagination.pageSize}" rendered="#{listaPrecoProdutosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{listaPrecoProdutosController.next}" value="#{bundle.Next} #{listaPrecoProdutosController.pagination.pageSize}" rendered="#{listaPrecoProdutosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{listaPrecoProdutosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaPrecoProdutosTitle_idListaPrecosProdutos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idListaPrecosProdutos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaPrecoProdutosTitle_descricaoLista}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricaoLista}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaPrecoProdutosTitle_statusListaPrecos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.statusListaPrecos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaPrecoProdutosTitle_coeficiente1}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.coeficiente1}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaPrecoProdutosTitle_coeficiente2}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.coeficiente2}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaPrecoProdutosTitle_coeficiente3}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.coeficiente3}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaPrecoProdutosTitle_coeficiente4}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.coeficiente4}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaPrecoProdutosTitle_coeficiente5}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.coeficiente5}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaPrecoProdutosTitle_coeficiente6}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.coeficiente6}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaPrecoProdutosTitle_comissao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.comissao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaPrecoProdutosTitle_observacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observacao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaPrecoProdutosTitle_fator}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fator}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaPrecoProdutosTitle_localEstoque}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.localEstoque}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaPrecoProdutosTitle_dataValidade}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataValidade}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{listaPrecoProdutosController.prepareView}" value="#{bundle.ListListaPrecoProdutosViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{listaPrecoProdutosController.prepareEdit}" value="#{bundle.ListListaPrecoProdutosEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{listaPrecoProdutosController.destroy}" value="#{bundle.ListListaPrecoProdutosDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{listaPrecoProdutosController.prepareCreate}" value="#{bundle.ListListaPrecoProdutosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListListaPrecoProdutosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

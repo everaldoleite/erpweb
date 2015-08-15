@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTipoTransporteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTipoTransporteLabel_idTipoTransporte}" for="idTipoTransporte" />
+                    <h:inputText id="idTipoTransporte" value="#{tipoTransporteController.selected.idTipoTransporte}" title="#{bundle.CreateTipoTransporteTitle_idTipoTransporte}" required="true" requiredMessage="#{bundle.CreateTipoTransporteRequiredMessage_idTipoTransporte}"/>
+                    <h:outputLabel value="#{bundle.CreateTipoTransporteLabel_descricaoTipoTransporte}" for="descricaoTipoTransporte" />
+                    <h:inputText id="descricaoTipoTransporte" value="#{tipoTransporteController.selected.descricaoTipoTransporte}" title="#{bundle.CreateTipoTransporteTitle_descricaoTipoTransporte}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tipoTransporteController.create}" value="#{bundle.CreateTipoTransporteSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tipoTransporteController.prepareList}" value="#{bundle.CreateTipoTransporteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTipoTransporteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

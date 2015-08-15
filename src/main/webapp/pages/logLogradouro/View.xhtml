@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLogLogradouroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_logNuSequencial}"/>
+                    <h:outputText value="#{logLogradouroController.selected.logNuSequencial}" title="#{bundle.ViewLogLogradouroTitle_logNuSequencial}"/>
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_ufeSg}"/>
+                    <h:outputText value="#{logLogradouroController.selected.ufeSg}" title="#{bundle.ViewLogLogradouroTitle_ufeSg}"/>
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_logNo}"/>
+                    <h:outputText value="#{logLogradouroController.selected.logNo}" title="#{bundle.ViewLogLogradouroTitle_logNo}"/>
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_logNome}"/>
+                    <h:outputText value="#{logLogradouroController.selected.logNome}" title="#{bundle.ViewLogLogradouroTitle_logNome}"/>
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_baiNuSequencialFim}"/>
+                    <h:outputText value="#{logLogradouroController.selected.baiNuSequencialFim}" title="#{bundle.ViewLogLogradouroTitle_baiNuSequencialFim}"/>
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_cep}"/>
+                    <h:outputText value="#{logLogradouroController.selected.cep}" title="#{bundle.ViewLogLogradouroTitle_cep}"/>
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_logComplemento}"/>
+                    <h:outputText value="#{logLogradouroController.selected.logComplemento}" title="#{bundle.ViewLogLogradouroTitle_logComplemento}"/>
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_logTipoLogradouro}"/>
+                    <h:outputText value="#{logLogradouroController.selected.logTipoLogradouro}" title="#{bundle.ViewLogLogradouroTitle_logTipoLogradouro}"/>
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_logStatusTipoLog}"/>
+                    <h:outputText value="#{logLogradouroController.selected.logStatusTipoLog}" title="#{bundle.ViewLogLogradouroTitle_logStatusTipoLog}"/>
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_logNoSemAcento}"/>
+                    <h:outputText value="#{logLogradouroController.selected.logNoSemAcento}" title="#{bundle.ViewLogLogradouroTitle_logNoSemAcento}"/>
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_indUop}"/>
+                    <h:outputText value="#{logLogradouroController.selected.indUop}" title="#{bundle.ViewLogLogradouroTitle_indUop}"/>
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_indGru}"/>
+                    <h:outputText value="#{logLogradouroController.selected.indGru}" title="#{bundle.ViewLogLogradouroTitle_indGru}"/>
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_temp}"/>
+                    <h:outputText value="#{logLogradouroController.selected.temp}" title="#{bundle.ViewLogLogradouroTitle_temp}"/>
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_baiNuSequencialIni}"/>
+                    <h:outputText value="#{logLogradouroController.selected.baiNuSequencialIni}" title="#{bundle.ViewLogLogradouroTitle_baiNuSequencialIni}"/>
+                    <h:outputText value="#{bundle.ViewLogLogradouroLabel_locNuSequencial}"/>
+                    <h:outputText value="#{logLogradouroController.selected.locNuSequencial}" title="#{bundle.ViewLogLogradouroTitle_locNuSequencial}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{logLogradouroController.destroyAndView}" value="#{bundle.ViewLogLogradouroDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewLogLogradouroEditLink}"/>
+                <br />
+                <h:commandLink action="#{logLogradouroController.prepareCreate}" value="#{bundle.ViewLogLogradouroCreateLink}" />
+                <br />
+                <h:commandLink action="#{logLogradouroController.prepareList}" value="#{bundle.ViewLogLogradouroShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewLogLogradouroIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

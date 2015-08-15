@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateServicoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateServicoLabel_idServico}" for="idServico" />
+                    <h:inputText id="idServico" value="#{servicoController.selected.idServico}" title="#{bundle.CreateServicoTitle_idServico}" required="true" requiredMessage="#{bundle.CreateServicoRequiredMessage_idServico}"/>
+                    <h:outputLabel value="#{bundle.CreateServicoLabel_unidade}" for="unidade" />
+                    <h:inputText id="unidade" value="#{servicoController.selected.unidade}" title="#{bundle.CreateServicoTitle_unidade}" />
+                    <h:outputLabel value="#{bundle.CreateServicoLabel_valorVenda}" for="valorVenda" />
+                    <h:inputText id="valorVenda" value="#{servicoController.selected.valorVenda}" title="#{bundle.CreateServicoTitle_valorVenda}" />
+                    <h:outputLabel value="#{bundle.CreateServicoLabel_descricaoServico}" for="descricaoServico" />
+                    <h:inputText id="descricaoServico" value="#{servicoController.selected.descricaoServico}" title="#{bundle.CreateServicoTitle_descricaoServico}" />
+                    <h:outputLabel value="#{bundle.CreateServicoLabel_dataValidade}" for="dataValidade" />
+                    <h:inputText id="dataValidade" value="#{servicoController.selected.dataValidade}" title="#{bundle.CreateServicoTitle_dataValidade}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateServicoLabel_valorCusto}" for="valorCusto" />
+                    <h:inputText id="valorCusto" value="#{servicoController.selected.valorCusto}" title="#{bundle.CreateServicoTitle_valorCusto}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{servicoController.create}" value="#{bundle.CreateServicoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{servicoController.prepareList}" value="#{bundle.CreateServicoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateServicoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

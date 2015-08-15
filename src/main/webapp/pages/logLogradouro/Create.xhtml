@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateLogLogradouroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_logNuSequencial}" for="logNuSequencial" />
+                    <h:inputText id="logNuSequencial" value="#{logLogradouroController.selected.logNuSequencial}" title="#{bundle.CreateLogLogradouroTitle_logNuSequencial}" required="true" requiredMessage="#{bundle.CreateLogLogradouroRequiredMessage_logNuSequencial}"/>
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_ufeSg}" for="ufeSg" />
+                    <h:inputText id="ufeSg" value="#{logLogradouroController.selected.ufeSg}" title="#{bundle.CreateLogLogradouroTitle_ufeSg}" required="true" requiredMessage="#{bundle.CreateLogLogradouroRequiredMessage_ufeSg}"/>
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_logNo}" for="logNo" />
+                    <h:inputText id="logNo" value="#{logLogradouroController.selected.logNo}" title="#{bundle.CreateLogLogradouroTitle_logNo}" required="true" requiredMessage="#{bundle.CreateLogLogradouroRequiredMessage_logNo}"/>
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_logNome}" for="logNome" />
+                    <h:inputText id="logNome" value="#{logLogradouroController.selected.logNome}" title="#{bundle.CreateLogLogradouroTitle_logNome}" required="true" requiredMessage="#{bundle.CreateLogLogradouroRequiredMessage_logNome}"/>
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_baiNuSequencialFim}" for="baiNuSequencialFim" />
+                    <h:inputText id="baiNuSequencialFim" value="#{logLogradouroController.selected.baiNuSequencialFim}" title="#{bundle.CreateLogLogradouroTitle_baiNuSequencialFim}" />
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_cep}" for="cep" />
+                    <h:inputText id="cep" value="#{logLogradouroController.selected.cep}" title="#{bundle.CreateLogLogradouroTitle_cep}" required="true" requiredMessage="#{bundle.CreateLogLogradouroRequiredMessage_cep}"/>
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_logComplemento}" for="logComplemento" />
+                    <h:inputText id="logComplemento" value="#{logLogradouroController.selected.logComplemento}" title="#{bundle.CreateLogLogradouroTitle_logComplemento}" />
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_logTipoLogradouro}" for="logTipoLogradouro" />
+                    <h:inputText id="logTipoLogradouro" value="#{logLogradouroController.selected.logTipoLogradouro}" title="#{bundle.CreateLogLogradouroTitle_logTipoLogradouro}" />
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_logStatusTipoLog}" for="logStatusTipoLog" />
+                    <h:inputText id="logStatusTipoLog" value="#{logLogradouroController.selected.logStatusTipoLog}" title="#{bundle.CreateLogLogradouroTitle_logStatusTipoLog}" required="true" requiredMessage="#{bundle.CreateLogLogradouroRequiredMessage_logStatusTipoLog}"/>
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_logNoSemAcento}" for="logNoSemAcento" />
+                    <h:inputText id="logNoSemAcento" value="#{logLogradouroController.selected.logNoSemAcento}" title="#{bundle.CreateLogLogradouroTitle_logNoSemAcento}" required="true" requiredMessage="#{bundle.CreateLogLogradouroRequiredMessage_logNoSemAcento}"/>
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_indUop}" for="indUop" />
+                    <h:inputText id="indUop" value="#{logLogradouroController.selected.indUop}" title="#{bundle.CreateLogLogradouroTitle_indUop}" />
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_indGru}" for="indGru" />
+                    <h:inputText id="indGru" value="#{logLogradouroController.selected.indGru}" title="#{bundle.CreateLogLogradouroTitle_indGru}" />
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_temp}" for="temp" />
+                    <h:inputText id="temp" value="#{logLogradouroController.selected.temp}" title="#{bundle.CreateLogLogradouroTitle_temp}" />
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_baiNuSequencialIni}" for="baiNuSequencialIni" />
+                    <h:selectOneMenu id="baiNuSequencialIni" value="#{logLogradouroController.selected.baiNuSequencialIni}" title="#{bundle.CreateLogLogradouroTitle_baiNuSequencialIni}" required="true" requiredMessage="#{bundle.CreateLogLogradouroRequiredMessage_baiNuSequencialIni}">
+                        <f:selectItems value="#{logBairroController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateLogLogradouroLabel_locNuSequencial}" for="locNuSequencial" />
+                    <h:selectOneMenu id="locNuSequencial" value="#{logLogradouroController.selected.locNuSequencial}" title="#{bundle.CreateLogLogradouroTitle_locNuSequencial}" required="true" requiredMessage="#{bundle.CreateLogLogradouroRequiredMessage_locNuSequencial}">
+                        <f:selectItems value="#{logLocalidadeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{logLogradouroController.create}" value="#{bundle.CreateLogLogradouroSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{logLogradouroController.prepareList}" value="#{bundle.CreateLogLogradouroShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateLogLogradouroIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

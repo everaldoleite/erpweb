@@ -15,8 +15,10 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditTransportadorLabel_idTRANSPORTADOR}" for="idTRANSPORTADOR" />
-                    <h:inputText id="idTRANSPORTADOR" value="#{transportadorController.selected.idTRANSPORTADOR}" title="#{bundle.EditTransportadorTitle_idTRANSPORTADOR}" required="true" requiredMessage="#{bundle.EditTransportadorRequiredMessage_idTRANSPORTADOR}"/>
+                    <h:outputLabel value="#{bundle.EditTransportadorLabel_idCodigoTransportador}" for="idCodigoTransportador" />
+                    <h:inputText id="idCodigoTransportador" value="#{transportadorController.selected.idCodigoTransportador}" title="#{bundle.EditTransportadorTitle_idCodigoTransportador}" required="true" requiredMessage="#{bundle.EditTransportadorRequiredMessage_idCodigoTransportador}"/>
+                    <h:outputLabel value="#{bundle.EditTransportadorLabel_descricaoTransportador}" for="descricaoTransportador" />
+                    <h:inputText id="descricaoTransportador" value="#{transportadorController.selected.descricaoTransportador}" title="#{bundle.EditTransportadorTitle_descricaoTransportador}" />
                 </h:panelGrid>
                 <h:commandLink action="#{transportadorController.update}" value="#{bundle.EditTransportadorSaveLink}"/>
                 <br />

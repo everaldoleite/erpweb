@@ -15,180 +15,38 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_codigo}"/>
-                    <h:outputText value="#{empresaController.selected.codigo}" title="#{bundle.ViewEmpresaTitle_codigo}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_razaoSocial}"/>
-                    <h:outputText value="#{empresaController.selected.razaoSocial}" title="#{bundle.ViewEmpresaTitle_razaoSocial}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaLabel_idEMPRESA}"/>
+                    <h:outputText value="#{empresaController.selected.idEMPRESA}" title="#{bundle.ViewEmpresaTitle_idEMPRESA}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaLabel_nomeRazaoSocial}"/>
+                    <h:outputText value="#{empresaController.selected.nomeRazaoSocial}" title="#{bundle.ViewEmpresaTitle_nomeRazaoSocial}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaLabel_documentoEmpresa}"/>
+                    <h:outputText value="#{empresaController.selected.documentoEmpresa}" title="#{bundle.ViewEmpresaTitle_documentoEmpresa}"/>
                     <h:outputText value="#{bundle.ViewEmpresaLabel_nomeFantasia}"/>
                     <h:outputText value="#{empresaController.selected.nomeFantasia}" title="#{bundle.ViewEmpresaTitle_nomeFantasia}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_tipoLogradouro}"/>
-                    <h:outputText value="#{empresaController.selected.tipoLogradouro}" title="#{bundle.ViewEmpresaTitle_tipoLogradouro}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_logradouro}"/>
-                    <h:outputText value="#{empresaController.selected.logradouro}" title="#{bundle.ViewEmpresaTitle_logradouro}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_numero}"/>
-                    <h:outputText value="#{empresaController.selected.numero}" title="#{bundle.ViewEmpresaTitle_numero}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_bairro}"/>
-                    <h:outputText value="#{empresaController.selected.bairro}" title="#{bundle.ViewEmpresaTitle_bairro}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_cep}"/>
-                    <h:outputText value="#{empresaController.selected.cep}" title="#{bundle.ViewEmpresaTitle_cep}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_uf}"/>
-                    <h:outputText value="#{empresaController.selected.uf}" title="#{bundle.ViewEmpresaTitle_uf}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_cidade}"/>
-                    <h:outputText value="#{empresaController.selected.cidade}" title="#{bundle.ViewEmpresaTitle_cidade}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_ddd}"/>
-                    <h:outputText value="#{empresaController.selected.ddd}" title="#{bundle.ViewEmpresaTitle_ddd}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_telefone}"/>
-                    <h:outputText value="#{empresaController.selected.telefone}" title="#{bundle.ViewEmpresaTitle_telefone}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_tipoPessoa}"/>
-                    <h:outputText value="#{empresaController.selected.tipoPessoa}" title="#{bundle.ViewEmpresaTitle_tipoPessoa}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_cnpjEmpresa}"/>
-                    <h:outputText value="#{empresaController.selected.cnpjEmpresa}" title="#{bundle.ViewEmpresaTitle_cnpjEmpresa}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_cpfEmpresa}"/>
-                    <h:outputText value="#{empresaController.selected.cpfEmpresa}" title="#{bundle.ViewEmpresaTitle_cpfEmpresa}"/>
                     <h:outputText value="#{bundle.ViewEmpresaLabel_inscricaoEstadual}"/>
                     <h:outputText value="#{empresaController.selected.inscricaoEstadual}" title="#{bundle.ViewEmpresaTitle_inscricaoEstadual}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_nomeRepresentanteLegal}"/>
-                    <h:outputText value="#{empresaController.selected.nomeRepresentanteLegal}" title="#{bundle.ViewEmpresaTitle_nomeRepresentanteLegal}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_documentoRepresentanteCPF}"/>
-                    <h:outputText value="#{empresaController.selected.documentoRepresentanteCPF}" title="#{bundle.ViewEmpresaTitle_documentoRepresentanteCPF}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_documentoRepresentanteRG}"/>
-                    <h:outputText value="#{empresaController.selected.documentoRepresentanteRG}" title="#{bundle.ViewEmpresaTitle_documentoRepresentanteRG}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_dataInclusao}"/>
-                    <h:outputText value="#{empresaController.selected.dataInclusao}" title="#{bundle.ViewEmpresaTitle_dataInclusao}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_dataAlteracao}"/>
-                    <h:outputText value="#{empresaController.selected.dataAlteracao}" title="#{bundle.ViewEmpresaTitle_dataAlteracao}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_cepPagamento}"/>
-                    <h:outputText value="#{empresaController.selected.cepPagamento}" title="#{bundle.ViewEmpresaTitle_cepPagamento}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_estadoPagamento}"/>
-                    <h:outputText value="#{empresaController.selected.estadoPagamento}" title="#{bundle.ViewEmpresaTitle_estadoPagamento}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_tipoLogradouroPagamento}"/>
-                    <h:outputText value="#{empresaController.selected.tipoLogradouroPagamento}" title="#{bundle.ViewEmpresaTitle_tipoLogradouroPagamento}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_logradouroPagamento}"/>
-                    <h:outputText value="#{empresaController.selected.logradouroPagamento}" title="#{bundle.ViewEmpresaTitle_logradouroPagamento}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_numeroPagamento}"/>
-                    <h:outputText value="#{empresaController.selected.numeroPagamento}" title="#{bundle.ViewEmpresaTitle_numeroPagamento}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_cidadePagamento}"/>
-                    <h:outputText value="#{empresaController.selected.cidadePagamento}" title="#{bundle.ViewEmpresaTitle_cidadePagamento}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_cepEntrega}"/>
-                    <h:outputText value="#{empresaController.selected.cepEntrega}" title="#{bundle.ViewEmpresaTitle_cepEntrega}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_razaoSocialEntrega}"/>
-                    <h:outputText value="#{empresaController.selected.razaoSocialEntrega}" title="#{bundle.ViewEmpresaTitle_razaoSocialEntrega}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_inscricaoEstadualEntrega}"/>
-                    <h:outputText value="#{empresaController.selected.inscricaoEstadualEntrega}" title="#{bundle.ViewEmpresaTitle_inscricaoEstadualEntrega}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_estadoEntrega}"/>
-                    <h:outputText value="#{empresaController.selected.estadoEntrega}" title="#{bundle.ViewEmpresaTitle_estadoEntrega}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_cidadeEntrega}"/>
-                    <h:outputText value="#{empresaController.selected.cidadeEntrega}" title="#{bundle.ViewEmpresaTitle_cidadeEntrega}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_documentoEntrega}"/>
-                    <h:outputText value="#{empresaController.selected.documentoEntrega}" title="#{bundle.ViewEmpresaTitle_documentoEntrega}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_dataFollowUp}"/>
-                    <h:outputText value="#{empresaController.selected.dataFollowUp}" title="#{bundle.ViewEmpresaTitle_dataFollowUp}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_capitalSocial}"/>
-                    <h:outputText value="#{empresaController.selected.capitalSocial}" title="#{bundle.ViewEmpresaTitle_capitalSocial}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_numeroEmpregados}"/>
-                    <h:outputText value="#{empresaController.selected.numeroEmpregados}" title="#{bundle.ViewEmpresaTitle_numeroEmpregados}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_homepage}"/>
-                    <h:outputText value="#{empresaController.selected.homepage}" title="#{bundle.ViewEmpresaTitle_homepage}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_emailComercial}"/>
-                    <h:outputText value="#{empresaController.selected.emailComercial}" title="#{bundle.ViewEmpresaTitle_emailComercial}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_emailAtendimento}"/>
-                    <h:outputText value="#{empresaController.selected.emailAtendimento}" title="#{bundle.ViewEmpresaTitle_emailAtendimento}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_inscricaoMunicipal}"/>
-                    <h:outputText value="#{empresaController.selected.inscricaoMunicipal}" title="#{bundle.ViewEmpresaTitle_inscricaoMunicipal}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_naturezaOperacao}"/>
-                    <h:outputText value="#{empresaController.selected.naturezaOperacao}" title="#{bundle.ViewEmpresaTitle_naturezaOperacao}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_bloqueioEmpresa}"/>
-                    <h:outputText value="#{empresaController.selected.bloqueioEmpresa}" title="#{bundle.ViewEmpresaTitle_bloqueioEmpresa}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_motivoBloqueio}"/>
-                    <h:outputText value="#{empresaController.selected.motivoBloqueio}" title="#{bundle.ViewEmpresaTitle_motivoBloqueio}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_usuarioBloqueio}"/>
-                    <h:outputText value="#{empresaController.selected.usuarioBloqueio}" title="#{bundle.ViewEmpresaTitle_usuarioBloqueio}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_dataBloqueio}"/>
-                    <h:outputText value="#{empresaController.selected.dataBloqueio}" title="#{bundle.ViewEmpresaTitle_dataBloqueio}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_bloqueioAtendimento}"/>
-                    <h:outputText value="#{empresaController.selected.bloqueioAtendimento}" title="#{bundle.ViewEmpresaTitle_bloqueioAtendimento}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_bloqueioVendas}"/>
-                    <h:outputText value="#{empresaController.selected.bloqueioVendas}" title="#{bundle.ViewEmpresaTitle_bloqueioVendas}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_bloqueioFaturamento}"/>
-                    <h:outputText value="#{empresaController.selected.bloqueioFaturamento}" title="#{bundle.ViewEmpresaTitle_bloqueioFaturamento}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_bloqueioComercial}"/>
-                    <h:outputText value="#{empresaController.selected.bloqueioComercial}" title="#{bundle.ViewEmpresaTitle_bloqueioComercial}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_bloqueioTotal}"/>
-                    <h:outputText value="#{empresaController.selected.bloqueioTotal}" title="#{bundle.ViewEmpresaTitle_bloqueioTotal}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_banco}"/>
-                    <h:outputText value="#{empresaController.selected.banco}" title="#{bundle.ViewEmpresaTitle_banco}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_agencia}"/>
-                    <h:outputText value="#{empresaController.selected.agencia}" title="#{bundle.ViewEmpresaTitle_agencia}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_contaCorrente}"/>
-                    <h:outputText value="#{empresaController.selected.contaCorrente}" title="#{bundle.ViewEmpresaTitle_contaCorrente}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_transportePreferencial}"/>
-                    <h:outputText value="#{empresaController.selected.transportePreferencial}" title="#{bundle.ViewEmpresaTitle_transportePreferencial}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_statusEmpresa}"/>
-                    <h:outputText value="#{empresaController.selected.statusEmpresa}" title="#{bundle.ViewEmpresaTitle_statusEmpresa}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_revendedor}"/>
-                    <h:outputText value="#{empresaController.selected.revendedor}" title="#{bundle.ViewEmpresaTitle_revendedor}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_dataReserva}"/>
-                    <h:outputText value="#{empresaController.selected.dataReserva}" title="#{bundle.ViewEmpresaTitle_dataReserva}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_codigoVendedorFidelidade}"/>
-                    <h:outputText value="#{empresaController.selected.codigoVendedorFidelidade}" title="#{bundle.ViewEmpresaTitle_codigoVendedorFidelidade}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_limiteCredito}"/>
-                    <h:outputText value="#{empresaController.selected.limiteCredito}" title="#{bundle.ViewEmpresaTitle_limiteCredito}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_codigoPagamento}"/>
-                    <h:outputText value="#{empresaController.selected.codigoPagamento}" title="#{bundle.ViewEmpresaTitle_codigoPagamento}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_dataInicialLimiteCredito}"/>
-                    <h:outputText value="#{empresaController.selected.dataInicialLimiteCredito}" title="#{bundle.ViewEmpresaTitle_dataInicialLimiteCredito}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_dataFinalLimiteCredito}"/>
-                    <h:outputText value="#{empresaController.selected.dataFinalLimiteCredito}" title="#{bundle.ViewEmpresaTitle_dataFinalLimiteCredito}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_dataAvaliacaoLimiteCredito}"/>
-                    <h:outputText value="#{empresaController.selected.dataAvaliacaoLimiteCredito}" title="#{bundle.ViewEmpresaTitle_dataAvaliacaoLimiteCredito}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_responsavelLimiteCredito}"/>
-                    <h:outputText value="#{empresaController.selected.responsavelLimiteCredito}" title="#{bundle.ViewEmpresaTitle_responsavelLimiteCredito}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_observacaoLimiteCredito}"/>
-                    <h:outputText value="#{empresaController.selected.observacaoLimiteCredito}" title="#{bundle.ViewEmpresaTitle_observacaoLimiteCredito}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_tipoLimiteCredito}"/>
-                    <h:outputText value="#{empresaController.selected.tipoLimiteCredito}" title="#{bundle.ViewEmpresaTitle_tipoLimiteCredito}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_aceitaCobranca}"/>
-                    <h:outputText value="#{empresaController.selected.aceitaCobranca}" title="#{bundle.ViewEmpresaTitle_aceitaCobranca}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_tipoEmpresaSubstituto}"/>
-                    <h:outputText value="#{empresaController.selected.tipoEmpresaSubstituto}" title="#{bundle.ViewEmpresaTitle_tipoEmpresaSubstituto}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_bairroEntrega}"/>
-                    <h:outputText value="#{empresaController.selected.bairroEntrega}" title="#{bundle.ViewEmpresaTitle_bairroEntrega}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_emailNotaMunicipal}"/>
-                    <h:outputText value="#{empresaController.selected.emailNotaMunicipal}" title="#{bundle.ViewEmpresaTitle_emailNotaMunicipal}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_emailNotaFederal}"/>
-                    <h:outputText value="#{empresaController.selected.emailNotaFederal}" title="#{bundle.ViewEmpresaTitle_emailNotaFederal}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_ultimoFaturamento}"/>
-                    <h:outputText value="#{empresaController.selected.ultimoFaturamento}" title="#{bundle.ViewEmpresaTitle_ultimoFaturamento}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_dataUltimoFaturamento}"/>
-                    <h:outputText value="#{empresaController.selected.dataUltimoFaturamento}" title="#{bundle.ViewEmpresaTitle_dataUltimoFaturamento}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_pasta}"/>
-                    <h:outputText value="#{empresaController.selected.pasta}" title="#{bundle.ViewEmpresaTitle_pasta}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_codigoInterno}"/>
-                    <h:outputText value="#{empresaController.selected.codigoInterno}" title="#{bundle.ViewEmpresaTitle_codigoInterno}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_perfil}"/>
-                    <h:outputText value="#{empresaController.selected.perfil}" title="#{bundle.ViewEmpresaTitle_perfil}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_atuacao}"/>
-                    <h:outputText value="#{empresaController.selected.atuacao}" title="#{bundle.ViewEmpresaTitle_atuacao}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_idTRANSPORTADOR}"/>
-                    <h:outputText value="#{empresaController.selected.idTRANSPORTADOR}" title="#{bundle.ViewEmpresaTitle_idTRANSPORTADOR}"/>
-                    <h:outputText value="#{bundle.ViewEmpresaLabel_idSEGMENTO}"/>
-                    <h:outputText value="#{empresaController.selected.idSEGMENTO}" title="#{bundle.ViewEmpresaTitle_idSEGMENTO}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaLabel_cnaeFiscal}"/>
+                    <h:outputText value="#{empresaController.selected.cnaeFiscal}" title="#{bundle.ViewEmpresaTitle_cnaeFiscal}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaLabel_regimeTributario}"/>
+                    <h:outputText value="#{empresaController.selected.regimeTributario}" title="#{bundle.ViewEmpresaTitle_regimeTributario}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaLabel_logradouroEmpresa}"/>
+                    <h:outputText value="#{empresaController.selected.logradouroEmpresa}" title="#{bundle.ViewEmpresaTitle_logradouroEmpresa}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaLabel_complementoEmpresa}"/>
+                    <h:outputText value="#{empresaController.selected.complementoEmpresa}" title="#{bundle.ViewEmpresaTitle_complementoEmpresa}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaLabel_numeroLogradouroEmpresa}"/>
+                    <h:outputText value="#{empresaController.selected.numeroLogradouroEmpresa}" title="#{bundle.ViewEmpresaTitle_numeroLogradouroEmpresa}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaLabel_paisEmpresa}"/>
+                    <h:outputText value="#{empresaController.selected.paisEmpresa}" title="#{bundle.ViewEmpresaTitle_paisEmpresa}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaLabel_ufEmpresa}"/>
+                    <h:outputText value="#{empresaController.selected.ufEmpresa}" title="#{bundle.ViewEmpresaTitle_ufEmpresa}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaLabel_bairroEmpresa}"/>
+                    <h:outputText value="#{empresaController.selected.bairroEmpresa}" title="#{bundle.ViewEmpresaTitle_bairroEmpresa}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaLabel_cepEmpresa}"/>
+                    <h:outputText value="#{empresaController.selected.cepEmpresa}" title="#{bundle.ViewEmpresaTitle_cepEmpresa}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaLabel_telefoneEmpresa}"/>
+                    <h:outputText value="#{empresaController.selected.telefoneEmpresa}" title="#{bundle.ViewEmpresaTitle_telefoneEmpresa}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaLabel_idParametrosGerais}"/>
+                    <h:outputText value="#{empresaController.selected.idParametrosGerais}" title="#{bundle.ViewEmpresaTitle_idParametrosGerais}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{empresaController.destroyAndView}" value="#{bundle.ViewEmpresaDestroyLink}"/>

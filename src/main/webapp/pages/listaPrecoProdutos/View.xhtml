@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewListaPrecoProdutosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewListaPrecoProdutosLabel_idListaPrecosProdutos}"/>
+                    <h:outputText value="#{listaPrecoProdutosController.selected.idListaPrecosProdutos}" title="#{bundle.ViewListaPrecoProdutosTitle_idListaPrecosProdutos}"/>
+                    <h:outputText value="#{bundle.ViewListaPrecoProdutosLabel_descricaoLista}"/>
+                    <h:outputText value="#{listaPrecoProdutosController.selected.descricaoLista}" title="#{bundle.ViewListaPrecoProdutosTitle_descricaoLista}"/>
+                    <h:outputText value="#{bundle.ViewListaPrecoProdutosLabel_statusListaPrecos}"/>
+                    <h:outputText value="#{listaPrecoProdutosController.selected.statusListaPrecos}" title="#{bundle.ViewListaPrecoProdutosTitle_statusListaPrecos}"/>
+                    <h:outputText value="#{bundle.ViewListaPrecoProdutosLabel_coeficiente1}"/>
+                    <h:outputText value="#{listaPrecoProdutosController.selected.coeficiente1}" title="#{bundle.ViewListaPrecoProdutosTitle_coeficiente1}"/>
+                    <h:outputText value="#{bundle.ViewListaPrecoProdutosLabel_coeficiente2}"/>
+                    <h:outputText value="#{listaPrecoProdutosController.selected.coeficiente2}" title="#{bundle.ViewListaPrecoProdutosTitle_coeficiente2}"/>
+                    <h:outputText value="#{bundle.ViewListaPrecoProdutosLabel_coeficiente3}"/>
+                    <h:outputText value="#{listaPrecoProdutosController.selected.coeficiente3}" title="#{bundle.ViewListaPrecoProdutosTitle_coeficiente3}"/>
+                    <h:outputText value="#{bundle.ViewListaPrecoProdutosLabel_coeficiente4}"/>
+                    <h:outputText value="#{listaPrecoProdutosController.selected.coeficiente4}" title="#{bundle.ViewListaPrecoProdutosTitle_coeficiente4}"/>
+                    <h:outputText value="#{bundle.ViewListaPrecoProdutosLabel_coeficiente5}"/>
+                    <h:outputText value="#{listaPrecoProdutosController.selected.coeficiente5}" title="#{bundle.ViewListaPrecoProdutosTitle_coeficiente5}"/>
+                    <h:outputText value="#{bundle.ViewListaPrecoProdutosLabel_coeficiente6}"/>
+                    <h:outputText value="#{listaPrecoProdutosController.selected.coeficiente6}" title="#{bundle.ViewListaPrecoProdutosTitle_coeficiente6}"/>
+                    <h:outputText value="#{bundle.ViewListaPrecoProdutosLabel_comissao}"/>
+                    <h:outputText value="#{listaPrecoProdutosController.selected.comissao}" title="#{bundle.ViewListaPrecoProdutosTitle_comissao}"/>
+                    <h:outputText value="#{bundle.ViewListaPrecoProdutosLabel_observacao}"/>
+                    <h:outputText value="#{listaPrecoProdutosController.selected.observacao}" title="#{bundle.ViewListaPrecoProdutosTitle_observacao}"/>
+                    <h:outputText value="#{bundle.ViewListaPrecoProdutosLabel_fator}"/>
+                    <h:outputText value="#{listaPrecoProdutosController.selected.fator}" title="#{bundle.ViewListaPrecoProdutosTitle_fator}"/>
+                    <h:outputText value="#{bundle.ViewListaPrecoProdutosLabel_localEstoque}"/>
+                    <h:outputText value="#{listaPrecoProdutosController.selected.localEstoque}" title="#{bundle.ViewListaPrecoProdutosTitle_localEstoque}"/>
+                    <h:outputText value="#{bundle.ViewListaPrecoProdutosLabel_dataValidade}"/>
+                    <h:outputText value="#{listaPrecoProdutosController.selected.dataValidade}" title="#{bundle.ViewListaPrecoProdutosTitle_dataValidade}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{listaPrecoProdutosController.destroyAndView}" value="#{bundle.ViewListaPrecoProdutosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewListaPrecoProdutosEditLink}"/>
+                <br />
+                <h:commandLink action="#{listaPrecoProdutosController.prepareCreate}" value="#{bundle.ViewListaPrecoProdutosCreateLink}" />
+                <br />
+                <h:commandLink action="#{listaPrecoProdutosController.prepareList}" value="#{bundle.ViewListaPrecoProdutosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewListaPrecoProdutosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

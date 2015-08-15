@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTipoTituloTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTipoTituloEmpty}" rendered="#{tipoTituloController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tipoTituloController.items.rowCount > 0}">
+                    <h:outputText value="#{tipoTituloController.pagination.pageFirstItem + 1}..#{tipoTituloController.pagination.pageLastItem + 1}/#{tipoTituloController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tipoTituloController.previous}" value="#{bundle.Previous} #{tipoTituloController.pagination.pageSize}" rendered="#{tipoTituloController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tipoTituloController.next}" value="#{bundle.Next} #{tipoTituloController.pagination.pageSize}" rendered="#{tipoTituloController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tipoTituloController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoTituloTitle_idTipoTitulo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoTitulo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoTituloTitle_descricaoTipoTitulo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricaoTipoTitulo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoTituloTitle_tipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tipoTituloController.prepareView}" value="#{bundle.ListTipoTituloViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tipoTituloController.prepareEdit}" value="#{bundle.ListTipoTituloEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tipoTituloController.destroy}" value="#{bundle.ListTipoTituloDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tipoTituloController.prepareCreate}" value="#{bundle.ListTipoTituloCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTipoTituloIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

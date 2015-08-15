@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSubGrupoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSubGrupoEmpty}" rendered="#{subGrupoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{subGrupoController.items.rowCount > 0}">
+                    <h:outputText value="#{subGrupoController.pagination.pageFirstItem + 1}..#{subGrupoController.pagination.pageLastItem + 1}/#{subGrupoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{subGrupoController.previous}" value="#{bundle.Previous} #{subGrupoController.pagination.pageSize}" rendered="#{subGrupoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{subGrupoController.next}" value="#{bundle.Next} #{subGrupoController.pagination.pageSize}" rendered="#{subGrupoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{subGrupoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSubGrupoTitle_idSubGrupo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idSubGrupo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSubGrupoTitle_idGrupo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idGrupo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSubGrupoTitle_descricaoSubGrupo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricaoSubGrupo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{subGrupoController.prepareView}" value="#{bundle.ListSubGrupoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{subGrupoController.prepareEdit}" value="#{bundle.ListSubGrupoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{subGrupoController.destroy}" value="#{bundle.ListSubGrupoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{subGrupoController.prepareCreate}" value="#{bundle.ListSubGrupoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSubGrupoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

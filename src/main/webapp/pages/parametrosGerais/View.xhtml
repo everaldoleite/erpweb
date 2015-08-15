@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewParametrosGeraisTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_idParametros}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.idParametros}" title="#{bundle.ViewParametrosGeraisTitle_idParametros}"/>
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_prazoClienteNovo}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.prazoClienteNovo}" title="#{bundle.ViewParametrosGeraisTitle_prazoClienteNovo}"/>
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_percentualComissao}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.percentualComissao}" title="#{bundle.ViewParametrosGeraisTitle_percentualComissao}"/>
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_caminhoCertificadoCliente}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.caminhoCertificadoCliente}" title="#{bundle.ViewParametrosGeraisTitle_caminhoCertificadoCliente}"/>
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_senhaCertificadoCliente}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.senhaCertificadoCliente}" title="#{bundle.ViewParametrosGeraisTitle_senhaCertificadoCliente}"/>
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_arquivoCertificados}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.arquivoCertificados}" title="#{bundle.ViewParametrosGeraisTitle_arquivoCertificados}"/>
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_versaoDados}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.versaoDados}" title="#{bundle.ViewParametrosGeraisTitle_versaoDados}"/>
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_unidadeFederativaSEFAZ}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.unidadeFederativaSEFAZ}" title="#{bundle.ViewParametrosGeraisTitle_unidadeFederativaSEFAZ}"/>
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_codigoAdministrativoCORREIOS}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.codigoAdministrativoCORREIOS}" title="#{bundle.ViewParametrosGeraisTitle_codigoAdministrativoCORREIOS}"/>
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_senhaServicoCORREIOS}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.senhaServicoCORREIOS}" title="#{bundle.ViewParametrosGeraisTitle_senhaServicoCORREIOS}"/>
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_caminhoNotaFiscal}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.caminhoNotaFiscal}" title="#{bundle.ViewParametrosGeraisTitle_caminhoNotaFiscal}"/>
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_modeloNotaFiscal}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.modeloNotaFiscal}" title="#{bundle.ViewParametrosGeraisTitle_modeloNotaFiscal}"/>
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_ambienteEmissaoNF}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.ambienteEmissaoNF}" title="#{bundle.ViewParametrosGeraisTitle_ambienteEmissaoNF}"/>
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_saldoInicial}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.saldoInicial}" title="#{bundle.ViewParametrosGeraisTitle_saldoInicial}"/>
+                    <h:outputText value="#{bundle.ViewParametrosGeraisLabel_sla}"/>
+                    <h:outputText value="#{parametrosGeraisController.selected.sla}" title="#{bundle.ViewParametrosGeraisTitle_sla}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{parametrosGeraisController.destroyAndView}" value="#{bundle.ViewParametrosGeraisDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewParametrosGeraisEditLink}"/>
+                <br />
+                <h:commandLink action="#{parametrosGeraisController.prepareCreate}" value="#{bundle.ViewParametrosGeraisCreateLink}" />
+                <br />
+                <h:commandLink action="#{parametrosGeraisController.prepareList}" value="#{bundle.ViewParametrosGeraisShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewParametrosGeraisIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

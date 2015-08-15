@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTipoMovimentoEstoqueTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTipoMovimentoEstoqueLabel_idtipoMovimentoEstoque}" for="idtipoMovimentoEstoque" />
+                    <h:inputText id="idtipoMovimentoEstoque" value="#{tipoMovimentoEstoqueController.selected.idtipoMovimentoEstoque}" title="#{bundle.EditTipoMovimentoEstoqueTitle_idtipoMovimentoEstoque}" required="true" requiredMessage="#{bundle.EditTipoMovimentoEstoqueRequiredMessage_idtipoMovimentoEstoque}"/>
+                    <h:outputLabel value="#{bundle.EditTipoMovimentoEstoqueLabel_descricaoTipoMovimento}" for="descricaoTipoMovimento" />
+                    <h:inputText id="descricaoTipoMovimento" value="#{tipoMovimentoEstoqueController.selected.descricaoTipoMovimento}" title="#{bundle.EditTipoMovimentoEstoqueTitle_descricaoTipoMovimento}" />
+                    <h:outputLabel value="#{bundle.EditTipoMovimentoEstoqueLabel_aceitaEstoqueNegativo}" for="aceitaEstoqueNegativo" />
+                    <h:inputText id="aceitaEstoqueNegativo" value="#{tipoMovimentoEstoqueController.selected.aceitaEstoqueNegativo}" title="#{bundle.EditTipoMovimentoEstoqueTitle_aceitaEstoqueNegativo}" />
+                    <h:outputLabel value="#{bundle.EditTipoMovimentoEstoqueLabel_consumoMensal}" for="consumoMensal" />
+                    <h:inputText id="consumoMensal" value="#{tipoMovimentoEstoqueController.selected.consumoMensal}" title="#{bundle.EditTipoMovimentoEstoqueTitle_consumoMensal}" />
+                    <h:outputLabel value="#{bundle.EditTipoMovimentoEstoqueLabel_exigeAprovacao}" for="exigeAprovacao" />
+                    <h:inputText id="exigeAprovacao" value="#{tipoMovimentoEstoqueController.selected.exigeAprovacao}" title="#{bundle.EditTipoMovimentoEstoqueTitle_exigeAprovacao}" />
+                    <h:outputLabel value="#{bundle.EditTipoMovimentoEstoqueLabel_exigeCentroResultado}" for="exigeCentroResultado" />
+                    <h:inputText id="exigeCentroResultado" value="#{tipoMovimentoEstoqueController.selected.exigeCentroResultado}" title="#{bundle.EditTipoMovimentoEstoqueTitle_exigeCentroResultado}" />
+                    <h:outputLabel value="#{bundle.EditTipoMovimentoEstoqueLabel_opcaoTransferencia}" for="opcaoTransferencia" />
+                    <h:inputText id="opcaoTransferencia" value="#{tipoMovimentoEstoqueController.selected.opcaoTransferencia}" title="#{bundle.EditTipoMovimentoEstoqueTitle_opcaoTransferencia}" />
+                    <h:outputLabel value="#{bundle.EditTipoMovimentoEstoqueLabel_operacao}" for="operacao" />
+                    <h:inputText id="operacao" value="#{tipoMovimentoEstoqueController.selected.operacao}" title="#{bundle.EditTipoMovimentoEstoqueTitle_operacao}" />
+                    <h:outputLabel value="#{bundle.EditTipoMovimentoEstoqueLabel_atualizaDadosCompra}" for="atualizaDadosCompra" />
+                    <h:inputText id="atualizaDadosCompra" value="#{tipoMovimentoEstoqueController.selected.atualizaDadosCompra}" title="#{bundle.EditTipoMovimentoEstoqueTitle_atualizaDadosCompra}" />
+                    <h:outputLabel value="#{bundle.EditTipoMovimentoEstoqueLabel_contaResultado}" for="contaResultado" />
+                    <h:inputText id="contaResultado" value="#{tipoMovimentoEstoqueController.selected.contaResultado}" title="#{bundle.EditTipoMovimentoEstoqueTitle_contaResultado}" />
+                    <h:outputLabel value="#{bundle.EditTipoMovimentoEstoqueLabel_idPlanoConta}" for="idPlanoConta" />
+                    <h:selectOneMenu id="idPlanoConta" value="#{tipoMovimentoEstoqueController.selected.idPlanoConta}" title="#{bundle.EditTipoMovimentoEstoqueTitle_idPlanoConta}" required="true" requiredMessage="#{bundle.EditTipoMovimentoEstoqueRequiredMessage_idPlanoConta}">
+                        <f:selectItems value="#{planoContasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{tipoMovimentoEstoqueController.update}" value="#{bundle.EditTipoMovimentoEstoqueSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTipoMovimentoEstoqueViewLink}"/>
+                <br />
+                <h:commandLink action="#{tipoMovimentoEstoqueController.prepareList}" value="#{bundle.EditTipoMovimentoEstoqueShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTipoMovimentoEstoqueIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

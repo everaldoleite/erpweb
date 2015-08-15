@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditLogFaixaUfTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditLogFaixaUfLabel_ufeSg}" for="ufeSg" />
+                    <h:inputText id="ufeSg" value="#{logFaixaUfController.selected.ufeSg}" title="#{bundle.EditLogFaixaUfTitle_ufeSg}" required="true" requiredMessage="#{bundle.EditLogFaixaUfRequiredMessage_ufeSg}"/>
+                    <h:outputLabel value="#{bundle.EditLogFaixaUfLabel_ufeNo}" for="ufeNo" />
+                    <h:inputText id="ufeNo" value="#{logFaixaUfController.selected.ufeNo}" title="#{bundle.EditLogFaixaUfTitle_ufeNo}" required="true" requiredMessage="#{bundle.EditLogFaixaUfRequiredMessage_ufeNo}"/>
+                    <h:outputLabel value="#{bundle.EditLogFaixaUfLabel_ufeRad1Ini}" for="ufeRad1Ini" />
+                    <h:inputText id="ufeRad1Ini" value="#{logFaixaUfController.selected.ufeRad1Ini}" title="#{bundle.EditLogFaixaUfTitle_ufeRad1Ini}" required="true" requiredMessage="#{bundle.EditLogFaixaUfRequiredMessage_ufeRad1Ini}"/>
+                    <h:outputLabel value="#{bundle.EditLogFaixaUfLabel_ufeSuf1Ini}" for="ufeSuf1Ini" />
+                    <h:inputText id="ufeSuf1Ini" value="#{logFaixaUfController.selected.ufeSuf1Ini}" title="#{bundle.EditLogFaixaUfTitle_ufeSuf1Ini}" required="true" requiredMessage="#{bundle.EditLogFaixaUfRequiredMessage_ufeSuf1Ini}"/>
+                    <h:outputLabel value="#{bundle.EditLogFaixaUfLabel_ufeRad1Fim}" for="ufeRad1Fim" />
+                    <h:inputText id="ufeRad1Fim" value="#{logFaixaUfController.selected.ufeRad1Fim}" title="#{bundle.EditLogFaixaUfTitle_ufeRad1Fim}" required="true" requiredMessage="#{bundle.EditLogFaixaUfRequiredMessage_ufeRad1Fim}"/>
+                    <h:outputLabel value="#{bundle.EditLogFaixaUfLabel_ufeSuf1Fim}" for="ufeSuf1Fim" />
+                    <h:inputText id="ufeSuf1Fim" value="#{logFaixaUfController.selected.ufeSuf1Fim}" title="#{bundle.EditLogFaixaUfTitle_ufeSuf1Fim}" required="true" requiredMessage="#{bundle.EditLogFaixaUfRequiredMessage_ufeSuf1Fim}"/>
+                    <h:outputLabel value="#{bundle.EditLogFaixaUfLabel_ufeRad2Ini}" for="ufeRad2Ini" />
+                    <h:inputText id="ufeRad2Ini" value="#{logFaixaUfController.selected.ufeRad2Ini}" title="#{bundle.EditLogFaixaUfTitle_ufeRad2Ini}" />
+                    <h:outputLabel value="#{bundle.EditLogFaixaUfLabel_ufeSuf2Ini}" for="ufeSuf2Ini" />
+                    <h:inputText id="ufeSuf2Ini" value="#{logFaixaUfController.selected.ufeSuf2Ini}" title="#{bundle.EditLogFaixaUfTitle_ufeSuf2Ini}" />
+                    <h:outputLabel value="#{bundle.EditLogFaixaUfLabel_ufeRad2Fim}" for="ufeRad2Fim" />
+                    <h:inputText id="ufeRad2Fim" value="#{logFaixaUfController.selected.ufeRad2Fim}" title="#{bundle.EditLogFaixaUfTitle_ufeRad2Fim}" />
+                    <h:outputLabel value="#{bundle.EditLogFaixaUfLabel_ufeSuf2Fim}" for="ufeSuf2Fim" />
+                    <h:inputText id="ufeSuf2Fim" value="#{logFaixaUfController.selected.ufeSuf2Fim}" title="#{bundle.EditLogFaixaUfTitle_ufeSuf2Fim}" />
+                </h:panelGrid>
+                <h:commandLink action="#{logFaixaUfController.update}" value="#{bundle.EditLogFaixaUfSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditLogFaixaUfViewLink}"/>
+                <br />
+                <h:commandLink action="#{logFaixaUfController.prepareList}" value="#{bundle.EditLogFaixaUfShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditLogFaixaUfIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

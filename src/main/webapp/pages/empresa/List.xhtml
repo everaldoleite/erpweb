@@ -22,15 +22,99 @@
                     <h:dataTable value="#{empresaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEmpresaTitle_razaoSocial}"/>
+                                <h:outputText value="#{bundle.ListEmpresaTitle_idEMPRESA}"/>
                             </f:facet>
-                            <h:outputText value="#{item.razaoSocial}"/>
+                            <h:outputText value="#{item.idEMPRESA}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_nomeRazaoSocial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nomeRazaoSocial}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_documentoEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.documentoEmpresa}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEmpresaTitle_nomeFantasia}"/>
                             </f:facet>
                             <h:outputText value="#{item.nomeFantasia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_inscricaoEstadual}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inscricaoEstadual}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_cnaeFiscal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cnaeFiscal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_regimeTributario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.regimeTributario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_logradouroEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.logradouroEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_complementoEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.complementoEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_numeroLogradouroEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroLogradouroEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_paisEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paisEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_ufEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ufEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_bairroEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bairroEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_cepEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cepEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_telefoneEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefoneEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_idParametrosGerais}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idParametrosGerais}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -46,6 +130,9 @@
                 </h:panelGroup>
                 <br />
                 <h:commandLink action="#{empresaController.prepareCreate}" value="#{bundle.ListEmpresaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListEmpresaIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

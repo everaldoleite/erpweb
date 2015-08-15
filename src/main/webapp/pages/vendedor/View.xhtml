@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewVendedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewVendedorLabel_idVendedor}"/>
+                    <h:outputText value="#{vendedorController.selected.idVendedor}" title="#{bundle.ViewVendedorTitle_idVendedor}"/>
+                    <h:outputText value="#{bundle.ViewVendedorLabel_nomeVendedor}"/>
+                    <h:outputText value="#{vendedorController.selected.nomeVendedor}" title="#{bundle.ViewVendedorTitle_nomeVendedor}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{vendedorController.destroyAndView}" value="#{bundle.ViewVendedorDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewVendedorEditLink}"/>
+                <br />
+                <h:commandLink action="#{vendedorController.prepareCreate}" value="#{bundle.ViewVendedorCreateLink}" />
+                <br />
+                <h:commandLink action="#{vendedorController.prepareList}" value="#{bundle.ViewVendedorShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewVendedorIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

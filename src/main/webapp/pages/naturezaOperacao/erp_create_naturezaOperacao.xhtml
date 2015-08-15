@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Cadastro de Natureza de Operação"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div style="height: 600px;">
+                <h:form prependId="false">
+                    <p:growl id="msg"/>
+                    <p:tabView class="col-md-10">
+                        <p:tab title="Dados Básicos">
+                            <div class="row" style="text-align: right;">
+                                <div class="col-md-12" style="height: 3px;">
+                                    <p:commandLink id="instrucao"  immediate="true" onclick="PF('dialogInstrucao').show()" value="Ajuda"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Codigo Operação:" for="codigoOperacao" />
+                                    <p:inputText id="codigoOperacao" maxlength="5" value="#{naturezaOperacaoController.selected.codigoOperacao}" autocomplete="off" required="true" requiredMessage="O código de operação é requerido." class="form-control" />
+                                    <p:watermark for="codigoOperacao" value="Codigo de Operação Interno"  />                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Descrição da Operação:" for="descricaoOperacao" />
+                                    <p:inputText id="descricaoOperacao" maxlength="45" value="#{naturezaOperacaoController.selected.descricaoOperacao}" autocomplete="off" required="true" requiredMessage="A descrição da operação é requerida" class="form-control" />
+                                    <p:watermark for="descricaoOperacao" value="Ex.: Compra de energia elétrica para distribuição ou comercialização"  />                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Descrição Interna da Operação:" for="descricaoInterna" />
+                                    <p:inputText id="descricaoInterna" maxlength="45" value="#{naturezaOperacaoController.selected.descricaoInterna}" autocomplete="off" required="true" requiredMessage="A descrição da operação interna é requerida" class="form-control" />
+                                    <p:watermark for="descricaoInterna" value="Descrição Interna da Operação"  />                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <p:outputLabel value="C.F.O.P:" for="cfop" />
+                                    <p:inputText id="cfop" maxlength="4" size="8" required="true" requiredMessage="CFOP é exigido" value="#{naturezaOperacaoController.selected.cfop}" class="form-inline" />
+                                    <p:watermark for="cfop" value="Ex.: 5100" />                                                                        
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Base Cálculo ICMS:" for="baseCalculoICMS" />
+                                    <p:inputText id="baseCalculoICMS" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoICMS}" class="form-control" />
+                                    <p:watermark for="baseCalculoICMS" value="Ex.: 100,00" />                                                                        
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Base Cálculo ICMS - Outras:" for="baseCalculoICMSOutras" />
+                                    <p:inputText id="baseCalculoICMSOutras" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoICMSOutras}" class="form-control" />
+                                    <p:watermark for="baseCalculoICMSOutras" value="Ex.: 100,00" />                                                                        
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Base Cálculo ICMS - Isento:" for="baseCalculoICMS" />
+                                    <p:inputText id="baseCalculoICMSIsento" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoICMSIsento}" class="form-control" />
+                                    <p:watermark for="baseCalculoICMSIsento" value="Ex.: 100,00" />                                                                        
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Base Cálculo IPI:" for="baseCalculoIPI" />
+                                    <p:inputText id="baseCalculoIPI" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoIPI}" class="form-control" />
+                                    <p:watermark for="baseCalculoIPI" value="Ex.: 100,00" />                                                                        
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Base Cálculo IPI - Outras:" for="baseCalculoICMSOutras" />
+                                    <p:inputText id="baseCalculoIPIOutras" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoIPIOutras}" class="form-control" />
+                                    <p:watermark for="baseCalculoIPIOutras" value="Ex.: 100,00" />                                                                        
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Base Cálculo IPI - Isento:" for="baseCalculoIPIIsento" />
+                                    <p:inputText id="baseCalculoIPIIsento" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoIPIIsento}" class="form-control" />
+                                    <p:watermark for="baseCalculoIPIIsento" value="Ex.: 100,00" />                                                                        
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Incluir IPI Base ICMS:" for="opcaoInclusaoIPIBaseICMS" />
+                                    <p:selectBooleanCheckbox id="opcaoInclusaoIPIBaseICMS" value="#{naturezaOperacaoController.selected.opcaoInclusaoIPIBaseICMS}" class="form-control"/>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Origem ST:" for="origemST" />
+                                    <p:inputText id="origemST" maxlength="6" size="8" required="true" requiredMessage="Origem ST é exigida" value="#{naturezaOperacaoController.selected.origemST}" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Tributacao ST:" for="tributacaoST" />
+                                    <p:inputText id="tributacaoST" maxlength="6" size="8" required="true" requiredMessage="Tributacao ST é exigida" value="#{naturezaOperacaoController.selected.tributacaoST}" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Contas a Receber:" for="opcaoContasReceber" />
+                                    <p:selectBooleanCheckbox id="opcaoContasReceber" value="#{naturezaOperacaoController.selected.opcaoContasReceber}" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Comissão:" for="opcaoComissao" />
+                                    <p:selectBooleanCheckbox id="opcaoComissao" value="#{naturezaOperacaoController.selected.opcaoComissao}" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Permite Alteração:" for="opcaoPermiteAlteracao" />
+                                    <p:selectBooleanCheckbox id="opcaoPermiteAlteracao" value="#{naturezaOperacaoController.selected.opcaoPermiteAlteracao}" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Atualiza Estoque:" for="opcaoAtualizaEstoque:" />
+                                    <p:selectBooleanCheckbox id="opcaoAtualizaEstoque" value="#{naturezaOperacaoController.selected.opcaoAtualizaEstoque}" class="form-control"/>
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Aliquota ICMS" for="aliquotaICMS" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="aliquotaICMS" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaICMS}" class="form-inline" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Aliquota ISS" for="aliquotaISS" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="aliquotaISS" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaISS}" class="form-inline" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:selectBooleanCheckbox id="retemISS" required="true" value="#{naturezaOperacaoController.selected.retemISS}" class="form-inline" />&nbsp;
+                                    <p:outputLabel value="Retem ISS" for="retemISS" />                                    
+                                </div>
+                            </div>                                
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Aliquota IR" for="aliquotaIR" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="aliquotaIR" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaIR}" class="form-inline" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:selectBooleanCheckbox id="retemIR" required="true" value="#{naturezaOperacaoController.selected.retemIR}" class="form-inline" />&nbsp;
+                                    <p:outputLabel value="Retem IR" for="retemIR" />                                    
+                                </div>
+                            </div>                                
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Aliquota INSS:" for="aliquotaINSS" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="aliquotaINSS" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaINSS}" class="form-inline" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:selectBooleanCheckbox id="retemINSS" required="true"  value="#{naturezaOperacaoController.selected.retemINSS}" class="form-inline" />&nbsp;
+                                    <p:outputLabel value="Retem INSS:" for="retemINSS" />&nbsp;
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Aliquota PIS" for="aliquotaPIS" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="aliquotaPIS" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaPIS}" class="form-inline" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:selectBooleanCheckbox id="retemPIS" required="true" value="#{naturezaOperacaoController.selected.retemPIS}" class="form-inline" />&nbsp;
+                                    <p:outputLabel value="Retem PIS:" for="retemPIS" />
+                                    
+                                </div>
+                            </div>
+                            <div class="row">                            
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Aliquota COFINS" for="aliquotaCOFINS" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="aliquotaCOFINS" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaCOFINS}" class="form-inline" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:selectBooleanCheckbox id="retemCOFINS" required="true" value="#{naturezaOperacaoController.selected.retemCOFINS}" class="form-inline" />&nbsp;
+                                    <p:outputLabel value="Retem COFINS:" for="retemCOFINS" />
+                                </div>
+                            </div>
+                            <div class="row">                            
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Aliquota CSLL" for="aliquotaCSLL" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="aliquotaCSLL" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaCSLL}" class="form-inline" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:selectBooleanCheckbox id="retemCSLL" required="true" value="#{naturezaOperacaoController.selected.retemCSLL}" class="form-inline" />&nbsp;
+                                    <p:outputLabel value="Retem CSLL:" for="retemCSLL" />
+                                </div>
+                            </div>
+                        </p:tab>
+                    </p:tabView>
+                    <div class="col-md-12" style="padding: 10px;">
+                        <div class="col-md-2">
+                            <p:commandButton action="#{condicaoPagamentoController.create}" ajax="false" update="msg" value="Salvar" icon="ui-icon-disk" title="Salvar"/>
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{condicaoPagamentoController.prepareList}" value="Lista"  immediate="true" icon="ui-icon-bookmark" title="Lista" />
+                        </div>
+                    </div>
+                    <p:dialog header="Ajuda" widgetVar="dialogInstrucao" modal="true" >
+                        <h:form>
+                            <p:outputLabel value="O cadastro de Condição de Pagamento, permite oferecer ao cliente o parcelamento da operação." />
+                            <br/>
+                            <p:outputLabel value="Descrição da Condição de Pagamento: Será uma descrição básica que será utilizada em todo o sistema."/>
+                            <p:outputLabel value="Ex.: 'A VISTA', '30 DIAS COM JUROS', '30 DIAS', etc" />
+                            <br/>
+                            <p:outputLabel value="Taxa Financeira: Será utilizada para acrescentar diferencial de reajuste monetário em cada parcela adicional."/>
+                            <p:outputLabel value="Ex.: '1,00', '1,17', '1,22', etc" />
+                            <br/>
+                            <p:outputLabel value="Quantidade de Parcelas: Indicará o número de parcelas para esta condição de pagamento. (1 = 'a vista')"/>
+                            <br/>
+                            <p:outputLabel value="Quantidade de dias por parcela: Indicará o número de dias entre cada parcela."/>
+                            <p:outputLabel value="Ex.: '10', '15', '30', etc" />
+                            <br/>
+                        </h:form>
+                    </p:dialog>
+
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

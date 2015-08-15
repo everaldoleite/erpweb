@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateParametrosGeraisTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_idParametros}" for="idParametros" />
+                    <h:inputText id="idParametros" value="#{parametrosGeraisController.selected.idParametros}" title="#{bundle.CreateParametrosGeraisTitle_idParametros}" required="true" requiredMessage="#{bundle.CreateParametrosGeraisRequiredMessage_idParametros}"/>
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_prazoClienteNovo}" for="prazoClienteNovo" />
+                    <h:inputText id="prazoClienteNovo" value="#{parametrosGeraisController.selected.prazoClienteNovo}" title="#{bundle.CreateParametrosGeraisTitle_prazoClienteNovo}" />
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_percentualComissao}" for="percentualComissao" />
+                    <h:inputText id="percentualComissao" value="#{parametrosGeraisController.selected.percentualComissao}" title="#{bundle.CreateParametrosGeraisTitle_percentualComissao}" />
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_caminhoCertificadoCliente}" for="caminhoCertificadoCliente" />
+                    <h:inputText id="caminhoCertificadoCliente" value="#{parametrosGeraisController.selected.caminhoCertificadoCliente}" title="#{bundle.CreateParametrosGeraisTitle_caminhoCertificadoCliente}" />
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_senhaCertificadoCliente}" for="senhaCertificadoCliente" />
+                    <h:inputText id="senhaCertificadoCliente" value="#{parametrosGeraisController.selected.senhaCertificadoCliente}" title="#{bundle.CreateParametrosGeraisTitle_senhaCertificadoCliente}" />
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_arquivoCertificados}" for="arquivoCertificados" />
+                    <h:inputText id="arquivoCertificados" value="#{parametrosGeraisController.selected.arquivoCertificados}" title="#{bundle.CreateParametrosGeraisTitle_arquivoCertificados}" />
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_versaoDados}" for="versaoDados" />
+                    <h:inputText id="versaoDados" value="#{parametrosGeraisController.selected.versaoDados}" title="#{bundle.CreateParametrosGeraisTitle_versaoDados}" />
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_unidadeFederativaSEFAZ}" for="unidadeFederativaSEFAZ" />
+                    <h:inputText id="unidadeFederativaSEFAZ" value="#{parametrosGeraisController.selected.unidadeFederativaSEFAZ}" title="#{bundle.CreateParametrosGeraisTitle_unidadeFederativaSEFAZ}" />
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_codigoAdministrativoCORREIOS}" for="codigoAdministrativoCORREIOS" />
+                    <h:inputText id="codigoAdministrativoCORREIOS" value="#{parametrosGeraisController.selected.codigoAdministrativoCORREIOS}" title="#{bundle.CreateParametrosGeraisTitle_codigoAdministrativoCORREIOS}" />
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_senhaServicoCORREIOS}" for="senhaServicoCORREIOS" />
+                    <h:inputText id="senhaServicoCORREIOS" value="#{parametrosGeraisController.selected.senhaServicoCORREIOS}" title="#{bundle.CreateParametrosGeraisTitle_senhaServicoCORREIOS}" />
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_caminhoNotaFiscal}" for="caminhoNotaFiscal" />
+                    <h:inputText id="caminhoNotaFiscal" value="#{parametrosGeraisController.selected.caminhoNotaFiscal}" title="#{bundle.CreateParametrosGeraisTitle_caminhoNotaFiscal}" />
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_modeloNotaFiscal}" for="modeloNotaFiscal" />
+                    <h:inputText id="modeloNotaFiscal" value="#{parametrosGeraisController.selected.modeloNotaFiscal}" title="#{bundle.CreateParametrosGeraisTitle_modeloNotaFiscal}" />
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_ambienteEmissaoNF}" for="ambienteEmissaoNF" />
+                    <h:inputText id="ambienteEmissaoNF" value="#{parametrosGeraisController.selected.ambienteEmissaoNF}" title="#{bundle.CreateParametrosGeraisTitle_ambienteEmissaoNF}" />
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_saldoInicial}" for="saldoInicial" />
+                    <h:inputText id="saldoInicial" value="#{parametrosGeraisController.selected.saldoInicial}" title="#{bundle.CreateParametrosGeraisTitle_saldoInicial}" />
+                    <h:outputLabel value="#{bundle.CreateParametrosGeraisLabel_sla}" for="sla" />
+                    <h:inputText id="sla" value="#{parametrosGeraisController.selected.sla}" title="#{bundle.CreateParametrosGeraisTitle_sla}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{parametrosGeraisController.create}" value="#{bundle.CreateParametrosGeraisSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{parametrosGeraisController.prepareList}" value="#{bundle.CreateParametrosGeraisShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateParametrosGeraisIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

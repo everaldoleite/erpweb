@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProdutoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProdutoLabel_idProduto}"/>
+                    <h:outputText value="#{produtoController.selected.idProduto}" title="#{bundle.ViewProdutoTitle_idProduto}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_partNumber}"/>
+                    <h:outputText value="#{produtoController.selected.partNumber}" title="#{bundle.ViewProdutoTitle_partNumber}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_descricaoProduto}"/>
+                    <h:outputText value="#{produtoController.selected.descricaoProduto}" title="#{bundle.ViewProdutoTitle_descricaoProduto}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_marca}"/>
+                    <h:outputText value="#{produtoController.selected.marca}" title="#{bundle.ViewProdutoTitle_marca}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_situacao}"/>
+                    <h:outputText value="#{produtoController.selected.situacao}" title="#{bundle.ViewProdutoTitle_situacao}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_unidadeEstoque}"/>
+                    <h:outputText value="#{produtoController.selected.unidadeEstoque}" title="#{bundle.ViewProdutoTitle_unidadeEstoque}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_unidadeEntrada}"/>
+                    <h:outputText value="#{produtoController.selected.unidadeEntrada}" title="#{bundle.ViewProdutoTitle_unidadeEntrada}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_pesoBruto}"/>
+                    <h:outputText value="#{produtoController.selected.pesoBruto}" title="#{bundle.ViewProdutoTitle_pesoBruto}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_pesoLiquido}"/>
+                    <h:outputText value="#{produtoController.selected.pesoLiquido}" title="#{bundle.ViewProdutoTitle_pesoLiquido}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_dimensao}"/>
+                    <h:outputText value="#{produtoController.selected.dimensao}" title="#{bundle.ViewProdutoTitle_dimensao}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_calculoPrecoCusto}"/>
+                    <h:outputText value="#{produtoController.selected.calculoPrecoCusto}" title="#{bundle.ViewProdutoTitle_calculoPrecoCusto}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_pedidoAutomatico}"/>
+                    <h:outputText value="#{produtoController.selected.pedidoAutomatico}" title="#{bundle.ViewProdutoTitle_pedidoAutomatico}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_tipoMoeda}"/>
+                    <h:outputText value="#{produtoController.selected.tipoMoeda}" title="#{bundle.ViewProdutoTitle_tipoMoeda}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_dataManutencao}"/>
+                    <h:outputText value="#{produtoController.selected.dataManutencao}" title="#{bundle.ViewProdutoTitle_dataManutencao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_rendimento}"/>
+                    <h:outputText value="#{produtoController.selected.rendimento}" title="#{bundle.ViewProdutoTitle_rendimento}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_tipoOrigemProduto}"/>
+                    <h:outputText value="#{produtoController.selected.tipoOrigemProduto}" title="#{bundle.ViewProdutoTitle_tipoOrigemProduto}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_tipoTributacao}"/>
+                    <h:outputText value="#{produtoController.selected.tipoTributacao}" title="#{bundle.ViewProdutoTitle_tipoTributacao}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_tipoProduto}"/>
+                    <h:outputText value="#{produtoController.selected.tipoProduto}" title="#{bundle.ViewProdutoTitle_tipoProduto}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_mpBem}"/>
+                    <h:outputText value="#{produtoController.selected.mpBem}" title="#{bundle.ViewProdutoTitle_mpBem}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_dataUltimaVenda}"/>
+                    <h:outputText value="#{produtoController.selected.dataUltimaVenda}" title="#{bundle.ViewProdutoTitle_dataUltimaVenda}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_especificacaoProduto}"/>
+                    <h:outputText value="#{produtoController.selected.especificacaoProduto}" title="#{bundle.ViewProdutoTitle_especificacaoProduto}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_indicadorEstoque}"/>
+                    <h:outputText value="#{produtoController.selected.indicadorEstoque}" title="#{bundle.ViewProdutoTitle_indicadorEstoque}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_idCategoria}"/>
+                    <h:outputText value="#{produtoController.selected.idCategoria}" title="#{bundle.ViewProdutoTitle_idCategoria}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_idGrupo}"/>
+                    <h:outputText value="#{produtoController.selected.idGrupo}" title="#{bundle.ViewProdutoTitle_idGrupo}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_idNcm}"/>
+                    <h:outputText value="#{produtoController.selected.idNcm}" title="#{bundle.ViewProdutoTitle_idNcm}"/>
+                    <h:outputText value="#{bundle.ViewProdutoLabel_idSubGrupo}"/>
+                    <h:outputText value="#{produtoController.selected.idSubGrupo}" title="#{bundle.ViewProdutoTitle_idSubGrupo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{produtoController.destroyAndView}" value="#{bundle.ViewProdutoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProdutoEditLink}"/>
+                <br />
+                <h:commandLink action="#{produtoController.prepareCreate}" value="#{bundle.ViewProdutoCreateLink}" />
+                <br />
+                <h:commandLink action="#{produtoController.prepareList}" value="#{bundle.ViewProdutoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProdutoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -7,8 +7,10 @@ package br.com.erpweb.persistence.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,12 +20,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -65,9 +69,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Cliente.findByBloqueioVendas", query = "SELECT c FROM Cliente c WHERE c.bloqueioVendas = :bloqueioVendas"),
     @NamedQuery(name = "Cliente.findByBloqueioFaturamento", query = "SELECT c FROM Cliente c WHERE c.bloqueioFaturamento = :bloqueioFaturamento"),
     @NamedQuery(name = "Cliente.findByBloqueioComercial", query = "SELECT c FROM Cliente c WHERE c.bloqueioComercial = :bloqueioComercial"),
-    @NamedQuery(name = "Cliente.findByBanco", query = "SELECT c FROM Cliente c WHERE c.banco = :banco"),
-    @NamedQuery(name = "Cliente.findByAgencia", query = "SELECT c FROM Cliente c WHERE c.agencia = :agencia"),
-    @NamedQuery(name = "Cliente.findByContaCorrente", query = "SELECT c FROM Cliente c WHERE c.contaCorrente = :contaCorrente"),
     @NamedQuery(name = "Cliente.findByStatusEmpresa", query = "SELECT c FROM Cliente c WHERE c.statusEmpresa = :statusEmpresa"),
     @NamedQuery(name = "Cliente.findByRevendedor", query = "SELECT c FROM Cliente c WHERE c.revendedor = :revendedor"),
     @NamedQuery(name = "Cliente.findByLimiteCredito", query = "SELECT c FROM Cliente c WHERE c.limiteCredito = :limiteCredito"),
@@ -91,6 +92,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Cliente.findByAcessoItensPromocionais", query = "SELECT c FROM Cliente c WHERE c.acessoItensPromocionais = :acessoItensPromocionais"),
     @NamedQuery(name = "Cliente.findByIndicadorProspect", query = "SELECT c FROM Cliente c WHERE c.indicadorProspect = :indicadorProspect")})
 public class Cliente implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
+    private Collection<Contato> contatoCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -176,22 +179,13 @@ public class Cliente implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataBloqueio;
     @Column(name = "bloqueioAtendimento")
-    private Character bloqueioAtendimento;
+    private boolean bloqueioAtendimento;
     @Column(name = "bloqueioVendas")
-    private Character bloqueioVendas;
+    private boolean bloqueioVendas;
     @Column(name = "bloqueioFaturamento")
-    private Character bloqueioFaturamento;
+    private boolean bloqueioFaturamento;
     @Column(name = "bloqueioComercial")
-    private Character bloqueioComercial;
-    @Size(max = 3)
-    @Column(name = "banco")
-    private String banco;
-    @Size(max = 4)
-    @Column(name = "agencia")
-    private String agencia;
-    @Size(max = 5)
-    @Column(name = "contaCorrente")
-    private String contaCorrente;
+    private boolean bloqueioComercial;
     @Column(name = "statusEmpresa")
     private Character statusEmpresa;
     @Column(name = "revendedor")
@@ -243,40 +237,75 @@ public class Cliente implements Serializable {
     @Column(name = "opcaoSimplesDANFE")
     private Character opcaoSimplesDANFE;
     @Column(name = "acessoItensPromocionais")
-    private Character acessoItensPromocionais;
+    private boolean acessoItensPromocionais;
     @Column(name = "indicadorProspect")
     private Character indicadorProspect;
-    @JoinColumn(name = "idVendedorFidelidade", referencedColumnName = "idVendedor")
+    @JoinColumn(name = "idBanco", referencedColumnName = "idBanco")
     @ManyToOne(optional = false)
-    private Vendedor idVendedorFidelidade;
-    @JoinColumn(name = "idCodigoTransportador", referencedColumnName = "idCodigoTransportador")
+    private Banco idBanco;
+    @JoinColumn(name = "idCarteira", referencedColumnName = "idCarteira")
     @ManyToOne(optional = false)
-    private Transportador idCodigoTransportador;
-    @JoinColumn(name = "idTipoTransporte", referencedColumnName = "idTipoTransporte")
-    @ManyToOne(optional = false)
-    private TipoTransporte idTipoTransporte;
-    @JoinColumn(name = "idCodigoSegmento", referencedColumnName = "idCodigoSegmento")
-    @ManyToOne(optional = false)
-    private Segmento idCodigoSegmento;
-    @JoinColumn(name = "idNaturezaOperacao", referencedColumnName = "idNaturezaOperacao")
-    @ManyToOne(optional = false)
-    private NaturezaOperacao idNaturezaOperacao;
-    @JoinColumn(name = "idListaPrecosServicos", referencedColumnName = "idListaPrecosServicos")
-    @ManyToOne(optional = false)
-    private ListaPrecoServicos idListaPrecosServicos;
-    @JoinColumn(name = "idListaPrecosProdutos", referencedColumnName = "idListaPrecosProdutos")
-    @ManyToOne(optional = false)
-    private ListaPrecoProdutos idListaPrecosProdutos;
-    @JoinColumn(name = "idEnderecoEntrega", referencedColumnName = "idLocalidade")
-    @ManyToOne(optional = false)
-    private Localidade idEnderecoEntrega;
-    @JoinColumn(name = "idEnderecoCobranca", referencedColumnName = "idLocalidade")
-    @ManyToOne(optional = false)
-    private Localidade idEnderecoCobranca;
+    private Carteira idCarteira;
     @JoinColumn(name = "idCondicaoPagamento", referencedColumnName = "idCondicaoPagamento")
     @ManyToOne(optional = false)
     private CondicaoPagamento idCondicaoPagamento;
+    @JoinColumn(name = "idListaPrecosProdutos", referencedColumnName = "idListaPrecosProdutos")
+    @ManyToOne(optional = false)
+    private ListaPrecoProdutos idListaPrecosProdutos;
+    @JoinColumn(name = "idListaPrecosServicos", referencedColumnName = "idListaPrecosServicos")
+    @ManyToOne(optional = false)
+    private ListaPrecoServicos idListaPrecosServicos;
+    @JoinColumn(name = "idNaturezaOperacao", referencedColumnName = "idNaturezaOperacao")
+    @ManyToOne(optional = false)
+    private NaturezaOperacao idNaturezaOperacao;
+    @JoinColumn(name = "idCodigoSegmento", referencedColumnName = "idCodigoSegmento")
+    @ManyToOne(optional = false)
+    private Segmento idCodigoSegmento;
+    @JoinColumn(name = "idVendedorFidelidade", referencedColumnName = "idVendedor")
+    @ManyToOne(optional = false)
+    private Vendedor idVendedorFidelidade;
+    @JoinColumn(name = "idTipoTransporte", referencedColumnName = "idTipoTransporte")
+    @ManyToOne(optional = false)
+    private TipoTransporte idTipoTransporte;
+    @JoinColumn(name = "idCodigoTransportador", referencedColumnName = "idCodigoTransportador")
+    @ManyToOne(optional = false)
+    private Transportador idCodigoTransportador;
 
+    @Size(max = 8)
+    @Column(name = "cep")
+    private String cep;
+    @Size(max = 20)
+    @Column(name = "tipoLogradouro")
+    private String tipoLogradouro;
+    @Size(max = 45)
+    @Column(name = "logradouro")
+    private String logradouro;
+    @Size(max = 5)
+    @Column(name = "numero")
+    private String numero;
+    @Size(max = 30)
+    @Column(name = "bairro")
+    private String bairro;
+    @Size(max = 30)
+    @Column(name = "cidade")
+    private String cidade;
+    @Size(max = 2)
+    @Column(name = "uf")
+    private String uf;
+    @Size(max = 1)
+    @Column(name = "status")
+    private String status;
+    @Size(max = 45)
+    @Column(name = "complemento")
+    private String complemento;
+    @Size(max = 10)
+    @Column(name = "codigoIBGE")
+    private String codigoIBGE;
+    @Column(name = "enderecoCobranca")
+    private Character enderecoCobranca;
+    @Column(name = "isencaoIE")
+    private boolean isencaoIE;
+    
     public Cliente() {
     }
 
@@ -505,62 +534,6 @@ public class Cliente implements Serializable {
         this.dataBloqueio = dataBloqueio;
     }
 
-    public Character getBloqueioAtendimento() {
-        return bloqueioAtendimento;
-    }
-
-    public void setBloqueioAtendimento(Character bloqueioAtendimento) {
-        this.bloqueioAtendimento = bloqueioAtendimento;
-    }
-
-    public Character getBloqueioVendas() {
-        return bloqueioVendas;
-    }
-
-    public void setBloqueioVendas(Character bloqueioVendas) {
-        this.bloqueioVendas = bloqueioVendas;
-    }
-
-    public Character getBloqueioFaturamento() {
-        return bloqueioFaturamento;
-    }
-
-    public void setBloqueioFaturamento(Character bloqueioFaturamento) {
-        this.bloqueioFaturamento = bloqueioFaturamento;
-    }
-
-    public Character getBloqueioComercial() {
-        return bloqueioComercial;
-    }
-
-    public void setBloqueioComercial(Character bloqueioComercial) {
-        this.bloqueioComercial = bloqueioComercial;
-    }
-
-    public String getBanco() {
-        return banco;
-    }
-
-    public void setBanco(String banco) {
-        this.banco = banco;
-    }
-
-    public String getAgencia() {
-        return agencia;
-    }
-
-    public void setAgencia(String agencia) {
-        this.agencia = agencia;
-    }
-
-    public String getContaCorrente() {
-        return contaCorrente;
-    }
-
-    public void setContaCorrente(String contaCorrente) {
-        this.contaCorrente = contaCorrente;
-    }
-
     public Character getStatusEmpresa() {
         return statusEmpresa;
     }
@@ -721,14 +694,6 @@ public class Cliente implements Serializable {
         this.opcaoSimplesDANFE = opcaoSimplesDANFE;
     }
 
-    public Character getAcessoItensPromocionais() {
-        return acessoItensPromocionais;
-    }
-
-    public void setAcessoItensPromocionais(Character acessoItensPromocionais) {
-        this.acessoItensPromocionais = acessoItensPromocionais;
-    }
-
     public Character getIndicadorProspect() {
         return indicadorProspect;
     }
@@ -737,52 +702,28 @@ public class Cliente implements Serializable {
         this.indicadorProspect = indicadorProspect;
     }
 
-    public Vendedor getIdVendedorFidelidade() {
-        return idVendedorFidelidade;
+    public Banco getIdBanco() {
+        return idBanco;
     }
 
-    public void setIdVendedorFidelidade(Vendedor idVendedorFidelidade) {
-        this.idVendedorFidelidade = idVendedorFidelidade;
+    public void setIdBanco(Banco idBanco) {
+        this.idBanco = idBanco;
     }
 
-    public Transportador getIdCodigoTransportador() {
-        return idCodigoTransportador;
+    public Carteira getIdCarteira() {
+        return idCarteira;
     }
 
-    public void setIdCodigoTransportador(Transportador idCodigoTransportador) {
-        this.idCodigoTransportador = idCodigoTransportador;
+    public void setIdCarteira(Carteira idCarteira) {
+        this.idCarteira = idCarteira;
     }
 
-    public TipoTransporte getIdTipoTransporte() {
-        return idTipoTransporte;
+    public CondicaoPagamento getIdCondicaoPagamento() {
+        return idCondicaoPagamento;
     }
 
-    public void setIdTipoTransporte(TipoTransporte idTipoTransporte) {
-        this.idTipoTransporte = idTipoTransporte;
-    }
-
-    public Segmento getIdCodigoSegmento() {
-        return idCodigoSegmento;
-    }
-
-    public void setIdCodigoSegmento(Segmento idCodigoSegmento) {
-        this.idCodigoSegmento = idCodigoSegmento;
-    }
-
-    public NaturezaOperacao getIdNaturezaOperacao() {
-        return idNaturezaOperacao;
-    }
-
-    public void setIdNaturezaOperacao(NaturezaOperacao idNaturezaOperacao) {
-        this.idNaturezaOperacao = idNaturezaOperacao;
-    }
-
-    public ListaPrecoServicos getIdListaPrecosServicos() {
-        return idListaPrecosServicos;
-    }
-
-    public void setIdListaPrecosServicos(ListaPrecoServicos idListaPrecosServicos) {
-        this.idListaPrecosServicos = idListaPrecosServicos;
+    public void setIdCondicaoPagamento(CondicaoPagamento idCondicaoPagamento) {
+        this.idCondicaoPagamento = idCondicaoPagamento;
     }
 
     public ListaPrecoProdutos getIdListaPrecosProdutos() {
@@ -793,28 +734,52 @@ public class Cliente implements Serializable {
         this.idListaPrecosProdutos = idListaPrecosProdutos;
     }
 
-    public Localidade getIdEnderecoEntrega() {
-        return idEnderecoEntrega;
+    public ListaPrecoServicos getIdListaPrecosServicos() {
+        return idListaPrecosServicos;
     }
 
-    public void setIdEnderecoEntrega(Localidade idEnderecoEntrega) {
-        this.idEnderecoEntrega = idEnderecoEntrega;
+    public void setIdListaPrecosServicos(ListaPrecoServicos idListaPrecosServicos) {
+        this.idListaPrecosServicos = idListaPrecosServicos;
     }
 
-    public Localidade getIdEnderecoCobranca() {
-        return idEnderecoCobranca;
+    public NaturezaOperacao getIdNaturezaOperacao() {
+        return idNaturezaOperacao;
     }
 
-    public void setIdEnderecoCobranca(Localidade idEnderecoCobranca) {
-        this.idEnderecoCobranca = idEnderecoCobranca;
+    public void setIdNaturezaOperacao(NaturezaOperacao idNaturezaOperacao) {
+        this.idNaturezaOperacao = idNaturezaOperacao;
     }
 
-    public CondicaoPagamento getIdCondicaoPagamento() {
-        return idCondicaoPagamento;
+    public Segmento getIdCodigoSegmento() {
+        return idCodigoSegmento;
     }
 
-    public void setIdCondicaoPagamento(CondicaoPagamento idCondicaoPagamento) {
-        this.idCondicaoPagamento = idCondicaoPagamento;
+    public void setIdCodigoSegmento(Segmento idCodigoSegmento) {
+        this.idCodigoSegmento = idCodigoSegmento;
+    }
+
+    public Vendedor getIdVendedorFidelidade() {
+        return idVendedorFidelidade;
+    }
+
+    public void setIdVendedorFidelidade(Vendedor idVendedorFidelidade) {
+        this.idVendedorFidelidade = idVendedorFidelidade;
+    }
+
+    public TipoTransporte getIdTipoTransporte() {
+        return idTipoTransporte;
+    }
+
+    public void setIdTipoTransporte(TipoTransporte idTipoTransporte) {
+        this.idTipoTransporte = idTipoTransporte;
+    }
+
+    public Transportador getIdCodigoTransportador() {
+        return idCodigoTransportador;
+    }
+
+    public void setIdCodigoTransportador(Transportador idCodigoTransportador) {
+        this.idCodigoTransportador = idCodigoTransportador;
     }
 
     @Override
@@ -840,6 +805,253 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return "br.com.erpweb.persistence.entities.Cliente[ idCliente=" + idCliente + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Contato> getContatoCollection() {
+        return contatoCollection;
+    }
+
+    public void setContatoCollection(Collection<Contato> contatoCollection) {
+        this.contatoCollection = contatoCollection;
+    }
+
+    /**
+     * @return the cep
+     */
+    public String getCep() {
+        return cep;
+    }
+
+    /**
+     * @param cep the cep to set
+     */
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    /**
+     * @return the tipoLogradouro
+     */
+    public String getTipoLogradouro() {
+        return tipoLogradouro;
+    }
+
+    /**
+     * @param tipoLogradouro the tipoLogradouro to set
+     */
+    public void setTipoLogradouro(String tipoLogradouro) {
+        this.tipoLogradouro = tipoLogradouro;
+    }
+
+    /**
+     * @return the logradouro
+     */
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    /**
+     * @param logradouro the logradouro to set
+     */
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    /**
+     * @return the numero
+     */
+    public String getNumero() {
+        return numero;
+    }
+
+    /**
+     * @param numero the numero to set
+     */
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    /**
+     * @return the bairro
+     */
+    public String getBairro() {
+        return bairro;
+    }
+
+    /**
+     * @param bairro the bairro to set
+     */
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    /**
+     * @return the cidade
+     */
+    public String getCidade() {
+        return cidade;
+    }
+
+    /**
+     * @param cidade the cidade to set
+     */
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    /**
+     * @return the uf
+     */
+    public String getUf() {
+        return uf;
+    }
+
+    /**
+     * @param uf the uf to set
+     */
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the complemento
+     */
+    public String getComplemento() {
+        return complemento;
+    }
+
+    /**
+     * @param complemento the complemento to set
+     */
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    /**
+     * @return the codigoIBGE
+     */
+    public String getCodigoIBGE() {
+        return codigoIBGE;
+    }
+
+    /**
+     * @param codigoIBGE the codigoIBGE to set
+     */
+    public void setCodigoIBGE(String codigoIBGE) {
+        this.codigoIBGE = codigoIBGE;
+    }
+
+    /**
+     * @return the enderecoCobranca
+     */
+    public Character getEnderecoCobranca() {
+        return enderecoCobranca;
+    }
+
+    /**
+     * @param enderecoCobranca the enderecoCobranca to set
+     */
+    public void setEnderecoCobranca(Character enderecoCobranca) {
+        this.enderecoCobranca = enderecoCobranca;
+    }
+
+    /**
+     * @return the bloqueioAtendimento
+     */
+    public boolean isBloqueioAtendimento() {
+        return bloqueioAtendimento;
+    }
+
+    /**
+     * @param bloqueioAtendimento the bloqueioAtendimento to set
+     */
+    public void setBloqueioAtendimento(boolean bloqueioAtendimento) {
+        this.bloqueioAtendimento = bloqueioAtendimento;
+    }
+
+    /**
+     * @return the bloqueioVendas
+     */
+    public boolean isBloqueioVendas() {
+        return bloqueioVendas;
+    }
+
+    /**
+     * @param bloqueioVendas the bloqueioVendas to set
+     */
+    public void setBloqueioVendas(boolean bloqueioVendas) {
+        this.bloqueioVendas = bloqueioVendas;
+    }
+
+    /**
+     * @return the bloqueioFaturamento
+     */
+    public boolean isBloqueioFaturamento() {
+        return bloqueioFaturamento;
+    }
+
+    /**
+     * @param bloqueioFaturamento the bloqueioFaturamento to set
+     */
+    public void setBloqueioFaturamento(boolean bloqueioFaturamento) {
+        this.bloqueioFaturamento = bloqueioFaturamento;
+    }
+
+    /**
+     * @return the bloqueioComercial
+     */
+    public boolean isBloqueioComercial() {
+        return bloqueioComercial;
+    }
+
+    /**
+     * @param bloqueioComercial the bloqueioComercial to set
+     */
+    public void setBloqueioComercial(boolean bloqueioComercial) {
+        this.bloqueioComercial = bloqueioComercial;
+    }
+
+    /**
+     * @return the acessoItensPromocionais
+     */
+    public boolean isAcessoItensPromocionais() {
+        return acessoItensPromocionais;
+    }
+
+    /**
+     * @param acessoItensPromocionais the acessoItensPromocionais to set
+     */
+    public void setAcessoItensPromocionais(boolean acessoItensPromocionais) {
+        this.acessoItensPromocionais = acessoItensPromocionais;
+    }
+
+    /**
+     * @return the isencaoIE
+     */
+    public boolean isIsencaoIE() {
+        return isencaoIE;
+    }
+
+    /**
+     * @param isencaoIE the isencaoIE to set
+     */
+    public void setIsencaoIE(boolean isencaoIE) {
+        this.isencaoIE = isencaoIE;
     }
     
 }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLogBairroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListLogBairroEmpty}" rendered="#{logBairroController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{logBairroController.items.rowCount > 0}">
+                    <h:outputText value="#{logBairroController.pagination.pageFirstItem + 1}..#{logBairroController.pagination.pageLastItem + 1}/#{logBairroController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{logBairroController.previous}" value="#{bundle.Previous} #{logBairroController.pagination.pageSize}" rendered="#{logBairroController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{logBairroController.next}" value="#{bundle.Next} #{logBairroController.pagination.pageSize}" rendered="#{logBairroController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{logBairroController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogBairroTitle_baiNuSequencial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.baiNuSequencial}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogBairroTitle_ufeSg}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ufeSg}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogBairroTitle_baiNo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.baiNo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogBairroTitle_baiNoAbrev}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.baiNoAbrev}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLogBairroTitle_locNuSequencial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.locNuSequencial}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{logBairroController.prepareView}" value="#{bundle.ListLogBairroViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{logBairroController.prepareEdit}" value="#{bundle.ListLogBairroEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{logBairroController.destroy}" value="#{bundle.ListLogBairroDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{logBairroController.prepareCreate}" value="#{bundle.ListLogBairroCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListLogBairroIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

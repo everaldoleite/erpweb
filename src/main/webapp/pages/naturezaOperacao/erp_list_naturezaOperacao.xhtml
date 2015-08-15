@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Lista de Natureza de Operação"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div>
+                <p:growl id="msg" />
+                <h:form class="col-md-10">
+                    <h:outputText escape="false" value="Não há Natureza de Operação cadastrada" rendered="#{naturezaOperacaoController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{naturezaOperacaoController.items.rowCount > 0}">
+                        <br/>
+                        <p:dataTable value="#{naturezaOperacaoController.items}" var="item" class="col-md-12">
+                            <p:column width="5%;" style="text-align: center;">
+                                <f:facet name="header">
+                                    <h:outputText value="ID"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idNaturezaOperacao}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Código" />
+                                </f:facet>
+                                <h:outputText value="#{item.codigoOperacao}"/>
+                            </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Descrição"/>
+                                </f:facet>
+                                <h:outputText value="#{item.descricaoOperacao}" />
+                            </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Descrição Interna"/>
+                                </f:facet>
+                                <h:outputText value="#{item.descricaoInterna}" />
+                            </p:column>
+                            
+                            <p:column style="text-align: center;">
+                                <f:facet name="header">
+                                    <h:outputText value="CFOP"/>
+                                </f:facet>
+                                <h:outputText value="#{item.cfop}" />
+                            </p:column>
+                            <p:column width="10%">
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                                <h:outputText value=" "/>
+                                <p:commandButton action="#{condicaoPagamentoController.prepareEdit}" title="Editar" icon="ui-icon-pencil"/>
+                            </p:column>
+                        </p:dataTable>
+                        <h:outputText value="#{naturezaOperacaoController.pagination.pageFirstItem + 1} até #{naturezaOperacaoController.pagination.pageLastItem + 1} (Total: #{naturezaOperacaoController.pagination.itemsCount})"/>&nbsp;
+                        <h:commandButton action="#{naturezaOperacaoController.previous}" value="Anterior" rendered="#{naturezaOperacaoController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandButton action="#{naturezaOperacaoController.next}" value="Próximo" rendered="#{naturezaOperacaoController.pagination.hasNextPage}"/>&nbsp;
+                    </h:panelGroup>
+                    <br />
+                    <h:commandLink action="#{naturezaOperacaoController.prepareCreate}" value="Cadastrar nova Natureza de Operações"/>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

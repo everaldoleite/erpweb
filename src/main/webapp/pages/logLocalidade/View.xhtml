@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLogLocalidadeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLogLocalidadeLabel_locNuSequencial}"/>
+                    <h:outputText value="#{logLocalidadeController.selected.locNuSequencial}" title="#{bundle.ViewLogLocalidadeTitle_locNuSequencial}"/>
+                    <h:outputText value="#{bundle.ViewLogLocalidadeLabel_locNosub}"/>
+                    <h:outputText value="#{logLocalidadeController.selected.locNosub}" title="#{bundle.ViewLogLocalidadeTitle_locNosub}"/>
+                    <h:outputText value="#{bundle.ViewLogLocalidadeLabel_locNo}"/>
+                    <h:outputText value="#{logLocalidadeController.selected.locNo}" title="#{bundle.ViewLogLocalidadeTitle_locNo}"/>
+                    <h:outputText value="#{bundle.ViewLogLocalidadeLabel_cep}"/>
+                    <h:outputText value="#{logLocalidadeController.selected.cep}" title="#{bundle.ViewLogLocalidadeTitle_cep}"/>
+                    <h:outputText value="#{bundle.ViewLogLocalidadeLabel_locInSituacao}"/>
+                    <h:outputText value="#{logLocalidadeController.selected.locInSituacao}" title="#{bundle.ViewLogLocalidadeTitle_locInSituacao}"/>
+                    <h:outputText value="#{bundle.ViewLogLocalidadeLabel_locInTipoLocalidade}"/>
+                    <h:outputText value="#{logLocalidadeController.selected.locInTipoLocalidade}" title="#{bundle.ViewLogLocalidadeTitle_locInTipoLocalidade}"/>
+                    <h:outputText value="#{bundle.ViewLogLocalidadeLabel_locNuSequencialSub}"/>
+                    <h:outputText value="#{logLocalidadeController.selected.locNuSequencialSub}" title="#{bundle.ViewLogLocalidadeTitle_locNuSequencialSub}"/>
+                    <h:outputText value="#{bundle.ViewLogLocalidadeLabel_temp}"/>
+                    <h:outputText value="#{logLocalidadeController.selected.temp}" title="#{bundle.ViewLogLocalidadeTitle_temp}"/>
+                    <h:outputText value="#{bundle.ViewLogLocalidadeLabel_ufeSg}"/>
+                    <h:outputText value="#{logLocalidadeController.selected.ufeSg}" title="#{bundle.ViewLogLocalidadeTitle_ufeSg}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{logLocalidadeController.destroyAndView}" value="#{bundle.ViewLogLocalidadeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewLogLocalidadeEditLink}"/>
+                <br />
+                <h:commandLink action="#{logLocalidadeController.prepareCreate}" value="#{bundle.ViewLogLocalidadeCreateLink}" />
+                <br />
+                <h:commandLink action="#{logLocalidadeController.prepareList}" value="#{bundle.ViewLogLocalidadeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewLogLocalidadeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

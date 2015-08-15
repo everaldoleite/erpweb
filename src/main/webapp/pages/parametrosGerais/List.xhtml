@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListParametrosGeraisTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListParametrosGeraisEmpty}" rendered="#{parametrosGeraisController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{parametrosGeraisController.items.rowCount > 0}">
+                    <h:outputText value="#{parametrosGeraisController.pagination.pageFirstItem + 1}..#{parametrosGeraisController.pagination.pageLastItem + 1}/#{parametrosGeraisController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{parametrosGeraisController.previous}" value="#{bundle.Previous} #{parametrosGeraisController.pagination.pageSize}" rendered="#{parametrosGeraisController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{parametrosGeraisController.next}" value="#{bundle.Next} #{parametrosGeraisController.pagination.pageSize}" rendered="#{parametrosGeraisController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{parametrosGeraisController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_idParametros}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idParametros}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_prazoClienteNovo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.prazoClienteNovo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_percentualComissao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.percentualComissao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_caminhoCertificadoCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.caminhoCertificadoCliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_senhaCertificadoCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.senhaCertificadoCliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_arquivoCertificados}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.arquivoCertificados}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_versaoDados}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.versaoDados}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_unidadeFederativaSEFAZ}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.unidadeFederativaSEFAZ}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_codigoAdministrativoCORREIOS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoAdministrativoCORREIOS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_senhaServicoCORREIOS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.senhaServicoCORREIOS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_caminhoNotaFiscal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.caminhoNotaFiscal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_modeloNotaFiscal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.modeloNotaFiscal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_ambienteEmissaoNF}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ambienteEmissaoNF}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_saldoInicial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.saldoInicial}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParametrosGeraisTitle_sla}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sla}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{parametrosGeraisController.prepareView}" value="#{bundle.ListParametrosGeraisViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{parametrosGeraisController.prepareEdit}" value="#{bundle.ListParametrosGeraisEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{parametrosGeraisController.destroy}" value="#{bundle.ListParametrosGeraisDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{parametrosGeraisController.prepareCreate}" value="#{bundle.ListParametrosGeraisCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListParametrosGeraisIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

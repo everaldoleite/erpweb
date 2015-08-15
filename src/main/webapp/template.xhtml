@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -25,13 +27,16 @@
         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
 
-        <h:outputScript library="js" name="jquery-min.js" />
-        <h:outputScript library="js" name="jquery-validate.min.js" />
         <h:outputScript library="js" name="bootstrap.min.js" />
-        
-        
+
+        <h:outputScript library="primefaces" name="jquery/jquery-1.11.3.min.js" target="head" />
+        <h:outputScript library="primefaces" name="jquery/jquery-ui.min.js" target="head" />
+
+        <h:outputScript library="js" name="util.js" target="head" />
+  
         <style type="text/css">.ui-growl{top:10%;}</style>
 
+        <ui:insert name="script"></ui:insert>
     </h:head>
 
     <h:body>
@@ -47,6 +52,7 @@
 
         </div> 
         <ui:insert name="header">
+
             <div>
                 <nav class="navbar navbar-default navbar-fixed-top">
                     <div class="container">
@@ -57,7 +63,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#">SGE</a>
+                            <a class="navbar-brand" href="#">Nome</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
@@ -65,14 +71,20 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cadastros <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Clientes</a></li>
-                                        <li><a href="#">Fornecedores</a></li>
-                                        <li><a href="#">Transportadoras</a></li>
+                                        <li><a href="/erpweb/faces/pages/empresa/erp_list_empresa.xhtml">Empresa</a></li>
+                                        <li><a href="/erpweb/faces/pages/cliente/erp_list_cliente.xhtml">Clientes</a></li>
+                                        <li><a href="/erpweb/faces/pages/condicaoPagamento/erp_list_condicaoPagamento.xhtml">Condição Pagamento</a></li>
+                                        <li><a href="/erpweb/faces/pages/naturezaOperacao/erp_list_naturezaOperacao.xhtml">Natureza de Operações</a></li>
+                                        <li><a href="/erpweb/faces/pages/categoria/erp_list_categoria.xhtml">Categoria de Produtos</a></li>
+                                        <li><a href="/erpweb/faces/pages/ncm/erp_list_ncm.xhtml">NCM</a></li>
+
+                                        <li><a href="/erpweb/faces/pages/grupo/erp_list_grupo.xhtml">Grupos de Produtos</a></li>
+                                        <li><a href="/erpweb/faces/pages/subGrupo/erp_list_subGrupo.xhtml">SubGrupos de Produtos</a></li>                                        
                                         <li><a href="#">Funcionários</a></li>
-                                        <li><a href="#">Produtos</a></li>
+                                        <li><a href="/erpweb/faces/pages/produto/erp_create_produto.xhtml">Produtos</a></li>
                                         <li><a href="#">Plano de Contas</a></li>
                                         <li><a href="#">Centro de Custo</a></li>
-                                        <li><a href="#">Serviços</a></li>
+                                        <li><a href="/erpweb/faces/pages/servico/erp_list_servico.xhtml">Serviços</a></li>
                                         <li><a href="#">Contratos</a></li>
                                         <li><a href="#">Preços</a></li>
                                         <li class="divider"></li>
@@ -117,7 +129,7 @@
                                         <li><a href="#">Status Nota Fiscal</a></li>
                                     </ul>
                                 </li>
-                                
+
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Financeiro <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
@@ -128,7 +140,7 @@
                                         <li class="dropdown-header">Bancos</li>
                                         <li><a href="#">Conciliação Bancária</a></li>
                                         <li><a href="#">Emissão de Boletos</a></li>
-                                        
+
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -149,7 +161,7 @@
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="./"><img width="18" src="images/warning-147699_640.png" />&nbsp;Pendências</a></li>
+                                <li><a href="#"><img width="18" src="http://localhost:8080/erpweb/images/warning-147699_640.png" />&nbsp;Pendências</a></li>
                                 <li class="active"><a href="./">Usuário <span class="sr-only">(current)</span></a></li>
                             </ul>
                         </div>
@@ -168,7 +180,6 @@
                 </div>     
                 <div class="col-md-2" />     
             </div>
-
         </div> 
         <div class="container-fluid">
             <div class="row"><!-- 2 + 10 + 2-->
@@ -176,15 +187,12 @@
                 <div class="col-md-10" >
                     <!-- inicio footer -->
                     <ui:insert name="footer">
-                        <p class="text-muted">Copyright &copy; 2015</p>
+                        <p class="text-muted"></p>
                     </ui:insert>
                     <!-- fim footer -->
                 </div>     
                 <div class="col-md-2" />     
             </div>
-
         </div>
-        <p>
-        </p>
     </h:body>
 </html>

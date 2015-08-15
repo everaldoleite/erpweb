@@ -22,9 +22,15 @@
                     <h:dataTable value="#{transportadorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTransportadorTitle_idTRANSPORTADOR}"/>
+                                <h:outputText value="#{bundle.ListTransportadorTitle_idCodigoTransportador}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idTRANSPORTADOR}"/>
+                            <h:outputText value="#{item.idCodigoTransportador}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTransportadorTitle_descricaoTransportador}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricaoTransportador}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">

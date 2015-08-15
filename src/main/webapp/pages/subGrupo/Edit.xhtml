@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSubGrupoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSubGrupoLabel_idSubGrupo}" for="idSubGrupo" />
+                    <h:inputText id="idSubGrupo" value="#{subGrupoController.selected.idSubGrupo}" title="#{bundle.EditSubGrupoTitle_idSubGrupo}" required="true" requiredMessage="#{bundle.EditSubGrupoRequiredMessage_idSubGrupo}"/>
+                    <h:outputLabel value="#{bundle.EditSubGrupoLabel_idGrupo}" for="idGrupo" />
+                    <h:inputText id="idGrupo" value="#{subGrupoController.selected.idGrupo}" title="#{bundle.EditSubGrupoTitle_idGrupo}" required="true" requiredMessage="#{bundle.EditSubGrupoRequiredMessage_idGrupo}"/>
+                    <h:outputLabel value="#{bundle.EditSubGrupoLabel_descricaoSubGrupo}" for="descricaoSubGrupo" />
+                    <h:inputText id="descricaoSubGrupo" value="#{subGrupoController.selected.descricaoSubGrupo}" title="#{bundle.EditSubGrupoTitle_descricaoSubGrupo}" />
+                </h:panelGrid>
+                <h:commandLink action="#{subGrupoController.update}" value="#{bundle.EditSubGrupoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditSubGrupoViewLink}"/>
+                <br />
+                <h:commandLink action="#{subGrupoController.prepareList}" value="#{bundle.EditSubGrupoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditSubGrupoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

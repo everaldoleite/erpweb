@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTipoMovimentoEstoqueTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTipoMovimentoEstoqueEmpty}" rendered="#{tipoMovimentoEstoqueController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tipoMovimentoEstoqueController.items.rowCount > 0}">
+                    <h:outputText value="#{tipoMovimentoEstoqueController.pagination.pageFirstItem + 1}..#{tipoMovimentoEstoqueController.pagination.pageLastItem + 1}/#{tipoMovimentoEstoqueController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tipoMovimentoEstoqueController.previous}" value="#{bundle.Previous} #{tipoMovimentoEstoqueController.pagination.pageSize}" rendered="#{tipoMovimentoEstoqueController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tipoMovimentoEstoqueController.next}" value="#{bundle.Next} #{tipoMovimentoEstoqueController.pagination.pageSize}" rendered="#{tipoMovimentoEstoqueController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tipoMovimentoEstoqueController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoMovimentoEstoqueTitle_idtipoMovimentoEstoque}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idtipoMovimentoEstoque}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoMovimentoEstoqueTitle_descricaoTipoMovimento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricaoTipoMovimento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoMovimentoEstoqueTitle_aceitaEstoqueNegativo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aceitaEstoqueNegativo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoMovimentoEstoqueTitle_consumoMensal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.consumoMensal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoMovimentoEstoqueTitle_exigeAprovacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.exigeAprovacao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoMovimentoEstoqueTitle_exigeCentroResultado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.exigeCentroResultado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoMovimentoEstoqueTitle_opcaoTransferencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opcaoTransferencia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoMovimentoEstoqueTitle_operacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.operacao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoMovimentoEstoqueTitle_atualizaDadosCompra}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.atualizaDadosCompra}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoMovimentoEstoqueTitle_contaResultado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contaResultado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoMovimentoEstoqueTitle_idPlanoConta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPlanoConta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tipoMovimentoEstoqueController.prepareView}" value="#{bundle.ListTipoMovimentoEstoqueViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tipoMovimentoEstoqueController.prepareEdit}" value="#{bundle.ListTipoMovimentoEstoqueEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tipoMovimentoEstoqueController.destroy}" value="#{bundle.ListTipoMovimentoEstoqueDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tipoMovimentoEstoqueController.prepareCreate}" value="#{bundle.ListTipoMovimentoEstoqueCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTipoMovimentoEstoqueIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

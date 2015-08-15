@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateGrupoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateGrupoLabel_idGrupo}" for="idGrupo" />
+                    <h:inputText id="idGrupo" value="#{grupoController.selected.idGrupo}" title="#{bundle.CreateGrupoTitle_idGrupo}" required="true" requiredMessage="#{bundle.CreateGrupoRequiredMessage_idGrupo}"/>
+                    <h:outputLabel value="#{bundle.CreateGrupoLabel_idCategoria}" for="idCategoria" />
+                    <h:inputText id="idCategoria" value="#{grupoController.selected.idCategoria}" title="#{bundle.CreateGrupoTitle_idCategoria}" required="true" requiredMessage="#{bundle.CreateGrupoRequiredMessage_idCategoria}"/>
+                    <h:outputLabel value="#{bundle.CreateGrupoLabel_descricaoGrupo}" for="descricaoGrupo" />
+                    <h:inputText id="descricaoGrupo" value="#{grupoController.selected.descricaoGrupo}" title="#{bundle.CreateGrupoTitle_descricaoGrupo}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{grupoController.create}" value="#{bundle.CreateGrupoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{grupoController.prepareList}" value="#{bundle.CreateGrupoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateGrupoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateLogBairroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateLogBairroLabel_baiNuSequencial}" for="baiNuSequencial" />
+                    <h:inputText id="baiNuSequencial" value="#{logBairroController.selected.baiNuSequencial}" title="#{bundle.CreateLogBairroTitle_baiNuSequencial}" required="true" requiredMessage="#{bundle.CreateLogBairroRequiredMessage_baiNuSequencial}"/>
+                    <h:outputLabel value="#{bundle.CreateLogBairroLabel_ufeSg}" for="ufeSg" />
+                    <h:inputText id="ufeSg" value="#{logBairroController.selected.ufeSg}" title="#{bundle.CreateLogBairroTitle_ufeSg}" required="true" requiredMessage="#{bundle.CreateLogBairroRequiredMessage_ufeSg}"/>
+                    <h:outputLabel value="#{bundle.CreateLogBairroLabel_baiNo}" for="baiNo" />
+                    <h:inputText id="baiNo" value="#{logBairroController.selected.baiNo}" title="#{bundle.CreateLogBairroTitle_baiNo}" required="true" requiredMessage="#{bundle.CreateLogBairroRequiredMessage_baiNo}"/>
+                    <h:outputLabel value="#{bundle.CreateLogBairroLabel_baiNoAbrev}" for="baiNoAbrev" />
+                    <h:inputText id="baiNoAbrev" value="#{logBairroController.selected.baiNoAbrev}" title="#{bundle.CreateLogBairroTitle_baiNoAbrev}" />
+                    <h:outputLabel value="#{bundle.CreateLogBairroLabel_locNuSequencial}" for="locNuSequencial" />
+                    <h:selectOneMenu id="locNuSequencial" value="#{logBairroController.selected.locNuSequencial}" title="#{bundle.CreateLogBairroTitle_locNuSequencial}" required="true" requiredMessage="#{bundle.CreateLogBairroRequiredMessage_locNuSequencial}">
+                        <f:selectItems value="#{logLocalidadeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{logBairroController.create}" value="#{bundle.CreateLogBairroSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{logBairroController.prepareList}" value="#{bundle.CreateLogBairroShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateLogBairroIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

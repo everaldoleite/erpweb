@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListNcmTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListNcmEmpty}" rendered="#{ncmController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ncmController.items.rowCount > 0}">
+                    <h:outputText value="#{ncmController.pagination.pageFirstItem + 1}..#{ncmController.pagination.pageLastItem + 1}/#{ncmController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ncmController.previous}" value="#{bundle.Previous} #{ncmController.pagination.pageSize}" rendered="#{ncmController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ncmController.next}" value="#{bundle.Next} #{ncmController.pagination.pageSize}" rendered="#{ncmController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{ncmController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNcmTitle_idNcm}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNcm}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNcmTitle_descricaoNcm}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricaoNcm}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNcmTitle_ncm}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ncm}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNcmTitle_nome}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ncmController.prepareView}" value="#{bundle.ListNcmViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ncmController.prepareEdit}" value="#{bundle.ListNcmEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ncmController.destroy}" value="#{bundle.ListNcmDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{ncmController.prepareCreate}" value="#{bundle.ListNcmCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListNcmIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

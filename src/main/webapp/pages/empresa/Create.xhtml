@@ -3,277 +3,55 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.CreateEmpresaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <div class="row">
-                <div class="col-md-10">
-                    <p:growl id="growl" showDetail="true" sticky="true" />  
-                </div>
-            </div>
-            <h:form prependId="false" id="formEmpresa">
-                <div class="row">
-                    <div class="col-md-10">
-                        <p:tabView dynamic="true" cache="true">
-                            <p:tab title="Dados da empresa">
-                                <h:outputLabel value="#{bundle.CreateEmpresaLabel_razaoSocial}" for="razaoSocial" />&nbsp;(*)
-                                <h:inputText autocomplete="off" required="true" id="razaoSocial" value="#{empresaController.selected.razaoSocial}" title="#{bundle.CreateEmpresaTitle_razaoSocial}" size="65" maxlength="60" class="form-control" >
-                                    <f:validateLength minimum="3" />
-                                </h:inputText>
-                                <h:outputLabel value="#{bundle.CreateEmpresaLabel_nomeFantasia}" for="nomeFantasia" />
-                                <h:inputText autocomplete="off" id="nomeFantasia" value="#{empresaController.selected.nomeFantasia}" title="#{bundle.CreateEmpresaTitle_nomeFantasia}" size="65" maxlength="60" class="form-control"/>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_cep}" for="cep" />&nbsp;(*)
-                                        <h:inputText autocomplete="off" id="cep" value="#{empresaController.selected.cep}" title="#{bundle.CreateEmpresaTitle_cep}" maxlength="8" size="10" class="form-control" >
-                                            <f:validateRequired />
-                                        </h:inputText>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <h:outputLabel value="" />
-                                        <h:commandButton action="#{empresaController.getCapturaCep}" value="Busca Endereço" class="btn btn-sm btn-primary" >
-                                            <f:ajax execute="cep" render="numero bairro logradouro tipoLogradouro cidade uf"/>
-                                        </h:commandButton>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_tipoLogradouro}" for="tipoLogradouro" />
-                                        <h:inputText required="true" readonly="true" id="tipoLogradouro" value="#{empresaController.selected.tipoLogradouro}" title="#{bundle.CreateEmpresaTitle_tipoLogradouro}" class="form-control"/>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_logradouro}" for="logradouro" />
-                                        <h:inputText readonly="true" id="logradouro" value="#{empresaController.selected.logradouro}" title="#{bundle.CreateEmpresaTitle_logradouro}" class="form-control"/>
-                                    </div>                    
-                                    <div class="col-md-2">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_numero}" for="numero" />
-                                        <h:inputText id="numero" value="#{empresaController.selected.numero}" title="#{bundle.CreateEmpresaTitle_numero}" class="form-control"/>
-                                    </div>                    
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_bairro}" for="bairro" />
-                                        <h:inputText readonly="true" immediate="true" id="bairro" value="#{empresaController.selected.bairro}" title="#{bundle.CreateEmpresaTitle_bairro}" class="form-control"/>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_cidade}" for="cidade" />
-                                        <h:inputText readonly="true" id="cidade" value="#{empresaController.selected.cidade}" title="#{bundle.CreateEmpresaTitle_cidade}" class="form-control"/>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_uf}" for="uf" />
-                                        <h:inputText readonly="true" id="uf" value="#{empresaController.selected.uf}" title="#{bundle.CreateEmpresaTitle_uf}" class="form-control"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_ddd}" for="ddd" />
-                                        <h:inputText id="ddd" value="#{empresaController.selected.ddd}" title="#{bundle.CreateEmpresaTitle_ddd}" class="form-control"/>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_telefone}" for="telefone" />
-                                        <h:inputText id="telefone" value="#{empresaController.selected.telefone}" title="#{bundle.CreateEmpresaTitle_telefone}" class="form-control"/>
-                                    </div>                    
-                                </div> 
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_tipoPessoa}" for="tipoPessoa" />&nbsp;(*)
-                                        <h:selectOneMenu value="#{empresaController.selected.tipoPessoa}" id="tipoPessoa" class="form-control" title="#{bundle.CreateEmpresaTitle_tipoPessoa}">
-                                            <f:selectItem itemValue="" itemLabel="-- Selecione --" />
-                                            <f:selectItem itemValue="1" itemLabel="Jurídica" />
-                                            <f:selectItem itemValue="2" itemLabel="Física" />    
-                                            <f:validateRequired />
-                                        </h:selectOneMenu>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_cnpjEmpresa}" for="cnpjEmpresa" />&nbsp;(*)
-                                        <h:inputText id="cnpjEmpresa" value="#{empresaController.selected.cnpjEmpresa}" title="#{bundle.CreateEmpresaTitle_cnpjEmpresa}" class="form-control"/>
-
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_cpfEmpresa}" for="cpfEmpresa" />&nbsp;(*)
-                                        <h:inputText id="cpfEmpresa" value="#{empresaController.selected.cpfEmpresa}" title="#{bundle.CreateEmpresaTitle_cpfEmpresa}" class="form-control"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_inscricaoEstadual}" for="inscricaoEstadual" />
-                                        <h:inputText id="inscricaoEstadual" value="#{empresaController.selected.inscricaoEstadual}" title="#{bundle.CreateEmpresaTitle_inscricaoEstadual}" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_nomeRepresentanteLegal}" for="nomeRepresentanteLegal" />
-                                        <h:inputText id="nomeRepresentanteLegal" value="#{empresaController.selected.nomeRepresentanteLegal}" title="#{bundle.CreateEmpresaTitle_nomeRepresentanteLegal}" class="form-control"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_documentoRepresentanteCPF}" for="documentoRepresentanteCPF" />
-                                        <h:inputText id="documentoRepresentanteCPF" value="#{empresaController.selected.documentoRepresentanteCPF}" title="#{bundle.CreateEmpresaTitle_documentoRepresentanteCPF}" class="form-control" />
-                                    </div>
-                                    <div class="col-md-5">
-                                        <h:outputLabel value="#{bundle.CreateEmpresaLabel_documentoRepresentanteRG}" for="documentoRepresentanteRG" />
-                                        <h:inputText id="documentoRepresentanteRG" value="#{empresaController.selected.documentoRepresentanteRG}" title="#{bundle.CreateEmpresaTitle_documentoRepresentanteRG}" class="form-control" />
-                                    </div>
-                                </div>
-                            </p:tab>
-                        </p:tabView>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-1">
-                        <h:selectBooleanCheckbox  id="documentoRepresentanteCPF" value="#{empresaController.selected.documentoRepresentanteCPF}" title="Teste" class="form-control" />
-                    </div>
-                    <div class="col-md-8">
-                        <h:outputText value=" "/>
-                        <h:outputLabel value="Endereço de Cobrança Igual ao Principal ?" />
-                    </div>
-                </div>
-
-
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_cepPagamento}" for="cepPagamento" />
-                    <h:inputText id="cepPagamento" value="#{empresaController.selected.cepPagamento}" title="#{bundle.CreateEmpresaTitle_cepPagamento}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_estadoPagamento}" for="estadoPagamento" />
-                    <h:inputText id="estadoPagamento" value="#{empresaController.selected.estadoPagamento}" title="#{bundle.CreateEmpresaTitle_estadoPagamento}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_tipoLogradouroPagamento}" for="tipoLogradouroPagamento" />
-                    <h:inputText id="tipoLogradouroPagamento" value="#{empresaController.selected.tipoLogradouroPagamento}" title="#{bundle.CreateEmpresaTitle_tipoLogradouroPagamento}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_logradouroPagamento}" for="logradouroPagamento" />
-                    <h:inputText id="logradouroPagamento" value="#{empresaController.selected.logradouroPagamento}" title="#{bundle.CreateEmpresaTitle_logradouroPagamento}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_numeroPagamento}" for="numeroPagamento" />
-                    <h:inputText id="numeroPagamento" value="#{empresaController.selected.numeroPagamento}" title="#{bundle.CreateEmpresaTitle_numeroPagamento}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_cidadePagamento}" for="cidadePagamento" />
-                    <h:inputText id="cidadePagamento" value="#{empresaController.selected.cidadePagamento}" title="#{bundle.CreateEmpresaTitle_cidadePagamento}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_cepEntrega}" for="cepEntrega" />
-                    <h:inputText id="cepEntrega" value="#{empresaController.selected.cepEntrega}" title="#{bundle.CreateEmpresaTitle_cepEntrega}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_razaoSocialEntrega}" for="razaoSocialEntrega" />
-                    <h:inputText id="razaoSocialEntrega" value="#{empresaController.selected.razaoSocialEntrega}" title="#{bundle.CreateEmpresaTitle_razaoSocialEntrega}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_inscricaoEstadualEntrega}" for="inscricaoEstadualEntrega" />
-                    <h:inputText id="inscricaoEstadualEntrega" value="#{empresaController.selected.inscricaoEstadualEntrega}" title="#{bundle.CreateEmpresaTitle_inscricaoEstadualEntrega}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_estadoEntrega}" for="estadoEntrega" />
-                    <h:inputText id="estadoEntrega" value="#{empresaController.selected.estadoEntrega}" title="#{bundle.CreateEmpresaTitle_estadoEntrega}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_cidadeEntrega}" for="cidadeEntrega" />
-                    <h:inputText id="cidadeEntrega" value="#{empresaController.selected.cidadeEntrega}" title="#{bundle.CreateEmpresaTitle_cidadeEntrega}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_documentoEntrega}" for="documentoEntrega" />
-                    <h:inputText id="documentoEntrega" value="#{empresaController.selected.documentoEntrega}" title="#{bundle.CreateEmpresaTitle_documentoEntrega}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_dataFollowUp}" for="dataFollowUp" />
-                    <h:inputText id="dataFollowUp" value="#{empresaController.selected.dataFollowUp}" title="#{bundle.CreateEmpresaTitle_dataFollowUp}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_capitalSocial}" for="capitalSocial" />
-                    <h:inputText id="capitalSocial" value="#{empresaController.selected.capitalSocial}" title="#{bundle.CreateEmpresaTitle_capitalSocial}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_numeroEmpregados}" for="numeroEmpregados" />
-                    <h:inputText id="numeroEmpregados" value="#{empresaController.selected.numeroEmpregados}" title="#{bundle.CreateEmpresaTitle_numeroEmpregados}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_homepage}" for="homepage" />
-                    <h:inputText id="homepage" value="#{empresaController.selected.homepage}" title="#{bundle.CreateEmpresaTitle_homepage}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_emailComercial}" for="emailComercial" />
-                    <h:inputText id="emailComercial" value="#{empresaController.selected.emailComercial}" title="#{bundle.CreateEmpresaTitle_emailComercial}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_emailAtendimento}" for="emailAtendimento" />
-                    <h:inputText id="emailAtendimento" value="#{empresaController.selected.emailAtendimento}" title="#{bundle.CreateEmpresaTitle_emailAtendimento}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_inscricaoMunicipal}" for="inscricaoMunicipal" />
-                    <h:inputText id="inscricaoMunicipal" value="#{empresaController.selected.inscricaoMunicipal}" title="#{bundle.CreateEmpresaTitle_inscricaoMunicipal}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_naturezaOperacao}" for="naturezaOperacao" />
-                    <h:inputText id="naturezaOperacao" value="#{empresaController.selected.naturezaOperacao}" title="#{bundle.CreateEmpresaTitle_naturezaOperacao}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_bloqueioEmpresa}" for="bloqueioEmpresa" />
-                    <h:inputText id="bloqueioEmpresa" value="#{empresaController.selected.bloqueioEmpresa}" title="#{bundle.CreateEmpresaTitle_bloqueioEmpresa}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_motivoBloqueio}" for="motivoBloqueio" />
-                    <h:inputText id="motivoBloqueio" value="#{empresaController.selected.motivoBloqueio}" title="#{bundle.CreateEmpresaTitle_motivoBloqueio}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_usuarioBloqueio}" for="usuarioBloqueio" />
-                    <h:inputText id="usuarioBloqueio" value="#{empresaController.selected.usuarioBloqueio}" title="#{bundle.CreateEmpresaTitle_usuarioBloqueio}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_dataBloqueio}" for="dataBloqueio" />
-                    <h:inputText id="dataBloqueio" value="#{empresaController.selected.dataBloqueio}" title="#{bundle.CreateEmpresaTitle_dataBloqueio}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_bloqueioAtendimento}" for="bloqueioAtendimento" />
-                    <h:inputText id="bloqueioAtendimento" value="#{empresaController.selected.bloqueioAtendimento}" title="#{bundle.CreateEmpresaTitle_bloqueioAtendimento}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_bloqueioVendas}" for="bloqueioVendas" />
-                    <h:inputText id="bloqueioVendas" value="#{empresaController.selected.bloqueioVendas}" title="#{bundle.CreateEmpresaTitle_bloqueioVendas}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_bloqueioFaturamento}" for="bloqueioFaturamento" />
-                    <h:inputText id="bloqueioFaturamento" value="#{empresaController.selected.bloqueioFaturamento}" title="#{bundle.CreateEmpresaTitle_bloqueioFaturamento}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_bloqueioComercial}" for="bloqueioComercial" />
-                    <h:inputText id="bloqueioComercial" value="#{empresaController.selected.bloqueioComercial}" title="#{bundle.CreateEmpresaTitle_bloqueioComercial}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_bloqueioTotal}" for="bloqueioTotal" />
-                    <h:inputText id="bloqueioTotal" value="#{empresaController.selected.bloqueioTotal}" title="#{bundle.CreateEmpresaTitle_bloqueioTotal}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_banco}" for="banco" />
-                    <h:inputText id="banco" value="#{empresaController.selected.banco}" title="#{bundle.CreateEmpresaTitle_banco}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_agencia}" for="agencia" />
-                    <h:inputText id="agencia" value="#{empresaController.selected.agencia}" title="#{bundle.CreateEmpresaTitle_agencia}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_contaCorrente}" for="contaCorrente" />
-                    <h:inputText id="contaCorrente" value="#{empresaController.selected.contaCorrente}" title="#{bundle.CreateEmpresaTitle_contaCorrente}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_transportePreferencial}" for="transportePreferencial" />
-                    <h:inputText id="transportePreferencial" value="#{empresaController.selected.transportePreferencial}" title="#{bundle.CreateEmpresaTitle_transportePreferencial}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_statusEmpresa}" for="statusEmpresa" />
-                    <h:inputText id="statusEmpresa" value="#{empresaController.selected.statusEmpresa}" title="#{bundle.CreateEmpresaTitle_statusEmpresa}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_revendedor}" for="revendedor" />
-                    <h:inputText id="revendedor" value="#{empresaController.selected.revendedor}" title="#{bundle.CreateEmpresaTitle_revendedor}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_dataReserva}" for="dataReserva" />
-                    <h:inputText id="dataReserva" value="#{empresaController.selected.dataReserva}" title="#{bundle.CreateEmpresaTitle_dataReserva}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_codigoVendedorFidelidade}" for="codigoVendedorFidelidade" />
-                    <h:inputText id="codigoVendedorFidelidade" value="#{empresaController.selected.codigoVendedorFidelidade}" title="#{bundle.CreateEmpresaTitle_codigoVendedorFidelidade}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_limiteCredito}" for="limiteCredito" />
-                    <h:inputText id="limiteCredito" value="#{empresaController.selected.limiteCredito}" title="#{bundle.CreateEmpresaTitle_limiteCredito}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_codigoPagamento}" for="codigoPagamento" />
-                    <h:inputText id="codigoPagamento" value="#{empresaController.selected.codigoPagamento}" title="#{bundle.CreateEmpresaTitle_codigoPagamento}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_dataInicialLimiteCredito}" for="dataInicialLimiteCredito" />
-                    <h:inputText id="dataInicialLimiteCredito" value="#{empresaController.selected.dataInicialLimiteCredito}" title="#{bundle.CreateEmpresaTitle_dataInicialLimiteCredito}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_dataFinalLimiteCredito}" for="dataFinalLimiteCredito" />
-                    <h:inputText id="dataFinalLimiteCredito" value="#{empresaController.selected.dataFinalLimiteCredito}" title="#{bundle.CreateEmpresaTitle_dataFinalLimiteCredito}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_dataAvaliacaoLimiteCredito}" for="dataAvaliacaoLimiteCredito" />
-                    <h:inputText id="dataAvaliacaoLimiteCredito" value="#{empresaController.selected.dataAvaliacaoLimiteCredito}" title="#{bundle.CreateEmpresaTitle_dataAvaliacaoLimiteCredito}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_responsavelLimiteCredito}" for="responsavelLimiteCredito" />
-                    <h:inputText id="responsavelLimiteCredito" value="#{empresaController.selected.responsavelLimiteCredito}" title="#{bundle.CreateEmpresaTitle_responsavelLimiteCredito}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_observacaoLimiteCredito}" for="observacaoLimiteCredito" />
-                    <h:inputText id="observacaoLimiteCredito" value="#{empresaController.selected.observacaoLimiteCredito}" title="#{bundle.CreateEmpresaTitle_observacaoLimiteCredito}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_tipoLimiteCredito}" for="tipoLimiteCredito" />
-                    <h:inputText id="tipoLimiteCredito" value="#{empresaController.selected.tipoLimiteCredito}" title="#{bundle.CreateEmpresaTitle_tipoLimiteCredito}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_aceitaCobranca}" for="aceitaCobranca" />
-                    <h:inputText id="aceitaCobranca" value="#{empresaController.selected.aceitaCobranca}" title="#{bundle.CreateEmpresaTitle_aceitaCobranca}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_tipoEmpresaSubstituto}" for="tipoEmpresaSubstituto" />
-                    <h:inputText id="tipoEmpresaSubstituto" value="#{empresaController.selected.tipoEmpresaSubstituto}" title="#{bundle.CreateEmpresaTitle_tipoEmpresaSubstituto}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_bairroEntrega}" for="bairroEntrega" />
-                    <h:inputText id="bairroEntrega" value="#{empresaController.selected.bairroEntrega}" title="#{bundle.CreateEmpresaTitle_bairroEntrega}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_emailNotaMunicipal}" for="emailNotaMunicipal" />
-                    <h:inputText id="emailNotaMunicipal" value="#{empresaController.selected.emailNotaMunicipal}" title="#{bundle.CreateEmpresaTitle_emailNotaMunicipal}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_emailNotaFederal}" for="emailNotaFederal" />
-                    <h:inputText id="emailNotaFederal" value="#{empresaController.selected.emailNotaFederal}" title="#{bundle.CreateEmpresaTitle_emailNotaFederal}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_ultimoFaturamento}" for="ultimoFaturamento" />
-                    <h:inputText id="ultimoFaturamento" value="#{empresaController.selected.ultimoFaturamento}" title="#{bundle.CreateEmpresaTitle_ultimoFaturamento}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_dataUltimoFaturamento}" for="dataUltimoFaturamento" />
-                    <h:inputText id="dataUltimoFaturamento" value="#{empresaController.selected.dataUltimoFaturamento}" title="#{bundle.CreateEmpresaTitle_dataUltimoFaturamento}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_pasta}" for="pasta" />
-                    <h:inputText id="pasta" value="#{empresaController.selected.pasta}" title="#{bundle.CreateEmpresaTitle_pasta}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_codigoInterno}" for="codigoInterno" />
-                    <h:inputText id="codigoInterno" value="#{empresaController.selected.codigoInterno}" title="#{bundle.CreateEmpresaTitle_codigoInterno}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_perfil}" for="perfil" />
-                    <h:inputText id="perfil" value="#{empresaController.selected.perfil}" title="#{bundle.CreateEmpresaTitle_perfil}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_atuacao}" for="atuacao" />
-                    <h:inputText id="atuacao" value="#{empresaController.selected.atuacao}" title="#{bundle.CreateEmpresaTitle_atuacao}" />
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_idTRANSPORTADOR}" for="idTRANSPORTADOR" />
-                    <h:selectOneMenu id="idTRANSPORTADOR" value="#{empresaController.selected.idTRANSPORTADOR}" title="#{bundle.CreateEmpresaTitle_idTRANSPORTADOR}" required="true" requiredMessage="#{bundle.CreateEmpresaRequiredMessage_idTRANSPORTADOR}">
-                        <f:selectItems value="#{transportadorController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_idSEGMENTO}" for="idSEGMENTO" />
-                    <h:selectOneMenu id="idSEGMENTO" value="#{empresaController.selected.idSEGMENTO}" title="#{bundle.CreateEmpresaTitle_idSEGMENTO}" required="true" requiredMessage="#{bundle.CreateEmpresaRequiredMessage_idSEGMENTO}">
-                        <f:selectItems value="#{segmentoController.itemsAvailableSelectOne}"/>
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_idEMPRESA}" for="idEMPRESA" />
+                    <h:inputText id="idEMPRESA" value="#{empresaController.selected.idEMPRESA}" title="#{bundle.CreateEmpresaTitle_idEMPRESA}" required="true" requiredMessage="#{bundle.CreateEmpresaRequiredMessage_idEMPRESA}"/>
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_nomeRazaoSocial}" for="nomeRazaoSocial" />
+                    <h:inputText id="nomeRazaoSocial" value="#{empresaController.selected.nomeRazaoSocial}" title="#{bundle.CreateEmpresaTitle_nomeRazaoSocial}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_documentoEmpresa}" for="documentoEmpresa" />
+                    <h:inputText id="documentoEmpresa" value="#{empresaController.selected.documentoEmpresa}" title="#{bundle.CreateEmpresaTitle_documentoEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_nomeFantasia}" for="nomeFantasia" />
+                    <h:inputText id="nomeFantasia" value="#{empresaController.selected.nomeFantasia}" title="#{bundle.CreateEmpresaTitle_nomeFantasia}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_inscricaoEstadual}" for="inscricaoEstadual" />
+                    <h:inputText id="inscricaoEstadual" value="#{empresaController.selected.inscricaoEstadual}" title="#{bundle.CreateEmpresaTitle_inscricaoEstadual}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_cnaeFiscal}" for="cnaeFiscal" />
+                    <h:inputText id="cnaeFiscal" value="#{empresaController.selected.cnaeFiscal}" title="#{bundle.CreateEmpresaTitle_cnaeFiscal}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_regimeTributario}" for="regimeTributario" />
+                    <h:inputText id="regimeTributario" value="#{empresaController.selected.regimeTributario}" title="#{bundle.CreateEmpresaTitle_regimeTributario}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_logradouroEmpresa}" for="logradouroEmpresa" />
+                    <h:inputText id="logradouroEmpresa" value="#{empresaController.selected.logradouroEmpresa}" title="#{bundle.CreateEmpresaTitle_logradouroEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_complementoEmpresa}" for="complementoEmpresa" />
+                    <h:inputText id="complementoEmpresa" value="#{empresaController.selected.complementoEmpresa}" title="#{bundle.CreateEmpresaTitle_complementoEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_numeroLogradouroEmpresa}" for="numeroLogradouroEmpresa" />
+                    <h:inputText id="numeroLogradouroEmpresa" value="#{empresaController.selected.numeroLogradouroEmpresa}" title="#{bundle.CreateEmpresaTitle_numeroLogradouroEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_paisEmpresa}" for="paisEmpresa" />
+                    <h:inputText id="paisEmpresa" value="#{empresaController.selected.paisEmpresa}" title="#{bundle.CreateEmpresaTitle_paisEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_ufEmpresa}" for="ufEmpresa" />
+                    <h:inputText id="ufEmpresa" value="#{empresaController.selected.ufEmpresa}" title="#{bundle.CreateEmpresaTitle_ufEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_bairroEmpresa}" for="bairroEmpresa" />
+                    <h:inputText id="bairroEmpresa" value="#{empresaController.selected.bairroEmpresa}" title="#{bundle.CreateEmpresaTitle_bairroEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_cepEmpresa}" for="cepEmpresa" />
+                    <h:inputText id="cepEmpresa" value="#{empresaController.selected.cepEmpresa}" title="#{bundle.CreateEmpresaTitle_cepEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_telefoneEmpresa}" for="telefoneEmpresa" />
+                    <h:inputText id="telefoneEmpresa" value="#{empresaController.selected.telefoneEmpresa}" title="#{bundle.CreateEmpresaTitle_telefoneEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_idParametrosGerais}" for="idParametrosGerais" />
+                    <h:selectOneMenu id="idParametrosGerais" value="#{empresaController.selected.idParametrosGerais}" title="#{bundle.CreateEmpresaTitle_idParametrosGerais}" required="true" requiredMessage="#{bundle.CreateEmpresaRequiredMessage_idParametrosGerais}">
+                        <f:selectItems value="#{parametrosGeraisController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{empresaController.create}" value="#{bundle.CreateEmpresaSaveLink}" id="save"/>
+                <h:commandLink action="#{empresaController.create}" value="#{bundle.CreateEmpresaSaveLink}" />
                 <br />
                 <br />
                 <h:commandLink action="#{empresaController.prepareList}" value="#{bundle.CreateEmpresaShowAllLink}" immediate="true"/>
@@ -282,7 +60,6 @@
                 <h:link outcome="/index" value="#{bundle.CreateEmpresaIndexLink}"/>
             </h:form>
         </ui:define>
-
     </ui:composition>
 
 </html>

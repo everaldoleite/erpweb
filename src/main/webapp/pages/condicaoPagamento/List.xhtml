@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCondicaoPagamentoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCondicaoPagamentoEmpty}" rendered="#{condicaoPagamentoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{condicaoPagamentoController.items.rowCount > 0}">
+                    <h:outputText value="#{condicaoPagamentoController.pagination.pageFirstItem + 1}..#{condicaoPagamentoController.pagination.pageLastItem + 1}/#{condicaoPagamentoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{condicaoPagamentoController.previous}" value="#{bundle.Previous} #{condicaoPagamentoController.pagination.pageSize}" rendered="#{condicaoPagamentoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{condicaoPagamentoController.next}" value="#{bundle.Next} #{condicaoPagamentoController.pagination.pageSize}" rendered="#{condicaoPagamentoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{condicaoPagamentoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCondicaoPagamentoTitle_idCondicaoPagamento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCondicaoPagamento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCondicaoPagamentoTitle_descricaoCondicaoPagamento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricaoCondicaoPagamento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCondicaoPagamentoTitle_taxaFinanceira}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.taxaFinanceira}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{condicaoPagamentoController.prepareView}" value="#{bundle.ListCondicaoPagamentoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{condicaoPagamentoController.prepareEdit}" value="#{bundle.ListCondicaoPagamentoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{condicaoPagamentoController.destroy}" value="#{bundle.ListCondicaoPagamentoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{condicaoPagamentoController.prepareCreate}" value="#{bundle.ListCondicaoPagamentoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCondicaoPagamentoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

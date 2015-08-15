@@ -6,21 +6,19 @@
 package br.com.erpweb.persistence.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,7 +36,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Localidade.findByNumero", query = "SELECT l FROM Localidade l WHERE l.numero = :numero"),
     @NamedQuery(name = "Localidade.findByBairro", query = "SELECT l FROM Localidade l WHERE l.bairro = :bairro"),
     @NamedQuery(name = "Localidade.findByCidade", query = "SELECT l FROM Localidade l WHERE l.cidade = :cidade"),
-    @NamedQuery(name = "Localidade.findByUf", query = "SELECT l FROM Localidade l WHERE l.uf = :uf")})
+    @NamedQuery(name = "Localidade.findByUf", query = "SELECT l FROM Localidade l WHERE l.uf = :uf"),
+    @NamedQuery(name = "Localidade.findByStatus", query = "SELECT l FROM Localidade l WHERE l.status = :status"),
+    @NamedQuery(name = "Localidade.findByComplemento", query = "SELECT l FROM Localidade l WHERE l.complemento = :complemento"),
+    @NamedQuery(name = "Localidade.findByCodigoIBGE", query = "SELECT l FROM Localidade l WHERE l.codigoIBGE = :codigoIBGE")})
 public class Localidade implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -67,10 +68,20 @@ public class Localidade implements Serializable {
     @Size(max = 2)
     @Column(name = "uf")
     private String uf;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEnderecoEntrega")
-    private Collection<Cliente> clienteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEnderecoCobranca")
-    private Collection<Cliente> clienteCollection1;
+    @Column(name = "status")
+    private Character status;
+    @Size(max = 45)
+    @Column(name = "complemento")
+    private String complemento;
+    @Size(max = 45)
+    @Column(name = "codigoIBGE")
+    private String codigoIBGE;
+    @JoinColumn(name = "idCliente", referencedColumnName = "idCliente")
+    @ManyToOne(optional = false)
+    private Cliente idCliente;
+    @Column(name = "tipoEndereco")
+    private Character tipoEndereco;
+
 
     public Localidade() {
     }
@@ -143,22 +154,28 @@ public class Localidade implements Serializable {
         this.uf = uf;
     }
 
-    @XmlTransient
-    public Collection<Cliente> getClienteCollection() {
-        return clienteCollection;
+    public Character getStatus() {
+        return status;
     }
 
-    public void setClienteCollection(Collection<Cliente> clienteCollection) {
-        this.clienteCollection = clienteCollection;
+    public void setStatus(Character status) {
+        this.status = status;
     }
 
-    @XmlTransient
-    public Collection<Cliente> getClienteCollection1() {
-        return clienteCollection1;
+    public String getComplemento() {
+        return complemento;
     }
 
-    public void setClienteCollection1(Collection<Cliente> clienteCollection1) {
-        this.clienteCollection1 = clienteCollection1;
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getCodigoIBGE() {
+        return codigoIBGE;
+    }
+
+    public void setCodigoIBGE(String codigoIBGE) {
+        this.codigoIBGE = codigoIBGE;
     }
 
     @Override
@@ -184,6 +201,34 @@ public class Localidade implements Serializable {
     @Override
     public String toString() {
         return "br.com.erpweb.persistence.entities.Localidade[ idLocalidade=" + idLocalidade + " ]";
+    }
+
+    /**
+     * @return the idCliente
+     */
+    public Cliente getIdCliente() {
+        return idCliente;
+    }
+
+    /**
+     * @param idCliente the idCliente to set
+     */
+    public void setIdCliente(Cliente idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    /**
+     * @return the tipoEndereçco
+     */
+    public Character getTipoEndereco() {
+        return tipoEndereco;
+    }
+
+    /**
+     * @param tipoEndereco the tipoEndereco to set
+     */
+    public void setTipoEndereco(Character tipoEndereco) {
+        this.tipoEndereco = tipoEndereco;
     }
     
 }

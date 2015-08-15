@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Cadastrar novo Serviço"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div style="height: 600px;">
+                <h:form prependId="false" id="create_servico">
+                    <p:growl id="msg" showDetail="false" sticky="false"/>
+                    <p:tabView class="col-md-10" id="tabview">
+                        <p:tab title="Dados" id="tab">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Descrição do Serviço" for="descricaoServico" />
+                                    <p:inputText id="descricaoServico" maxlength="45" value="#{servicoController.selected.descricaoServico}" class="form-control" required="true" validatorMessage="A descrição do serviço não contem quantidade de caracteres minimos exigidos." requiredMessage="A descrição do serviço deve ser informada." />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Valor de Custo:" for="valorCusto" />&nbsp;
+                                    <pe:inputNumber id="valorCusto" symbol="R$ " validatorMessage="Valor de Custo Inválido" value="#{servicoController.selected.valorCusto}" decimalSeparator="," thousandSeparator="." decimalPlaces="2" class="form-inline" required="true" requiredMessage="Valor de custo deve ser informado." >
+                                        <f:validateDoubleRange minimum="0.01" />
+                                    </pe:inputNumber>
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Valor do Serviço:" for="valorVenda" />&nbsp;
+                                    <pe:inputNumber id="valorVenda" symbol="R$ " validatorMessage="Valor do Serviço Inválido" required="true" requiredMessage="O valor de Venda deve ser declarado" value="#{servicoController.selected.valorVenda}" decimalSeparator="," thousandSeparator="." decimalPlaces="2" class="form-inline" >
+                                        <f:validateDoubleRange minimum="0.01" />
+                                    </pe:inputNumber>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Validade:" for="dataValidade" />&nbsp;
+                                    <p:calendar id="dataValidade" required="true" requiredMessage="Validade inválida" size="15" value="#{servicoController.selected.dataValidade}" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Ativo:" for="ativo" />&nbsp;
+                                    <p:selectBooleanCheckbox id="ativo" value="#{servicoController.selected.ativo}" />
+                                </div>
+                            </div>
+                            
+                        </p:tab>
+                    </p:tabView>
+                    <div class="col-md-12" style="padding: 10px;">
+                        <div class="col-md-2">
+                            <p:commandButton action="#{servicoController.create}" ajax="false" update="msg" validateClient="true" value="Salvar" icon="ui-icon-disk" />
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{servicoController.prepareList}" value="Lista" icon="ui-icon-bookmark" immediate="true"/>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -15,8 +15,10 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewTransportadorLabel_idTRANSPORTADOR}"/>
-                    <h:outputText value="#{transportadorController.selected.idTRANSPORTADOR}" title="#{bundle.ViewTransportadorTitle_idTRANSPORTADOR}"/>
+                    <h:outputText value="#{bundle.ViewTransportadorLabel_idCodigoTransportador}"/>
+                    <h:outputText value="#{transportadorController.selected.idCodigoTransportador}" title="#{bundle.ViewTransportadorTitle_idCodigoTransportador}"/>
+                    <h:outputText value="#{bundle.ViewTransportadorLabel_descricaoTransportador}"/>
+                    <h:outputText value="#{transportadorController.selected.descricaoTransportador}" title="#{bundle.ViewTransportadorTitle_descricaoTransportador}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{transportadorController.destroyAndView}" value="#{bundle.ViewTransportadorDestroyLink}"/>
