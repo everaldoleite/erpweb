@@ -1,15 +1,23 @@
 package br.com.erpweb.view;
 
+import br.com.erpweb.persistence.entities.Grupo;
 import br.com.erpweb.persistence.entities.Produto;
+import br.com.erpweb.persistence.entities.RegimeTributario;
+import br.com.erpweb.persistence.entities.SubGrupo;
+import br.com.erpweb.persistence.entities.TipoTributacao;
 import br.com.erpweb.view.util.JsfUtil;
 import br.com.erpweb.view.util.PaginationHelper;
 import br.com.erpweb.session.bean.ProdutoFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -17,6 +25,8 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Named("produtoController")
 @SessionScoped
@@ -28,7 +38,14 @@ public class ProdutoController implements Serializable {
     private br.com.erpweb.session.bean.ProdutoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    
+    private List<TipoTributacao> tipoTributacao = null;
+    private List<Grupo> listaGrupo = null;
+    private List<SubGrupo> listaSubGrupo = null;
 
+    @PersistenceContext
+    private EntityManager em;
+    
     public ProdutoController() {
     }
 
@@ -192,6 +209,48 @@ public class ProdutoController implements Serializable {
         return ejbFacade.find(id);
     }
 
+    /**
+     * @return the tipoTributacao
+     */
+    public List<TipoTributacao> getTipoTributacao() {
+        return tipoTributacao;
+    }
+
+    /**
+     * @param tipoTributacao the tipoTributacao to set
+     */
+    public void setTipoTributacao(List<TipoTributacao> tipoTributacao) {
+        this.tipoTributacao = tipoTributacao;
+    }
+
+    /**
+     * @return the listaGrupo
+     */
+    public List<Grupo> getListaGrupo() {
+        return listaGrupo;
+    }
+
+    /**
+     * @param listaGrupo the listaGrupo to set
+     */
+    public void setListaGrupo(List<Grupo> listaGrupo) {
+        this.listaGrupo = listaGrupo;
+    }
+
+    /**
+     * @return the listaSubGrupo
+     */
+    public List<SubGrupo> getListaSubGrupo() {
+        return listaSubGrupo;
+    }
+
+    /**
+     * @param listaSubGrupo the listaSubGrupo to set
+     */
+    public void setListaSubGrupo(List<SubGrupo> listaSubGrupo) {
+        this.listaSubGrupo = listaSubGrupo;
+    }
+
     @FacesConverter(forClass = Produto.class)
     public static class ProdutoControllerConverter implements Converter {
 
@@ -232,4 +291,39 @@ public class ProdutoController implements Serializable {
 
     }
 
+    public void lista(){
+
+        RegimeTributario regimeTributario = (RegimeTributario) em.createNamedQuery("RegimeTributario.findByIdRegimeTributario")
+                .setParameter("idRegimeTributario", Integer.parseInt(current.getIdRegimeTributario())).getSingleResult();
+        
+        List<TipoTributacao> lista = new ArrayList();
+        lista.addAll(regimeTributario.getTipoTributacaoCollection());
+        
+        setTipoTributacao(lista);
+        
+    }
+   
+    public void atualizaGrupos(){
+
+        Collection<Grupo> grupo = current.getIdCategoria().getGrupoCollection();
+        
+        listaSubGrupo = new ArrayList<>();
+        
+        listaGrupo = new ArrayList<>();
+        listaGrupo.addAll(grupo);
+        
+    }
+    
+    
+    public void atualizaSubGrupos(){
+
+        Collection<SubGrupo> subGrupo = current.getIdGrupo().getSubGrupoCollection();
+        
+        listaSubGrupo = new ArrayList<>();
+        listaSubGrupo.addAll(subGrupo);
+        
+        
+    }
+    
+        
 }

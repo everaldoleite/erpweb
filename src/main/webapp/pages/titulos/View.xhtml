@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTitulosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTitulosLabel_idTitulo}"/>
+                    <h:outputText value="#{titulosController.selected.idTitulo}" title="#{bundle.ViewTitulosTitle_idTitulo}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_idCarteira}"/>
+                    <h:outputText value="#{titulosController.selected.idCarteira}" title="#{bundle.ViewTitulosTitle_idCarteira}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_idTipoTitulo}"/>
+                    <h:outputText value="#{titulosController.selected.idTipoTitulo}" title="#{bundle.ViewTitulosTitle_idTipoTitulo}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_idCliente}"/>
+                    <h:outputText value="#{titulosController.selected.idCliente}" title="#{bundle.ViewTitulosTitle_idCliente}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_descricaoTitulo}"/>
+                    <h:outputText value="#{titulosController.selected.descricaoTitulo}" title="#{bundle.ViewTitulosTitle_descricaoTitulo}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_localizacao}"/>
+                    <h:outputText value="#{titulosController.selected.localizacao}" title="#{bundle.ViewTitulosTitle_localizacao}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_numeroNF}"/>
+                    <h:outputText value="#{titulosController.selected.numeroNF}" title="#{bundle.ViewTitulosTitle_numeroNF}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_parcela}"/>
+                    <h:outputText value="#{titulosController.selected.parcela}" title="#{bundle.ViewTitulosTitle_parcela}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_referencia}"/>
+                    <h:outputText value="#{titulosController.selected.referencia}" title="#{bundle.ViewTitulosTitle_referencia}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_dataEmissao}"/>
+                    <h:outputText value="#{titulosController.selected.dataEmissao}" title="#{bundle.ViewTitulosTitle_dataEmissao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_dataVencimento}"/>
+                    <h:outputText value="#{titulosController.selected.dataVencimento}" title="#{bundle.ViewTitulosTitle_dataVencimento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_valorBruto}"/>
+                    <h:outputText value="#{titulosController.selected.valorBruto}" title="#{bundle.ViewTitulosTitle_valorBruto}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_valorTotal}"/>
+                    <h:outputText value="#{titulosController.selected.valorTotal}" title="#{bundle.ViewTitulosTitle_valorTotal}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_percentualIR}"/>
+                    <h:outputText value="#{titulosController.selected.percentualIR}" title="#{bundle.ViewTitulosTitle_percentualIR}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_valorIR}"/>
+                    <h:outputText value="#{titulosController.selected.valorIR}" title="#{bundle.ViewTitulosTitle_valorIR}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_percentualISS}"/>
+                    <h:outputText value="#{titulosController.selected.percentualISS}" title="#{bundle.ViewTitulosTitle_percentualISS}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_valorISS}"/>
+                    <h:outputText value="#{titulosController.selected.valorISS}" title="#{bundle.ViewTitulosTitle_valorISS}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_motivoDesconto}"/>
+                    <h:outputText value="#{titulosController.selected.motivoDesconto}" title="#{bundle.ViewTitulosTitle_motivoDesconto}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_juros}"/>
+                    <h:outputText value="#{titulosController.selected.juros}" title="#{bundle.ViewTitulosTitle_juros}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_multa}"/>
+                    <h:outputText value="#{titulosController.selected.multa}" title="#{bundle.ViewTitulosTitle_multa}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_dataRegistroMotivo}"/>
+                    <h:outputText value="#{titulosController.selected.dataRegistroMotivo}" title="#{bundle.ViewTitulosTitle_dataRegistroMotivo}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_dataImpressaoBoleto}"/>
+                    <h:outputText value="#{titulosController.selected.dataImpressaoBoleto}" title="#{bundle.ViewTitulosTitle_dataImpressaoBoleto}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_observacao}"/>
+                    <h:outputText value="#{titulosController.selected.observacao}" title="#{bundle.ViewTitulosTitle_observacao}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_numeroDocumento}"/>
+                    <h:outputText value="#{titulosController.selected.numeroDocumento}" title="#{bundle.ViewTitulosTitle_numeroDocumento}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_valorEmAberto}"/>
+                    <h:outputText value="#{titulosController.selected.valorEmAberto}" title="#{bundle.ViewTitulosTitle_valorEmAberto}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_valorDesconto}"/>
+                    <h:outputText value="#{titulosController.selected.valorDesconto}" title="#{bundle.ViewTitulosTitle_valorDesconto}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_valorLiquidado}"/>
+                    <h:outputText value="#{titulosController.selected.valorLiquidado}" title="#{bundle.ViewTitulosTitle_valorLiquidado}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_saldoEmAberto}"/>
+                    <h:outputText value="#{titulosController.selected.saldoEmAberto}" title="#{bundle.ViewTitulosTitle_saldoEmAberto}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_dataBloqueio}"/>
+                    <h:outputText value="#{titulosController.selected.dataBloqueio}" title="#{bundle.ViewTitulosTitle_dataBloqueio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_percentualINSS}"/>
+                    <h:outputText value="#{titulosController.selected.percentualINSS}" title="#{bundle.ViewTitulosTitle_percentualINSS}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_valorINSS}"/>
+                    <h:outputText value="#{titulosController.selected.valorINSS}" title="#{bundle.ViewTitulosTitle_valorINSS}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_geracaoRemessa}"/>
+                    <h:outputText value="#{titulosController.selected.geracaoRemessa}" title="#{bundle.ViewTitulosTitle_geracaoRemessa}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_dataUltimoPagamento}"/>
+                    <h:outputText value="#{titulosController.selected.dataUltimoPagamento}" title="#{bundle.ViewTitulosTitle_dataUltimoPagamento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_competencia}"/>
+                    <h:outputText value="#{titulosController.selected.competencia}" title="#{bundle.ViewTitulosTitle_competencia}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_percentualCSLL}"/>
+                    <h:outputText value="#{titulosController.selected.percentualCSLL}" title="#{bundle.ViewTitulosTitle_percentualCSLL}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_valorCSLL}"/>
+                    <h:outputText value="#{titulosController.selected.valorCSLL}" title="#{bundle.ViewTitulosTitle_valorCSLL}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_percentualCOFINS}"/>
+                    <h:outputText value="#{titulosController.selected.percentualCOFINS}" title="#{bundle.ViewTitulosTitle_percentualCOFINS}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_valorCOFINS}"/>
+                    <h:outputText value="#{titulosController.selected.valorCOFINS}" title="#{bundle.ViewTitulosTitle_valorCOFINS}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_idVendedor}"/>
+                    <h:outputText value="#{titulosController.selected.idVendedor}" title="#{bundle.ViewTitulosTitle_idVendedor}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_idCentroResultado}"/>
+                    <h:outputText value="#{titulosController.selected.idCentroResultado}" title="#{bundle.ViewTitulosTitle_idCentroResultado}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_idPlanoContas}"/>
+                    <h:outputText value="#{titulosController.selected.idPlanoContas}" title="#{bundle.ViewTitulosTitle_idPlanoContas}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_idTipoCobranca}"/>
+                    <h:outputText value="#{titulosController.selected.idTipoCobranca}" title="#{bundle.ViewTitulosTitle_idTipoCobranca}"/>
+                    <h:outputText value="#{bundle.ViewTitulosLabel_idEmpresaEmitente}"/>
+                    <h:outputText value="#{titulosController.selected.idEmpresaEmitente}" title="#{bundle.ViewTitulosTitle_idEmpresaEmitente}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{titulosController.destroyAndView}" value="#{bundle.ViewTitulosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTitulosEditLink}"/>
+                <br />
+                <h:commandLink action="#{titulosController.prepareCreate}" value="#{bundle.ViewTitulosCreateLink}" />
+                <br />
+                <h:commandLink action="#{titulosController.prepareList}" value="#{bundle.ViewTitulosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTitulosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

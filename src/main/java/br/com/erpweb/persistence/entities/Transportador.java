@@ -6,6 +6,7 @@
 package br.com.erpweb.persistence.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,9 +15,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,6 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Transportador.findByIdCodigoTransportador", query = "SELECT t FROM Transportador t WHERE t.idCodigoTransportador = :idCodigoTransportador"),
     @NamedQuery(name = "Transportador.findByDescricaoTransportador", query = "SELECT t FROM Transportador t WHERE t.descricaoTransportador = :descricaoTransportador")})
 public class Transportador implements Serializable {
+    @OneToMany(mappedBy = "idCodigoTransportador")
+    private Collection<Cliente> clienteCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,6 +91,15 @@ public class Transportador implements Serializable {
     @Override
     public String toString() {
         return "br.com.erpweb.persistence.entities.Transportador[ idCodigoTransportador=" + idCodigoTransportador + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Cliente> getClienteCollection() {
+        return clienteCollection;
+    }
+
+    public void setClienteCollection(Collection<Cliente> clienteCollection) {
+        this.clienteCollection = clienteCollection;
     }
     
 }

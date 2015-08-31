@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTitulosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTitulosEmpty}" rendered="#{titulosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{titulosController.items.rowCount > 0}">
+                    <h:outputText value="#{titulosController.pagination.pageFirstItem + 1}..#{titulosController.pagination.pageLastItem + 1}/#{titulosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{titulosController.previous}" value="#{bundle.Previous} #{titulosController.pagination.pageSize}" rendered="#{titulosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{titulosController.next}" value="#{bundle.Next} #{titulosController.pagination.pageSize}" rendered="#{titulosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{titulosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_idTitulo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTitulo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_idCarteira}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCarteira}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_idTipoTitulo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoTitulo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_idCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_descricaoTitulo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricaoTitulo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_localizacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.localizacao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_numeroNF}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroNF}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_parcela}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.parcela}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_referencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.referencia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_dataEmissao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataEmissao}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_dataVencimento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataVencimento}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_valorBruto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorBruto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_valorTotal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorTotal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_percentualIR}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.percentualIR}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_valorIR}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorIR}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_percentualISS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.percentualISS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_valorISS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorISS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_motivoDesconto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.motivoDesconto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_juros}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.juros}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_multa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.multa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_dataRegistroMotivo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataRegistroMotivo}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_dataImpressaoBoleto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataImpressaoBoleto}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_observacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observacao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_numeroDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroDocumento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_valorEmAberto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorEmAberto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_valorDesconto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorDesconto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_valorLiquidado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorLiquidado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_saldoEmAberto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.saldoEmAberto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_dataBloqueio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataBloqueio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_percentualINSS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.percentualINSS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_valorINSS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorINSS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_geracaoRemessa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.geracaoRemessa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_dataUltimoPagamento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataUltimoPagamento}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_competencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.competencia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_percentualCSLL}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.percentualCSLL}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_valorCSLL}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorCSLL}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_percentualCOFINS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.percentualCOFINS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_valorCOFINS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorCOFINS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_idVendedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idVendedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_idCentroResultado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCentroResultado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_idPlanoContas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPlanoContas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_idTipoCobranca}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoCobranca}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTitulosTitle_idEmpresaEmitente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEmpresaEmitente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{titulosController.prepareView}" value="#{bundle.ListTitulosViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{titulosController.prepareEdit}" value="#{bundle.ListTitulosEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{titulosController.destroy}" value="#{bundle.ListTitulosDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{titulosController.prepareCreate}" value="#{bundle.ListTitulosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTitulosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

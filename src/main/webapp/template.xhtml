@@ -26,14 +26,18 @@
         <h:outputStylesheet library="css" name="navbar-static-top.css"/>
         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
-
+        <h:outputStylesheet library="css" name="jquery.smartmenus.bootstrap.css" />
+        
         <h:outputScript library="js" name="bootstrap.min.js" />
 
         <h:outputScript library="primefaces" name="jquery/jquery-1.11.3.min.js" target="head" />
         <h:outputScript library="primefaces" name="jquery/jquery-ui.min.js" target="head" />
 
+        <h:outputScript library="js" name="jquery.smartmenus.min.js" target="head" />
+        <h:outputScript library="js" name="jquery.smartmenus.bootstrap.min.js" target="head" />
+        
         <h:outputScript library="js" name="util.js" target="head" />
-  
+
         <style type="text/css">.ui-growl{top:10%;}</style>
 
         <ui:insert name="script"></ui:insert>
@@ -53,121 +57,140 @@
         </div> 
         <ui:insert name="header">
 
-            <div>
-                <nav class="navbar navbar-default navbar-fixed-top">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="#">Nome</a>
-                        </div>
-                        <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="dashboard.xhtml">Dashboard</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cadastros <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="/erpweb/faces/pages/empresa/erp_list_empresa.xhtml">Empresa</a></li>
-                                        <li><a href="/erpweb/faces/pages/cliente/erp_list_cliente.xhtml">Clientes</a></li>
-                                        <li><a href="/erpweb/faces/pages/condicaoPagamento/erp_list_condicaoPagamento.xhtml">Condição Pagamento</a></li>
-                                        <li><a href="/erpweb/faces/pages/naturezaOperacao/erp_list_naturezaOperacao.xhtml">Natureza de Operações</a></li>
-                                        <li><a href="/erpweb/faces/pages/categoria/erp_list_categoria.xhtml">Categoria de Produtos</a></li>
-                                        <li><a href="/erpweb/faces/pages/ncm/erp_list_ncm.xhtml">NCM</a></li>
+            <!-- Static navbar -->
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">G10 Sistemas</a>
+                </div>
+                <div class="navbar-collapse collapse">
 
-                                        <li><a href="/erpweb/faces/pages/grupo/erp_list_grupo.xhtml">Grupos de Produtos</a></li>
-                                        <li><a href="/erpweb/faces/pages/subGrupo/erp_list_subGrupo.xhtml">SubGrupos de Produtos</a></li>                                        
-                                        <li><a href="#">Funcionários</a></li>
-                                        <li><a href="/erpweb/faces/pages/produto/erp_create_produto.xhtml">Produtos</a></li>
-                                        <li><a href="#">Plano de Contas</a></li>
-                                        <li><a href="#">Centro de Custo</a></li>
+                    <!-- Left nav -->
+                    <ul class="nav navbar-nav">
+                        <li><a href="dashboard.xhtml">DashBoard</a></li>
+                        <li><a href="#">Cadastros <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/erpweb/faces/pages/empresa/erp_list_empresa.xhtml">Empresa</a></li>
+                                <li><a href="/erpweb/faces/pages/cliente/erp_list_cliente.xhtml">Clientes</a></li>
+                                <li><a href="/erpweb/faces/pages/banco/erp_list_banco.xhtml">Bancos</a></li>
+                                <!--li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Nav header</li>
+                                <li><a href="#">Separated link</a></li-->
+                                <li><a href="/erpweb/faces/pages/produto/erp_create_produto.xhtml">Produtos <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/erpweb/faces/pages/categoria/erp_list_categoria.xhtml">Categorias</a></li>
+                                        <li><a href="/erpweb/faces/pages/grupo/erp_list_grupo.xhtml">Grupos</a></li>
+                                        <li><a href="/erpweb/faces/pages/subGrupo/erp_list_subGrupo.xhtml">Sub Grupos</a></li>
+                                        <li><a href="/erpweb/faces/pages/ncm/erp_list_ncm.xhtml">N.C.M</a></li>
+                                        <!--li><a href="#">A long sub menu <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Action</a></li>
+                                                <li class="disabled"><a class="disabled" href="#">Disabled item</a></li>
+                                                <li><a href="#">One more link</a></li>
+                                                <li><a href="#">Menu item 1</a></li>
+                                                <li><a href="#">Menu item 2</a></li>
+                                                <li><a href="#">Menu item 3</a></li>
+                                                <li><a href="#">Menu item 4</a></li>
+                                                <li><a href="#">Menu item 5</a></li>
+                                                <li><a href="#">Menu item 6</a></li>
+                                                <li><a href="#">Menu item 7</a></li>
+                                            </ul>
+                                        </li-->
+                                        <!--li><a href="#">Another link</a></li>
+                                        <li><a href="#">One more link</a></li-->
+                                    </ul>
+                                </li>
+                                <li><a href="/erpweb/faces/pages/servico/erp_list_servico.xhtml">Serviços <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
                                         <li><a href="/erpweb/faces/pages/servico/erp_list_servico.xhtml">Serviços</a></li>
-                                        <li><a href="#">Contratos</a></li>
-                                        <li><a href="#">Preços</a></li>
-                                        <li class="divider"></li>
-                                        <li class="dropdown-header">Sistema</li>
-                                        <li><a href="#">Parametros Gerais</a></li>
+                                        <!--li><a href="/erpweb/faces/pages/subGrupo/erp_list_subGrupo.xhtml">Sub Grupos</a></li-->
+                                        <!--li><a href="#">A long sub menu <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Action</a></li>
+                                                <li class="disabled"><a class="disabled" href="#">Disabled item</a></li>
+                                                <li><a href="#">One more link</a></li>
+                                                <li><a href="#">Menu item 1</a></li>
+                                                <li><a href="#">Menu item 2</a></li>
+                                                <li><a href="#">Menu item 3</a></li>
+                                                <li><a href="#">Menu item 4</a></li>
+                                                <li><a href="#">Menu item 5</a></li>
+                                                <li><a href="#">Menu item 6</a></li>
+                                                <li><a href="#">Menu item 7</a></li>
+                                            </ul>
+                                        </li-->
+                                        <!--li><a href="#">Another link</a></li>
+                                        <li><a href="#">One more link</a></li-->
                                     </ul>
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estoques <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Pedidos de Compra</a></li>
-                                        <li><a href="#">Custo Médio</a></li>
-                                        <li><a href="#">Postos de Estoque</a></li>
-                                        <li><a href="#">Aquisição de Itens</a></li>
-                                        <li><a href="#">Inventário</a></li>
-                                        <li><a href="#">Importação de Notas Fiscais</a></li>
-                                        <li><a href="#">Cotação de Materiais</a></li>
+                                <li><a href="/erpweb/faces/pages/produto/erp_create_produto.xhtml">Vendas <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/erpweb/faces/pages/condicaoPagamento/erp_list_condicaoPagamento.xhtml">Condição de Pagamento</a></li>
+                                        <li><a href="/erpweb/faces/pages/naturezaOperacao/erp_list_naturezaOperacao.xhtml">Natureza de Operação</a></li>
+                                        <!--li><a href="#">A long sub menu <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Action</a></li>
+                                                <li class="disabled"><a class="disabled" href="#">Disabled item</a></li>
+                                                <li><a href="#">One more link</a></li>
+                                                <li><a href="#">Menu item 1</a></li>
+                                                <li><a href="#">Menu item 2</a></li>
+                                                <li><a href="#">Menu item 3</a></li>
+                                                <li><a href="#">Menu item 4</a></li>
+                                                <li><a href="#">Menu item 5</a></li>
+                                                <li><a href="#">Menu item 6</a></li>
+                                                <li><a href="#">Menu item 7</a></li>
+                                            </ul>
+                                        </li-->
+                                        <!--li><a href="#">Another link</a></li>
+                                        <li><a href="#">One more link</a></li-->
                                     </ul>
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ordem de Serviço <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Ordem de Serviço</a></li>
-                                        <li><a href="#">Baixa de Ordem de Serviço</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Vendas/Faturamento <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Orçamentos</a></li>
-                                        <li><a href="#">Pedidos de Venda</a></li>
-                                        <li><a href="#">Romaneiro de Entrega</a></li>
-                                        <li><a href="#">Comissões</a></li>
-                                        <li><a href="#">Nota Fiscal</a></li>
-                                        <li><a href="#">Devoluções</a></li>
-                                        <li><a href="#">Ordem de Faturamento</a></li>
-                                        <li><a href="#">Fluxo de Caixa</a></li>
-                                        <li class="divider"></li>
-                                        <li class="dropdown-header">Nota Fiscal</li>
-                                        <li><a href="#">DANFE</a></li>
-                                        <li><a href="#">Comunicação Fisco</a></li>
-                                        <li><a href="#">Status Nota Fiscal</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Financeiro <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Contas a Receber</a></li>
-                                        <li><a href="#">Contas a Pagar</a></li>
-                                        <li><a href="#">Titulos/Duplicatas</a></li>
-                                        <li class="divider"></li>
-                                        <li class="dropdown-header">Bancos</li>
-                                        <li><a href="#">Conciliação Bancária</a></li>
-                                        <li><a href="#">Emissão de Boletos</a></li>
-
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Relatórios <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="dropdown-header">Financeiro</li>
-                                        <li><a href="#">Análise Fluxo de Caixa</a></li>
-                                        <li><a href="#">Nota Fiscal</a></li>
-                                        <li class="divider"></li>
-                                        <li class="dropdown-header">Vendas</li>
-                                        <li><a href="#">Vendas por Vendedor</a></li>
-                                        <li><a href="#">Vendas por Clientes</a></li>
-                                        <li><a href="#">Produtos mais vendidos</a></li>
-                                        <li><a href="#">Serviços mais vendidos</a></li>
-                                        <li><a href="#">Faturamento por Cliente</a></li>
-                                        <li><a href="#">Vendas por Clientes</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="/erpweb/faces/pages/titulos/erp_create_titulo.xhtml">Titulos</a></li>
                             </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#"><img width="18" src="http://localhost:8080/erpweb/images/warning-147699_640.png" />&nbsp;Pendências</a></li>
-                                <li class="active"><a href="./">Usuário <span class="sr-only">(current)</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+                        </li>
+                        
+                        
+                    </ul>
+
+                    <!-- Right nav -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <!--li><a href="bootstrap-navbar.html">Default</a></li>
+                        <li><a href="bootstrap-navbar-static-top.html">Static top</a></li>
+                        <li class="active"><a href="bootstrap-navbar-fixed-top.html">Fixed top</a></li-->
+                        <li><a href="#">Pendências</a></li>
+                        <li><a href="#">Login <span class="caret"></span></a>
+                            <!--ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Nav header</li>
+                                <li><a href="#">A sub menu <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li class="disabled"><a class="disabled" href="#">Disabled item</a></li>
+                                        <li><a href="#">One more link</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">A separated link</a></li>
+                            </ul-->
+                        </li>
+                    </ul>
+
+                </div><!--/.nav-collapse -->
             </div>
+
+
         </ui:insert>
 
         <div class="container-fluid">

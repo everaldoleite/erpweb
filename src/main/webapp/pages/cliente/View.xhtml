@@ -75,14 +75,6 @@
                     <h:outputText value="#{clienteController.selected.dataBloqueio}" title="#{bundle.ViewClienteTitle_dataBloqueio}">
                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                     </h:outputText>
-                    <h:outputText value="#{bundle.ViewClienteLabel_bloqueioAtendimento}"/>
-                    <h:outputText value="#{clienteController.selected.bloqueioAtendimento}" title="#{bundle.ViewClienteTitle_bloqueioAtendimento}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_bloqueioVendas}"/>
-                    <h:outputText value="#{clienteController.selected.bloqueioVendas}" title="#{bundle.ViewClienteTitle_bloqueioVendas}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_bloqueioFaturamento}"/>
-                    <h:outputText value="#{clienteController.selected.bloqueioFaturamento}" title="#{bundle.ViewClienteTitle_bloqueioFaturamento}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_bloqueioComercial}"/>
-                    <h:outputText value="#{clienteController.selected.bloqueioComercial}" title="#{bundle.ViewClienteTitle_bloqueioComercial}"/>
                     <h:outputText value="#{bundle.ViewClienteLabel_statusEmpresa}"/>
                     <h:outputText value="#{clienteController.selected.statusEmpresa}" title="#{bundle.ViewClienteTitle_statusEmpresa}"/>
                     <h:outputText value="#{bundle.ViewClienteLabel_revendedor}"/>
@@ -125,8 +117,6 @@
                     <h:outputText value="#{clienteController.selected.rankingScore}" title="#{bundle.ViewClienteTitle_rankingScore}"/>
                     <h:outputText value="#{bundle.ViewClienteLabel_opcaoSimplesDANFE}"/>
                     <h:outputText value="#{clienteController.selected.opcaoSimplesDANFE}" title="#{bundle.ViewClienteTitle_opcaoSimplesDANFE}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_acessoItensPromocionais}"/>
-                    <h:outputText value="#{clienteController.selected.acessoItensPromocionais}" title="#{bundle.ViewClienteTitle_acessoItensPromocionais}"/>
                     <h:outputText value="#{bundle.ViewClienteLabel_indicadorProspect}"/>
                     <h:outputText value="#{clienteController.selected.indicadorProspect}" title="#{bundle.ViewClienteTitle_indicadorProspect}"/>
                     <h:outputText value="#{bundle.ViewClienteLabel_idBanco}"/>
@@ -135,10 +125,6 @@
                     <h:outputText value="#{clienteController.selected.idCarteira}" title="#{bundle.ViewClienteTitle_idCarteira}"/>
                     <h:outputText value="#{bundle.ViewClienteLabel_idCondicaoPagamento}"/>
                     <h:outputText value="#{clienteController.selected.idCondicaoPagamento}" title="#{bundle.ViewClienteTitle_idCondicaoPagamento}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_idEnderecoCobranca}"/>
-                    <h:outputText value="#{clienteController.selected.idEnderecoCobranca}" title="#{bundle.ViewClienteTitle_idEnderecoCobranca}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_idEnderecoEntrega}"/>
-                    <h:outputText value="#{clienteController.selected.idEnderecoEntrega}" title="#{bundle.ViewClienteTitle_idEnderecoEntrega}"/>
                     <h:outputText value="#{bundle.ViewClienteLabel_idListaPrecosProdutos}"/>
                     <h:outputText value="#{clienteController.selected.idListaPrecosProdutos}" title="#{bundle.ViewClienteTitle_idListaPrecosProdutos}"/>
                     <h:outputText value="#{bundle.ViewClienteLabel_idListaPrecosServicos}"/>
@@ -153,6 +139,30 @@
                     <h:outputText value="#{clienteController.selected.idTipoTransporte}" title="#{bundle.ViewClienteTitle_idTipoTransporte}"/>
                     <h:outputText value="#{bundle.ViewClienteLabel_idCodigoTransportador}"/>
                     <h:outputText value="#{clienteController.selected.idCodigoTransportador}" title="#{bundle.ViewClienteTitle_idCodigoTransportador}"/>
+                    <h:outputText value="#{bundle.ViewClienteLabel_cep}"/>
+                    <h:outputText value="#{clienteController.selected.cep}" title="#{bundle.ViewClienteTitle_cep}"/>
+                    <h:outputText value="#{bundle.ViewClienteLabel_tipoLogradouro}"/>
+                    <h:outputText value="#{clienteController.selected.tipoLogradouro}" title="#{bundle.ViewClienteTitle_tipoLogradouro}"/>
+                    <h:outputText value="#{bundle.ViewClienteLabel_logradouro}"/>
+                    <h:outputText value="#{clienteController.selected.logradouro}" title="#{bundle.ViewClienteTitle_logradouro}"/>
+                    <h:outputText value="#{bundle.ViewClienteLabel_numero}"/>
+                    <h:outputText value="#{clienteController.selected.numero}" title="#{bundle.ViewClienteTitle_numero}"/>
+                    <h:outputText value="#{bundle.ViewClienteLabel_bairro}"/>
+                    <h:outputText value="#{clienteController.selected.bairro}" title="#{bundle.ViewClienteTitle_bairro}"/>
+                    <h:outputText value="#{bundle.ViewClienteLabel_cidade}"/>
+                    <h:outputText value="#{clienteController.selected.cidade}" title="#{bundle.ViewClienteTitle_cidade}"/>
+                    <h:outputText value="#{bundle.ViewClienteLabel_uf}"/>
+                    <h:outputText value="#{clienteController.selected.uf}" title="#{bundle.ViewClienteTitle_uf}"/>
+                    <h:outputText value="#{bundle.ViewClienteLabel_status}"/>
+                    <h:outputText value="#{clienteController.selected.status}" title="#{bundle.ViewClienteTitle_status}"/>
+                    <h:outputText value="#{bundle.ViewClienteLabel_complemento}"/>
+                    <h:outputText value="#{clienteController.selected.complemento}" title="#{bundle.ViewClienteTitle_complemento}"/>
+                    <h:outputText value="#{bundle.ViewClienteLabel_codigoIBGE}"/>
+                    <h:outputText value="#{clienteController.selected.codigoIBGE}" title="#{bundle.ViewClienteTitle_codigoIBGE}"/>
+                    <h:outputText value="#{bundle.ViewClienteLabel_enderecoCobranca}"/>
+                    <h:outputText value="#{clienteController.selected.enderecoCobranca}" title="#{bundle.ViewClienteTitle_enderecoCobranca}"/>
+                    <h:outputText value="#{bundle.ViewClienteLabel_ufInscricaoEstadual}"/>
+                    <h:outputText value="#{clienteController.selected.ufInscricaoEstadual}" title="#{bundle.ViewClienteTitle_ufInscricaoEstadual}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{clienteController.destroyAndView}" value="#{bundle.ViewClienteDestroyLink}"/>

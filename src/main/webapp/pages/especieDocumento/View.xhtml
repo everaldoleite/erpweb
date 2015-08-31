@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEspecieDocumentoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEspecieDocumentoLabel_idEspecieDocumento}"/>
+                    <h:outputText value="#{especieDocumentoController.selected.idEspecieDocumento}" title="#{bundle.ViewEspecieDocumentoTitle_idEspecieDocumento}"/>
+                    <h:outputText value="#{bundle.ViewEspecieDocumentoLabel_codigoEspecieDocumento}"/>
+                    <h:outputText value="#{especieDocumentoController.selected.codigoEspecieDocumento}" title="#{bundle.ViewEspecieDocumentoTitle_codigoEspecieDocumento}"/>
+                    <h:outputText value="#{bundle.ViewEspecieDocumentoLabel_descricaoEspecieDocumento}"/>
+                    <h:outputText value="#{especieDocumentoController.selected.descricaoEspecieDocumento}" title="#{bundle.ViewEspecieDocumentoTitle_descricaoEspecieDocumento}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{especieDocumentoController.destroyAndView}" value="#{bundle.ViewEspecieDocumentoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEspecieDocumentoEditLink}"/>
+                <br />
+                <h:commandLink action="#{especieDocumentoController.prepareCreate}" value="#{bundle.ViewEspecieDocumentoCreateLink}" />
+                <br />
+                <h:commandLink action="#{especieDocumentoController.prepareList}" value="#{bundle.ViewEspecieDocumentoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEspecieDocumentoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

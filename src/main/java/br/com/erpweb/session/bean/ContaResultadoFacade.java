@@ -5,7 +5,7 @@
  */
 package br.com.erpweb.session.bean;
 
-import br.com.erpweb.persistence.entities.PlanoContas;
+import br.com.erpweb.persistence.entities.ContaResultado;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author everaldo
  */
 @Stateless
-public class PlanoContasFacade extends AbstractFacade<PlanoContas> {
+public class ContaResultadoFacade extends AbstractFacade<ContaResultado> {
     @PersistenceContext(unitName = "br.com.erpweb_erpweb_war_1.0.0PU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class PlanoContasFacade extends AbstractFacade<PlanoContas> {
         return em;
     }
 
-    public PlanoContasFacade() {
-        super(PlanoContas.class);
+    public ContaResultadoFacade() {
+        super(ContaResultado.class);
     }
     
 }

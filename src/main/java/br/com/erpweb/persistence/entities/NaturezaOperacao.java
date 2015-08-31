@@ -77,6 +77,26 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "NaturezaOperacao.findByExibirTributos", query = "SELECT n FROM NaturezaOperacao n WHERE n.exibirTributos = :exibirTributos"),
     @NamedQuery(name = "NaturezaOperacao.findByStatus", query = "SELECT n FROM NaturezaOperacao n WHERE n.status = :status")})
 public class NaturezaOperacao implements Serializable {
+    @Column(name = "retemISS")
+    private Character retemISS;
+    @Column(name = "retemINSS")
+    private Character retemINSS;
+    @Column(name = "retemPIS")
+    private Character retemPIS;
+    @Column(name = "retemCOFINS")
+    private Character retemCOFINS;
+    @Column(name = "retemCSLL")
+    private Character retemCSLL;
+    @Column(name = "opcaoContasReceber")
+    private Character opcaoContasReceber;
+    @Column(name = "opcaoComissao")
+    private Character opcaoComissao;
+    @Column(name = "opcaoPermiteAlteracao")
+    private Character opcaoPermiteAlteracao;
+    @Column(name = "opcaoAtualizaEstoque")
+    private Character opcaoAtualizaEstoque;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNaturezaOperacao")
+    private Collection<NotaFiscal> notaFiscalCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -123,28 +143,10 @@ public class NaturezaOperacao implements Serializable {
     private BigDecimal aliquotaCOFINS;
     @Column(name = "aliquotaCSLL")
     private BigDecimal aliquotaCSLL;
-    @Column(name = "retemISS")
-    private boolean retemISS;
-    @Column(name = "retemINSS")
-    private boolean retemINSS;
-    @Column(name = "retemPIS")
-    private boolean retemPIS;
-    @Column(name = "retemCOFINS")
-    private boolean retemCOFINS;
-    @Column(name = "retemCSLL")
-    private boolean retemCSLL;
     @Column(name = "origemST")
     private Integer origemST;
     @Column(name = "tributacaoST")
     private Integer tributacaoST;
-    @Column(name = "opcaoContasReceber")
-    private boolean opcaoContasReceber;
-    @Column(name = "opcaoComissao")
-    private boolean opcaoComissao;
-    @Column(name = "opcaoPermiteAlteracao")
-    private boolean opcaoPermiteAlteracao;
-    @Column(name = "opcaoAtualizaEstoque")
-    private boolean opcaoAtualizaEstoque;
     @Column(name = "dispensaICMS")
     private Character dispensaICMS;
     @Column(name = "retemIR")
@@ -548,127 +550,136 @@ public class NaturezaOperacao implements Serializable {
     /**
      * @return the retemISS
      */
-    public boolean isRetemISS() {
+    public Character getRetemISS() {
         return retemISS;
     }
 
     /**
      * @param retemISS the retemISS to set
      */
-    public void setRetemISS(boolean retemISS) {
+    public void setRetemISS(Character retemISS) {
         this.retemISS = retemISS;
     }
 
     /**
      * @return the retemINSS
      */
-    public boolean isRetemINSS() {
+    public Character getRetemINSS() {
         return retemINSS;
     }
 
     /**
      * @param retemINSS the retemINSS to set
      */
-    public void setRetemINSS(boolean retemINSS) {
+    public void setRetemINSS(Character retemINSS) {
         this.retemINSS = retemINSS;
     }
 
     /**
      * @return the retemPIS
      */
-    public boolean isRetemPIS() {
+    public Character getRetemPIS() {
         return retemPIS;
     }
 
     /**
      * @param retemPIS the retemPIS to set
      */
-    public void setRetemPIS(boolean retemPIS) {
+    public void setRetemPIS(Character retemPIS) {
         this.retemPIS = retemPIS;
     }
 
     /**
      * @return the retemCOFINS
      */
-    public boolean isRetemCOFINS() {
+    public Character getRetemCOFINS() {
         return retemCOFINS;
     }
 
     /**
      * @param retemCOFINS the retemCOFINS to set
      */
-    public void setRetemCOFINS(boolean retemCOFINS) {
+    public void setRetemCOFINS(Character retemCOFINS) {
         this.retemCOFINS = retemCOFINS;
     }
 
     /**
      * @return the retemCSLL
      */
-    public boolean isRetemCSLL() {
+    public Character getRetemCSLL() {
         return retemCSLL;
     }
 
     /**
      * @param retemCSLL the retemCSLL to set
      */
-    public void setRetemCSLL(boolean retemCSLL) {
+    public void setRetemCSLL(Character retemCSLL) {
         this.retemCSLL = retemCSLL;
     }
 
     /**
      * @return the opcaoContasReceber
      */
-    public boolean isOpcaoContasReceber() {
+    public Character getOpcaoContasReceber() {
         return opcaoContasReceber;
     }
 
     /**
      * @param opcaoContasReceber the opcaoContasReceber to set
      */
-    public void setOpcaoContasReceber(boolean opcaoContasReceber) {
+    public void setOpcaoContasReceber(Character opcaoContasReceber) {
         this.opcaoContasReceber = opcaoContasReceber;
     }
 
     /**
      * @return the opcaoComissao
      */
-    public boolean isOpcaoComissao() {
+    public Character getOpcaoComissao() {
         return opcaoComissao;
     }
 
     /**
      * @param opcaoComissao the opcaoComissao to set
      */
-    public void setOpcaoComissao(boolean opcaoComissao) {
+    public void setOpcaoComissao(Character opcaoComissao) {
         this.opcaoComissao = opcaoComissao;
     }
 
     /**
      * @return the opcaoPermiteAlteracao
      */
-    public boolean isOpcaoPermiteAlteracao() {
+    public Character getOpcaoPermiteAlteracao() {
         return opcaoPermiteAlteracao;
     }
 
     /**
      * @param opcaoPermiteAlteracao the opcaoPermiteAlteracao to set
      */
-    public void setOpcaoPermiteAlteracao(boolean opcaoPermiteAlteracao) {
+    public void setOpcaoPermiteAlteracao(Character opcaoPermiteAlteracao) {
         this.opcaoPermiteAlteracao = opcaoPermiteAlteracao;
     }
 
     /**
      * @return the opcaoAtualizaEstoque
      */
-    public boolean isOpcaoAtualizaEstoque() {
+    public Character getOpcaoAtualizaEstoque() {
         return opcaoAtualizaEstoque;
     }
 
     /**
      * @param opcaoAtualizaEstoque the opcaoAtualizaEstoque to set
      */
-    public void setOpcaoAtualizaEstoque(boolean opcaoAtualizaEstoque) {
+    public void setOpcaoAtualizaEstoque(Character opcaoAtualizaEstoque) {
         this.opcaoAtualizaEstoque = opcaoAtualizaEstoque;
+    }
+
+    @XmlTransient
+    public Collection<NotaFiscal> getNotaFiscalCollection() {
+        return notaFiscalCollection;
+    }
+
+    public void setNotaFiscalCollection(Collection<NotaFiscal> notaFiscalCollection) {
+        this.notaFiscalCollection = notaFiscalCollection;
     }
     
 }

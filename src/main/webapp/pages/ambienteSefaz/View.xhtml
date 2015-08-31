@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewAmbienteSefazTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewAmbienteSefazLabel_idAmbienteSEFAZ}"/>
+                    <h:outputText value="#{ambienteSefazController.selected.idAmbienteSEFAZ}" title="#{bundle.ViewAmbienteSefazTitle_idAmbienteSEFAZ}"/>
+                    <h:outputText value="#{bundle.ViewAmbienteSefazLabel_tipoAmbiente}"/>
+                    <h:outputText value="#{ambienteSefazController.selected.tipoAmbiente}" title="#{bundle.ViewAmbienteSefazTitle_tipoAmbiente}"/>
+                    <h:outputText value="#{bundle.ViewAmbienteSefazLabel_urlAutorizacaoNFE}"/>
+                    <h:outputText value="#{ambienteSefazController.selected.urlAutorizacaoNFE}" title="#{bundle.ViewAmbienteSefazTitle_urlAutorizacaoNFE}"/>
+                    <h:outputText value="#{bundle.ViewAmbienteSefazLabel_urlRetornoAutorizacaoNFE}"/>
+                    <h:outputText value="#{ambienteSefazController.selected.urlRetornoAutorizacaoNFE}" title="#{bundle.ViewAmbienteSefazTitle_urlRetornoAutorizacaoNFE}"/>
+                    <h:outputText value="#{bundle.ViewAmbienteSefazLabel_urlCancelamento}"/>
+                    <h:outputText value="#{ambienteSefazController.selected.urlCancelamento}" title="#{bundle.ViewAmbienteSefazTitle_urlCancelamento}"/>
+                    <h:outputText value="#{bundle.ViewAmbienteSefazLabel_urlInutilizacao}"/>
+                    <h:outputText value="#{ambienteSefazController.selected.urlInutilizacao}" title="#{bundle.ViewAmbienteSefazTitle_urlInutilizacao}"/>
+                    <h:outputText value="#{bundle.ViewAmbienteSefazLabel_urlConsultaCadastro}"/>
+                    <h:outputText value="#{ambienteSefazController.selected.urlConsultaCadastro}" title="#{bundle.ViewAmbienteSefazTitle_urlConsultaCadastro}"/>
+                    <h:outputText value="#{bundle.ViewAmbienteSefazLabel_urlRecepcaoEvento}"/>
+                    <h:outputText value="#{ambienteSefazController.selected.urlRecepcaoEvento}" title="#{bundle.ViewAmbienteSefazTitle_urlRecepcaoEvento}"/>
+                    <h:outputText value="#{bundle.ViewAmbienteSefazLabel_urlStatusServico}"/>
+                    <h:outputText value="#{ambienteSefazController.selected.urlStatusServico}" title="#{bundle.ViewAmbienteSefazTitle_urlStatusServico}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ambienteSefazController.destroyAndView}" value="#{bundle.ViewAmbienteSefazDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewAmbienteSefazEditLink}"/>
+                <br />
+                <h:commandLink action="#{ambienteSefazController.prepareCreate}" value="#{bundle.ViewAmbienteSefazCreateLink}" />
+                <br />
+                <h:commandLink action="#{ambienteSefazController.prepareList}" value="#{bundle.ViewAmbienteSefazShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewAmbienteSefazIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

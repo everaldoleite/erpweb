@@ -13,13 +13,15 @@
         <ui:define name="body">
             <div style="height: 600px;">
                 <h:form prependId="false">
-                    <p:growl id="msgCli"/>
+                    <p:growl id="msg"/>
                     <p:tabView class="col-md-10">
                         <p:tab title="Dados Básicos">
                             <div class="row">
                                 <div class="col-md-12">
                                     <p:outputLabel value="Nome ou Razão Social" for="razaoSocial" />
-                                    <p:inputText id="razaoSocial" value="#{clienteController.selected.razaoSocial}" autocomplete="off" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_razaoSocial}" class="form-control">
+                                    <p:inputText id="razaoSocial" value="#{clienteController.selected.razaoSocial}" autocomplete="off" required="true" 
+                                                 requiredMessage="Nome/Razão Social é exigido" class="form-control"
+                                                 maxlength="60">
                                         <p:clientValidator />
                                         <f:validateLength minimum="3" />
                                     </p:inputText>
@@ -31,30 +33,37 @@
                                     <p:selectOneRadio id="tipoPessoa" value="#{clienteController.selected.tipoPessoa}" layout="grid" columns="2" required="true">
                                         <f:selectItem itemLabel="Pessoa Jurídica" itemValue="J" />
                                         <f:selectItem itemLabel="Pessoa Física" itemValue="F"/>                            
-                                        <p:ajax listener="#{clienteController.atualizaTipoPessoa()}" update="cnpjEmpresa cpfEmpresa inscricaoEstadual nomeFantasia nomeRepresentanteLegal documentoRepresentanteCPF documentoRepresentanteRG" />
+                                        <p:ajax listener="#{clienteController.atualizaTipoPessoa()}" update="cnpjEmpresa cpfEmpresa ufInscricaoEstadual inscricaoEstadual" />
                                     </p:selectOneRadio>
                                 </div>
                                 <div class="col-md-4">
                                     <p:outputLabel value="C.N.P.J.:" for="cnpjEmpresa" />
-                                    <p:inputMask mask="99.999.999/9999-99" id="cnpjEmpresa" autocomplete="off" value="#{clienteController.selected.cnpjEmpresa}" class="form-control" disabled="#{clienteController.pessoaFisica}" />
+                                    <p:inputMask mask="99.999.999/9999-99" id="cnpjEmpresa" autocomplete="off" value="#{clienteController.selected.cnpjEmpresa}" 
+                                                 required="true" class="form-control" disabled="#{clienteController.pessoaFisica}" validator="cnpjValidator" converter="cnpjConverter"/>
                                 </div>
                                 <div class="col-md-4">
                                     <p:outputLabel value="C.P.F.:" for="cpfEmpresa" />
-                                    <p:inputMask mask="999.999.999-99" id="cpfEmpresa" value="#{clienteController.selected.cpfEmpresa}" class="form-control" disabled="#{clienteController.pessoaJuridica}" />
+                                    <p:inputMask mask="999.999.999-99" id="cpfEmpresa" value="#{clienteController.selected.cpfEmpresa}" class="form-control" 
+                                                 required="true" disabled="#{clienteController.pessoaJuridica}" validator="cpfValidator" converter="cpfConverter"/>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <p:outputLabel for="telefone" value="Telefone:" />
-                                    <p:inputMask id="telefone" value="#{clienteController.selected.telefone}" mask="(999) 9999-9999" class="form-control" />
+                                    <p:inputMask id="telefone" value="#{clienteController.selected.telefone}" mask="(99) 9999-9999" class="form-control" />
                                 </div>
                                 <div class="col-md-4">
+                                    <p:outputLabel value="UF - I.E.:" for="ufInscricaoEstadual"/>
+                                    <h:selectOneMenu id="ufInscricaoEstadual" value="#{clienteController.selected.ufInscricaoEstadual}" required="true" disabled="#{clienteController.pessoaFisica}" class="form-control">
+                                        <f:selectItems value="#{dataUtil.NFs}" />                            
+                                        <p:ajax listener="#{clienteController.atualizaMascaraIE}" update="inscricaoEstadual" />
+                                        <f:attribute name="UF" value="#{clienteController.selected.ufInscricaoEstadual}" />    
+                                    </h:selectOneMenu>
+                                </div>                                
+                                <div class="col-md-4">
                                     <p:outputLabel value="Inscrição Estadual:" for="inscricaoEstadual" />
-                                    <p:inputMask mask="999.999.999.999" id="inscricaoEstadual" value="#{clienteController.selected.inscricaoEstadual}" 
-                                                 required="true" class="form-control" />
-                                </div>
-                                <div class="col-md-2">
-                                    <p:selectBooleanCheckbox itemLabel="ICMS isento" id="isencaoIE" value="#{clienteController.selected.isencaoIE}" class="form-control" />
+                                    <p:inputMask mask="#{clienteController.mascara}" id="inscricaoEstadual" value="#{clienteController.selected.inscricaoEstadual}" 
+                                                 required="true" class="form-control" disabled="#{clienteController.pessoaFisica}"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -65,12 +74,12 @@
                             </div>     
                             <div class="row">
                                 <div class="col-md-6">
-                                    <p:outputLabel value="e-mail Depto. Comercial" for="emailComercial" />
-                                    <p:inputText id="emailComercial" value="#{clienteController.selected.emailComercial}" class="form-control"/>
+                                    <p:outputLabel value="e-mail:" for="emailAtendimento" />
+                                    <p:inputText id="emailAtendimento" value="#{clienteController.selected.emailAtendimento}" class="form-control" />
                                 </div>
                                 <div class="col-md-6">
-                                    <p:outputLabel value="e-mail Atendimento" for="emailAtendimento" />
-                                    <p:inputText id="emailAtendimento" value="#{clienteController.selected.emailAtendimento}" class="form-control" />
+                                    <p:outputLabel value="e-mail Depto. Comercial" for="emailComercial" />
+                                    <p:inputText id="emailComercial" value="#{clienteController.selected.emailComercial}" disabled="#{clienteController.pessoaFisica}" class="form-control"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -89,27 +98,28 @@
                         </p:tab>
                         <p:tab title="Endereço">
                             <div class="row">
-                                <div class="col-md-4">                            
+                                <div class="col-md-6">                            
                                     <p:outputLabel value="CEP:" for="cep" />&nbsp;
                                     <p:inputText autocomplete="off" required="true" requiredMessage="Cep deve ser informado" 
                                                  id="cep" value="#{clienteController.selected.cep}" class="form-inline" maxlength="8">
                                         <p:ajax listener="#{clienteController.buscaEnderecos}" event="keyup" update="tipoLogradouro logradouro bairro cidade uf" />
                                     </p:inputText>
                                     <p:watermark  for="cep" value="99999999 (sem traços)" />
-                                </div>
+                                    <p:outputLabel value="(Busca Automática)"/>
+                                </div>                                
                             </div>
                             <div class="row">
                                 <div class="col-md-4">                            
                                     <p:outputLabel value="Tipo:" for="tipoLogradouro" />
-                                    <p:inputText disabled="true" id="tipoLogradouro" value="#{clienteController.selected.tipoLogradouro}" class="form-control"/>
+                                    <p:inputText required="true" id="tipoLogradouro" value="#{clienteController.selected.tipoLogradouro}" class="form-control"/>
                                 </div>
                                 <div class="col-md-6">                            
                                     <p:outputLabel value="Logradouro:" for="logradouro" />
-                                    <p:inputText disabled="true" id="logradouro" value="#{clienteController.selected.logradouro}" class="form-control"/>
+                                    <p:inputText required="true" id="logradouro" value="#{clienteController.selected.logradouro}" class="form-control"/>
                                 </div>                                
                                 <div class="col-md-2">                            
                                     <p:outputLabel value="Número:" for="numero" />
-                                    <p:inputText id="numero" value="#{clienteController.selected.numero}" class="form-control"/>
+                                    <p:inputText required="true" id="numero" value="#{clienteController.selected.numero}" class="form-control"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -119,27 +129,27 @@
                                 </div>
                                 <div class="col-md-3">                            
                                     <p:outputLabel value="Bairro:" for="bairro" />
-                                    <p:inputText disabled="true" id="bairro" value="#{clienteController.selected.bairro}" class="form-control" />
+                                    <p:inputText required="true" id="bairro" value="#{clienteController.selected.bairro}" class="form-control" />
                                 </div>
                                 <div class="col-md-3">                            
                                     <p:outputLabel value="Cidade:" for="cidade" />
-                                    <p:inputText disabled="true" id="cidade" value="#{clienteController.selected.cidade}" class="form-control"/>
+                                    <p:inputText required="true" id="cidade" value="#{clienteController.selected.cidade}" class="form-control"/>
                                 </div>                                
                                 <div class="col-md-2">                            
                                     <p:outputLabel value="UF:" for="uf" />
-                                    <p:inputText disabled="true" id="uf" value="#{clienteController.selected.uf}" class="form-control"/>
+                                    <p:inputText required="true" id="uf" value="#{clienteController.selected.uf}" class="form-control"/>
                                 </div>
                             </div>
                         </p:tab>
                         <p:tab title="Dados Financeiros">
                             <div class="row">
-                                <div class="col-md-6">                    
+                                <div class="col-md-4">                    
                                     <p:outputLabel value="Capital Social (R$): " for="capitalSocial" />
-                                    <p:inputText id="capitalSocial" value="#{clienteController.selected.capitalSocial}" class="form-control" >
-                                        <f:convertNumber currencyCode="R$ " type="currency"/>  
+                                    <p:inputText style="text-align: right;" id="capitalSocial" value="#{clienteController.selected.capitalSocial}" class="form-control" onkeypress="return(MascaraMoeda(this,'.',',', event))" >
+                                        <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
                                     </p:inputText>
                                 </div>
-                                <div class="col-md-6">                    
+                                <div class="col-md-4">                    
                                     <p:outputLabel value="Classificação: " for="rankingScore" />
                                     <p:rating value="#{clienteController.selected.rankingScore}" id="rankingScore" readonly="true" />
                                 </div>
@@ -147,7 +157,7 @@
                             <div class="row">
                                 <div class="col-md-4">                    
                                     <p:outputLabel value="Tipo de Limite de Crédito" for="tipoLimiteCredito" />
-                                    <h:selectOneMenu id="tipoLimiteCredito" value="#{clienteController.selected.tipoLimiteCredito}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idCondicaoPagamento}" class="form-control">
+                                    <h:selectOneMenu id="tipoLimiteCredito" value="#{clienteController.selected.tipoLimiteCredito}" required="true" requiredMessage="Tipo de limite de crédito é exigido" class="form-control">
                                         <f:selectItem itemLabel="-- Selecione --" itemValue="" />
                                         <f:selectItem itemLabel="NÃO UTILIZA" itemValue="0" />
                                         <f:selectItem itemLabel="MENSAL" itemValue="1" />
@@ -156,14 +166,10 @@
                                 </div>
                                 <div class="col-md-4">
                                     <p:outputLabel value="Limite de Crédito (R$):" for="limiteCredito" />
-                                    <p:inputText id="limiteCredito" value="#{clienteController.selected.limiteCredito}" title="#{bundle.CreateClienteTitle_limiteCredito}" >
-                                        <f:convertNumber currencyCode="R$ " type="currency"/>  
+                                    <p:inputText style="text-align: right;" required="true" requiredMessage="Limite de Crédito exigido" id="limiteCredito" value="#{clienteController.selected.limiteCredito}" onkeypress="return(MascaraMoeda(this, '.',',',event))" class="form-control">
+                                        <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
                                     </p:inputText>
                                 </div>
-                                <div class="col-md-4">
-                                    <p:commandButton value="Avaliar Credito" immediate="true" class="form-inline" icon="ui-icon-calculator" />
-                                </div>
-
                             </div>
                             <div class="row">
                                 <div class="col-md-12">                    
@@ -176,9 +182,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <p:outputLabel value="Condição de Pagamento:" for="idCondicaoPagamento" />&nbsp;
-                                    <h:selectOneMenu id="idCondicaoPagamento" value="#{clienteController.selected.idCondicaoPagamento}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idCondicaoPagamento}" class="form-control">
+                                    <h:selectOneMenu id="idCondicaoPagamento" value="#{clienteController.selected.idCondicaoPagamento}" required="true" requiredMessage="Condição de Pagamento é exigida" class="form-control">
                                         <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                        
-                                        <f:selectItems value="#{condicaoPagamentoController.data}" var="condicao" itemLabel="#{condicao.descricaoCondicaoPagamento}" itemValue="#{condicao.idCondicaoPagamento}" />
+                                        <f:selectItems value="#{condicaoPagamentoController.data}" var="condicao" itemLabel="#{condicao.descricaoCondicaoPagamento}" itemValue="#{condicao}" />
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="col-md-3">
@@ -199,11 +205,26 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <p:outputLabel value="Segmento: " for="idCodigoSegmento" />&nbsp;
-                                    <h:selectOneMenu id="idCodigoSegmento" value="#{clienteController.selected.idCodigoSegmento}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idCodigoSegmento}" class="form-control">
+                                    <h:selectOneMenu id="idCodigoSegmento" value="#{clienteController.selected.idCodigoSegmento}" required="true" requiredMessage="Segmento é exigido" class="form-control">
                                         <f:selectItem itemLabel="-- Selecione --" itemValue="" />
-                                        <f:selectItems value="#{segmentoController.data}" var="segmento" itemLabel="#{segmento.descricaoSegmento}" itemValue="#{segmento.idCodigoSegmento}"/>
+                                        <f:selectItems value="#{segmentoController.data}" var="segmento" itemLabel="#{segmento.descricaoSegmento}" itemValue="#{segmento}"/>
                                     </h:selectOneMenu>
                                 </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel for="idBanco" value="Banco:" />
+                                    <h:selectOneMenu id="idBanco" value="#{clienteController.selected.idBanco}" required="true" requiredMessage="Banco é exigido" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{bancoController.data}" var="banco" itemLabel="#{banco.descricaoBanco}" itemValue="#{banco}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel for="idCarteira" value="Carteira:" />
+                                    <h:selectOneMenu id="idCarteira" value="#{clienteController.selected.idCarteira}" required="true" requiredMessage="Carteira é exigida" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{carteiraController.data}" var="carteira" itemLabel="#{carteira.descricaoCarteira}" itemValue="#{carteira}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                
                             </div>    
                             <div class="row">
                                 <div class="col-md-12">
@@ -219,22 +240,22 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <p:outputLabel for="motivoBloqueio" value="Motivo de Bloqueio:" />
-                                    <p:inputTextarea cols="90" id="motivoBloqueio" value="#{clienteController.selected.motivoBloqueio}" />
+                                    <p:inputTextarea cols="90" id="motivoBloqueio" value="#{clienteController.selected.motivoBloqueio}" class="form-control"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <p:outputLabel value="Tipo de Transporte:" for="idTipoTransporte" />
-                                    <h:selectOneMenu id="idTipoTransporte" value="#{clienteController.selected.idCodigoTransportador}" class="form-control">
+                                    <h:selectOneMenu id="idTipoTransporte" value="#{clienteController.selected.idTipoTransporte}" required="true" requiredMessage="O tipo de transporte é exigido" class="form-control">
                                         <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                                                                
-                                        <f:selectItems value="#{tipoTransporteController.data}" var="tipotrans" itemLabel="#{tipotrans.descricaoTipoTransporte}" itemValue="#{tipotrans.idTipoTransporte}" />
+                                        <f:selectItems value="#{tipoTransporteController.data}" var="tipotrans" itemLabel="#{tipotrans.descricaoTipoTransporte}" itemValue="#{tipotrans}" />
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="col-md-6">
                                     <p:outputLabel value="Transportadora Preferencial:" for="idCodigoTransportador" />
                                     <h:selectOneMenu id="idCodigoTransportador" value="#{clienteController.selected.idCodigoTransportador}" class="form-control">
                                         <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                                                                
-                                        <f:selectItems value="#{transportadorController.data}" var="tranp" itemLabel="#{tranp.descricaoTransportador}" itemValue="#{tranp.idCodigoTransportador}" />
+                                        <f:selectItems value="#{transportadorController.data}" var="tranp" itemLabel="#{tranp.descricaoTransportador}" itemValue="#{tranp}" />
                                     </h:selectOneMenu>
                                 </div>
                             </div>                            
@@ -243,13 +264,22 @@
                                     <p:outputLabel value="Vendedor (Fidelização):" for="idVendedorFidelidade" />
                                     <h:selectOneMenu id="idVendedorFidelidade" value="#{clienteController.selected.idVendedorFidelidade}" class="form-control">
                                         <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                                                                
-                                        <f:selectItems value="#{vendedorController.data}" var="vendedor" itemLabel="#{vendedor.nomeVendedor}" itemValue="#{vendedor.idVendedor}" />
+                                        <f:selectItems value="#{vendedorController.data}" var="vendedor" itemLabel="#{vendedor.nomeVendedor}" itemValue="#{vendedor}" />
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="col-md-6">
                                     <p:outputLabel value="Acesso Itens Promocionais:" for="acessoItensPromocionais" />&nbsp;
                                     <p:selectBooleanCheckbox id="acessoItensPromocionais" value="#{clienteController.selected.acessoItensPromocionais}" />
                                 </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Natureza Operação (preferencial):" for="idNaturezaOperacao" />
+                                    <h:selectOneMenu id="idNaturezaOperacao" value="#{clienteController.selected.idNaturezaOperacao}" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                                                                
+                                        <f:selectItems value="#{naturezaOperacaoController.data}" var="natureza" itemLabel="#{natureza.descricaoInterna}" itemValue="#{natureza}" />
+                                    </h:selectOneMenu>
+                                </div>
                             </div>                            
                         </p:tab>
                         <p:tab title="Representante">
@@ -342,7 +372,7 @@
                     </p:tabView>
                     <div class="col-md-12" style="padding: 10px;">
                         <div class="col-md-2">
-                            <p:commandButton action="#{clienteController.create}" value="Salvar" immediate="true" icon="ui-icon-disk" title="Salvar"/>
+                            <p:commandButton action="#{clienteController.create}" value="Salvar" update="msg" icon="ui-icon-disk" title="Salvar"/>
                         </div>
                         <div class="col-md-2">
                             <p:commandButton action="#{clienteController.prepareList}" value="Lista"  immediate="true" icon="ui-icon-bookmark" title="Lista" />

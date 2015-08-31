@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Tipo de Cobrança"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            <div style="height: 600px;">
+                <h:form prependId="false">
+                    <p:growl id="msg"/>
+                    <p:tabView class="col-md-10">
+                        <p:tab title="Titulo">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Conta Corrrente: " for="idContaCorrente" />
+                                    <h:selectOneMenu id="idContaCorrente" value="#{tipoCobrancaController.selected.idContaCorrente}" class="form-control" required="true">
+                                        <f:selectItem itemLabel="Selecione" itemValue="" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Especie Documento: " for="idEspecieDocumento" />
+                                    <h:selectOneMenu id="idEspecieDocumento" value="#{tipoCobrancaController.selected.idEspecieDocumento}" class="form-control" required="true">
+                                        <f:selectItem itemLabel="Selecione" itemValue="" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Código Cateira: " for="codigoCarteira" />
+                                    <p:inputText id="codigoCarteira" autocomplete="off" value="#{tipoCobrancaController.selected.codigoCarteira}" required="true" class="form-control"/>
+                                    <p:watermark for="codigoCarteira" value="Ex.: CARTEIRA 01" />                                     
+                                </div>              
+                                <div class="col-md-10">
+                                    <p:outputLabel value="Descrição do Tipo de Carteira:" for="descricaoTipoCobranca" />
+                                    <p:inputText id="descricaoTipoCobranca" autocomplete="off" value="#{tipoCobrancaController.selected.descricaoTipoCobranca}" required="true" class="form-control"/>
+                                    <p:watermark for="descricaoTipoCobranca" value="Ex.: CARTEIRA COM REGISTRO E PROTESTO AUTOMATICO" />                                     
+                                </div>              
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Dias de Crédito: " for="diasCredito" />
+                                    <p:inputMask mask="99" id="diasCredito" autocomplete="off" value="#{tipoCobrancaController.selected.diasCredito}" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Dias de Protesto: " for="diasProtesto" />
+                                    <p:inputMask mask="99" id="diasProtesto" autocomplete="off" value="#{tipoCobrancaController.selected.diasProtesto}" class="form-control" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Percentual Multa:" for="percentualMulta" />
+                                    <p:spinner id="percentualMulta" value="#{tipoCobrancaController.selected.percentualMulta}" stepFactor="0.50" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Percentual Juros:" for="percentualJuros" />
+                                    <p:spinner id="percentualJuros" value="#{tipoCobrancaController.selected.percentualJuros}" stepFactor="0.50" />
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Codigo Cedente: " for="codigoCedente" />
+                                    <h:inputText id="codigoCedente" maxlength="20" autocomplete="off" value="#{tipoCobrancaController.selected.codigoCedente}" required="true" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Agencia Cedente: " for="codigoAgenciaCedente" />
+                                    <h:inputText id="codigoAgenciaCedente" maxlength="4" autocomplete="off" value="#{tipoCobrancaController.selected.codigoAgenciaCedente}" required="true" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Conta Cedente: " for="codigoContaMovimentoCedente" />
+                                    <h:inputText id="codigoContaMovimentoCedente" maxlength="4" autocomplete="off" value="#{tipoCobrancaController.selected.codigoContaMovimentoCedente}" required="true" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Conta Movimento Cedente: " for="codigoContaCobrancaCedente" />
+                                    <h:inputText id="codigoContaCobrancaCedente" maxlength="4" autocomplete="off" value="#{tipoCobrancaController.selected.codigoContaCobrancaCedente}" required="true" class="form-control"/>
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Nosso Número - Inicio: " for="nossoNumeroInicio" />
+                                    <p:inputText id="nossoNumeroInicio" autocomplete="off" value="#{tipoCobrancaController.selected.nossoNumeroInicio}" required="true" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Nosso Número - Fim: " for="nossoNumeroFim" />
+                                    <p:inputText id="nossoNumeroFim" autocomplete="off" value="#{tipoCobrancaController.selected.nossoNumeroFim}" required="true" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Nosso Número - Atual: " for="nossoNumeroUltimo" />
+                                    <p:inputText disabled="true" id="nossoNumeroUltimo" autocomplete="off" value="#{tipoCobrancaController.selected.nossoNumeroUltimo}" required="true" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Geração Boleto: " for="tipoGeracaoBoleto" />
+                                    <h:selectOneMenu id="tipoGeracaoBoleto" value="#{tipoCobrancaController.selected.tipoGeracaoBoleto}" class="form-control" required="true">
+                                        <f:selectItem itemLabel="Selecione" itemValue="" />
+                                        <f:selectItem itemLabel="SISTEMA" itemValue="0" />
+                                        <f:selectItem itemLabel="BANCO" itemValue="1" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Integração">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Remessa Bancária: " for="registraFluxoCaixa" />&nbsp;
+                                    <p:selectBooleanCheckbox id="registraFluxoCaixa" value="#{tipoCobrancaController.selected.registraFluxoCaixa}" />
+                                </div>
+                            </div>
+                        </p:tab>
+                    </p:tabView>
+
+                    <div class="col-md-12" style="padding: 10px;">
+                        <div class="col-md-2">
+                            <p:commandButton action="#{titulosController.create}" value="Salvar" update="msg" icon="ui-icon-disk" title="Salvar"/>
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{titulosController.create}" value="Imprimir" update="msg" icon="ui-icon-print" title="Imprimir"/>
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{titulosController.prepareList}" value="Lista"  immediate="true" icon="ui-icon-bookmark" title="Lista" />
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -18,6 +18,15 @@
                         <p:tab title="Dados Básicos">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <p:outputLabel value="Grupo: " for="idGrupo" />
+                                    <h:selectOneMenu id="idGrupo" value="#{subGrupoController.selected.idGrupo}" class="form-control" required="true">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{grupoController.data}" var="grupo" itemLabel="#{grupo.descricaoGrupo}" itemValue="#{grupo}"/>
+                                    </h:selectOneMenu>
+                                </div>                            
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
                                     <p:outputLabel value="Descrição do Sub Grupo" for="descricaoSubGrupo" />
                                     <p:inputText id="descricaoSubGrupo" maxlength="45" required="true" value="#{subGrupoController.selected.descricaoSubGrupo}" class="form-control" />
                                     <p:watermark for="descricaoSubGrupo" value="Ex.: RÁDIOS" />                                                                        

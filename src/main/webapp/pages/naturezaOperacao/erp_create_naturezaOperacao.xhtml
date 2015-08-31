@@ -4,8 +4,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -52,44 +51,6 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <p:outputLabel value="Base Cálculo ICMS:" for="baseCalculoICMS" />
-                                    <p:inputText id="baseCalculoICMS" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoICMS}" class="form-control" />
-                                    <p:watermark for="baseCalculoICMS" value="Ex.: 100,00" />                                                                        
-                                </div>
-                                <div class="col-md-4">
-                                    <p:outputLabel value="Base Cálculo ICMS - Outras:" for="baseCalculoICMSOutras" />
-                                    <p:inputText id="baseCalculoICMSOutras" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoICMSOutras}" class="form-control" />
-                                    <p:watermark for="baseCalculoICMSOutras" value="Ex.: 100,00" />                                                                        
-                                </div>
-                                <div class="col-md-4">
-                                    <p:outputLabel value="Base Cálculo ICMS - Isento:" for="baseCalculoICMS" />
-                                    <p:inputText id="baseCalculoICMSIsento" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoICMSIsento}" class="form-control" />
-                                    <p:watermark for="baseCalculoICMSIsento" value="Ex.: 100,00" />                                                                        
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <p:outputLabel value="Base Cálculo IPI:" for="baseCalculoIPI" />
-                                    <p:inputText id="baseCalculoIPI" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoIPI}" class="form-control" />
-                                    <p:watermark for="baseCalculoIPI" value="Ex.: 100,00" />                                                                        
-                                </div>
-                                <div class="col-md-4">
-                                    <p:outputLabel value="Base Cálculo IPI - Outras:" for="baseCalculoICMSOutras" />
-                                    <p:inputText id="baseCalculoIPIOutras" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoIPIOutras}" class="form-control" />
-                                    <p:watermark for="baseCalculoIPIOutras" value="Ex.: 100,00" />                                                                        
-                                </div>
-                                <div class="col-md-4">
-                                    <p:outputLabel value="Base Cálculo IPI - Isento:" for="baseCalculoIPIIsento" />
-                                    <p:inputText id="baseCalculoIPIIsento" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoIPIIsento}" class="form-control" />
-                                    <p:watermark for="baseCalculoIPIIsento" value="Ex.: 100,00" />                                                                        
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <p:outputLabel value="Incluir IPI Base ICMS:" for="opcaoInclusaoIPIBaseICMS" />
-                                    <p:selectBooleanCheckbox id="opcaoInclusaoIPIBaseICMS" value="#{naturezaOperacaoController.selected.opcaoInclusaoIPIBaseICMS}" class="form-control"/>
-                                </div>
-                                <div class="col-md-4">
                                     <p:outputLabel value="Origem ST:" for="origemST" />
                                     <p:inputText id="origemST" maxlength="6" size="8" required="true" requiredMessage="Origem ST é exigida" value="#{naturezaOperacaoController.selected.origemST}" class="form-control" />
                                 </div>
@@ -116,87 +77,171 @@
                                     <p:selectBooleanCheckbox id="opcaoAtualizaEstoque" value="#{naturezaOperacaoController.selected.opcaoAtualizaEstoque}" class="form-control"/>
                                 </div>
                             </div>                            
+                        </p:tab>
+                        <p:tab title="Impostos">
                             <div class="row">
-                                <div class="col-md-3">
-                                    <p:outputLabel value="Aliquota ICMS" for="aliquotaICMS" />
+                                <div class="col-md-2">
+                                    <p:outputLabel value="" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Alíquota" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Base de Cálculo" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Isenta" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Outras" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <p:outputLabel value="ICMS" />
                                 </div>
                                 <div class="col-md-2">
                                     <p:inputText id="aliquotaICMS" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaICMS}" class="form-inline" />
                                 </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="baseCalculoICMS" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoICMS}" class="form-control" />
+                                    <p:watermark for="baseCalculoICMS" value="Ex.: 100,00" />                                                                        
+                                </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="baseCalculoICMSIsento" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoICMSIsento}" class="form-control" />
+                                    <p:watermark for="baseCalculoICMSIsento" value="Ex.: 100,00" />                                                                        
+                                </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="baseCalculoICMSOutras" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoICMSOutras}" class="form-control" />
+                                    <p:watermark for="baseCalculoICMSOutras" value="Ex.: 100,00" />                                                                        
+                                </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
-                                    <p:outputLabel value="Aliquota ISS" for="aliquotaISS" />
+                                <div class="col-md-2">
+                                    <p:outputLabel value="IPI" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="aliquotaICMS" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaICMS}" class="form-inline" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="baseCalculoIPI" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoIPI}" class="form-control" />
+                                    <p:watermark for="baseCalculoIPI" value="Ex.: 100,00" />                                                                        
+                                </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="baseCalculoIPIIsento" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoIPIIsento}" class="form-control" />
+                                    <p:watermark for="baseCalculoIPIIsento" value="Ex.: 100,00" />                                                                        
+                                </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="baseCalculoIPIOutras" maxlength="6" size="8" required="true" requiredMessage="Base de cálculo é exigida" value="#{naturezaOperacaoController.selected.baseCalculoIPIOutras}" class="form-control" />
+                                    <p:watermark for="baseCalculoIPIOutras" value="Ex.: 100,00" />                                                                        
+                                </div>
+                                <div class="col-md-2">
+                                    <p:selectBooleanCheckbox itemLabel="Base ICMS" id="opcaoInclusaoIPIBaseICMS" value="#{naturezaOperacaoController.selected.opcaoInclusaoIPIBaseICMS}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Alíquota" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Retenção" />
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <p:outputLabel value="ISS" />
                                 </div>
                                 <div class="col-md-2">
                                     <p:inputText id="aliquotaISS" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaISS}" class="form-inline" />
                                 </div>
-                                <div class="col-md-4">
-                                    <p:selectBooleanCheckbox id="retemISS" required="true" value="#{naturezaOperacaoController.selected.retemISS}" class="form-inline" />&nbsp;
-                                    <p:outputLabel value="Retem ISS" for="retemISS" />                                    
+                                <div class="col-md-2">
+                                    <p:selectBooleanCheckbox id="retemISS" required="true" value="#{naturezaOperacaoController.selected.retemISS}" class="form-inline" />
                                 </div>
-                            </div>                                
+                                <div class="col-md-6">
+                                </div>
+                            </div>
                             <div class="row">
-                                <div class="col-md-3">
-                                    <p:outputLabel value="Aliquota IR" for="aliquotaIR" />
+                                <div class="col-md-2">
+                                    <p:outputLabel value="IRRF" />
                                 </div>
                                 <div class="col-md-2">
                                     <p:inputText id="aliquotaIR" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaIR}" class="form-inline" />
                                 </div>
-                                <div class="col-md-4">
-                                    <p:selectBooleanCheckbox id="retemIR" required="true" value="#{naturezaOperacaoController.selected.retemIR}" class="form-inline" />&nbsp;
-                                    <p:outputLabel value="Retem IR" for="retemIR" />                                    
-                                </div>
-                            </div>                                
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <p:outputLabel value="Aliquota INSS:" for="aliquotaINSS" />
-                                </div>
                                 <div class="col-md-2">
-                                    <p:inputText id="aliquotaINSS" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaINSS}" class="form-inline" />
+                                    <p:selectBooleanCheckbox id="retemIR" required="true" value="#{naturezaOperacaoController.selected.retemIR}" class="form-inline" />&nbsp;
                                 </div>
-                                <div class="col-md-4">
-                                    <p:selectBooleanCheckbox id="retemINSS" required="true"  value="#{naturezaOperacaoController.selected.retemINSS}" class="form-inline" />&nbsp;
-                                    <p:outputLabel value="Retem INSS:" for="retemINSS" />&nbsp;
+                                <div class="col-md-6">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
-                                    <p:outputLabel value="Aliquota PIS" for="aliquotaPIS" />
+                                <div class="col-md-2">
+                                    <p:outputLabel value="INSS" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:inputText id="aliquotaISS" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaISS}" class="form-inline" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:selectBooleanCheckbox id="retemINSS" required="true"  value="#{naturezaOperacaoController.selected.retemINSS}" class="form-inline" />&nbsp;
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <p:outputLabel value="PIS" />
                                 </div>
                                 <div class="col-md-2">
                                     <p:inputText id="aliquotaPIS" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaPIS}" class="form-inline" />
                                 </div>
-                                <div class="col-md-4">
-                                    <p:selectBooleanCheckbox id="retemPIS" required="true" value="#{naturezaOperacaoController.selected.retemPIS}" class="form-inline" />&nbsp;
-                                    <p:outputLabel value="Retem PIS:" for="retemPIS" />
-                                    
+                                <div class="col-md-2">
+                                    <p:selectBooleanCheckbox id="retemPIS" required="true" value="#{naturezaOperacaoController.selected.retemPIS}" class="form-inline" />
+                                </div>
+                                <div class="col-md-6">
                                 </div>
                             </div>
-                            <div class="row">                            
-                                <div class="col-md-3">
-                                    <p:outputLabel value="Aliquota COFINS" for="aliquotaCOFINS" />
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <p:outputLabel value="COFINS" />
                                 </div>
                                 <div class="col-md-2">
                                     <p:inputText id="aliquotaCOFINS" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaCOFINS}" class="form-inline" />
                                 </div>
-                                <div class="col-md-4">
-                                    <p:selectBooleanCheckbox id="retemCOFINS" required="true" value="#{naturezaOperacaoController.selected.retemCOFINS}" class="form-inline" />&nbsp;
-                                    <p:outputLabel value="Retem COFINS:" for="retemCOFINS" />
+                                <div class="col-md-2">
+                                    <p:selectBooleanCheckbox id="retemCOFINS" required="true" value="#{naturezaOperacaoController.selected.retemCOFINS}" class="form-inline" />
+                                </div>
+                                <div class="col-md-6">
                                 </div>
                             </div>
-                            <div class="row">                            
-                                <div class="col-md-3">
-                                    <p:outputLabel value="Aliquota CSLL" for="aliquotaCSLL" />
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <p:outputLabel value="CSLL" />
                                 </div>
                                 <div class="col-md-2">
-                                    <p:inputText id="aliquotaCSLL" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaCSLL}" class="form-inline" />
-                                </div>
-                                <div class="col-md-4">
+                                    <p:inputText id="aliquotaCSLL" maxlength="5" size="7" required="true" requiredMessage="Informação da aliquota exigida" value="#{naturezaOperacaoController.selected.aliquotaCSLL}" class="form-inline" />                                </div>
+                                <div class="col-md-2">
                                     <p:selectBooleanCheckbox id="retemCSLL" required="true" value="#{naturezaOperacaoController.selected.retemCSLL}" class="form-inline" />&nbsp;
-                                    <p:outputLabel value="Retem CSLL:" for="retemCSLL" />
+                                </div>
+                                <div class="col-md-6">
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:selectBooleanCheckbox itemLabel="ICMS Dispensado" id="dispensaICMS" required="true" value="#{naturezaOperacaoController.selected.dispensaICMS}" class="form-inline" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:selectBooleanCheckbox itemLabel="Nota Complementar" id="retemCSLL" required="true" value="#{naturezaOperacaoController.selected.dispensaICMS}" class="form-inline" />          
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Parametros">
+
+                        </p:tab>
+                        <p:tab title="Nota Fiscal">
+
                         </p:tab>
                     </p:tabView>
                     <div class="col-md-12" style="padding: 10px;">

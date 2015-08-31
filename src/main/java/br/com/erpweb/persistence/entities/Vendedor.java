@@ -34,6 +34,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Vendedor.findByIdVendedor", query = "SELECT v FROM Vendedor v WHERE v.idVendedor = :idVendedor"),
     @NamedQuery(name = "Vendedor.findByNomeVendedor", query = "SELECT v FROM Vendedor v WHERE v.nomeVendedor = :nomeVendedor")})
 public class Vendedor implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVendedor")
+    private Collection<NotaFiscal> notaFiscalCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,6 +103,15 @@ public class Vendedor implements Serializable {
     @Override
     public String toString() {
         return "br.com.erpweb.persistence.entities.Vendedor[ idVendedor=" + idVendedor + " ]";
+    }
+
+    @XmlTransient
+    public Collection<NotaFiscal> getNotaFiscalCollection() {
+        return notaFiscalCollection;
+    }
+
+    public void setNotaFiscalCollection(Collection<NotaFiscal> notaFiscalCollection) {
+        this.notaFiscalCollection = notaFiscalCollection;
     }
     
 }

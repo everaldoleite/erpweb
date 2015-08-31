@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -34,17 +35,28 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Banco.findByIdBanco", query = "SELECT b FROM Banco b WHERE b.idBanco = :idBanco"),
     @NamedQuery(name = "Banco.findByDescricaoBanco", query = "SELECT b FROM Banco b WHERE b.descricaoBanco = :descricaoBanco")})
 public class Banco implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idBanco")
+    private Collection<ContaCorrente> contaCorrenteCollection;
+    
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idBanco")
     private Integer idBanco;
+    
     @Size(max = 45)
     @Column(name = "descricaoBanco")
     private String descricaoBanco;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bANCOidBanco")
+    
+    @Lob
+    @Column(name = "imagem")
+    private byte[] imagem;    
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idBanco")
     private Collection<Carteira> carteiraCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idBanco")
     private Collection<Cliente> clienteCollection;
 
@@ -112,6 +124,29 @@ public class Banco implements Serializable {
     @Override
     public String toString() {
         return "br.com.erpweb.persistence.entities.Banco[ idBanco=" + idBanco + " ]";
+    }
+
+    @XmlTransient
+    public Collection<ContaCorrente> getContaCorrenteCollection() {
+        return contaCorrenteCollection;
+    }
+
+    public void setContaCorrenteCollection(Collection<ContaCorrente> contaCorrenteCollection) {
+        this.contaCorrenteCollection = contaCorrenteCollection;
+    }
+
+    /**
+     * @return the imagem
+     */
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    /**
+     * @param imagem the imagem to set
+     */
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
     }
     
 }

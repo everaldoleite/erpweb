@@ -72,7 +72,7 @@ public class TipoMovimentoEstoque implements Serializable {
     private Collection<NaturezaOperacao> naturezaOperacaoCollection1;
     @JoinColumn(name = "idPlanoConta", referencedColumnName = "idPlanoConta")
     @ManyToOne(optional = false)
-    private PlanoContas idPlanoConta;
+    private ContaResultado idPlanoConta;
 
     public TipoMovimentoEstoque() {
     }
@@ -179,14 +179,6 @@ public class TipoMovimentoEstoque implements Serializable {
         this.naturezaOperacaoCollection1 = naturezaOperacaoCollection1;
     }
 
-    public PlanoContas getIdPlanoConta() {
-        return idPlanoConta;
-    }
-
-    public void setIdPlanoConta(PlanoContas idPlanoConta) {
-        this.idPlanoConta = idPlanoConta;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -210,6 +202,20 @@ public class TipoMovimentoEstoque implements Serializable {
     @Override
     public String toString() {
         return "br.com.erpweb.persistence.entities.TipoMovimentoEstoque[ idtipoMovimentoEstoque=" + idtipoMovimentoEstoque + " ]";
+    }
+
+    /**
+     * @return the idPlanoConta
+     */
+    public ContaResultado getIdPlanoConta() {
+        return idPlanoConta;
+    }
+
+    /**
+     * @param idPlanoConta the idPlanoConta to set
+     */
+    public void setIdPlanoConta(ContaResultado idPlanoConta) {
+        this.idPlanoConta = idPlanoConta;
     }
     
 }

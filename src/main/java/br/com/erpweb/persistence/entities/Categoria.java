@@ -35,16 +35,19 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Categoria.findByDescricaoCategoria", query = "SELECT c FROM Categoria c WHERE c.descricaoCategoria = :descricaoCategoria")})
 public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idCategoria")
     private Integer idCategoria;
+    
     @Size(max = 45)
     @Column(name = "descricaoCategoria")
     private String descricaoCategoria;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria")
-    private Collection<Produto> produtoCollection;
+    private Collection<Grupo> grupoCollection;
 
     public Categoria() {
     }
@@ -70,12 +73,12 @@ public class Categoria implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Produto> getProdutoCollection() {
-        return produtoCollection;
+    public Collection<Grupo> getGrupoCollection() {
+        return grupoCollection;
     }
 
-    public void setProdutoCollection(Collection<Produto> produtoCollection) {
-        this.produtoCollection = produtoCollection;
+    public void setGrupoCollection(Collection<Grupo> grupoCollection) {
+        this.grupoCollection = grupoCollection;
     }
 
     @Override

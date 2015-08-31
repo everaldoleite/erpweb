@@ -21,6 +21,10 @@
                     <h:inputText id="descricaoCondicaoPagamento" value="#{condicaoPagamentoController.selected.descricaoCondicaoPagamento}" title="#{bundle.CreateCondicaoPagamentoTitle_descricaoCondicaoPagamento}" />
                     <h:outputLabel value="#{bundle.CreateCondicaoPagamentoLabel_taxaFinanceira}" for="taxaFinanceira" />
                     <h:inputText id="taxaFinanceira" value="#{condicaoPagamentoController.selected.taxaFinanceira}" title="#{bundle.CreateCondicaoPagamentoTitle_taxaFinanceira}" />
+                    <h:outputLabel value="#{bundle.CreateCondicaoPagamentoLabel_quantidadeParcelas}" for="quantidadeParcelas" />
+                    <h:inputText id="quantidadeParcelas" value="#{condicaoPagamentoController.selected.quantidadeParcelas}" title="#{bundle.CreateCondicaoPagamentoTitle_quantidadeParcelas}" />
+                    <h:outputLabel value="#{bundle.CreateCondicaoPagamentoLabel_quantidadeDiasParcelas}" for="quantidadeDiasParcelas" />
+                    <h:inputText id="quantidadeDiasParcelas" value="#{condicaoPagamentoController.selected.quantidadeDiasParcelas}" title="#{bundle.CreateCondicaoPagamentoTitle_quantidadeDiasParcelas}" />
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{condicaoPagamentoController.create}" value="#{bundle.CreateCondicaoPagamentoSaveLink}" />

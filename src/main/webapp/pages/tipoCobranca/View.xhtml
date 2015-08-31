@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTipoCobrancaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_idtipoCobranca}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.idtipoCobranca}" title="#{bundle.ViewTipoCobrancaTitle_idtipoCobranca}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_codigoCarteira}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.codigoCarteira}" title="#{bundle.ViewTipoCobrancaTitle_codigoCarteira}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_descricaoTipoCobranca}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.descricaoTipoCobranca}" title="#{bundle.ViewTipoCobrancaTitle_descricaoTipoCobranca}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_registraFluxoCaixa}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.registraFluxoCaixa}" title="#{bundle.ViewTipoCobrancaTitle_registraFluxoCaixa}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_diasCredito}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.diasCredito}" title="#{bundle.ViewTipoCobrancaTitle_diasCredito}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_instrucao}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.instrucao}" title="#{bundle.ViewTipoCobrancaTitle_instrucao}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_percentualJuros}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.percentualJuros}" title="#{bundle.ViewTipoCobrancaTitle_percentualJuros}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_percentualMulta}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.percentualMulta}" title="#{bundle.ViewTipoCobrancaTitle_percentualMulta}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_diasProtesto}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.diasProtesto}" title="#{bundle.ViewTipoCobrancaTitle_diasProtesto}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_codigoCedente}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.codigoCedente}" title="#{bundle.ViewTipoCobrancaTitle_codigoCedente}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_codigoAgenciaCedente}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.codigoAgenciaCedente}" title="#{bundle.ViewTipoCobrancaTitle_codigoAgenciaCedente}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_codigoContaMovimentoCedente}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.codigoContaMovimentoCedente}" title="#{bundle.ViewTipoCobrancaTitle_codigoContaMovimentoCedente}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_codigoContaCobrancaCedente}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.codigoContaCobrancaCedente}" title="#{bundle.ViewTipoCobrancaTitle_codigoContaCobrancaCedente}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_nossoNumeroInicio}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.nossoNumeroInicio}" title="#{bundle.ViewTipoCobrancaTitle_nossoNumeroInicio}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_nossoNumeroFim}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.nossoNumeroFim}" title="#{bundle.ViewTipoCobrancaTitle_nossoNumeroFim}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_nossoNumeroUltimo}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.nossoNumeroUltimo}" title="#{bundle.ViewTipoCobrancaTitle_nossoNumeroUltimo}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_indicadorFluxoCaixa}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.indicadorFluxoCaixa}" title="#{bundle.ViewTipoCobrancaTitle_indicadorFluxoCaixa}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_tipoGeracaoBoleto}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.tipoGeracaoBoleto}" title="#{bundle.ViewTipoCobrancaTitle_tipoGeracaoBoleto}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_idContaCorrente}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.idContaCorrente}" title="#{bundle.ViewTipoCobrancaTitle_idContaCorrente}"/>
+                    <h:outputText value="#{bundle.ViewTipoCobrancaLabel_idEspecieDocumento}"/>
+                    <h:outputText value="#{tipoCobrancaController.selected.idEspecieDocumento}" title="#{bundle.ViewTipoCobrancaTitle_idEspecieDocumento}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tipoCobrancaController.destroyAndView}" value="#{bundle.ViewTipoCobrancaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTipoCobrancaEditLink}"/>
+                <br />
+                <h:commandLink action="#{tipoCobrancaController.prepareCreate}" value="#{bundle.ViewTipoCobrancaCreateLink}" />
+                <br />
+                <h:commandLink action="#{tipoCobrancaController.prepareList}" value="#{bundle.ViewTipoCobrancaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTipoCobrancaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

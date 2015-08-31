@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListOrigemMercadoriaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListOrigemMercadoriaEmpty}" rendered="#{origemMercadoriaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{origemMercadoriaController.items.rowCount > 0}">
+                    <h:outputText value="#{origemMercadoriaController.pagination.pageFirstItem + 1}..#{origemMercadoriaController.pagination.pageLastItem + 1}/#{origemMercadoriaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{origemMercadoriaController.previous}" value="#{bundle.Previous} #{origemMercadoriaController.pagination.pageSize}" rendered="#{origemMercadoriaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{origemMercadoriaController.next}" value="#{bundle.Next} #{origemMercadoriaController.pagination.pageSize}" rendered="#{origemMercadoriaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{origemMercadoriaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrigemMercadoriaTitle_idOrigemMercadoria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idOrigemMercadoria}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrigemMercadoriaTitle_codigoOrigemMercadoria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoOrigemMercadoria}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrigemMercadoriaTitle_descricaoOrigemMercadoria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricaoOrigemMercadoria}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{origemMercadoriaController.prepareView}" value="#{bundle.ListOrigemMercadoriaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{origemMercadoriaController.prepareEdit}" value="#{bundle.ListOrigemMercadoriaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{origemMercadoriaController.destroy}" value="#{bundle.ListOrigemMercadoriaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{origemMercadoriaController.prepareCreate}" value="#{bundle.ListOrigemMercadoriaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListOrigemMercadoriaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

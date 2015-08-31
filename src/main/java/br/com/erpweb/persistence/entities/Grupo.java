@@ -6,17 +6,23 @@
 package br.com.erpweb.persistence.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,17 +34,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Grupo.findAll", query = "SELECT g FROM Grupo g"),
     @NamedQuery(name = "Grupo.findByIdGrupo", query = "SELECT g FROM Grupo g WHERE g.idGrupo = :idGrupo"),
+    @NamedQuery(name = "Grupo.findByIdCategoria", query = "SELECT g FROM Grupo g WHERE g.idCategoria = :idCategoria"),
     @NamedQuery(name = "Grupo.findByDescricaoGrupo", query = "SELECT g FROM Grupo g WHERE g.descricaoGrupo = :descricaoGrupo")})
 public class Grupo implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idGrupo")
     private Integer idGrupo;
+    
     @Size(max = 45)
     @Column(name = "descricaoGrupo")
     private String descricaoGrupo;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idGrupo")
+    private Collection<SubGrupo> subGrupoCollection;
+    
+    @JoinColumn(name = "idCategoria", referencedColumnName = "idCategoria")
+    @ManyToOne(optional = false)
+    private Categoria idCategoria;
 
     public Grupo() {
     }
@@ -61,6 +77,23 @@ public class Grupo implements Serializable {
 
     public void setDescricaoGrupo(String descricaoGrupo) {
         this.descricaoGrupo = descricaoGrupo;
+    }
+
+    @XmlTransient
+    public Collection<SubGrupo> getSubGrupoCollection() {
+        return subGrupoCollection;
+    }
+
+    public void setSubGrupoCollection(Collection<SubGrupo> subGrupoCollection) {
+        this.subGrupoCollection = subGrupoCollection;
+    }
+
+    public Categoria getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(Categoria idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     @Override

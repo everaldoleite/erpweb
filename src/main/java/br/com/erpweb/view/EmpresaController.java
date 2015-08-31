@@ -1,12 +1,14 @@
 package br.com.erpweb.view;
 
 import br.com.erpweb.persistence.entities.Empresa;
+import br.com.erpweb.persistence.entities.LogLocalidade;
 import br.com.erpweb.persistence.entities.LogLogradouro;
 import br.com.erpweb.persistence.entities.MunicipiosIbge;
 import br.com.erpweb.view.util.JsfUtil;
 import br.com.erpweb.view.util.PaginationHelper;
 import br.com.erpweb.session.bean.EmpresaFacade;
 import br.com.erpweb.util.Util;
+import java.io.IOException;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -22,7 +24,11 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
+import org.apache.commons.io.IOUtils;
 
 @Named("empresaController")
 @SessionScoped
@@ -34,11 +40,12 @@ public class EmpresaController implements Serializable {
     private br.com.erpweb.session.bean.EmpresaFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+
     private boolean pessoaFisica = false;
     private boolean pessoaJuridica = false;
-    
+
     private static int MAX_DIGIT_CEP = 8;
-    private String mascara = "999.999.999.999";
+    private String mascara = "99.999.999/999-99";
 
     @PersistenceContext
     private EntityManager em;
@@ -287,14 +294,13 @@ public class EmpresaController implements Serializable {
         }
 
     }
-    
-    public void atualizaMascaraIE(){
-        
-        if (current.getUfInscricaoEstadual() != null || current.getUfInscricaoEstadual().equals("")){
-            System.out.println(current.getUfInscricaoEstadual());
+
+    public void atualizaMascaraIE() {
+
+        if (current.getUfInscricaoEstadual() != null || current.getUfInscricaoEstadual().equals("")) {
             mascara = Util.getMascaraIE(current.getUfInscricaoEstadual());
-        }
-        
+}
+
     }
 
     public void atualizaTipoPessoa() {
@@ -308,44 +314,96 @@ public class EmpresaController implements Serializable {
     }
 
     public void buscaEnderecos() {
-        
-        LogLogradouro logLogradouro = null;
-        
-        try {
-            
-            // Obtendo endereço a partir do CEP
-            if (current.getCepEmpresa() != null && current.getCepEmpresa().length() == MAX_DIGIT_CEP) {
+
+        LogLogradouro logLogradouro;
+        MunicipiosIbge municipiosIbge;
+
+        if (current.getCepEmpresa() != null && current.getCepEmpresa().length() == MAX_DIGIT_CEP) {
+
+            try {
 
                 logLogradouro = (LogLogradouro) em.createNamedQuery("LogLogradouro.findByCep")
                         .setParameter("cep", current.getCepEmpresa()).getSingleResult();
-                
+
                 current.setTipoLogradouro(logLogradouro.getLogTipoLogradouro().toUpperCase());
                 current.setLogradouroEmpresa(logLogradouro.getLogNo().toUpperCase());
                 current.setBairroEmpresa(logLogradouro.getBaiNuSequencialIni().getBaiNo().toUpperCase());
                 current.setUfEmpresa(logLogradouro.getUfeSg().toUpperCase());
                 current.setMunicipioEmpresa(logLogradouro.getLocNuSequencial().getLocNo().toUpperCase());
-
-            }
-            /// Obtendo o codigo do IBGE a partir da cidade.
-            
-            if (logLogradouro != null) {           
                 
-                MunicipiosIbge municipiosIbge = (MunicipiosIbge) em.createNamedQuery("MunicipiosIbge.findByCidadeIBGE")
-                        .setParameter("cidadeIBGE", logLogradouro.getLocNuSequencial().getLocNo()).getSingleResult();
-                current.setCodigoMunicipioIBGE(municipiosIbge.getCodigoIBGE());
+            } catch (NoResultException n) {
 
+                current.setTipoLogradouro("");
+                current.setLogradouroEmpresa("");
+                current.setBairroEmpresa("");
+                current.setUfEmpresa("");
+                current.setMunicipioEmpresa("");
+                current.setCodigoMunicipioIBGE("");
+
+                try {
+
+                    LogLocalidade logLocalidade = (LogLocalidade) em.createNamedQuery("LogLocalidade.findByCep")
+                            .setParameter("cep", current.getCepEmpresa()).getSingleResult();
+
+                    current.setTipoLogradouro(" -- ");
+                    current.setLogradouroEmpresa(" -- ");
+                    current.setBairroEmpresa(" -- ");
+                    current.setUfEmpresa(logLocalidade.getUfeSg().getUfeSg().toUpperCase());
+                    current.setMunicipioEmpresa(logLocalidade.getLocNo().toUpperCase());
+                    
+                    
+                } catch (NoResultException nr) {
+
+                    current.setTipoLogradouro("");
+                    current.setLogradouroEmpresa("");
+                    current.setBairroEmpresa("");
+                    current.setUfEmpresa("");
+                    current.setMunicipioEmpresa("");
+                    current.setCodigoMunicipioIBGE("");
+
+                    JsfUtil.addErrorMessage("Não foram encontrados registros com este parametro");
+
+                }
             }
 
-        } catch (NoResultException n) {
+            if (current.getMunicipioEmpresa() != null) {
+
+                try {
+
+                    municipiosIbge = (MunicipiosIbge) em.createNamedQuery("MunicipiosIbge.findByCidadeIBGE")
+                            .setParameter("cidadeIBGE", current.getMunicipioEmpresa()).getSingleResult();
+
+                    current.setCodigoMunicipioIBGE(municipiosIbge.getCodigoIBGE());
+
+                } catch (NonUniqueResultException uni){
+                    
+                    current.setCodigoMunicipioIBGE("");
             
-            current.setTipoLogradouro("");
-            current.setLogradouroEmpresa("");
-            current.setBairroEmpresa("");
-            current.setUfEmpresa("");
-            current.setMunicipioEmpresa("");
-            current.setCodigoMunicipioIBGE("");
-            
-            JsfUtil.addErrorMessage("Não foram encontrados registros com este parametro");
+                } catch (NoResultException nr) {
+
+                    current.setCodigoMunicipioIBGE("");
+
+                    JsfUtil.addErrorMessage("Não foram encontrados registros com este parametro");
+
+                }
+            }
+
         }
+
     }
+
+    public void handleFileUpload(FileUploadEvent event) {
+
+        UploadedFile file = event.getFile();
+
+        byte[] dados = null;
+
+        try {
+            dados = IOUtils.toByteArray(file.getInputstream());
+        } catch (IOException ex) {
+
+        }
+        current.setImagemEmpresa(dados);
+    }
+
 }

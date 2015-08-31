@@ -1,11 +1,13 @@
 package br.com.erpweb.view;
 
 import br.com.erpweb.persistence.entities.Cliente;
+import br.com.erpweb.persistence.entities.LogLocalidade;
 import br.com.erpweb.persistence.entities.LogLogradouro;
 import br.com.erpweb.persistence.entities.MunicipiosIbge;
 import br.com.erpweb.view.util.JsfUtil;
 import br.com.erpweb.view.util.PaginationHelper;
 import br.com.erpweb.session.bean.ClienteFacade;
+import br.com.erpweb.util.Util;
 
 import java.io.Serializable;
 import java.util.List;
@@ -36,7 +38,9 @@ public class ClienteController implements Serializable {
     private int selectedItemIndex;
     private boolean pessoaFisica = false;
     private boolean pessoaJuridica = false;
-    private int MAX_DIGIT_CEP = 8;
+    private final int MAX_DIGIT_CEP = 8;
+
+    private String mascara = "99.999.999/999-99";
 
     @PersistenceContext
     private EntityManager em;
@@ -94,10 +98,10 @@ public class ClienteController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ClienteCreated"));
+            JsfUtil.addSuccessMessage("Cliente cadastrado com sucesso");
             return prepareCreate();
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage("Operação não foi concluida.");
             return null;
         }
     }
@@ -105,14 +109,14 @@ public class ClienteController implements Serializable {
     public String prepareEdit() {
         current = (Cliente) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        return "erp_edit_cliente";
     }
 
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ClienteUpdated"));
-            return "View";
+            JsfUtil.addSuccessMessage("Registro atualizado com sucesso");
+            return "erp_list_cliente";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -183,13 +187,13 @@ public class ClienteController implements Serializable {
     public String next() {
         getPagination().nextPage();
         recreateModel();
-        return "List";
+        return "erp_list_cliente";
     }
 
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return "List";
+        return "erp_list_cliente";
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
@@ -230,6 +234,20 @@ public class ClienteController implements Serializable {
      */
     public void setPessoaJuridica(boolean pessoaJuridica) {
         this.pessoaJuridica = pessoaJuridica;
+    }
+
+    /**
+     * @return the mascara
+     */
+    public String getMascara() {
+        return mascara;
+    }
+
+    /**
+     * @param mascara the mascara to set
+     */
+    public void setMascara(String mascara) {
+        this.mascara = mascara;
     }
 
     @FacesConverter(forClass = Cliente.class)
@@ -283,12 +301,12 @@ public class ClienteController implements Serializable {
 
     public void buscaEnderecos() {
 
-        LogLogradouro logLogradouro = null;
+        LogLogradouro logLogradouro;
+        MunicipiosIbge municipiosIbge;
 
-        try {
+        if (current.getCep() != null && current.getCep().length() == MAX_DIGIT_CEP) {
 
-            // Obtendo endereço a partir do CEP
-            if (current.getCep() != null && current.getCep().length() == MAX_DIGIT_CEP) {
+            try {
 
                 logLogradouro = (LogLogradouro) em.createNamedQuery("LogLogradouro.findByCep")
                         .setParameter("cep", current.getCep()).getSingleResult();
@@ -299,23 +317,63 @@ public class ClienteController implements Serializable {
                 current.setUf(logLogradouro.getUfeSg().toUpperCase());
                 current.setCidade(logLogradouro.getLocNuSequencial().getLocNo().toUpperCase());
 
+            } catch (NoResultException n) {
+
+                current.setTipoLogradouro("");
+                current.setLogradouro("");
+                current.setBairro("");
+                current.setUf("");
+                current.setCidade("");
+
+                try {
+
+                    LogLocalidade logLocalidade = (LogLocalidade) em.createNamedQuery("LogLocalidade.findByCep")
+                            .setParameter("cep", current.getCep()).getSingleResult();
+
+                    current.setTipoLogradouro(" -- ");
+                    current.setLogradouro(" -- ");
+                    current.setBairro(" -- ");
+                    current.setUf(logLocalidade.getUfeSg().getUfeSg().toUpperCase());
+                    current.setCidade(logLocalidade.getLocNo().toUpperCase());
+
+                } catch (NoResultException nr) {
+
+                    current.setTipoLogradouro("");
+                    current.setLogradouro("");
+                    current.setBairro("");
+                    current.setUf("");
+                    current.setCidade("");
+
+                    JsfUtil.addErrorMessage("Não foram encontrados registros com este parametro");
+
+                }
             }
 
-        } catch (NoResultException n) {
-
-            current.setTipoLogradouro("");
-            current.setLogradouro("");
-            current.setBairro("");
-            current.setUf("");
-            current.setCidade("");
-
-            JsfUtil.addErrorMessage("Não foram encontrados registros com este parametro");
         }
 
     }
 
     public List<Cliente> getData() {
         return ejbFacade.findAll();
+    }
+
+    public void atualizaMascaraIE() {
+
+        if (current.getUfInscricaoEstadual() != null || current.getUfInscricaoEstadual().equals("")) {
+            setMascara(Util.getMascaraIE(current.getUfInscricaoEstadual()));
+        }
+    }
+    
+    public List<Cliente> buscaCliente(String parameter){
+    
+        //List<Cliente> listaCliente = new ArrayList<>();
+        
+        List results = em.createNamedQuery("Cliente.findByRazaoSocial")
+                .setParameter("razaoSocial", "%" + parameter + "%")
+                .getResultList();
+                
+        return results;
+                
     }
 
 }

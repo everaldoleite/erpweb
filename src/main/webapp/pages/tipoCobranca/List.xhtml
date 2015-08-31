@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTipoCobrancaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTipoCobrancaEmpty}" rendered="#{tipoCobrancaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tipoCobrancaController.items.rowCount > 0}">
+                    <h:outputText value="#{tipoCobrancaController.pagination.pageFirstItem + 1}..#{tipoCobrancaController.pagination.pageLastItem + 1}/#{tipoCobrancaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tipoCobrancaController.previous}" value="#{bundle.Previous} #{tipoCobrancaController.pagination.pageSize}" rendered="#{tipoCobrancaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tipoCobrancaController.next}" value="#{bundle.Next} #{tipoCobrancaController.pagination.pageSize}" rendered="#{tipoCobrancaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tipoCobrancaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_idtipoCobranca}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idtipoCobranca}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_codigoCarteira}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoCarteira}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_descricaoTipoCobranca}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricaoTipoCobranca}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_registraFluxoCaixa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.registraFluxoCaixa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_diasCredito}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.diasCredito}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_instrucao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.instrucao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_percentualJuros}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.percentualJuros}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_percentualMulta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.percentualMulta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_diasProtesto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.diasProtesto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_codigoCedente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoCedente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_codigoAgenciaCedente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoAgenciaCedente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_codigoContaMovimentoCedente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoContaMovimentoCedente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_codigoContaCobrancaCedente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoContaCobrancaCedente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_nossoNumeroInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nossoNumeroInicio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_nossoNumeroFim}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nossoNumeroFim}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_nossoNumeroUltimo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nossoNumeroUltimo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_indicadorFluxoCaixa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.indicadorFluxoCaixa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_tipoGeracaoBoleto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoGeracaoBoleto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_idContaCorrente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idContaCorrente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoCobrancaTitle_idEspecieDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEspecieDocumento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tipoCobrancaController.prepareView}" value="#{bundle.ListTipoCobrancaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tipoCobrancaController.prepareEdit}" value="#{bundle.ListTipoCobrancaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tipoCobrancaController.destroy}" value="#{bundle.ListTipoCobrancaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tipoCobrancaController.prepareCreate}" value="#{bundle.ListTipoCobrancaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTipoCobrancaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -17,8 +17,10 @@
                 <h:panelGrid columns="2">
                     <h:outputText value="#{bundle.ViewCarteiraLabel_idCarteira}"/>
                     <h:outputText value="#{carteiraController.selected.idCarteira}" title="#{bundle.ViewCarteiraTitle_idCarteira}"/>
-                    <h:outputText value="#{bundle.ViewCarteiraLabel_BANCOidBanco}"/>
-                    <h:outputText value="#{carteiraController.selected.BANCOidBanco}" title="#{bundle.ViewCarteiraTitle_BANCOidBanco}"/>
+                    <h:outputText value="#{bundle.ViewCarteiraLabel_idBanco}"/>
+                    <h:outputText value="#{carteiraController.selected.idBanco}" title="#{bundle.ViewCarteiraTitle_idBanco}"/>
+                    <h:outputText value="#{bundle.ViewCarteiraLabel_descricaoCarteira}"/>
+                    <h:outputText value="#{carteiraController.selected.descricaoCarteira}" title="#{bundle.ViewCarteiraTitle_descricaoCarteira}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{carteiraController.destroyAndView}" value="#{bundle.ViewCarteiraDestroyLink}"/>

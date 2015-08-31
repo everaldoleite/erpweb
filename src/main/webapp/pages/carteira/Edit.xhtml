@@ -17,10 +17,12 @@
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditCarteiraLabel_idCarteira}" for="idCarteira" />
                     <h:inputText id="idCarteira" value="#{carteiraController.selected.idCarteira}" title="#{bundle.EditCarteiraTitle_idCarteira}" required="true" requiredMessage="#{bundle.EditCarteiraRequiredMessage_idCarteira}"/>
-                    <h:outputLabel value="#{bundle.EditCarteiraLabel_BANCOidBanco}" for="BANCOidBanco" />
-                    <h:selectOneMenu id="BANCOidBanco" value="#{carteiraController.selected.BANCOidBanco}" title="#{bundle.EditCarteiraTitle_BANCOidBanco}" required="true" requiredMessage="#{bundle.EditCarteiraRequiredMessage_BANCOidBanco}">
+                    <h:outputLabel value="#{bundle.EditCarteiraLabel_idBanco}" for="idBanco" />
+                    <h:selectOneMenu id="idBanco" value="#{carteiraController.selected.idBanco}" title="#{bundle.EditCarteiraTitle_idBanco}" required="true" requiredMessage="#{bundle.EditCarteiraRequiredMessage_idBanco}">
                         <f:selectItems value="#{bancoController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditCarteiraLabel_descricaoCarteira}" for="descricaoCarteira" />
+                    <h:inputText id="descricaoCarteira" value="#{carteiraController.selected.descricaoCarteira}" title="#{bundle.EditCarteiraTitle_descricaoCarteira}" />
                 </h:panelGrid>
                 <h:commandLink action="#{carteiraController.update}" value="#{bundle.EditCarteiraSaveLink}"/>
                 <br />

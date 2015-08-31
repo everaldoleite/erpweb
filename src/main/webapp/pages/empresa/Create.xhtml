@@ -46,9 +46,31 @@
                     <h:outputLabel value="#{bundle.CreateEmpresaLabel_telefoneEmpresa}" for="telefoneEmpresa" />
                     <h:inputText id="telefoneEmpresa" value="#{empresaController.selected.telefoneEmpresa}" title="#{bundle.CreateEmpresaTitle_telefoneEmpresa}" />
                     <h:outputLabel value="#{bundle.CreateEmpresaLabel_idParametrosGerais}" for="idParametrosGerais" />
-                    <h:selectOneMenu id="idParametrosGerais" value="#{empresaController.selected.idParametrosGerais}" title="#{bundle.CreateEmpresaTitle_idParametrosGerais}" required="true" requiredMessage="#{bundle.CreateEmpresaRequiredMessage_idParametrosGerais}">
+                    <h:selectOneMenu id="idParametrosGerais" value="#{empresaController.selected.idParametrosGerais}" title="#{bundle.CreateEmpresaTitle_idParametrosGerais}" >
                         <f:selectItems value="#{parametrosGeraisController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_tipoPessoa}" for="tipoPessoa" />
+                    <h:inputText id="tipoPessoa" value="#{empresaController.selected.tipoPessoa}" title="#{bundle.CreateEmpresaTitle_tipoPessoa}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_inscricaoMunicipal}" for="inscricaoMunicipal" />
+                    <h:inputText id="inscricaoMunicipal" value="#{empresaController.selected.inscricaoMunicipal}" title="#{bundle.CreateEmpresaTitle_inscricaoMunicipal}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_inscricaoEstadualST}" for="inscricaoEstadualST" />
+                    <h:inputText id="inscricaoEstadualST" value="#{empresaController.selected.inscricaoEstadualST}" title="#{bundle.CreateEmpresaTitle_inscricaoEstadualST}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_tipoLogradouro}" for="tipoLogradouro" />
+                    <h:inputText id="tipoLogradouro" value="#{empresaController.selected.tipoLogradouro}" title="#{bundle.CreateEmpresaTitle_tipoLogradouro}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_municipioEmpresa}" for="municipioEmpresa" />
+                    <h:inputText id="municipioEmpresa" value="#{empresaController.selected.municipioEmpresa}" title="#{bundle.CreateEmpresaTitle_municipioEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_cpfEmpresa}" for="cpfEmpresa" />
+                    <h:inputText id="cpfEmpresa" value="#{empresaController.selected.cpfEmpresa}" title="#{bundle.CreateEmpresaTitle_cpfEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_rgEmpresa}" for="rgEmpresa" />
+                    <h:inputText id="rgEmpresa" value="#{empresaController.selected.rgEmpresa}" title="#{bundle.CreateEmpresaTitle_rgEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_codigoMunicipioIBGE}" for="codigoMunicipioIBGE" />
+                    <h:inputText id="codigoMunicipioIBGE" value="#{empresaController.selected.codigoMunicipioIBGE}" title="#{bundle.CreateEmpresaTitle_codigoMunicipioIBGE}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_opcaoSimplesDANFE}" for="opcaoSimplesDANFE" />
+                    <h:inputText id="opcaoSimplesDANFE" value="#{empresaController.selected.opcaoSimplesDANFE}" title="#{bundle.CreateEmpresaTitle_opcaoSimplesDANFE}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_ufInscricaoEstadual}" for="ufInscricaoEstadual" />
+                    <h:inputText id="ufInscricaoEstadual" value="#{empresaController.selected.ufInscricaoEstadual}" title="#{bundle.CreateEmpresaTitle_ufInscricaoEstadual}" />
+                    <h:outputLabel value="#{bundle.CreateEmpresaLabel_imagemEmpresa}" for="imagemEmpresa" />
+                    <h:inputTextarea rows="4" cols="30" id="imagemEmpresa" value="#{empresaController.selected.imagemEmpresa}" title="#{bundle.CreateEmpresaTitle_imagemEmpresa}" />
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{empresaController.create}" value="#{bundle.CreateEmpresaSaveLink}" />

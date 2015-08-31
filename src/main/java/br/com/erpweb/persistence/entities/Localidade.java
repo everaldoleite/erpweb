@@ -6,7 +6,9 @@
 package br.com.erpweb.persistence.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,9 +18,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -41,6 +45,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Localidade.findByComplemento", query = "SELECT l FROM Localidade l WHERE l.complemento = :complemento"),
     @NamedQuery(name = "Localidade.findByCodigoIBGE", query = "SELECT l FROM Localidade l WHERE l.codigoIBGE = :codigoIBGE")})
 public class Localidade implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idLocalidadeEntrega")
+    private Collection<NotaFiscal> notaFiscalCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idLocalidadePagamento")
+    private Collection<NotaFiscal> notaFiscalCollection1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idLocalidade")
+    private Collection<Usuarios> usuariosCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -229,6 +239,33 @@ public class Localidade implements Serializable {
      */
     public void setTipoEndereco(Character tipoEndereco) {
         this.tipoEndereco = tipoEndereco;
+    }
+
+    @XmlTransient
+    public Collection<NotaFiscal> getNotaFiscalCollection() {
+        return notaFiscalCollection;
+    }
+
+    public void setNotaFiscalCollection(Collection<NotaFiscal> notaFiscalCollection) {
+        this.notaFiscalCollection = notaFiscalCollection;
+    }
+
+    @XmlTransient
+    public Collection<NotaFiscal> getNotaFiscalCollection1() {
+        return notaFiscalCollection1;
+    }
+
+    public void setNotaFiscalCollection1(Collection<NotaFiscal> notaFiscalCollection1) {
+        this.notaFiscalCollection1 = notaFiscalCollection1;
+    }
+
+    @XmlTransient
+    public Collection<Usuarios> getUsuariosCollection() {
+        return usuariosCollection;
+    }
+
+    public void setUsuariosCollection(Collection<Usuarios> usuariosCollection) {
+        this.usuariosCollection = usuariosCollection;
     }
     
 }

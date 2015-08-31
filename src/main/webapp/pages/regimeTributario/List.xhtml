@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRegimeTributarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRegimeTributarioEmpty}" rendered="#{regimeTributarioController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{regimeTributarioController.items.rowCount > 0}">
+                    <h:outputText value="#{regimeTributarioController.pagination.pageFirstItem + 1}..#{regimeTributarioController.pagination.pageLastItem + 1}/#{regimeTributarioController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{regimeTributarioController.previous}" value="#{bundle.Previous} #{regimeTributarioController.pagination.pageSize}" rendered="#{regimeTributarioController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{regimeTributarioController.next}" value="#{bundle.Next} #{regimeTributarioController.pagination.pageSize}" rendered="#{regimeTributarioController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{regimeTributarioController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRegimeTributarioTitle_idRegimeTributario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idRegimeTributario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRegimeTributarioTitle_descricaoRegimeTributario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricaoRegimeTributario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{regimeTributarioController.prepareView}" value="#{bundle.ListRegimeTributarioViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{regimeTributarioController.prepareEdit}" value="#{bundle.ListRegimeTributarioEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{regimeTributarioController.destroy}" value="#{bundle.ListRegimeTributarioDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{regimeTributarioController.prepareCreate}" value="#{bundle.ListRegimeTributarioCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListRegimeTributarioIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -15,13 +15,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -57,6 +60,25 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Produto.findByEspecificacaoProduto", query = "SELECT p FROM Produto p WHERE p.especificacaoProduto = :especificacaoProduto"),
     @NamedQuery(name = "Produto.findByIndicadorEstoque", query = "SELECT p FROM Produto p WHERE p.indicadorEstoque = :indicadorEstoque")})
 public class Produto implements Serializable {
+    @Lob
+    @Column(name = "imagem")
+    private byte[] imagem;
+    @JoinColumn(name = "idOrigemMercadoria", referencedColumnName = "idOrigemMercadoria")
+    @ManyToOne(optional = false)
+    private OrigemMercadoria idOrigemMercadoria;
+    @Column(name = "regime")
+    private Character regime;
+    @Column(name = "ativo")
+    private Boolean ativo;
+    @Column(name = "analiseEspecialistaOS")
+    private Boolean analiseEspecialistaOS;
+    @Column(name = "indicadorPerecivel")
+    private Boolean indicadorPerecivel;
+    @Column(name = "fabricacaoPropria")
+    private Boolean fabricacaoPropria;
+    @JoinColumn(name = "idtipoTributacao", referencedColumnName = "idTipoTributacao")
+    @ManyToOne(optional = false)
+    private TipoTributacao idtipoTributacao;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,10 +100,6 @@ public class Produto implements Serializable {
     @Size(max = 20)
     @Column(name = "cor")
     private String cor;
-    @Column(name = "ativo")
-    private boolean ativo;
-    @Column(name = "fabricacaoPropria")
-    private boolean fabricacaoPropria;
     @Column(name = "situacao")
     private Character situacao;
     @Size(max = 3)
@@ -135,7 +153,7 @@ public class Produto implements Serializable {
     @JoinColumn(name = "idGrupo", referencedColumnName = "idGrupo")
     @ManyToOne(optional = false)
     private Grupo idGrupo;
-    @JoinColumn(name = "IdNcm", referencedColumnName = "idNcm")
+    @JoinColumn(name = "idNcm", referencedColumnName = "idNcm")
     @ManyToOne(optional = false)
     private Ncm idNcm;
     @JoinColumn(name = "idSubGrupo", referencedColumnName = "idSubGrupo")
@@ -147,10 +165,32 @@ public class Produto implements Serializable {
     @Size(max = 20)
     @Column(name = "modelo")
     private String modelo;
-    
     @Digits(integer = 11, fraction = 2)
     @Column(name = "precoCusto")
     private BigDecimal precoCusto;
+    @Transient
+    private String idRegimeTributario;
+    @Max(value = 100)
+    @Column(name = "aliquotaICMS")
+    private BigDecimal aliquotaICMS;
+    @Column(name = "baseCalculoICMS")
+    private BigDecimal baseCalculoICMS;
+    @Column(name = "aliquotaICMSST")
+    private BigDecimal aliquotaICMSST;
+    @Column(name = "baseCalculoICMSST")
+    private BigDecimal baseCalculoICMSST;
+    @Column(name = "isencaoICMS")
+    private BigDecimal isencaoICMS;
+    @Column(name = "isencaoICMSST")
+    private BigDecimal isencaoICMSST;
+    @Column(name = "aliquotaIPI")
+    private BigDecimal aliquotaIPI;
+    @Column(name = "baseCalculoIPI")
+    private BigDecimal baseCalculoIPI;
+    @Column(name = "isencaoIPI")
+    private BigDecimal isencaoIPI;
+    
+    
 
     public Produto() {
     }
@@ -398,19 +438,6 @@ public class Produto implements Serializable {
         this.descricaoResumidaProduto = descricaoResumidaProduto;
     }
 
-    /**
-     * @return the ativo
-     */
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    /**
-     * @param ativo the ativo to set
-     */
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
 
     /**
      * @return the situacao
@@ -426,19 +453,6 @@ public class Produto implements Serializable {
         this.situacao = situacao;
     }
 
-    /**
-     * @return the fabricacaoPropria
-     */
-    public boolean isFabricacaoPropria() {
-        return fabricacaoPropria;
-    }
-
-    /**
-     * @param fabricacaoPropria the fabricacaoPropria to set
-     */
-    public void setFabricacaoPropria(boolean fabricacaoPropria) {
-        this.fabricacaoPropria = fabricacaoPropria;
-    }
 
     /**
      * @return the cor
@@ -509,5 +523,212 @@ public class Produto implements Serializable {
     public void setPrecoCusto(BigDecimal precoCusto) {
         this.precoCusto = precoCusto;
     }
-    
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public Boolean getAnaliseEspecialistaOS() {
+        return analiseEspecialistaOS;
+    }
+
+    public void setAnaliseEspecialistaOS(Boolean analiseEspecialistaOS) {
+        this.analiseEspecialistaOS = analiseEspecialistaOS;
+    }
+
+    public Boolean getIndicadorPerecivel() {
+        return indicadorPerecivel;
+    }
+
+    public void setIndicadorPerecivel(Boolean indicadorPerecivel) {
+        this.indicadorPerecivel = indicadorPerecivel;
+    }
+
+    public Boolean getFabricacaoPropria() {
+        return fabricacaoPropria;
+    }
+
+    public void setFabricacaoPropria(Boolean fabricacaoPropria) {
+        this.fabricacaoPropria = fabricacaoPropria;
+    }
+
+
+    public TipoTributacao getIdtipoTributacao() {
+        return idtipoTributacao;
+    }
+
+    public void setIdtipoTributacao(TipoTributacao idtipoTributacao) {
+        this.idtipoTributacao = idtipoTributacao;
+    }
+
+
+    public Character getRegime() {
+        return regime;
+    }
+
+    public void setRegime(Character regime) {
+        this.regime = regime;
+    }
+
+
+    /**
+     * @return the idRegimeTributario
+     */
+    public String getIdRegimeTributario() {
+        return idRegimeTributario;
+    }
+
+    /**
+     * @param idRegimeTributario the idRegimeTributario to set
+     */
+    public void setIdRegimeTributario(String idRegimeTributario) {
+        this.idRegimeTributario = idRegimeTributario;
+    }
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
+    }
+
+    public OrigemMercadoria getIdOrigemMercadoria() {
+        return idOrigemMercadoria;
+    }
+
+    public void setIdOrigemMercadoria(OrigemMercadoria idOrigemMercadoria) {
+        this.idOrigemMercadoria = idOrigemMercadoria;
+    }
+
+    /**
+     * @return the aliquotaICMS
+     */
+    public BigDecimal getAliquotaICMS() {
+        return aliquotaICMS;
+    }
+
+    /**
+     * @param aliquotaICMS the aliquotaICMS to set
+     */
+    public void setAliquotaICMS(BigDecimal aliquotaICMS) {
+        this.aliquotaICMS = aliquotaICMS;
+    }
+
+    /**
+     * @return the baseCalculoICMS
+     */
+    public BigDecimal getBaseCalculoICMS() {
+        return baseCalculoICMS;
+    }
+
+    /**
+     * @param baseCalculoICMS the baseCalculoICMS to set
+     */
+    public void setBaseCalculoICMS(BigDecimal baseCalculoICMS) {
+        this.baseCalculoICMS = baseCalculoICMS;
+    }
+
+    /**
+     * @return the aliquotaICMSST
+     */
+    public BigDecimal getAliquotaICMSST() {
+        return aliquotaICMSST;
+    }
+
+    /**
+     * @param aliquotaICMSST the aliquotaICMSST to set
+     */
+    public void setAliquotaICMSST(BigDecimal aliquotaICMSST) {
+        this.aliquotaICMSST = aliquotaICMSST;
+    }
+
+    /**
+     * @return the baseCalculoICMSST
+     */
+    public BigDecimal getBaseCalculoICMSST() {
+        return baseCalculoICMSST;
+    }
+
+    /**
+     * @param baseCalculoICMSST the baseCalculoICMSST to set
+     */
+    public void setBaseCalculoICMSST(BigDecimal baseCalculoICMSST) {
+        this.baseCalculoICMSST = baseCalculoICMSST;
+    }
+
+    /**
+     * @return the isencaoICMS
+     */
+    public BigDecimal getIsencaoICMS() {
+        return isencaoICMS;
+    }
+
+    /**
+     * @param isencaoICMS the isencaoICMS to set
+     */
+    public void setIsencaoICMS(BigDecimal isencaoICMS) {
+        this.isencaoICMS = isencaoICMS;
+    }
+
+    /**
+     * @return the isencaoIPI
+     */
+    public BigDecimal getIsencaoIPI() {
+        return isencaoIPI;
+    }
+
+    /**
+     * @param isencaoIPI the isencaoIPI to set
+     */
+    public void setIsencaoIPI(BigDecimal isencaoIPI) {
+        this.isencaoIPI = isencaoIPI;
+    }
+
+    /**
+     * @return the isencaoICMSST
+     */
+    public BigDecimal getIsencaoICMSST() {
+        return isencaoICMSST;
+    }
+
+    /**
+     * @param isencaoICMSST the isencaoICMSST to set
+     */
+    public void setIsencaoICMSST(BigDecimal isencaoICMSST) {
+        this.isencaoICMSST = isencaoICMSST;
+    }
+
+    /**
+     * @return the aliquotaIPI
+     */
+    public BigDecimal getAliquotaIPI() {
+        return aliquotaIPI;
+    }
+
+    /**
+     * @param aliquotaIPI the aliquotaIPI to set
+     */
+    public void setAliquotaIPI(BigDecimal aliquotaIPI) {
+        this.aliquotaIPI = aliquotaIPI;
+    }
+
+    /**
+     * @return the baseCalculoIPI
+     */
+    public BigDecimal getBaseCalculoIPI() {
+        return baseCalculoIPI;
+    }
+
+    /**
+     * @param baseCalculoIPI the baseCalculoIPI to set
+     */
+    public void setBaseCalculoIPI(BigDecimal baseCalculoIPI) {
+        this.baseCalculoIPI = baseCalculoIPI;
+    }
+
 }

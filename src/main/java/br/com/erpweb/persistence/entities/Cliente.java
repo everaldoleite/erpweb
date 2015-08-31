@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
     @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente"),
-    @NamedQuery(name = "Cliente.findByRazaoSocial", query = "SELECT c FROM Cliente c WHERE c.razaoSocial = :razaoSocial"),
+    @NamedQuery(name = "Cliente.findByRazaoSocial", query = "SELECT c FROM Cliente c WHERE c.razaoSocial LIKE :razaoSocial"),
     @NamedQuery(name = "Cliente.findByNomeFantasia", query = "SELECT c FROM Cliente c WHERE c.nomeFantasia = :nomeFantasia"),
     @NamedQuery(name = "Cliente.findByDdd", query = "SELECT c FROM Cliente c WHERE c.ddd = :ddd"),
     @NamedQuery(name = "Cliente.findByTelefone", query = "SELECT c FROM Cliente c WHERE c.telefone = :telefone"),
@@ -92,6 +92,21 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cliente.findByAcessoItensPromocionais", query = "SELECT c FROM Cliente c WHERE c.acessoItensPromocionais = :acessoItensPromocionais"),
     @NamedQuery(name = "Cliente.findByIndicadorProspect", query = "SELECT c FROM Cliente c WHERE c.indicadorProspect = :indicadorProspect")})
 public class Cliente implements Serializable {
+    @Column(name = "bloqueioAtendimento")
+    private Boolean bloqueioAtendimento;
+    @Column(name = "bloqueioVendas")
+    private Boolean bloqueioVendas;
+    @Column(name = "bloqueioFaturamento")
+    private Boolean bloqueioFaturamento;
+    @Column(name = "bloqueioComercial")
+    private Boolean bloqueioComercial;
+    @Column(name = "acessoItensPromocionais")
+    private Boolean acessoItensPromocionais;
+    @Size(max = 1)
+    @Column(name = "enderecoCobranca")
+    private String enderecoCobranca;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
+    private Collection<Localidade> localidadeCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
     private Collection<Contato> contatoCollection;
     private static final long serialVersionUID = 1L;
@@ -153,7 +168,7 @@ public class Cliente implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataFollowUp;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "capitalSocial")
+    @Column(name = "capitalSocial", precision = 11, scale = 2)
     private BigDecimal capitalSocial;
     @Column(name = "numeroEmpregados")
     private Integer numeroEmpregados;
@@ -178,14 +193,6 @@ public class Cliente implements Serializable {
     @Column(name = "dataBloqueio")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataBloqueio;
-    @Column(name = "bloqueioAtendimento")
-    private boolean bloqueioAtendimento;
-    @Column(name = "bloqueioVendas")
-    private boolean bloqueioVendas;
-    @Column(name = "bloqueioFaturamento")
-    private boolean bloqueioFaturamento;
-    @Column(name = "bloqueioComercial")
-    private boolean bloqueioComercial;
     @Column(name = "statusEmpresa")
     private Character statusEmpresa;
     @Column(name = "revendedor")
@@ -236,8 +243,6 @@ public class Cliente implements Serializable {
     private Integer rankingScore;
     @Column(name = "opcaoSimplesDANFE")
     private Character opcaoSimplesDANFE;
-    @Column(name = "acessoItensPromocionais")
-    private boolean acessoItensPromocionais;
     @Column(name = "indicadorProspect")
     private Character indicadorProspect;
     @JoinColumn(name = "idBanco", referencedColumnName = "idBanco")
@@ -250,19 +255,19 @@ public class Cliente implements Serializable {
     @ManyToOne(optional = false)
     private CondicaoPagamento idCondicaoPagamento;
     @JoinColumn(name = "idListaPrecosProdutos", referencedColumnName = "idListaPrecosProdutos")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private ListaPrecoProdutos idListaPrecosProdutos;
     @JoinColumn(name = "idListaPrecosServicos", referencedColumnName = "idListaPrecosServicos")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private ListaPrecoServicos idListaPrecosServicos;
     @JoinColumn(name = "idNaturezaOperacao", referencedColumnName = "idNaturezaOperacao")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private NaturezaOperacao idNaturezaOperacao;
     @JoinColumn(name = "idCodigoSegmento", referencedColumnName = "idCodigoSegmento")
     @ManyToOne(optional = false)
     private Segmento idCodigoSegmento;
     @JoinColumn(name = "idVendedorFidelidade", referencedColumnName = "idVendedor")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Vendedor idVendedorFidelidade;
     @JoinColumn(name = "idTipoTransporte", referencedColumnName = "idTipoTransporte")
     @ManyToOne(optional = false)
@@ -301,10 +306,10 @@ public class Cliente implements Serializable {
     @Size(max = 10)
     @Column(name = "codigoIBGE")
     private String codigoIBGE;
-    @Column(name = "enderecoCobranca")
-    private Character enderecoCobranca;
-    @Column(name = "isencaoIE")
-    private boolean isencaoIE;
+    
+    @Column(name = "ufInscricaoEstadual")
+    private String ufInscricaoEstadual;
+
     
     public Cliente() {
     }
@@ -955,103 +960,104 @@ public class Cliente implements Serializable {
     public void setCodigoIBGE(String codigoIBGE) {
         this.codigoIBGE = codigoIBGE;
     }
-
-    /**
-     * @return the enderecoCobranca
-     */
-    public Character getEnderecoCobranca() {
-        return enderecoCobranca;
+    public String getUfInscricaoEstadual() {
+        return ufInscricaoEstadual;
     }
-
-    /**
-     * @param enderecoCobranca the enderecoCobranca to set
-     */
-    public void setEnderecoCobranca(Character enderecoCobranca) {
-        this.enderecoCobranca = enderecoCobranca;
+    public void setUfInscricaoEstadual(String ufInscricaoEstadual) {
+        this.ufInscricaoEstadual = ufInscricaoEstadual;
     }
 
     /**
      * @return the bloqueioAtendimento
      */
-    public boolean isBloqueioAtendimento() {
+    public Boolean getBloqueioAtendimento() {
         return bloqueioAtendimento;
     }
 
     /**
      * @param bloqueioAtendimento the bloqueioAtendimento to set
      */
-    public void setBloqueioAtendimento(boolean bloqueioAtendimento) {
+    public void setBloqueioAtendimento(Boolean bloqueioAtendimento) {
         this.bloqueioAtendimento = bloqueioAtendimento;
     }
 
     /**
      * @return the bloqueioVendas
      */
-    public boolean isBloqueioVendas() {
+    public Boolean getBloqueioVendas() {
         return bloqueioVendas;
     }
 
     /**
      * @param bloqueioVendas the bloqueioVendas to set
      */
-    public void setBloqueioVendas(boolean bloqueioVendas) {
+    public void setBloqueioVendas(Boolean bloqueioVendas) {
         this.bloqueioVendas = bloqueioVendas;
     }
 
     /**
      * @return the bloqueioFaturamento
      */
-    public boolean isBloqueioFaturamento() {
+    public Boolean getBloqueioFaturamento() {
         return bloqueioFaturamento;
     }
 
     /**
      * @param bloqueioFaturamento the bloqueioFaturamento to set
      */
-    public void setBloqueioFaturamento(boolean bloqueioFaturamento) {
+    public void setBloqueioFaturamento(Boolean bloqueioFaturamento) {
         this.bloqueioFaturamento = bloqueioFaturamento;
     }
 
     /**
      * @return the bloqueioComercial
      */
-    public boolean isBloqueioComercial() {
+    public Boolean getBloqueioComercial() {
         return bloqueioComercial;
     }
 
     /**
      * @param bloqueioComercial the bloqueioComercial to set
      */
-    public void setBloqueioComercial(boolean bloqueioComercial) {
+    public void setBloqueioComercial(Boolean bloqueioComercial) {
         this.bloqueioComercial = bloqueioComercial;
     }
 
     /**
      * @return the acessoItensPromocionais
      */
-    public boolean isAcessoItensPromocionais() {
+    public Boolean getAcessoItensPromocionais() {
         return acessoItensPromocionais;
     }
 
     /**
      * @param acessoItensPromocionais the acessoItensPromocionais to set
      */
-    public void setAcessoItensPromocionais(boolean acessoItensPromocionais) {
+    public void setAcessoItensPromocionais(Boolean acessoItensPromocionais) {
         this.acessoItensPromocionais = acessoItensPromocionais;
     }
 
     /**
-     * @return the isencaoIE
+     * @return the ufInscricaoEstadual
      */
-    public boolean isIsencaoIE() {
-        return isencaoIE;
+    public String getEnderecoCobranca() {
+        return enderecoCobranca;
     }
 
     /**
-     * @param isencaoIE the isencaoIE to set
+     * @param ufInscricaoEstadual the ufInscricaoEstadual to set
      */
-    public void setIsencaoIE(boolean isencaoIE) {
-        this.isencaoIE = isencaoIE;
+    public void setEnderecoCobranca(String enderecoCobranca) {
+        this.enderecoCobranca = enderecoCobranca;
     }
-    
+
+    @XmlTransient
+    public Collection<Localidade> getLocalidadeCollection() {
+        return localidadeCollection;
+    }
+
+    public void setLocalidadeCollection(Collection<Localidade> localidadeCollection) {
+        this.localidadeCollection = localidadeCollection;
+    }
+
 }

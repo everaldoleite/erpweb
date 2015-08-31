@@ -34,6 +34,12 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "MensagemFaturamento.findByIdMensagemFaturamento", query = "SELECT m FROM MensagemFaturamento m WHERE m.idMensagemFaturamento = :idMensagemFaturamento"),
     @NamedQuery(name = "MensagemFaturamento.findByDescricao", query = "SELECT m FROM MensagemFaturamento m WHERE m.descricao = :descricao")})
 public class MensagemFaturamento implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMensagemFaturamento")
+    private Collection<NotaFiscal> notaFiscalCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMensagemFaturamentoPrincipal")
+    private Collection<NotaFiscal> notaFiscalCollection1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMensagemFaturamentoSecundaria")
+    private Collection<NotaFiscal> notaFiscalCollection2;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,6 +107,33 @@ public class MensagemFaturamento implements Serializable {
     @Override
     public String toString() {
         return "br.com.erpweb.persistence.entities.MensagemFaturamento[ idMensagemFaturamento=" + idMensagemFaturamento + " ]";
+    }
+
+    @XmlTransient
+    public Collection<NotaFiscal> getNotaFiscalCollection() {
+        return notaFiscalCollection;
+    }
+
+    public void setNotaFiscalCollection(Collection<NotaFiscal> notaFiscalCollection) {
+        this.notaFiscalCollection = notaFiscalCollection;
+    }
+
+    @XmlTransient
+    public Collection<NotaFiscal> getNotaFiscalCollection1() {
+        return notaFiscalCollection1;
+    }
+
+    public void setNotaFiscalCollection1(Collection<NotaFiscal> notaFiscalCollection1) {
+        this.notaFiscalCollection1 = notaFiscalCollection1;
+    }
+
+    @XmlTransient
+    public Collection<NotaFiscal> getNotaFiscalCollection2() {
+        return notaFiscalCollection2;
+    }
+
+    public void setNotaFiscalCollection2(Collection<NotaFiscal> notaFiscalCollection2) {
+        this.notaFiscalCollection2 = notaFiscalCollection2;
     }
     
 }

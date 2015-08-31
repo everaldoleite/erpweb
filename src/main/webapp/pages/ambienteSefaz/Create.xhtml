@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAmbienteSefazTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAmbienteSefazLabel_idAmbienteSEFAZ}" for="idAmbienteSEFAZ" />
+                    <h:inputText id="idAmbienteSEFAZ" value="#{ambienteSefazController.selected.idAmbienteSEFAZ}" title="#{bundle.CreateAmbienteSefazTitle_idAmbienteSEFAZ}" required="true" requiredMessage="#{bundle.CreateAmbienteSefazRequiredMessage_idAmbienteSEFAZ}"/>
+                    <h:outputLabel value="#{bundle.CreateAmbienteSefazLabel_tipoAmbiente}" for="tipoAmbiente" />
+                    <h:inputText id="tipoAmbiente" value="#{ambienteSefazController.selected.tipoAmbiente}" title="#{bundle.CreateAmbienteSefazTitle_tipoAmbiente}" />
+                    <h:outputLabel value="#{bundle.CreateAmbienteSefazLabel_urlAutorizacaoNFE}" for="urlAutorizacaoNFE" />
+                    <h:inputText id="urlAutorizacaoNFE" value="#{ambienteSefazController.selected.urlAutorizacaoNFE}" title="#{bundle.CreateAmbienteSefazTitle_urlAutorizacaoNFE}" />
+                    <h:outputLabel value="#{bundle.CreateAmbienteSefazLabel_urlRetornoAutorizacaoNFE}" for="urlRetornoAutorizacaoNFE" />
+                    <h:inputText id="urlRetornoAutorizacaoNFE" value="#{ambienteSefazController.selected.urlRetornoAutorizacaoNFE}" title="#{bundle.CreateAmbienteSefazTitle_urlRetornoAutorizacaoNFE}" />
+                    <h:outputLabel value="#{bundle.CreateAmbienteSefazLabel_urlCancelamento}" for="urlCancelamento" />
+                    <h:inputText id="urlCancelamento" value="#{ambienteSefazController.selected.urlCancelamento}" title="#{bundle.CreateAmbienteSefazTitle_urlCancelamento}" />
+                    <h:outputLabel value="#{bundle.CreateAmbienteSefazLabel_urlInutilizacao}" for="urlInutilizacao" />
+                    <h:inputText id="urlInutilizacao" value="#{ambienteSefazController.selected.urlInutilizacao}" title="#{bundle.CreateAmbienteSefazTitle_urlInutilizacao}" />
+                    <h:outputLabel value="#{bundle.CreateAmbienteSefazLabel_urlConsultaCadastro}" for="urlConsultaCadastro" />
+                    <h:inputText id="urlConsultaCadastro" value="#{ambienteSefazController.selected.urlConsultaCadastro}" title="#{bundle.CreateAmbienteSefazTitle_urlConsultaCadastro}" />
+                    <h:outputLabel value="#{bundle.CreateAmbienteSefazLabel_urlRecepcaoEvento}" for="urlRecepcaoEvento" />
+                    <h:inputText id="urlRecepcaoEvento" value="#{ambienteSefazController.selected.urlRecepcaoEvento}" title="#{bundle.CreateAmbienteSefazTitle_urlRecepcaoEvento}" />
+                    <h:outputLabel value="#{bundle.CreateAmbienteSefazLabel_urlStatusServico}" for="urlStatusServico" />
+                    <h:inputText id="urlStatusServico" value="#{ambienteSefazController.selected.urlStatusServico}" title="#{bundle.CreateAmbienteSefazTitle_urlStatusServico}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ambienteSefazController.create}" value="#{bundle.CreateAmbienteSefazSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{ambienteSefazController.prepareList}" value="#{bundle.CreateAmbienteSefazShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAmbienteSefazIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

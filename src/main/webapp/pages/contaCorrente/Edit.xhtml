@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditContaCorrenteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditContaCorrenteLabel_idContaCorrente}" for="idContaCorrente" />
+                    <h:inputText id="idContaCorrente" value="#{contaCorrenteController.selected.idContaCorrente}" title="#{bundle.EditContaCorrenteTitle_idContaCorrente}" required="true" requiredMessage="#{bundle.EditContaCorrenteRequiredMessage_idContaCorrente}"/>
+                    <h:outputLabel value="#{bundle.EditContaCorrenteLabel_agencia}" for="agencia" />
+                    <h:inputText id="agencia" value="#{contaCorrenteController.selected.agencia}" title="#{bundle.EditContaCorrenteTitle_agencia}" />
+                    <h:outputLabel value="#{bundle.EditContaCorrenteLabel_limiteCredito}" for="limiteCredito" />
+                    <h:inputText id="limiteCredito" value="#{contaCorrenteController.selected.limiteCredito}" title="#{bundle.EditContaCorrenteTitle_limiteCredito}" />
+                    <h:outputLabel value="#{bundle.EditContaCorrenteLabel_numeroConta}" for="numeroConta" />
+                    <h:inputText id="numeroConta" value="#{contaCorrenteController.selected.numeroConta}" title="#{bundle.EditContaCorrenteTitle_numeroConta}" />
+                    <h:outputLabel value="#{bundle.EditContaCorrenteLabel_saldoInicial}" for="saldoInicial" />
+                    <h:inputText id="saldoInicial" value="#{contaCorrenteController.selected.saldoInicial}" title="#{bundle.EditContaCorrenteTitle_saldoInicial}" />
+                    <h:outputLabel value="#{bundle.EditContaCorrenteLabel_saldoAtual}" for="saldoAtual" />
+                    <h:inputText id="saldoAtual" value="#{contaCorrenteController.selected.saldoAtual}" title="#{bundle.EditContaCorrenteTitle_saldoAtual}" />
+                    <h:outputLabel value="#{bundle.EditContaCorrenteLabel_idBanco}" for="idBanco" />
+                    <h:selectOneMenu id="idBanco" value="#{contaCorrenteController.selected.idBanco}" title="#{bundle.EditContaCorrenteTitle_idBanco}" required="true" requiredMessage="#{bundle.EditContaCorrenteRequiredMessage_idBanco}">
+                        <f:selectItems value="#{bancoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditContaCorrenteLabel_idEmpresaEmitente}" for="idEmpresaEmitente" />
+                    <h:selectOneMenu id="idEmpresaEmitente" value="#{contaCorrenteController.selected.idEmpresaEmitente}" title="#{bundle.EditContaCorrenteTitle_idEmpresaEmitente}" required="true" requiredMessage="#{bundle.EditContaCorrenteRequiredMessage_idEmpresaEmitente}">
+                        <f:selectItems value="#{empresaEmitenteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{contaCorrenteController.update}" value="#{bundle.EditContaCorrenteSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditContaCorrenteViewLink}"/>
+                <br />
+                <h:commandLink action="#{contaCorrenteController.prepareList}" value="#{bundle.EditContaCorrenteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditContaCorrenteIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

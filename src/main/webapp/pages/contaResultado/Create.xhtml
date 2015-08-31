@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateContaResultadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateContaResultadoLabel_idPlanoConta}" for="idPlanoConta" />
+                    <h:inputText id="idPlanoConta" value="#{contaResultadoController.selected.idPlanoConta}" title="#{bundle.CreateContaResultadoTitle_idPlanoConta}" required="true" requiredMessage="#{bundle.CreateContaResultadoRequiredMessage_idPlanoConta}"/>
+                    <h:outputLabel value="#{bundle.CreateContaResultadoLabel_codigoConta}" for="codigoConta" />
+                    <h:inputText id="codigoConta" value="#{contaResultadoController.selected.codigoConta}" title="#{bundle.CreateContaResultadoTitle_codigoConta}" />
+                    <h:outputLabel value="#{bundle.CreateContaResultadoLabel_descricaoConta}" for="descricaoConta" />
+                    <h:inputText id="descricaoConta" value="#{contaResultadoController.selected.descricaoConta}" title="#{bundle.CreateContaResultadoTitle_descricaoConta}" />
+                    <h:outputLabel value="#{bundle.CreateContaResultadoLabel_tipoConta}" for="tipoConta" />
+                    <h:inputText id="tipoConta" value="#{contaResultadoController.selected.tipoConta}" title="#{bundle.CreateContaResultadoTitle_tipoConta}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contaResultadoController.create}" value="#{bundle.CreateContaResultadoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{contaResultadoController.prepareList}" value="#{bundle.CreateContaResultadoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateContaResultadoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

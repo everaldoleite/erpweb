@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEmpresaEmitenteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEmpresaEmitenteLabel_idEmpresaEmitente}"/>
+                    <h:outputText value="#{empresaEmitenteController.selected.idEmpresaEmitente}" title="#{bundle.ViewEmpresaEmitenteTitle_idEmpresaEmitente}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaEmitenteLabel_numeroNotaFiscal}"/>
+                    <h:outputText value="#{empresaEmitenteController.selected.numeroNotaFiscal}" title="#{bundle.ViewEmpresaEmitenteTitle_numeroNotaFiscal}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaEmitenteLabel_idAmbienteSEFAZ}"/>
+                    <h:outputText value="#{empresaEmitenteController.selected.idAmbienteSEFAZ}" title="#{bundle.ViewEmpresaEmitenteTitle_idAmbienteSEFAZ}"/>
+                    <h:outputText value="#{bundle.ViewEmpresaEmitenteLabel_idEmpresa}"/>
+                    <h:outputText value="#{empresaEmitenteController.selected.idEmpresa}" title="#{bundle.ViewEmpresaEmitenteTitle_idEmpresa}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{empresaEmitenteController.destroyAndView}" value="#{bundle.ViewEmpresaEmitenteDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEmpresaEmitenteEditLink}"/>
+                <br />
+                <h:commandLink action="#{empresaEmitenteController.prepareCreate}" value="#{bundle.ViewEmpresaEmitenteCreateLink}" />
+                <br />
+                <h:commandLink action="#{empresaEmitenteController.prepareList}" value="#{bundle.ViewEmpresaEmitenteShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEmpresaEmitenteIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

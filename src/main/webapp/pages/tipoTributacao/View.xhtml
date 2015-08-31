@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTipoTributacaoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTipoTributacaoLabel_idTipoTributacao}"/>
+                    <h:outputText value="#{tipoTributacaoController.selected.idTipoTributacao}" title="#{bundle.ViewTipoTributacaoTitle_idTipoTributacao}"/>
+                    <h:outputText value="#{bundle.ViewTipoTributacaoLabel_codigoTipoTributacao}"/>
+                    <h:outputText value="#{tipoTributacaoController.selected.codigoTipoTributacao}" title="#{bundle.ViewTipoTributacaoTitle_codigoTipoTributacao}"/>
+                    <h:outputText value="#{bundle.ViewTipoTributacaoLabel_descricaoTipoTributacao}"/>
+                    <h:outputText value="#{tipoTributacaoController.selected.descricaoTipoTributacao}" title="#{bundle.ViewTipoTributacaoTitle_descricaoTipoTributacao}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tipoTributacaoController.destroyAndView}" value="#{bundle.ViewTipoTributacaoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTipoTributacaoEditLink}"/>
+                <br />
+                <h:commandLink action="#{tipoTributacaoController.prepareCreate}" value="#{bundle.ViewTipoTributacaoCreateLink}" />
+                <br />
+                <h:commandLink action="#{tipoTributacaoController.prepareList}" value="#{bundle.ViewTipoTributacaoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTipoTributacaoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Cadastro de Titulos"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            <div style="height: 600px;">
+                <h:form prependId="false">
+                    <p:growl id="msg"/>
+                    <p:tabView class="col-md-10">
+                        <p:tab title="Titulo">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Empresa Emitente: " for="idEmpresaEmitente" />
+                                    <h:selectOneMenu id="idEmpresaEmitente" value="#{titulosController.selected.idEmpresaEmitente}" class="form-control" required="true">
+                                        <f:selectItem itemLabel="Selecione" itemValue="" />
+                                        <f:selectItem itemLabel="EMPRESA 01" itemValue="0" />
+                                        <f:selectItem itemLabel="EMPRESA 02" itemValue="1" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel for="idCliente" value="Cliente:" />&nbsp;
+                                    <p:autoComplete size="99" itemLabel="#{cliente.razaoSocial}" itemValue="#{cliente}" var="cliente" queryDelay="500" id="idCliente" 
+                                                    maxResults="5" value="#{titulosController.selected.idCliente}" completeMethod="#{clienteController.buscaCliente}">
+                                        <f:param name="parametro" value="#{titulosController.selected.idCliente}" />
+                                    </p:autoComplete>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel for="idNotaFiscal" value="Nota Fiscal:" />&nbsp;
+                                    <p:autoComplete itemLabel="#{nota.numeroNota}" itemValue="#{nota}" var="nota" queryDelay="500" id="idNotaFiscal" 
+                                                    maxResults="5" value="#{titulosController.selected.idNotaFiscal}" completeMethod="#{titulosController.buscaNotaFiscal()}" class="">
+                                        <f:param name="cliente" value="#{titulosController.selected.idCliente}" />
+                                    </p:autoComplete>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Número Nota Fiscal: " for="numeroNF" />
+                                    <p:inputText id="numeroNF" autocomplete="off" value="#{titulosController.selected.numeroNF}" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Remessa Bancária: " for="geracaoRemessa" />
+                                    <p:selectBooleanCheckbox id="geracaoRemessa" value="#{titulosController.selected.geracaoRemessa}" class="form-control"/>
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Parcelas: " for="parcela" />
+                                    <p:inputMask mask="99" id="parcela" autocomplete="off" value="#{titulosController.selected.parcela}" class="form-control"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Valor: " for="valorBruto" />
+                                    <h:inputText id="valorBruto" autocomplete="off" value="#{titulosController.selected.valorBruto}" style="text-align: right;" 
+                                                 onkeypress="return(MascaraMoeda(this, '.', ',', event))" class="form-control" required="true">
+                                        <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
+                                    </h:inputText>
+                                    <p:watermark for="valorBruto" value="R$ 0,00" />                                     
+                                </div>                                
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Situação:" for="situacao" />
+                                    <h:selectOneMenu id="situacao" value="#{titulosController.selected.situacao}" class="form-control" required="true" >
+                                        <f:selectItem itemLabel="ABERTO" itemValue="1" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Data Vencimento: " for="dataVencimento" />&nbsp;
+                                    <p:calendar id="dataVencimento" value="#{titulosController.selected.dataVencimento}" rendered="true"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Localização: " for="localizacao" />
+                                    <h:selectOneMenu id="localizacao" value="#{titulosController.selected.localizacao}" class="form-control" required="true">
+                                        <f:selectItem itemLabel="Selecione" itemValue="" />
+                                        <f:selectItem itemLabel="CARTEIRA" itemValue="0" />
+                                        <f:selectItem itemLabel="COBRANCA" itemValue="1" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Tipo Cobrança: " for="idTipoCobranca" />
+                                    <h:selectOneMenu id="idTipoCobranca" value="#{titulosController.selected.idTipoCobranca}" class="form-control" required="true">
+                                        <f:selectItem itemLabel="Selecione" itemValue="" />
+                                        <f:selectItem itemLabel="CARTEIRA COM REGISTRO" itemValue="0" />
+                                        <f:selectItem itemLabel="CARTEIRA SEM REGISTRO" itemValue="1" />
+                                        <f:selectItem itemLabel="CARTEIRA COM PROTESTO" itemValue="2" />
+                                        <f:selectItem itemLabel="CARTEIRA SEM PROTESTOO" itemValue="3" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Tipo Cobrança: " for="idTipoTitulo" />
+                                    <h:selectOneMenu id="idTipoTitulo" value="#{titulosController.selected.idTipoTitulo}" class="form-control" required="true">
+                                        <f:selectItem itemLabel="Selecione" itemValue="" />
+                                        <f:selectItem itemLabel="DC - DUPLICATA" itemValue="0" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Descrição: " for="descricaoTitulo" />
+                                    <p:inputText id="descricaoTitulo" autocomplete="off" required="true" value="#{titulosController.selected.descricaoTitulo}" maxlength="60" class="form-control"/>
+                                    <p:watermark for="descricaoTitulo" value="TITULO" />                                     
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Observação: " for="observacao" />
+                                    <p:inputTextarea id="observacao" maxlength="120" value="#{titulosController.selected.observacao}" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Data Emissão: " for="dataEmissao" />&nbsp;
+                                    <p:calendar id="dataEmissao" value="#{titulosController.selected.dataEmissao}" rendered="true" disabled="true" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Data Impressão Boleto: " for="dataImpressaoBoleto" />
+                                    <p:calendar id="dataImpressaoBoleto" disabled="true"
+                                                value="#{titulosController.selected.dataImpressaoBoleto}" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Data Bloqueio: " for="dataBloqueio" />
+                                    <p:calendar id="dataBloqueio" disabled="true" value="#{titulosController.selected.dataBloqueio}" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Ultima Alteração: " for="dataRegistroMotivo" />
+                                    <p:calendar id="dataRegistroMotivo" disabled="true" value="#{titulosController.selected.dataRegistroMotivo}" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Vendedor:" for="idVendedor" />
+                                    <h:selectOneMenu id="idVendedor" value="#{titulosController.selected.idVendedor}" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                                                                
+                                        <f:selectItems value="#{vendedorController.data}" var="vendedor" itemLabel="#{vendedor.nomeVendedor}" itemValue="#{vendedor}" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>                            
+                        </p:tab>
+                        <p:tab title="Impostos e Taxas">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="% Imposto de Renda:" for="percentualIR" />
+                                    <p:spinner id="percentualIR" value="#{titulosController.selected.percentualIR}" stepFactor="0.50" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Valor IR" for="valorIR" />
+                                    <p:inputText id="valorIR" value="#{titulosController.selected.valorIR}" onkeypress="return(MascaraMoeda(this, '.', ',', event))"/>
+                                </div>
+                            </div>    
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="% ISS: " for="percentualISS" />
+                                    <p:spinner id="percentualISS" value="#{titulosController.selected.percentualISS}" stepFactor="0.50" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Valor ISS:" for="valorISS" />
+                                    <p:inputText id="valorISS" value="#{titulosController.selected.valorISS}" onkeypress="return(MascaraMoeda(this, '.', ',', event))"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="% INSS:" for="percentualINSS" />
+                                    <p:spinner id="percentualINSS" value="#{titulosController.selected.percentualINSS}" stepFactor="0.50" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Valor INSS: " for="valorINSS" />
+                                    <p:inputText id="valorINSS" value="#{titulosController.selected.valorINSS}" onkeypress="return(MascaraMoeda(this, '.', ',', event))"/>
+                                </div>
+                            </div>    
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="% CSLL: " for="percentualCSLL" />
+                                    <p:spinner id="percentualCSLL" value="#{titulosController.selected.percentualCSLL}" stepFactor="0.50" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Valor CSLL: " for="valorCSLL" />
+                                    <p:inputText id="valorCSLL" value="#{titulosController.selected.valorCSLL}" onkeypress="return(MascaraMoeda(this, '.', ',', event))"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="% COFINS:" for="percentualCOFINS" />
+                                    <p:spinner id="percentualCOFINS" value="#{titulosController.selected.percentualCOFINS}" stepFactor="0.50" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Valor COFINS: " for="valorCOFINS" />
+                                    <p:inputText id="valorCOFINS" value="#{titulosController.selected.valorCOFINS}" onkeypress="return(MascaraMoeda(this, '.', ',', event))"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="% Desconto: " for="percentualDesconto" />
+                                    <p:spinner stepFactor="0.50" id="percentualDesconto" value="#{titulosController.selected.percentualDesconto}" onkeypress="return(MascaraMoeda(this, '.', ',', event))" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Valor Desconto:" for="valorDesconto" />
+                                    <p:inputText id="valorDesconto" value="#{titulosController.selected.valorDesconto}" onkeypress="return(MascaraMoeda(this, '.', ',', event))"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Motivo Desconto:" for="motivoDesconto" />
+                                    <p:inputText id="motivoDesconto" value="#{titulosController.selected.motivoDesconto}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Multa:" for="multa" />
+                                    <p:inputText id="multa" value="#{titulosController.selected.multa}" onkeypress="return(MascaraMoeda(this, '.', ',', event))" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Juros:" for="juros" />
+                                    <p:inputText id="juros" value="#{titulosController.selected.juros}" onkeypress="return(MascaraMoeda(this, '.', ',', event))" />
+                                </div>
+                            </div>    
+                        </p:tab>
+                        <p:tab title="Posição do Título">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Valor Liquidado:" for="valorLiquidado" />
+                                    <p:inputText id="valorLiquidado" disabled="true" value="#{titulosController.selected.valorLiquidado}" onkeypress="return(MascaraMoeda(this, '.', ',', event))" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Valor em Aberto:" for="valorEmAberto" />
+                                    <p:inputText id="valorEmAberto" disabled="true" value="#{titulosController.selected.valorEmAberto}" onkeypress="return(MascaraMoeda(this, '.', ',', event))" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Saldo em Aberto:" for="saldoEmAberto" />
+                                    <p:inputText id="saldoEmAberto" disabled="true" value="#{titulosController.selected.saldoEmAberto}" onkeypress="return(MascaraMoeda(this, '.', ',', event))" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Data Ultimo Pagamento: " for="dataUltimoPagamento" />
+                                    <p:calendar id="dataUltimoPagamento" disabled="true" value="#{titulosController.selected.dataUltimoPagamento}" />
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Apuração do Lançamento">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Centro de Resultado:" for="idCentroResultado" />
+                                    <h:selectOneMenu id="idCentroResultado" value="#{titulosController.selected.idCentroResultado}" required="true" requiredMessage="Centro de Resultado é exigido" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                        
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Conta de Resultado:" for="idCentroResultado" />
+                                    <h:selectOneMenu id="idCondicaoPagamento" value="#{titulosController.selected.idPlanoContas}" required="true" requiredMessage="Centro de Resultado é exigido" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                        
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Competência: " for="competencia" />
+                                    <p:inputMask mask="99/9999" autocomplete="off" id="competencia" required="true"
+                                                 value="#{titulosController.selected.competencia}" class="form-control"/>
+                                </div>
+                            </div>
+                        </p:tab>
+                    </p:tabView>
+
+                    <div class="col-md-12" style="padding: 10px;">
+                        <div class="col-md-2">
+                            <p:commandButton action="#{titulosController.create}" value="Salvar" update="msg" icon="ui-icon-disk" title="Salvar"/>
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{titulosController.create}" value="Imprimir" update="msg" icon="ui-icon-print" title="Imprimir"/>
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{titulosController.create}" value="Bloquear" update="msg" icon="ui-icon-key" title="Bloquear"/>
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{titulosController.prepareList}" value="Lista"  immediate="true" icon="ui-icon-bookmark" title="Lista" />
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

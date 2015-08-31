@@ -118,6 +118,72 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_tipoPessoa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoPessoa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_inscricaoMunicipal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inscricaoMunicipal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_inscricaoEstadualST}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inscricaoEstadualST}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_tipoLogradouro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoLogradouro}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_municipioEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.municipioEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_cpfEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cpfEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_rgEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rgEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_codigoMunicipioIBGE}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoMunicipioIBGE}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_opcaoSimplesDANFE}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opcaoSimplesDANFE}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_ufInscricaoEstadual}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ufInscricaoEstadual}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresaTitle_imagemEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.imagemEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
                             <h:commandLink action="#{empresaController.prepareView}" value="#{bundle.ListEmpresaViewLink}"/>

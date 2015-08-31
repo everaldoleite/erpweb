@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTitulosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_idTitulo}" for="idTitulo" />
+                    <h:inputText id="idTitulo" value="#{titulosController.selected.idTitulo}" title="#{bundle.EditTitulosTitle_idTitulo}" required="true" requiredMessage="#{bundle.EditTitulosRequiredMessage_idTitulo}"/>
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_idCarteira}" for="idCarteira" />
+                    <h:selectOneMenu id="idCarteira" value="#{titulosController.selected.idCarteira}" title="#{bundle.EditTitulosTitle_idCarteira}" required="true" requiredMessage="#{bundle.EditTitulosRequiredMessage_idCarteira}">
+                        <f:selectItems value="#{carteiraController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_idTipoTitulo}" for="idTipoTitulo" />
+                    <h:selectOneMenu id="idTipoTitulo" value="#{titulosController.selected.idTipoTitulo}" title="#{bundle.EditTitulosTitle_idTipoTitulo}" required="true" requiredMessage="#{bundle.EditTitulosRequiredMessage_idTipoTitulo}">
+                        <f:selectItems value="#{tipoTituloController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_idCliente}" for="idCliente" />
+                    <h:selectOneMenu id="idCliente" value="#{titulosController.selected.idCliente}" title="#{bundle.EditTitulosTitle_idCliente}" required="true" requiredMessage="#{bundle.EditTitulosRequiredMessage_idCliente}">
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_descricaoTitulo}" for="descricaoTitulo" />
+                    <h:inputText id="descricaoTitulo" value="#{titulosController.selected.descricaoTitulo}" title="#{bundle.EditTitulosTitle_descricaoTitulo}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_localizacao}" for="localizacao" />
+                    <h:inputText id="localizacao" value="#{titulosController.selected.localizacao}" title="#{bundle.EditTitulosTitle_localizacao}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_numeroNF}" for="numeroNF" />
+                    <h:inputText id="numeroNF" value="#{titulosController.selected.numeroNF}" title="#{bundle.EditTitulosTitle_numeroNF}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_parcela}" for="parcela" />
+                    <h:inputText id="parcela" value="#{titulosController.selected.parcela}" title="#{bundle.EditTitulosTitle_parcela}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_referencia}" for="referencia" />
+                    <h:inputText id="referencia" value="#{titulosController.selected.referencia}" title="#{bundle.EditTitulosTitle_referencia}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_dataEmissao}" for="dataEmissao" />
+                    <h:inputText id="dataEmissao" value="#{titulosController.selected.dataEmissao}" title="#{bundle.EditTitulosTitle_dataEmissao}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_dataVencimento}" for="dataVencimento" />
+                    <h:inputText id="dataVencimento" value="#{titulosController.selected.dataVencimento}" title="#{bundle.EditTitulosTitle_dataVencimento}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_valorBruto}" for="valorBruto" />
+                    <h:inputText id="valorBruto" value="#{titulosController.selected.valorBruto}" title="#{bundle.EditTitulosTitle_valorBruto}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_valorTotal}" for="valorTotal" />
+                    <h:inputText id="valorTotal" value="#{titulosController.selected.valorTotal}" title="#{bundle.EditTitulosTitle_valorTotal}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_percentualIR}" for="percentualIR" />
+                    <h:inputText id="percentualIR" value="#{titulosController.selected.percentualIR}" title="#{bundle.EditTitulosTitle_percentualIR}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_valorIR}" for="valorIR" />
+                    <h:inputText id="valorIR" value="#{titulosController.selected.valorIR}" title="#{bundle.EditTitulosTitle_valorIR}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_percentualISS}" for="percentualISS" />
+                    <h:inputText id="percentualISS" value="#{titulosController.selected.percentualISS}" title="#{bundle.EditTitulosTitle_percentualISS}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_valorISS}" for="valorISS" />
+                    <h:inputText id="valorISS" value="#{titulosController.selected.valorISS}" title="#{bundle.EditTitulosTitle_valorISS}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_motivoDesconto}" for="motivoDesconto" />
+                    <h:inputText id="motivoDesconto" value="#{titulosController.selected.motivoDesconto}" title="#{bundle.EditTitulosTitle_motivoDesconto}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_juros}" for="juros" />
+                    <h:inputText id="juros" value="#{titulosController.selected.juros}" title="#{bundle.EditTitulosTitle_juros}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_multa}" for="multa" />
+                    <h:inputText id="multa" value="#{titulosController.selected.multa}" title="#{bundle.EditTitulosTitle_multa}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_dataRegistroMotivo}" for="dataRegistroMotivo" />
+                    <h:inputText id="dataRegistroMotivo" value="#{titulosController.selected.dataRegistroMotivo}" title="#{bundle.EditTitulosTitle_dataRegistroMotivo}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_dataImpressaoBoleto}" for="dataImpressaoBoleto" />
+                    <h:inputText id="dataImpressaoBoleto" value="#{titulosController.selected.dataImpressaoBoleto}" title="#{bundle.EditTitulosTitle_dataImpressaoBoleto}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_observacao}" for="observacao" />
+                    <h:inputText id="observacao" value="#{titulosController.selected.observacao}" title="#{bundle.EditTitulosTitle_observacao}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_numeroDocumento}" for="numeroDocumento" />
+                    <h:inputText id="numeroDocumento" value="#{titulosController.selected.numeroDocumento}" title="#{bundle.EditTitulosTitle_numeroDocumento}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_valorEmAberto}" for="valorEmAberto" />
+                    <h:inputText id="valorEmAberto" value="#{titulosController.selected.valorEmAberto}" title="#{bundle.EditTitulosTitle_valorEmAberto}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_valorDesconto}" for="valorDesconto" />
+                    <h:inputText id="valorDesconto" value="#{titulosController.selected.valorDesconto}" title="#{bundle.EditTitulosTitle_valorDesconto}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_valorLiquidado}" for="valorLiquidado" />
+                    <h:inputText id="valorLiquidado" value="#{titulosController.selected.valorLiquidado}" title="#{bundle.EditTitulosTitle_valorLiquidado}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_saldoEmAberto}" for="saldoEmAberto" />
+                    <h:inputText id="saldoEmAberto" value="#{titulosController.selected.saldoEmAberto}" title="#{bundle.EditTitulosTitle_saldoEmAberto}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_dataBloqueio}" for="dataBloqueio" />
+                    <h:inputText id="dataBloqueio" value="#{titulosController.selected.dataBloqueio}" title="#{bundle.EditTitulosTitle_dataBloqueio}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_percentualINSS}" for="percentualINSS" />
+                    <h:inputText id="percentualINSS" value="#{titulosController.selected.percentualINSS}" title="#{bundle.EditTitulosTitle_percentualINSS}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_valorINSS}" for="valorINSS" />
+                    <h:inputText id="valorINSS" value="#{titulosController.selected.valorINSS}" title="#{bundle.EditTitulosTitle_valorINSS}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_geracaoRemessa}" for="geracaoRemessa" />
+                    <h:inputText id="geracaoRemessa" value="#{titulosController.selected.geracaoRemessa}" title="#{bundle.EditTitulosTitle_geracaoRemessa}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_dataUltimoPagamento}" for="dataUltimoPagamento" />
+                    <h:inputText id="dataUltimoPagamento" value="#{titulosController.selected.dataUltimoPagamento}" title="#{bundle.EditTitulosTitle_dataUltimoPagamento}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_competencia}" for="competencia" />
+                    <h:inputText id="competencia" value="#{titulosController.selected.competencia}" title="#{bundle.EditTitulosTitle_competencia}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_percentualCSLL}" for="percentualCSLL" />
+                    <h:inputText id="percentualCSLL" value="#{titulosController.selected.percentualCSLL}" title="#{bundle.EditTitulosTitle_percentualCSLL}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_valorCSLL}" for="valorCSLL" />
+                    <h:inputText id="valorCSLL" value="#{titulosController.selected.valorCSLL}" title="#{bundle.EditTitulosTitle_valorCSLL}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_percentualCOFINS}" for="percentualCOFINS" />
+                    <h:inputText id="percentualCOFINS" value="#{titulosController.selected.percentualCOFINS}" title="#{bundle.EditTitulosTitle_percentualCOFINS}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_valorCOFINS}" for="valorCOFINS" />
+                    <h:inputText id="valorCOFINS" value="#{titulosController.selected.valorCOFINS}" title="#{bundle.EditTitulosTitle_valorCOFINS}" />
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_idVendedor}" for="idVendedor" />
+                    <h:selectOneMenu id="idVendedor" value="#{titulosController.selected.idVendedor}" title="#{bundle.EditTitulosTitle_idVendedor}" >
+                        <f:selectItems value="#{vendedorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_idCentroResultado}" for="idCentroResultado" />
+                    <h:selectOneMenu id="idCentroResultado" value="#{titulosController.selected.idCentroResultado}" title="#{bundle.EditTitulosTitle_idCentroResultado}" required="true" requiredMessage="#{bundle.EditTitulosRequiredMessage_idCentroResultado}">
+                        <f:selectItems value="#{centroResultadoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_idPlanoContas}" for="idPlanoContas" />
+                    <h:selectOneMenu id="idPlanoContas" value="#{titulosController.selected.idPlanoContas}" title="#{bundle.EditTitulosTitle_idPlanoContas}" required="true" requiredMessage="#{bundle.EditTitulosRequiredMessage_idPlanoContas}">
+                        <f:selectItems value="#{planoContasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_idTipoCobranca}" for="idTipoCobranca" />
+                    <h:selectOneMenu id="idTipoCobranca" value="#{titulosController.selected.idTipoCobranca}" title="#{bundle.EditTitulosTitle_idTipoCobranca}" required="true" requiredMessage="#{bundle.EditTitulosRequiredMessage_idTipoCobranca}">
+                        <f:selectItems value="#{tipoCobrancaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTitulosLabel_idEmpresaEmitente}" for="idEmpresaEmitente" />
+                    <h:selectOneMenu id="idEmpresaEmitente" value="#{titulosController.selected.idEmpresaEmitente}" title="#{bundle.EditTitulosTitle_idEmpresaEmitente}" required="true" requiredMessage="#{bundle.EditTitulosRequiredMessage_idEmpresaEmitente}">
+                        <f:selectItems value="#{empresaEmitenteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{titulosController.update}" value="#{bundle.EditTitulosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTitulosViewLink}"/>
+                <br />
+                <h:commandLink action="#{titulosController.prepareList}" value="#{bundle.EditTitulosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTitulosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

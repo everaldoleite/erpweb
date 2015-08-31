@@ -6,35 +6,31 @@
 package br.com.erpweb.persistence.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author everaldo
  */
 @Entity
-@Table(name = "PLANO_CONTAS")
+@Table(name = "CONTA_RESULTADO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PlanoContas.findAll", query = "SELECT p FROM PlanoContas p"),
-    @NamedQuery(name = "PlanoContas.findByIdPlanoConta", query = "SELECT p FROM PlanoContas p WHERE p.idPlanoConta = :idPlanoConta"),
-    @NamedQuery(name = "PlanoContas.findByCodigoConta", query = "SELECT p FROM PlanoContas p WHERE p.codigoConta = :codigoConta"),
-    @NamedQuery(name = "PlanoContas.findByDescricaoConta", query = "SELECT p FROM PlanoContas p WHERE p.descricaoConta = :descricaoConta"),
-    @NamedQuery(name = "PlanoContas.findByTipoConta", query = "SELECT p FROM PlanoContas p WHERE p.tipoConta = :tipoConta")})
-public class PlanoContas implements Serializable {
+    @NamedQuery(name = "ContaResultado.findAll", query = "SELECT c FROM ContaResultado c"),
+    @NamedQuery(name = "ContaResultado.findByIdPlanoConta", query = "SELECT c FROM ContaResultado c WHERE c.idPlanoConta = :idPlanoConta"),
+    @NamedQuery(name = "ContaResultado.findByCodigoConta", query = "SELECT c FROM ContaResultado c WHERE c.codigoConta = :codigoConta"),
+    @NamedQuery(name = "ContaResultado.findByDescricaoConta", query = "SELECT c FROM ContaResultado c WHERE c.descricaoConta = :descricaoConta"),
+    @NamedQuery(name = "ContaResultado.findByTipoConta", query = "SELECT c FROM ContaResultado c WHERE c.tipoConta = :tipoConta")})
+public class ContaResultado implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -49,13 +45,11 @@ public class PlanoContas implements Serializable {
     private String descricaoConta;
     @Column(name = "tipoConta")
     private Character tipoConta;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPlanoConta")
-    private Collection<TipoMovimentoEstoque> tipoMovimentoEstoqueCollection;
 
-    public PlanoContas() {
+    public ContaResultado() {
     }
 
-    public PlanoContas(Integer idPlanoConta) {
+    public ContaResultado(Integer idPlanoConta) {
         this.idPlanoConta = idPlanoConta;
     }
 
@@ -91,15 +85,6 @@ public class PlanoContas implements Serializable {
         this.tipoConta = tipoConta;
     }
 
-    @XmlTransient
-    public Collection<TipoMovimentoEstoque> getTipoMovimentoEstoqueCollection() {
-        return tipoMovimentoEstoqueCollection;
-    }
-
-    public void setTipoMovimentoEstoqueCollection(Collection<TipoMovimentoEstoque> tipoMovimentoEstoqueCollection) {
-        this.tipoMovimentoEstoqueCollection = tipoMovimentoEstoqueCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -110,10 +95,10 @@ public class PlanoContas implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PlanoContas)) {
+        if (!(object instanceof ContaResultado)) {
             return false;
         }
-        PlanoContas other = (PlanoContas) object;
+        ContaResultado other = (ContaResultado) object;
         if ((this.idPlanoConta == null && other.idPlanoConta != null) || (this.idPlanoConta != null && !this.idPlanoConta.equals(other.idPlanoConta))) {
             return false;
         }
@@ -122,7 +107,7 @@ public class PlanoContas implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.erpweb.persistence.entities.PlanoContas[ idPlanoConta=" + idPlanoConta + " ]";
+        return "br.com.erpweb.persistence.entities.ContaResultado[ idPlanoConta=" + idPlanoConta + " ]";
     }
-    
+
 }

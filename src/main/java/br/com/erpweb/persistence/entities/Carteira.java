@@ -19,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -39,12 +40,15 @@ public class Carteira implements Serializable {
     @NotNull
     @Column(name = "idCarteira")
     private Integer idCarteira;
-    @JoinColumn(name = "BANCO_idBanco", referencedColumnName = "idBanco")
+    @JoinColumn(name = "idBanco", referencedColumnName = "idBanco")
     @ManyToOne(optional = false)
-    private Banco bANCOidBanco;
+    private Banco idBanco;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCarteira")
     private Collection<Cliente> clienteCollection;
-
+    @Size(max = 45)
+    @Column(name = "descricaoCarteira")
+    private String descricaoCarteira;
+    
     public Carteira() {
     }
 
@@ -60,13 +64,6 @@ public class Carteira implements Serializable {
         this.idCarteira = idCarteira;
     }
 
-    public Banco getBANCOidBanco() {
-        return bANCOidBanco;
-    }
-
-    public void setBANCOidBanco(Banco bANCOidBanco) {
-        this.bANCOidBanco = bANCOidBanco;
-    }
 
     @XmlTransient
     public Collection<Cliente> getClienteCollection() {
@@ -101,5 +98,33 @@ public class Carteira implements Serializable {
     public String toString() {
         return "br.com.erpweb.persistence.entities.Carteira[ idCarteira=" + idCarteira + " ]";
     }
-    
+
+    /**
+     * @return the idBanco
+     */
+    public Banco getIdBanco() {
+        return idBanco;
+    }
+
+    /**
+     * @param idBanco the idBanco to set
+     */
+    public void setIdBanco(Banco idBanco) {
+        this.idBanco = idBanco;
+    }
+
+    /**
+     * @return the descricaoCarteira
+     */
+    public String getDescricaoCarteira() {
+        return descricaoCarteira;
+    }
+
+    /**
+     * @param descricaoCarteira the descricaoCarteira to set
+     */
+    public void setDescricaoCarteira(String descricaoCarteira) {
+        this.descricaoCarteira = descricaoCarteira;
+    }
+
 }

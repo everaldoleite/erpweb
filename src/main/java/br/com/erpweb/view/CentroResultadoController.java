@@ -1,11 +1,12 @@
 package br.com.erpweb.view;
 
-import br.com.erpweb.persistence.entities.PlanoContas;
+import br.com.erpweb.persistence.entities.CentroResultado;
 import br.com.erpweb.view.util.JsfUtil;
 import br.com.erpweb.view.util.PaginationHelper;
-import br.com.erpweb.session.bean.PlanoContasFacade;
+import br.com.erpweb.session.bean.CentroResultadoFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -18,29 +19,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("planoContasController")
+@Named("centroResultadoController")
 @SessionScoped
-public class PlanoContasController implements Serializable {
+public class CentroResultadoController implements Serializable {
 
-    private PlanoContas current;
+    private CentroResultado current;
     private DataModel items = null;
     @EJB
-    private br.com.erpweb.session.bean.PlanoContasFacade ejbFacade;
+    private br.com.erpweb.session.bean.CentroResultadoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public PlanoContasController() {
+    public CentroResultadoController() {
     }
 
-    public PlanoContas getSelected() {
+    public CentroResultado getSelected() {
         if (current == null) {
-            current = new PlanoContas();
+            current = new CentroResultado();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private PlanoContasFacade getFacade() {
+    private CentroResultadoFacade getFacade() {
         return ejbFacade;
     }
 
@@ -68,13 +69,13 @@ public class PlanoContasController implements Serializable {
     }
 
     public String prepareView() {
-        current = (PlanoContas) getItems().getRowData();
+        current = (CentroResultado) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new PlanoContas();
+        current = new CentroResultado();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -82,7 +83,7 @@ public class PlanoContasController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PlanoContasCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CentroResultadoCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -91,7 +92,7 @@ public class PlanoContasController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (PlanoContas) getItems().getRowData();
+        current = (CentroResultado) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -99,7 +100,7 @@ public class PlanoContasController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PlanoContasUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CentroResultadoUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -108,7 +109,7 @@ public class PlanoContasController implements Serializable {
     }
 
     public String destroy() {
-        current = (PlanoContas) getItems().getRowData();
+        current = (CentroResultado) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -132,7 +133,7 @@ public class PlanoContasController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PlanoContasDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CentroResultadoDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -188,21 +189,21 @@ public class PlanoContasController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public PlanoContas getPlanoContas(java.lang.Integer id) {
+    public CentroResultado getCentroResultado(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = PlanoContas.class)
-    public static class PlanoContasControllerConverter implements Converter {
+    @FacesConverter(forClass = CentroResultado.class)
+    public static class CentroResultadoControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            PlanoContasController controller = (PlanoContasController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "planoContasController");
-            return controller.getPlanoContas(getKey(value));
+            CentroResultadoController controller = (CentroResultadoController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "centroResultadoController");
+            return controller.getCentroResultado(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -222,14 +223,18 @@ public class PlanoContasController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof PlanoContas) {
-                PlanoContas o = (PlanoContas) object;
-                return getStringKey(o.getIdPlanoConta());
+            if (object instanceof CentroResultado) {
+                CentroResultado o = (CentroResultado) object;
+                return getStringKey(o.getIdCentroResultado());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + PlanoContas.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + CentroResultado.class.getName());
             }
         }
 
     }
 
+    public List<CentroResultado> getData(){
+        return ejbFacade.findAll();
+    }
+    
 }

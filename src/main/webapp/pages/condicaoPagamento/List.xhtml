@@ -40,6 +40,18 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCondicaoPagamentoTitle_quantidadeParcelas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.quantidadeParcelas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCondicaoPagamentoTitle_quantidadeDiasParcelas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.quantidadeDiasParcelas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
                             <h:commandLink action="#{condicaoPagamentoController.prepareView}" value="#{bundle.ListCondicaoPagamentoViewLink}"/>

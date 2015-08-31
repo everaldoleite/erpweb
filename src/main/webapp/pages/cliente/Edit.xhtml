@@ -75,14 +75,6 @@
                     <h:inputText id="dataBloqueio" value="#{clienteController.selected.dataBloqueio}" title="#{bundle.EditClienteTitle_dataBloqueio}" >
                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                     </h:inputText>
-                    <h:outputLabel value="#{bundle.EditClienteLabel_bloqueioAtendimento}" for="bloqueioAtendimento" />
-                    <h:inputText id="bloqueioAtendimento" value="#{clienteController.selected.bloqueioAtendimento}" title="#{bundle.EditClienteTitle_bloqueioAtendimento}" />
-                    <h:outputLabel value="#{bundle.EditClienteLabel_bloqueioVendas}" for="bloqueioVendas" />
-                    <h:inputText id="bloqueioVendas" value="#{clienteController.selected.bloqueioVendas}" title="#{bundle.EditClienteTitle_bloqueioVendas}" />
-                    <h:outputLabel value="#{bundle.EditClienteLabel_bloqueioFaturamento}" for="bloqueioFaturamento" />
-                    <h:inputText id="bloqueioFaturamento" value="#{clienteController.selected.bloqueioFaturamento}" title="#{bundle.EditClienteTitle_bloqueioFaturamento}" />
-                    <h:outputLabel value="#{bundle.EditClienteLabel_bloqueioComercial}" for="bloqueioComercial" />
-                    <h:inputText id="bloqueioComercial" value="#{clienteController.selected.bloqueioComercial}" title="#{bundle.EditClienteTitle_bloqueioComercial}" />
                     <h:outputLabel value="#{bundle.EditClienteLabel_statusEmpresa}" for="statusEmpresa" />
                     <h:inputText id="statusEmpresa" value="#{clienteController.selected.statusEmpresa}" title="#{bundle.EditClienteTitle_statusEmpresa}" />
                     <h:outputLabel value="#{bundle.EditClienteLabel_revendedor}" for="revendedor" />
@@ -125,8 +117,6 @@
                     <h:inputText id="rankingScore" value="#{clienteController.selected.rankingScore}" title="#{bundle.EditClienteTitle_rankingScore}" />
                     <h:outputLabel value="#{bundle.EditClienteLabel_opcaoSimplesDANFE}" for="opcaoSimplesDANFE" />
                     <h:inputText id="opcaoSimplesDANFE" value="#{clienteController.selected.opcaoSimplesDANFE}" title="#{bundle.EditClienteTitle_opcaoSimplesDANFE}" />
-                    <h:outputLabel value="#{bundle.EditClienteLabel_acessoItensPromocionais}" for="acessoItensPromocionais" />
-                    <h:inputText id="acessoItensPromocionais" value="#{clienteController.selected.acessoItensPromocionais}" title="#{bundle.EditClienteTitle_acessoItensPromocionais}" />
                     <h:outputLabel value="#{bundle.EditClienteLabel_indicadorProspect}" for="indicadorProspect" />
                     <h:inputText id="indicadorProspect" value="#{clienteController.selected.indicadorProspect}" title="#{bundle.EditClienteTitle_indicadorProspect}" />
                     <h:outputLabel value="#{bundle.EditClienteLabel_idBanco}" for="idBanco" />
@@ -141,24 +131,16 @@
                     <h:selectOneMenu id="idCondicaoPagamento" value="#{clienteController.selected.idCondicaoPagamento}" title="#{bundle.EditClienteTitle_idCondicaoPagamento}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_idCondicaoPagamento}">
                         <f:selectItems value="#{condicaoPagamentoController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditClienteLabel_idEnderecoCobranca}" for="idEnderecoCobranca" />
-                    <h:selectOneMenu id="idEnderecoCobranca" value="#{clienteController.selected.idEnderecoCobranca}" title="#{bundle.EditClienteTitle_idEnderecoCobranca}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_idEnderecoCobranca}">
-                        <f:selectItems value="#{localidadeController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditClienteLabel_idEnderecoEntrega}" for="idEnderecoEntrega" />
-                    <h:selectOneMenu id="idEnderecoEntrega" value="#{clienteController.selected.idEnderecoEntrega}" title="#{bundle.EditClienteTitle_idEnderecoEntrega}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_idEnderecoEntrega}">
-                        <f:selectItems value="#{localidadeController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditClienteLabel_idListaPrecosProdutos}" for="idListaPrecosProdutos" />
-                    <h:selectOneMenu id="idListaPrecosProdutos" value="#{clienteController.selected.idListaPrecosProdutos}" title="#{bundle.EditClienteTitle_idListaPrecosProdutos}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_idListaPrecosProdutos}">
+                    <h:selectOneMenu id="idListaPrecosProdutos" value="#{clienteController.selected.idListaPrecosProdutos}" title="#{bundle.EditClienteTitle_idListaPrecosProdutos}" >
                         <f:selectItems value="#{listaPrecoProdutosController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditClienteLabel_idListaPrecosServicos}" for="idListaPrecosServicos" />
-                    <h:selectOneMenu id="idListaPrecosServicos" value="#{clienteController.selected.idListaPrecosServicos}" title="#{bundle.EditClienteTitle_idListaPrecosServicos}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_idListaPrecosServicos}">
+                    <h:selectOneMenu id="idListaPrecosServicos" value="#{clienteController.selected.idListaPrecosServicos}" title="#{bundle.EditClienteTitle_idListaPrecosServicos}" >
                         <f:selectItems value="#{listaPrecoServicosController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditClienteLabel_idNaturezaOperacao}" for="idNaturezaOperacao" />
-                    <h:selectOneMenu id="idNaturezaOperacao" value="#{clienteController.selected.idNaturezaOperacao}" title="#{bundle.EditClienteTitle_idNaturezaOperacao}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_idNaturezaOperacao}">
+                    <h:selectOneMenu id="idNaturezaOperacao" value="#{clienteController.selected.idNaturezaOperacao}" title="#{bundle.EditClienteTitle_idNaturezaOperacao}" >
                         <f:selectItems value="#{naturezaOperacaoController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditClienteLabel_idCodigoSegmento}" for="idCodigoSegmento" />
@@ -166,7 +148,7 @@
                         <f:selectItems value="#{segmentoController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditClienteLabel_idVendedorFidelidade}" for="idVendedorFidelidade" />
-                    <h:selectOneMenu id="idVendedorFidelidade" value="#{clienteController.selected.idVendedorFidelidade}" title="#{bundle.EditClienteTitle_idVendedorFidelidade}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_idVendedorFidelidade}">
+                    <h:selectOneMenu id="idVendedorFidelidade" value="#{clienteController.selected.idVendedorFidelidade}" title="#{bundle.EditClienteTitle_idVendedorFidelidade}" >
                         <f:selectItems value="#{vendedorController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditClienteLabel_idTipoTransporte}" for="idTipoTransporte" />
@@ -177,6 +159,30 @@
                     <h:selectOneMenu id="idCodigoTransportador" value="#{clienteController.selected.idCodigoTransportador}" title="#{bundle.EditClienteTitle_idCodigoTransportador}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_idCodigoTransportador}">
                         <f:selectItems value="#{transportadorController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_cep}" for="cep" />
+                    <h:inputText id="cep" value="#{clienteController.selected.cep}" title="#{bundle.EditClienteTitle_cep}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_tipoLogradouro}" for="tipoLogradouro" />
+                    <h:inputText id="tipoLogradouro" value="#{clienteController.selected.tipoLogradouro}" title="#{bundle.EditClienteTitle_tipoLogradouro}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_logradouro}" for="logradouro" />
+                    <h:inputText id="logradouro" value="#{clienteController.selected.logradouro}" title="#{bundle.EditClienteTitle_logradouro}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{clienteController.selected.numero}" title="#{bundle.EditClienteTitle_numero}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_bairro}" for="bairro" />
+                    <h:inputText id="bairro" value="#{clienteController.selected.bairro}" title="#{bundle.EditClienteTitle_bairro}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_cidade}" for="cidade" />
+                    <h:inputText id="cidade" value="#{clienteController.selected.cidade}" title="#{bundle.EditClienteTitle_cidade}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_uf}" for="uf" />
+                    <h:inputText id="uf" value="#{clienteController.selected.uf}" title="#{bundle.EditClienteTitle_uf}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_status}" for="status" />
+                    <h:inputText id="status" value="#{clienteController.selected.status}" title="#{bundle.EditClienteTitle_status}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_complemento}" for="complemento" />
+                    <h:inputText id="complemento" value="#{clienteController.selected.complemento}" title="#{bundle.EditClienteTitle_complemento}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_codigoIBGE}" for="codigoIBGE" />
+                    <h:inputText id="codigoIBGE" value="#{clienteController.selected.codigoIBGE}" title="#{bundle.EditClienteTitle_codigoIBGE}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_enderecoCobranca}" for="enderecoCobranca" />
+                    <h:inputText id="enderecoCobranca" value="#{clienteController.selected.enderecoCobranca}" title="#{bundle.EditClienteTitle_enderecoCobranca}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_ufInscricaoEstadual}" for="ufInscricaoEstadual" />
+                    <h:inputText id="ufInscricaoEstadual" value="#{clienteController.selected.ufInscricaoEstadual}" title="#{bundle.EditClienteTitle_ufInscricaoEstadual}" />
                 </h:panelGrid>
                 <h:commandLink action="#{clienteController.update}" value="#{bundle.EditClienteSaveLink}"/>
                 <br />

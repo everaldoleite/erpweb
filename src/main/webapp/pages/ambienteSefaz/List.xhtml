@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAmbienteSefazTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAmbienteSefazEmpty}" rendered="#{ambienteSefazController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ambienteSefazController.items.rowCount > 0}">
+                    <h:outputText value="#{ambienteSefazController.pagination.pageFirstItem + 1}..#{ambienteSefazController.pagination.pageLastItem + 1}/#{ambienteSefazController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ambienteSefazController.previous}" value="#{bundle.Previous} #{ambienteSefazController.pagination.pageSize}" rendered="#{ambienteSefazController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ambienteSefazController.next}" value="#{bundle.Next} #{ambienteSefazController.pagination.pageSize}" rendered="#{ambienteSefazController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{ambienteSefazController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAmbienteSefazTitle_idAmbienteSEFAZ}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAmbienteSEFAZ}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAmbienteSefazTitle_tipoAmbiente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoAmbiente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAmbienteSefazTitle_urlAutorizacaoNFE}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.urlAutorizacaoNFE}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAmbienteSefazTitle_urlRetornoAutorizacaoNFE}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.urlRetornoAutorizacaoNFE}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAmbienteSefazTitle_urlCancelamento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.urlCancelamento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAmbienteSefazTitle_urlInutilizacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.urlInutilizacao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAmbienteSefazTitle_urlConsultaCadastro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.urlConsultaCadastro}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAmbienteSefazTitle_urlRecepcaoEvento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.urlRecepcaoEvento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAmbienteSefazTitle_urlStatusServico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.urlStatusServico}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ambienteSefazController.prepareView}" value="#{bundle.ListAmbienteSefazViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ambienteSefazController.prepareEdit}" value="#{bundle.ListAmbienteSefazEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ambienteSefazController.destroy}" value="#{bundle.ListAmbienteSefazDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{ambienteSefazController.prepareCreate}" value="#{bundle.ListAmbienteSefazCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAmbienteSefazIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

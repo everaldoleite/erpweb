@@ -21,6 +21,10 @@
                     <h:outputText value="#{condicaoPagamentoController.selected.descricaoCondicaoPagamento}" title="#{bundle.ViewCondicaoPagamentoTitle_descricaoCondicaoPagamento}"/>
                     <h:outputText value="#{bundle.ViewCondicaoPagamentoLabel_taxaFinanceira}"/>
                     <h:outputText value="#{condicaoPagamentoController.selected.taxaFinanceira}" title="#{bundle.ViewCondicaoPagamentoTitle_taxaFinanceira}"/>
+                    <h:outputText value="#{bundle.ViewCondicaoPagamentoLabel_quantidadeParcelas}"/>
+                    <h:outputText value="#{condicaoPagamentoController.selected.quantidadeParcelas}" title="#{bundle.ViewCondicaoPagamentoTitle_quantidadeParcelas}"/>
+                    <h:outputText value="#{bundle.ViewCondicaoPagamentoLabel_quantidadeDiasParcelas}"/>
+                    <h:outputText value="#{condicaoPagamentoController.selected.quantidadeDiasParcelas}" title="#{bundle.ViewCondicaoPagamentoTitle_quantidadeDiasParcelas}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{condicaoPagamentoController.destroyAndView}" value="#{bundle.ViewCondicaoPagamentoDestroyLink}"/>

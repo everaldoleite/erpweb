@@ -3,105 +3,195 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="Cadastro de Cliente"></h:outputText>
+            <h:outputText value="#{bundle.CreateClienteTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form prependId="false">
-                <p:tabView class="col-md-10">
-                    <p:tab title="Dados Básicos" class="form-control">
-                        <div class="col-md-12">
-                            <p:outputLabel value="Nome ou Razão Social" for="razaoSocial" />
-                            <p:inputText id="razaoSocial" value="#{clienteController.selected.razaoSocial}" title="#{bundle.CreateClienteTitle_razaoSocial}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_razaoSocial}" class="form-control">
-                                <p:clientValidator />
-                                <f:validateLength minimum="3" />
-                            </p:inputText>
-                        </div>
-                        <div>&nbsp;</div>
-                        <div>
-                            <div class="col-md-4">
-                                <p:outputLabel for="tipoPessoa" value="Tipo Pessoa:" />
-                                <p:selectOneRadio id="tipoPessoa" value="#{clienteController.selected.tipoPessoa}"  layout="grid" columns="2" required="true">
-                                    <f:selectItem itemLabel="Pessoa Jurídica" itemValue="J" />
-                                    <f:selectItem itemLabel="Pessoa Física" itemValue="F"/>                            
-                                    <p:ajax listener="#{clienteController.atualizaTipoPessoa()}" update="cnpjEmpresa, cpfEmpresa, inscricaoEstadual, nomeFantasia" />
-                                </p:selectOneRadio>
-                            </div>                    
-                            <div class="col-md-4">                    
-                                <p:outputLabel value="C.N.P.J.:" for="cnpjEmpresa" />
-                                <p:inputMask mask="99.999.999/9999-99" id="cnpjEmpresa" value="#{clienteController.selected.cnpjEmpresa}" title="#{bundle.CreateClienteTitle_cnpjEmpresa}" class="form-control" disabled="#{clienteController.pessoaJuridica}" />
-                            </div>
-                            <div class="col-md-4">                    
-                                <p:outputLabel value="C.P.F.:" for="cpfEmpresa" />
-                                <p:inputMask mask="999.999.999-99" id="cpfEmpresa" value="#{clienteController.selected.cpfEmpresa}" title="#{bundle.CreateClienteTitle_cpfEmpresa}" class="form-control" disabled="#{clienteController.pessoaFisica}" />
-                            </div>
-                        </div>
-                        <div>&nbsp;</div>
-                        <div class="col-md-12">
-                            <p:outputLabel value="Nome Fantasia:" for="nomeFantasia" />
-                            <p:inputText id="nomeFantasia" value="#{clienteController.selected.nomeFantasia}" title="#{bundle.CreateClienteTitle_nomeFantasia}" class="form-control" disabled="#{clienteController.pessoaJuridica}" />
-                        </div>
-                        <div>&nbsp;</div>
-                        <div>
-                            <div class="col-md-6">
-                                <p:outputLabel for="telefone" value="Telefone:" />
-                                <p:inputMask id="telefone" value="#{clienteController.selected.telefone}" mask="(999) 9999-9999" class="form-control" />
-                            </div>
-                        </div>
-                        <div>
-                            <div class="col-md-6">
-                                <p:outputLabel value="Inscrição Estadual:" for="inscricaoEstadual" />
-                                <p:inputMask mask="999.999.999.999" id="inscricaoEstadual" value="#{clienteController.selected.inscricaoEstadual}" title="#{bundle.CreateClienteTitle_inscricaoEstadual}" class="form-control" disabled="#{clienteController.pessoaJuridica}" />
-                            </div>
-                        </div>
-                        <div>&nbsp;</div>      
-                        <div class="col-md-12">
-                            <p:outputLabel value="Nome Representante Legal" for="nomeRepresentanteLegal" />
-                            <p:inputText id="nomeRepresentanteLegal" value="#{clienteController.selected.nomeRepresentanteLegal}" title="#{bundle.CreateClienteTitle_nomeRepresentanteLegal}" class="form-control"/>
-                        </div>
-                        <div>&nbsp;</div>
-                        <div>
-                            <div class="col-md-6">                    
-                                <p:outputLabel value="C.P.F. Representante Legal" for="documentoRepresentanteCPF" />
-                                <p:inputText id="documentoRepresentanteCPF" value="#{clienteController.selected.documentoRepresentanteCPF}" title="#{bundle.CreateClienteTitle_documentoRepresentanteCPF}"  class="form-control" />
-                            </div>
-                            <div class="col-md-6">                    
-                                <p:outputLabel value="R.G. Representante Legal" for="documentoRepresentanteRG" />
-                                <p:inputText id="documentoRepresentanteRG" value="#{clienteController.selected.documentoRepresentanteRG}" title="#{bundle.CreateClienteTitle_documentoRepresentanteRG}" class="form-control" />
-                            </div>
-                        </div>
-                        <div>&nbsp;</div>
-                        <!-- Data de Inclusão -->
-                    </p:tab>
-                    <p:tab title="Dados Financeiros">
-
-                    </p:tab>
-                </p:tabView>
-<br/>
-                <div class="col-md-10">
-                    <div class="col-md-2">
-                        <p:commandButton action="#{clienteController.create}" value="Salvar" immediate="true"/>
-                    </div>
-                    <div class="col-md-2">
-                        <p:commandButton action="#{clienteController.prepareList}" value="Lista" immediate="true"/>
-                    </div>
-                    <div class="col-md-6">
-                        <p:commandButton onclick="PF('dialogContato').show()" action="#{clienteController.create}" value="Contatos" />
-                    </div>
-                </div>
-                <p:dialog header="Contatos" widgetVar="dialogContato" modal="true">
-                    
-                    
-                    
-                    
-                </p:dialog>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_idCliente}" for="idCliente" />
+                    <h:inputText id="idCliente" value="#{clienteController.selected.idCliente}" title="#{bundle.CreateClienteTitle_idCliente}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idCliente}"/>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_razaoSocial}" for="razaoSocial" />
+                    <h:inputText id="razaoSocial" value="#{clienteController.selected.razaoSocial}" title="#{bundle.CreateClienteTitle_razaoSocial}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_razaoSocial}"/>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_nomeFantasia}" for="nomeFantasia" />
+                    <h:inputText id="nomeFantasia" value="#{clienteController.selected.nomeFantasia}" title="#{bundle.CreateClienteTitle_nomeFantasia}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_ddd}" for="ddd" />
+                    <h:inputText id="ddd" value="#{clienteController.selected.ddd}" title="#{bundle.CreateClienteTitle_ddd}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_telefone}" for="telefone" />
+                    <h:inputText id="telefone" value="#{clienteController.selected.telefone}" title="#{bundle.CreateClienteTitle_telefone}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_tipoPessoa}" for="tipoPessoa" />
+                    <h:inputText id="tipoPessoa" value="#{clienteController.selected.tipoPessoa}" title="#{bundle.CreateClienteTitle_tipoPessoa}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_cnpjEmpresa}" for="cnpjEmpresa" />
+                    <h:inputText id="cnpjEmpresa" value="#{clienteController.selected.cnpjEmpresa}" title="#{bundle.CreateClienteTitle_cnpjEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_cpfEmpresa}" for="cpfEmpresa" />
+                    <h:inputText id="cpfEmpresa" value="#{clienteController.selected.cpfEmpresa}" title="#{bundle.CreateClienteTitle_cpfEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_inscricaoEstadual}" for="inscricaoEstadual" />
+                    <h:inputText id="inscricaoEstadual" value="#{clienteController.selected.inscricaoEstadual}" title="#{bundle.CreateClienteTitle_inscricaoEstadual}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_nomeRepresentanteLegal}" for="nomeRepresentanteLegal" />
+                    <h:inputText id="nomeRepresentanteLegal" value="#{clienteController.selected.nomeRepresentanteLegal}" title="#{bundle.CreateClienteTitle_nomeRepresentanteLegal}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_documentoRepresentanteCPF}" for="documentoRepresentanteCPF" />
+                    <h:inputText id="documentoRepresentanteCPF" value="#{clienteController.selected.documentoRepresentanteCPF}" title="#{bundle.CreateClienteTitle_documentoRepresentanteCPF}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_documentoRepresentanteRG}" for="documentoRepresentanteRG" />
+                    <h:inputText id="documentoRepresentanteRG" value="#{clienteController.selected.documentoRepresentanteRG}" title="#{bundle.CreateClienteTitle_documentoRepresentanteRG}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_dataInclusao}" for="dataInclusao" />
+                    <h:inputText id="dataInclusao" value="#{clienteController.selected.dataInclusao}" title="#{bundle.CreateClienteTitle_dataInclusao}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_nomeRazaoSocialEntrega}" for="nomeRazaoSocialEntrega" />
+                    <h:inputText id="nomeRazaoSocialEntrega" value="#{clienteController.selected.nomeRazaoSocialEntrega}" title="#{bundle.CreateClienteTitle_nomeRazaoSocialEntrega}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_inscricaoEstadualEntrega}" for="inscricaoEstadualEntrega" />
+                    <h:inputText id="inscricaoEstadualEntrega" value="#{clienteController.selected.inscricaoEstadualEntrega}" title="#{bundle.CreateClienteTitle_inscricaoEstadualEntrega}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_documentoEntregaCNPJ}" for="documentoEntregaCNPJ" />
+                    <h:inputText id="documentoEntregaCNPJ" value="#{clienteController.selected.documentoEntregaCNPJ}" title="#{bundle.CreateClienteTitle_documentoEntregaCNPJ}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_documentoEntregaCPF}" for="documentoEntregaCPF" />
+                    <h:inputText id="documentoEntregaCPF" value="#{clienteController.selected.documentoEntregaCPF}" title="#{bundle.CreateClienteTitle_documentoEntregaCPF}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_dataFollowUp}" for="dataFollowUp" />
+                    <h:inputText id="dataFollowUp" value="#{clienteController.selected.dataFollowUp}" title="#{bundle.CreateClienteTitle_dataFollowUp}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_capitalSocial}" for="capitalSocial" />
+                    <h:inputText id="capitalSocial" value="#{clienteController.selected.capitalSocial}" title="#{bundle.CreateClienteTitle_capitalSocial}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_numeroEmpregados}" for="numeroEmpregados" />
+                    <h:inputText id="numeroEmpregados" value="#{clienteController.selected.numeroEmpregados}" title="#{bundle.CreateClienteTitle_numeroEmpregados}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_homepage}" for="homepage" />
+                    <h:inputText id="homepage" value="#{clienteController.selected.homepage}" title="#{bundle.CreateClienteTitle_homepage}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_emailComercial}" for="emailComercial" />
+                    <h:inputText id="emailComercial" value="#{clienteController.selected.emailComercial}" title="#{bundle.CreateClienteTitle_emailComercial}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_emailAtendimento}" for="emailAtendimento" />
+                    <h:inputText id="emailAtendimento" value="#{clienteController.selected.emailAtendimento}" title="#{bundle.CreateClienteTitle_emailAtendimento}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_inscricaoMunicipal}" for="inscricaoMunicipal" />
+                    <h:inputText id="inscricaoMunicipal" value="#{clienteController.selected.inscricaoMunicipal}" title="#{bundle.CreateClienteTitle_inscricaoMunicipal}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_motivoBloqueio}" for="motivoBloqueio" />
+                    <h:inputText id="motivoBloqueio" value="#{clienteController.selected.motivoBloqueio}" title="#{bundle.CreateClienteTitle_motivoBloqueio}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_usuarioBloqueio}" for="usuarioBloqueio" />
+                    <h:inputText id="usuarioBloqueio" value="#{clienteController.selected.usuarioBloqueio}" title="#{bundle.CreateClienteTitle_usuarioBloqueio}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_dataBloqueio}" for="dataBloqueio" />
+                    <h:inputText id="dataBloqueio" value="#{clienteController.selected.dataBloqueio}" title="#{bundle.CreateClienteTitle_dataBloqueio}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_statusEmpresa}" for="statusEmpresa" />
+                    <h:inputText id="statusEmpresa" value="#{clienteController.selected.statusEmpresa}" title="#{bundle.CreateClienteTitle_statusEmpresa}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_revendedor}" for="revendedor" />
+                    <h:inputText id="revendedor" value="#{clienteController.selected.revendedor}" title="#{bundle.CreateClienteTitle_revendedor}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_limiteCredito}" for="limiteCredito" />
+                    <h:inputText id="limiteCredito" value="#{clienteController.selected.limiteCredito}" title="#{bundle.CreateClienteTitle_limiteCredito}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_dataAvaliacaoLimiteCredito}" for="dataAvaliacaoLimiteCredito" />
+                    <h:inputText id="dataAvaliacaoLimiteCredito" value="#{clienteController.selected.dataAvaliacaoLimiteCredito}" title="#{bundle.CreateClienteTitle_dataAvaliacaoLimiteCredito}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_responsavelLimiteCredito}" for="responsavelLimiteCredito" />
+                    <h:inputText id="responsavelLimiteCredito" value="#{clienteController.selected.responsavelLimiteCredito}" title="#{bundle.CreateClienteTitle_responsavelLimiteCredito}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_observacaoLimiteCredito}" for="observacaoLimiteCredito" />
+                    <h:inputText id="observacaoLimiteCredito" value="#{clienteController.selected.observacaoLimiteCredito}" title="#{bundle.CreateClienteTitle_observacaoLimiteCredito}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_tipoLimiteCredito}" for="tipoLimiteCredito" />
+                    <h:inputText id="tipoLimiteCredito" value="#{clienteController.selected.tipoLimiteCredito}" title="#{bundle.CreateClienteTitle_tipoLimiteCredito}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_geraBoleto}" for="geraBoleto" />
+                    <h:inputText id="geraBoleto" value="#{clienteController.selected.geraBoleto}" title="#{bundle.CreateClienteTitle_geraBoleto}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_tipoEstabelecimento}" for="tipoEstabelecimento" />
+                    <h:inputText id="tipoEstabelecimento" value="#{clienteController.selected.tipoEstabelecimento}" title="#{bundle.CreateClienteTitle_tipoEstabelecimento}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_emailNotaMunicipal}" for="emailNotaMunicipal" />
+                    <h:inputText id="emailNotaMunicipal" value="#{clienteController.selected.emailNotaMunicipal}" title="#{bundle.CreateClienteTitle_emailNotaMunicipal}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_emailNotaFederal}" for="emailNotaFederal" />
+                    <h:inputText id="emailNotaFederal" value="#{clienteController.selected.emailNotaFederal}" title="#{bundle.CreateClienteTitle_emailNotaFederal}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_pasta}" for="pasta" />
+                    <h:inputText id="pasta" value="#{clienteController.selected.pasta}" title="#{bundle.CreateClienteTitle_pasta}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_codigoInterno}" for="codigoInterno" />
+                    <h:inputText id="codigoInterno" value="#{clienteController.selected.codigoInterno}" title="#{bundle.CreateClienteTitle_codigoInterno}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_perfil}" for="perfil" />
+                    <h:inputText id="perfil" value="#{clienteController.selected.perfil}" title="#{bundle.CreateClienteTitle_perfil}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_atuacao}" for="atuacao" />
+                    <h:inputText id="atuacao" value="#{clienteController.selected.atuacao}" title="#{bundle.CreateClienteTitle_atuacao}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_fatorVenda}" for="fatorVenda" />
+                    <h:inputText id="fatorVenda" value="#{clienteController.selected.fatorVenda}" title="#{bundle.CreateClienteTitle_fatorVenda}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_optanteSimples}" for="optanteSimples" />
+                    <h:inputText id="optanteSimples" value="#{clienteController.selected.optanteSimples}" title="#{bundle.CreateClienteTitle_optanteSimples}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_inscricaoSuframa}" for="inscricaoSuframa" />
+                    <h:inputText id="inscricaoSuframa" value="#{clienteController.selected.inscricaoSuframa}" title="#{bundle.CreateClienteTitle_inscricaoSuframa}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_rankingScore}" for="rankingScore" />
+                    <h:inputText id="rankingScore" value="#{clienteController.selected.rankingScore}" title="#{bundle.CreateClienteTitle_rankingScore}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_opcaoSimplesDANFE}" for="opcaoSimplesDANFE" />
+                    <h:inputText id="opcaoSimplesDANFE" value="#{clienteController.selected.opcaoSimplesDANFE}" title="#{bundle.CreateClienteTitle_opcaoSimplesDANFE}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_indicadorProspect}" for="indicadorProspect" />
+                    <h:inputText id="indicadorProspect" value="#{clienteController.selected.indicadorProspect}" title="#{bundle.CreateClienteTitle_indicadorProspect}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_idBanco}" for="idBanco" />
+                    <h:selectOneMenu id="idBanco" value="#{clienteController.selected.idBanco}" title="#{bundle.CreateClienteTitle_idBanco}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idBanco}">
+                        <f:selectItems value="#{bancoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_idCarteira}" for="idCarteira" />
+                    <h:selectOneMenu id="idCarteira" value="#{clienteController.selected.idCarteira}" title="#{bundle.CreateClienteTitle_idCarteira}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idCarteira}">
+                        <f:selectItems value="#{carteiraController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_idCondicaoPagamento}" for="idCondicaoPagamento" />
+                    <h:selectOneMenu id="idCondicaoPagamento" value="#{clienteController.selected.idCondicaoPagamento}" title="#{bundle.CreateClienteTitle_idCondicaoPagamento}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idCondicaoPagamento}">
+                        <f:selectItems value="#{condicaoPagamentoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_idListaPrecosProdutos}" for="idListaPrecosProdutos" />
+                    <h:selectOneMenu id="idListaPrecosProdutos" value="#{clienteController.selected.idListaPrecosProdutos}" title="#{bundle.CreateClienteTitle_idListaPrecosProdutos}" >
+                        <f:selectItems value="#{listaPrecoProdutosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_idListaPrecosServicos}" for="idListaPrecosServicos" />
+                    <h:selectOneMenu id="idListaPrecosServicos" value="#{clienteController.selected.idListaPrecosServicos}" title="#{bundle.CreateClienteTitle_idListaPrecosServicos}" >
+                        <f:selectItems value="#{listaPrecoServicosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_idNaturezaOperacao}" for="idNaturezaOperacao" />
+                    <h:selectOneMenu id="idNaturezaOperacao" value="#{clienteController.selected.idNaturezaOperacao}" title="#{bundle.CreateClienteTitle_idNaturezaOperacao}" >
+                        <f:selectItems value="#{naturezaOperacaoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_idCodigoSegmento}" for="idCodigoSegmento" />
+                    <h:selectOneMenu id="idCodigoSegmento" value="#{clienteController.selected.idCodigoSegmento}" title="#{bundle.CreateClienteTitle_idCodigoSegmento}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idCodigoSegmento}">
+                        <f:selectItems value="#{segmentoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_idVendedorFidelidade}" for="idVendedorFidelidade" />
+                    <h:selectOneMenu id="idVendedorFidelidade" value="#{clienteController.selected.idVendedorFidelidade}" title="#{bundle.CreateClienteTitle_idVendedorFidelidade}" >
+                        <f:selectItems value="#{vendedorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_idTipoTransporte}" for="idTipoTransporte" />
+                    <h:selectOneMenu id="idTipoTransporte" value="#{clienteController.selected.idTipoTransporte}" title="#{bundle.CreateClienteTitle_idTipoTransporte}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idTipoTransporte}">
+                        <f:selectItems value="#{tipoTransporteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_idCodigoTransportador}" for="idCodigoTransportador" />
+                    <h:selectOneMenu id="idCodigoTransportador" value="#{clienteController.selected.idCodigoTransportador}" title="#{bundle.CreateClienteTitle_idCodigoTransportador}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idCodigoTransportador}">
+                        <f:selectItems value="#{transportadorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_cep}" for="cep" />
+                    <h:inputText id="cep" value="#{clienteController.selected.cep}" title="#{bundle.CreateClienteTitle_cep}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_tipoLogradouro}" for="tipoLogradouro" />
+                    <h:inputText id="tipoLogradouro" value="#{clienteController.selected.tipoLogradouro}" title="#{bundle.CreateClienteTitle_tipoLogradouro}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_logradouro}" for="logradouro" />
+                    <h:inputText id="logradouro" value="#{clienteController.selected.logradouro}" title="#{bundle.CreateClienteTitle_logradouro}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{clienteController.selected.numero}" title="#{bundle.CreateClienteTitle_numero}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_bairro}" for="bairro" />
+                    <h:inputText id="bairro" value="#{clienteController.selected.bairro}" title="#{bundle.CreateClienteTitle_bairro}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_cidade}" for="cidade" />
+                    <h:inputText id="cidade" value="#{clienteController.selected.cidade}" title="#{bundle.CreateClienteTitle_cidade}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_uf}" for="uf" />
+                    <h:inputText id="uf" value="#{clienteController.selected.uf}" title="#{bundle.CreateClienteTitle_uf}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_status}" for="status" />
+                    <h:inputText id="status" value="#{clienteController.selected.status}" title="#{bundle.CreateClienteTitle_status}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_complemento}" for="complemento" />
+                    <h:inputText id="complemento" value="#{clienteController.selected.complemento}" title="#{bundle.CreateClienteTitle_complemento}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_codigoIBGE}" for="codigoIBGE" />
+                    <h:inputText id="codigoIBGE" value="#{clienteController.selected.codigoIBGE}" title="#{bundle.CreateClienteTitle_codigoIBGE}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_enderecoCobranca}" for="enderecoCobranca" />
+                    <h:inputText id="enderecoCobranca" value="#{clienteController.selected.enderecoCobranca}" title="#{bundle.CreateClienteTitle_enderecoCobranca}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_ufInscricaoEstadual}" for="ufInscricaoEstadual" />
+                    <h:inputText id="ufInscricaoEstadual" value="#{clienteController.selected.ufInscricaoEstadual}" title="#{bundle.CreateClienteTitle_ufInscricaoEstadual}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{clienteController.create}" value="#{bundle.CreateClienteSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{clienteController.prepareList}" value="#{bundle.CreateClienteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateClienteIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>
