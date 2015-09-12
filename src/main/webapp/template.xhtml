@@ -27,7 +27,7 @@
         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputStylesheet library="css" name="jquery.smartmenus.bootstrap.css" />
-        
+
         <h:outputScript library="js" name="bootstrap.min.js" />
 
         <h:outputScript library="primefaces" name="jquery/jquery-1.11.3.min.js" target="head" />
@@ -35,7 +35,7 @@
 
         <h:outputScript library="js" name="jquery.smartmenus.min.js" target="head" />
         <h:outputScript library="js" name="jquery.smartmenus.bootstrap.min.js" target="head" />
-        
+
         <h:outputScript library="js" name="util.js" target="head" />
 
         <style type="text/css">.ui-growl{top:10%;}</style>
@@ -82,8 +82,34 @@
                                 <li class="divider"></li>
                                 <li class="dropdown-header">Nav header</li>
                                 <li><a href="#">Separated link</a></li-->
-                                <li><a href="/erpweb/faces/pages/produto/erp_create_produto.xhtml">Produtos <span class="caret"></span></a>
+                                <li><a href="#">Colaboradores <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
+                                        <li><a href="/erpweb/faces/pages/usuarios/erp_create_usuarios.xhtml">Usuários</a></li>
+                                        <li><a href="/erpweb/faces/pages/representantes/erp_list_representantes.xhtml">Representantes</a></li>
+                                        <!--li><a href="#">A long sub menu <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Action</a></li>
+                                                <li class="disabled"><a class="disabled" href="#">Disabled item</a></li>
+                                                <li><a href="#">One more link</a></li>
+                                                <li><a href="#">Menu item 1</a></li>
+                                                <li><a href="#">Menu item 2</a></li>
+                                                <li><a href="#">Menu item 3</a></li>
+                                                <li><a href="#">Menu item 4</a></li>
+                                                <li><a href="#">Menu item 5</a></li>
+                                                <li><a href="#">Menu item 6</a></li>
+                                                <li><a href="#">Menu item 7</a></li>
+                                            </ul>
+                                        </li-->
+                                        <!--li><a href="#">Another link</a></li>
+                                        <li><a href="#">One more link</a></li-->
+                                    </ul>
+                                </li>
+                                
+                                <li><a href="#">Comercialização <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/erpweb/faces/pages/produto/erp_list_produto.xhtml">Produtos</a></li>
+                                        <li><a href="/erpweb/faces/pages/fabricante/erp_list_fabricante.xhtml">Fabricante</a></li>
                                         <li><a href="/erpweb/faces/pages/categoria/erp_list_categoria.xhtml">Categorias</a></li>
                                         <li><a href="/erpweb/faces/pages/grupo/erp_list_grupo.xhtml">Grupos</a></li>
                                         <li><a href="/erpweb/faces/pages/subGrupo/erp_list_subGrupo.xhtml">Sub Grupos</a></li>
@@ -107,9 +133,9 @@
                                         <li><a href="#">One more link</a></li-->
                                     </ul>
                                 </li>
-                                <li><a href="/erpweb/faces/pages/servico/erp_list_servico.xhtml">Serviços <span class="caret"></span></a>
+                                <li><a href="#">Serviços <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/erpweb/faces/pages/servico/erp_list_servico.xhtml">Serviços</a></li>
+                                        <li><a href="/erpweb/faces/pages/servico/erp_list_servico.xhtml">Tipos de Serviços</a></li>
                                         <!--li><a href="/erpweb/faces/pages/subGrupo/erp_list_subGrupo.xhtml">Sub Grupos</a></li-->
                                         <!--li><a href="#">A long sub menu <span class="caret"></span></a>
                                             <ul class="dropdown-menu">
@@ -130,10 +156,12 @@
                                         <li><a href="#">One more link</a></li-->
                                     </ul>
                                 </li>
-                                <li><a href="/erpweb/faces/pages/produto/erp_create_produto.xhtml">Vendas <span class="caret"></span></a>
+                                <li><a href="#">Vendas <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="/erpweb/faces/pages/condicaoPagamento/erp_list_condicaoPagamento.xhtml">Condição de Pagamento</a></li>
                                         <li><a href="/erpweb/faces/pages/naturezaOperacao/erp_list_naturezaOperacao.xhtml">Natureza de Operação</a></li>
+                                        <li><a href="/erpweb/faces/pages/tipoPedidoVenda/erp_list_tipoPedidoVenda.xhtml">Tipo Pedido Venda</a></li>
+                                        <li><a href="/erpweb/faces/pages/statusPedido/erp_list_statusPedido.xhtml">Status Pedido Venda</a></li>
                                         <!--li><a href="#">A long sub menu <span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="#">Action</a></li>
@@ -153,38 +181,65 @@
                                         <li><a href="#">One more link</a></li-->
                                     </ul>
                                 </li>
-                                <li><a href="/erpweb/faces/pages/titulos/erp_create_titulo.xhtml">Titulos</a></li>
+                                <li><a href="#">Cobrança <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/erpweb/faces/pages/titulos/erp_list_titulos.xhtml">Títulos</a></li>
+                                        <li><a href="/erpweb/faces/pages/condicaoPagamento/erp_list_tipoCobranca.xhtml">Tipo de Cobrança</a></li>
+                                        <!--li><a href="#">A long sub menu <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Action</a></li>
+                                                <li class="disabled"><a class="disabled" href="#">Disabled item</a></li>
+                                                <li><a href="#">One more link</a></li>
+                                                <li><a href="#">Menu item 1</a></li>
+                                                <li><a href="#">Menu item 2</a></li>
+                                                <li><a href="#">Menu item 3</a></li>
+                                                <li><a href="#">Menu item 4</a></li>
+                                                <li><a href="#">Menu item 5</a></li>
+                                                <li><a href="#">Menu item 6</a></li>
+                                                <li><a href="#">Menu item 7</a></li>
+                                            </ul>
+                                        </li-->
+                                        <!--li><a href="#">Another link</a></li>
+                                        <li><a href="#">One more link</a></li-->
+                                    </ul>
+                                </li>                                
+                                <li><a href="/erpweb/faces/pages/titulos/erp_list_titulos.xhtml">Segurança <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/erpweb/faces/pages/usuarios/erp_create_usuarios.xhtml">Usuários</a></li>
+                                        <li><a href="/erpweb/faces/pages/condicaoPagamento/erp_list_tipoCobranca.xhtml">Permissões</a></li>
+                                        <!--li><a href="#">A long sub menu <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Action</a></li>
+                                                <li class="disabled"><a class="disabled" href="#">Disabled item</a></li>
+                                                <li><a href="#">One more link</a></li>
+                                                <li><a href="#">Menu item 1</a></li>
+                                                <li><a href="#">Menu item 2</a></li>
+                                                <li><a href="#">Menu item 3</a></li>
+                                                <li><a href="#">Menu item 4</a></li>
+                                                <li><a href="#">Menu item 5</a></li>
+                                                <li><a href="#">Menu item 6</a></li>
+                                                <li><a href="#">Menu item 7</a></li>
+                                            </ul>
+                                        </li-->
+                                        <!--li><a href="#">Another link</a></li>
+                                        <li><a href="#">One more link</a></li-->
+                                    </ul>
+                                </li>                            
                             </ul>
                         </li>
-                        
-                        
+                        <li><a href="#">Vendas <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/erpweb/faces/pages/pedidoVenda/erp_create_pedidoVenda.xhtml">Pedido de Venda</a></li>
+                            </ul>
+                        </li>    
                     </ul>
 
                     <!-- Right nav -->
                     <ul class="nav navbar-nav navbar-right">
-                        <!--li><a href="bootstrap-navbar.html">Default</a></li>
-                        <li><a href="bootstrap-navbar-static-top.html">Static top</a></li>
-                        <li class="active"><a href="bootstrap-navbar-fixed-top.html">Fixed top</a></li-->
-                        <li><a href="#">Pendências</a></li>
-                        <li><a href="#">Login <span class="caret"></span></a>
-                            <!--ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li class="dropdown-header">Nav header</li>
-                                <li><a href="#">A sub menu <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li class="disabled"><a class="disabled" href="#">Disabled item</a></li>
-                                        <li><a href="#">One more link</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">A separated link</a></li>
-                            </ul-->
-                        </li>
+                        <li><a href="#">Usuário: <strong><h:outputText value="#{loginBean.uname} "/></strong></a></li>                        
+                        <li><a href="/erpweb/faces/pages/login/logout.xhtml"><h:outputText style="text-decoration: underline;" value="(Sair)" /></a></li>
                     </ul>
 
                 </div><!--/.nav-collapse -->

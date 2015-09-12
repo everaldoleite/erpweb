@@ -232,8 +232,8 @@ public class CondicaoPagamentoController implements Serializable {
         }
 
     }
-
+    
     public List<CondicaoPagamento> getData(){
         return ejbFacade.findAll();
-}
+    }
 }

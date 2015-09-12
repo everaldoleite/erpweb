@@ -12,7 +12,7 @@
         </ui:define>
         <ui:define name="body">
             <div style="height: 600px;">
-                <h:form prependId="false">
+                <h:form prependId="false" enctype="multipart/form-data">
                     <p:growl id="msg" globalOnly="false" autoUpdate="true"/>
                     <p:tabView class="col-md-10">
                         <p:tab title="Dados Básicos" id="tabbasica" >
@@ -39,7 +39,7 @@
                                     <p:outputLabel value="Fabricante: " for="idFabricante" />
                                     <h:selectOneMenu id="idFabricante" value="#{produtoController.selected.idFabricante}" class="form-control">
                                         <f:selectItem itemLabel="-- Selecione --" itemValue="" />
-                                        <f:selectItems value="#{fabricanteController.data}" var="fab" itemLabel="#{fab.descricaoFabricante}" itemValue="#{fab.idFabricante}"/>
+                                        <f:selectItems value="#{fabricanteController.data}" var="fab" itemLabel="#{fab.descricaoFabricante}" itemValue="#{fab}"/>
                                     </h:selectOneMenu>
                                 </div>                            
                                 <div class="col-md-6">
@@ -51,7 +51,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <p:outputLabel value="Categoria: " for="idCategoria" />
-                                    <h:selectOneMenu id="idCategoria" value="#{produtoController.selected.idCategoria}" class="form-control">
+                                    <h:selectOneMenu id="idCategoria" value="#{produtoController.selected.idCategoria}" required="true" class="form-control">
                                         <f:selectItem itemLabel="-- Selecione --" itemValue="" />
                                         <f:selectItems value="#{categoriaController.data}" var="cat" itemLabel="#{cat.descricaoCategoria}" itemValue="#{cat}"/>
                                         <p:ajax listener="#{produtoController.atualizaGrupos}" update="idGrupo idSubGrupo" />
@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <p:outputLabel value="Grupo: " for="idGrupo" />
-                                    <h:selectOneMenu id="idGrupo" value="#{produtoController.selected.idGrupo}" class="form-control">
+                                    <h:selectOneMenu id="idGrupo" value="#{produtoController.selected.idGrupo}" class="form-control" required="true">
                                         <f:selectItem itemLabel="-- Selecione --" itemValue="" />
                                         <f:selectItems value="#{produtoController.listaGrupo}" var="gru" itemLabel="#{gru.descricaoGrupo}" itemValue="#{gru}"/>
                                         <p:ajax listener="#{produtoController.atualizaSubGrupos}" update="idSubGrupo" />
@@ -67,9 +67,10 @@
                                 </div>
                                 <div class="col-md-4">
                                     <p:outputLabel value="Sub-Grupo: " for="idSubGrupo" />
-                                    <h:selectOneMenu id="idSubGrupo" value="#{produtoController.selected.idSubGrupo}" class="form-control">
+                                    <h:selectOneMenu id="idSubGrupo" value="#{produtoController.selected.idSubGrupo}" class="form-control" required="true">
                                         <f:selectItem itemLabel="-- Selecione --" itemValue="" />
                                         <f:selectItems value="#{produtoController.listaSubGrupo}" var="sub" itemLabel="#{sub.descricaoSubGrupo}" itemValue="#{sub}"/>
+                                        <p:ajax />
                                     </h:selectOneMenu>
                                 </div>
                             </div>
@@ -88,24 +89,24 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <p:outputLabel value="Dimensão:" for="dimensao" />
-                                    <p:inputText id="dimensao" autocomplete="off"  maxlength="40" required="true" value="#{produtoController.selected.dimensao}" class="form-control" />
+                                    <p:inputText id="dimensao" autocomplete="off"  maxlength="40" value="#{produtoController.selected.dimensao}" class="form-control" />
                                     <p:watermark for="dimensao" value="Ex.: 25(A) x 30(C) x 15(P)" />                                                                        
                                 </div>
                                 <div class="col-md-4">
-                                    <p:outputLabel value="Peso Líquido:" for="pesoLiquido" />
-                                    <p:inputText id="pesoLiquido" autocomplete="off" value="#{produtoController.selected.pesoLiquido}" onkeypress="return(MascaraPeso(this, moeda))" class="form-control" />
+                                    <p:outputLabel value="Peso Líquido: (Kg)" for="pesoLiquido" />
+                                    <p:inputText id="pesoLiquido" autocomplete="off" required="true" value="#{produtoController.selected.pesoLiquido}" onkeypress="return(MascaraPeso(this, moeda))" class="form-control" />
                                     <p:watermark for="pesoLiquido" value="0,900 kg" />
                                 </div>
                                 <div class="col-md-4">
-                                    <p:outputLabel value="Peso Bruto:" for="pesoBruto" />
-                                    <p:inputText id="pesoBruto" autocomplete="off" maxlength="20" value="#{produtoController.selected.pesoBruto}" onkeyup="return(MascaraPeso(this, moeda))" class="form-control" />
+                                    <p:outputLabel value="Peso Bruto (Kg):" for="pesoBruto" />
+                                    <p:inputText id="pesoBruto" autocomplete="off" required="true" maxlength="20" value="#{produtoController.selected.pesoBruto}" onkeyup="return(MascaraPeso(this, moeda))" class="form-control" />
                                     <p:watermark for="pesoBruto" value="Ex.: 1,000" />                                                                        
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <p:outputLabel value="Rendimento:" for="rendimento" />
-                                    <p:inputText id="rendimento" autocomplete="off"  maxlength="45" required="true" value="#{produtoController.selected.rendimento}" class="form-control" />
+                                    <p:inputText id="rendimento" autocomplete="off"  maxlength="45" value="#{produtoController.selected.rendimento}" class="form-control" />
                                     <p:watermark for="rendimento" value="Ex.: 2000 fls" />                                                                        
                                 </div>
                             </div>                            
@@ -130,18 +131,18 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <p:outputLabel value="Preço de Custo:" for="precoCusto" />&nbsp;
-                                    <p:inputText id="precoCusto" autocomplete="off" value="#{produtoController.selected.precoCusto}" style="text-align: right;" onkeypress="return(MascaraMoeda(this, '.', ',', event))" >
+                                    <p:inputText id="precoCusto" required="true" autocomplete="off" value="#{produtoController.selected.precoCusto}" style="text-align: right;" onkeypress="return(MascaraMoeda(this, '.', ',', event))" >
                                         <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
                                     </p:inputText>
-                                    <p:watermark for="precoCusto" value="R$ 0,00" />                                     
                                 </div>
                             </div>
                         </p:tab>
                         <p:tab title="Imagem do Produto">
                             <div class="row">
                                 <div class="col-md-12" style="height: 200px;">
-                                    <p:outputLabel value="Imagem do Produto:" for="imagem" />&nbsp;
-                                    <p:fileUpload id="imagem" fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="false" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                                    <p:fileUpload id="imagem" fileUploadListener="#{produtoController.handleFileUpload}" mode="advanced" 
+                                                  dragDropSupport="false" sizeLimit="50000" fileLimit="1" 
+                                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" uploadLabel="Enviar" cancelLabel="Cancelar" label="Escolher"/>
                                 </div>
                             </div>
                         </p:tab>
@@ -151,9 +152,8 @@
                                     <h:outputLabel value="Regime Tributário:" for="idRegimeTributario" />&nbsp;*
                                     <h:selectOneMenu id="idRegimeTributario" value="#{produtoController.selected.idRegimeTributario}" class="form-control" required="true" requiredMessage="Regime Tributário é exigido">
                                         <f:selectItem itemLabel="-- Selecione --" itemValue="" />
-                                        <f:selectItem itemLabel="Tributação Normal" itemValue="1" />
-                                        <f:selectItem itemLabel="Simples Nacional" itemValue="2" />
-                                        <p:ajax listener="#{produtoController.lista}" update="tipoTributacao"/>
+                                        <f:selectItems value="#{regimeTributarioController.data}" var="regime" itemLabel="#{regime.descricaoRegimeTributario}" itemValue="#{regime}" />
+                                        <p:ajax listener="#{produtoController.lista}" update="tipoTributacao" />
                                     </h:selectOneMenu>
                                 </div>                
                             </div>
@@ -162,7 +162,7 @@
                                     <p:outputLabel value="Situação Tributária: " for="tipoTributacao" />
                                     <h:selectOneMenu id="tipoTributacao" required="true" requiredMessage="Tipo de Tributação é exigido" value="#{produtoController.selected.idtipoTributacao}" class="form-control">
                                         <f:selectItem itemLabel="-- Selecione --" itemValue="" />
-                                        <f:selectItems value="#{produtoController.tipoTributacao}" var="trib" itemLabel="#{trib.codigoTipoTributacao} - #{trib.descricaoTipoTributacao}" itemValue="#{trib}" />
+                                        <f:selectItems value="#{produtoController.listaTipoTributacao}" var="trib" itemLabel="#{trib.codigoTipoTributacao} - #{trib.descricaoTipoTributacao}" itemValue="#{trib}" />
                                     </h:selectOneMenu>
                                 </div>                            
                             </div>
@@ -177,8 +177,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <p:outputLabel value="Código NCM: " for="idNcm" />
-                                    <p:inputText id="idNcm" autocomplete="off" value="#{produtoController.selected.idNcm}" />
+                                    <p:outputLabel value="Código NCM: " for="ncm" />
+                                    <p:inputText id="ncm" autocomplete="off" value="#{produtoController.selected.ncm}" />
                                 </div>
                             </div>
                             <div class="row">
@@ -228,21 +228,27 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <p:outputLabel value="Aliquota IPI: (%)" for="aliquotaIPI" />
                                     <p:spinner min="0" max="50" stepFactor="0.25" id="aliquotaIPI" value="#{produtoController.selected.aliquotaIPI}" required="true" requiredMessage="Aliquota ICMS ST é exigida" >
                                         <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
                                     </p:spinner>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <p:outputLabel value="Base Cálculo IPI: (%)" for="baseCalculoIPI" />
                                     <p:spinner min="0" max="50" stepFactor="0.25" id="baseCalculoIPI" value="#{produtoController.selected.baseCalculoIPI}" required="true" requiredMessage="Aliquota ICMS ST é exigida" >
                                         <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
                                     </p:spinner>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <p:outputLabel value="Isenção IPI: (%)" for="isencaoIPI" />
                                     <p:spinner min="0" max="50" stepFactor="0.25" id="isencaoIPI" value="#{produtoController.selected.isencaoIPI}" required="true" requiredMessage="Aliquota ICMS ST é exigida" >
+                                        <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
+                                    </p:spinner>
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Outras IPI: (%)" for="outrasIPI" />
+                                    <p:spinner min="0" max="50" stepFactor="0.25" id="outrasIPI" value="#{produtoController.selected.outrasIPI}" required="true" requiredMessage="Campo outras é exigido" >
                                         <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
                                     </p:spinner>
                                 </div>
@@ -267,21 +273,21 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <p:outputLabel value="Participa Estoque Físico:" for="indicadorEstoque" />
-                                    <p:selectBooleanCheckbox id="indicadorEstoque" value="#{produtoController.selected.indicadorEstoque}" />
+                                <div class="col-md-4">
+                                    <p:selectBooleanCheckbox id="indicadorEstoque" value="#{produtoController.selected.indicadorEstoque}" />&nbsp;
+                                    <p:outputLabel value="Participa Estoque Físico" for="indicadorEstoque" />
                                 </div>
                                 <div class="col-md-4">
-                                    <p:outputLabel value="Data da Ultima Venda:" for="dataUltimaVenda" />
-                                    <p:calendar id="dataUltimaVenda" value="#{produtoController.selected.dataUltimaVenda}" class="form-control" />
+                                    <p:selectBooleanCheckbox id="pedidoAutomatico" value="#{produtoController.selected.pedidoAutomatico}" />&nbsp;
+                                    <p:outputLabel value="Pedido Automático" for="pedidoAutomatico" />
                                 </div>
                             </div>                            
                             <div class="row">
                                 <div class="col-md-4">
-                                    <p:outputLabel value="Pedido Automático:" for="pedidoAutomatico" />
-                                    <p:selectBooleanCheckbox id="pedidoAutomatico" value="#{produtoController.selected.pedidoAutomatico}" />
+                                    <p:outputLabel value="Data da Ultima Venda:" for="dataUltimaVenda" />
+                                    <p:calendar id="dataUltimaVenda" value="#{produtoController.selected.dataUltimaVenda}" />
                                 </div>
-                            </div>                            
+                            </div>
                         </p:tab>
                     </p:tabView>
                     <div class="col-md-12" style="padding: 10px;">

@@ -6,7 +6,9 @@
 package br.com.erpweb.persistence.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +18,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Contato.findAll", query = "SELECT c FROM Contato c"),
-    @NamedQuery(name = "Contato.findByIdCONTATO", query = "SELECT c FROM Contato c WHERE c.idCONTATO = :idCONTATO"),
+    @NamedQuery(name = "Contato.findByIdCONTATO", query = "SELECT c FROM Contato c WHERE c.idContato = :idContato"),
     @NamedQuery(name = "Contato.findByCodigoCliente", query = "SELECT c FROM Contato c WHERE c.codigoCliente = :codigoCliente"),
     @NamedQuery(name = "Contato.findByEmail", query = "SELECT c FROM Contato c WHERE c.email = :email"),
     @NamedQuery(name = "Contato.findByCelular", query = "SELECT c FROM Contato c WHERE c.celular = :celular"),
@@ -46,17 +51,19 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Contato.findByArea", query = "SELECT c FROM Contato c WHERE c.area = :area"),
     @NamedQuery(name = "Contato.findByOpcaoRecepcaoEmail", query = "SELECT c FROM Contato c WHERE c.opcaoRecepcaoEmail = :opcaoRecepcaoEmail")})
 public class Contato implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idContato")
+    private Collection<PedidoVenda> pedidoVendaCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idCONTATO")
-    private Integer idCONTATO;
+    @Column(name = "idContato")
+    private Integer idContato;
     @Basic(optional = false)
     @NotNull
     @Column(name = "codigoCliente")
     private int codigoCliente;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 45)
     @Column(name = "email")
     private String email;
@@ -106,21 +113,13 @@ public class Contato implements Serializable {
     public Contato() {
     }
 
-    public Contato(Integer idCONTATO) {
-        this.idCONTATO = idCONTATO;
+    public Contato(Integer idContato) {
+        this.idContato = idContato;
     }
 
-    public Contato(Integer idCONTATO, int codigoCliente) {
-        this.idCONTATO = idCONTATO;
+    public Contato(Integer idContato, int codigoCliente) {
+        this.idContato = idContato;
         this.codigoCliente = codigoCliente;
-    }
-
-    public Integer getIdCONTATO() {
-        return idCONTATO;
-    }
-
-    public void setIdCONTATO(Integer idCONTATO) {
-        this.idCONTATO = idCONTATO;
     }
 
     public int getCodigoCliente() {
@@ -262,7 +261,7 @@ public class Contato implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idCONTATO != null ? idCONTATO.hashCode() : 0);
+        hash += (idContato != null ? idContato.hashCode() : 0);
         return hash;
     }
 
@@ -273,7 +272,7 @@ public class Contato implements Serializable {
             return false;
         }
         Contato other = (Contato) object;
-        if ((this.idCONTATO == null && other.idCONTATO != null) || (this.idCONTATO != null && !this.idCONTATO.equals(other.idCONTATO))) {
+        if ((this.idContato == null && other.idContato != null) || (this.idContato != null && !this.idContato.equals(other.idContato))) {
             return false;
         }
         return true;
@@ -281,7 +280,30 @@ public class Contato implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.erpweb.persistence.entities.Contato[ idCONTATO=" + idCONTATO + " ]";
+        return "br.com.erpweb.persistence.entities.Contato[ idCONTATO=" + idContato + " ]";
+    }
+
+    @XmlTransient
+    public Collection<PedidoVenda> getPedidoVendaCollection() {
+        return pedidoVendaCollection;
+    }
+
+    public void setPedidoVendaCollection(Collection<PedidoVenda> pedidoVendaCollection) {
+        this.pedidoVendaCollection = pedidoVendaCollection;
+    }
+
+    /**
+     * @return the idContato
+     */
+    public Integer getIdContato() {
+        return idContato;
+    }
+
+    /**
+     * @param idContato the idContato to set
+     */
+    public void setIdContato(Integer idContato) {
+        this.idContato = idContato;
     }
     
 }

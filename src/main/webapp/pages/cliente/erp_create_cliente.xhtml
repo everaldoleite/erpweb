@@ -224,7 +224,6 @@
                                         <f:selectItems value="#{carteiraController.data}" var="carteira" itemLabel="#{carteira.descricaoCarteira}" itemValue="#{carteira}"/>
                                     </h:selectOneMenu>
                                 </div>
-                                
                             </div>    
                             <div class="row">
                                 <div class="col-md-12">
@@ -280,7 +279,23 @@
                                         <f:selectItems value="#{naturezaOperacaoController.data}" var="natureza" itemLabel="#{natureza.descricaoInterna}" itemValue="#{natureza}" />
                                     </h:selectOneMenu>
                                 </div>
-                            </div>                            
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Lista de Preços - Produtos:" for="idListaPrecosProdutos" />
+                                    <h:selectOneMenu id="idListaPrecosProdutos" value="#{clienteController.selected.idListaPrecosProdutos}" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                                                                
+                                        <f:selectItems value="#{listaPrecoProdutosController.data}" var="listaProdutos" itemLabel="#{listaProdutos.descricaoLista}" itemValue="#{listaProdutos}" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Lista de Preços - Serviços:" for="idListaPrecosServicos" />
+                                    <h:selectOneMenu id="idListaPrecosServicos" value="#{clienteController.selected.idListaPrecosServicos}" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                                                                
+                                        <f:selectItems value="#{listaPrecoServicosController.data}" var="listaServicos" itemLabel="#{listaServicos.descricaoLista}" itemValue="#{listaServicos}" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
                         </p:tab>
                         <p:tab title="Representante">
                             <div class="row">

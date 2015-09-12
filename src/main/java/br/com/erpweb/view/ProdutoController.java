@@ -8,25 +8,34 @@ import br.com.erpweb.persistence.entities.TipoTributacao;
 import br.com.erpweb.view.util.JsfUtil;
 import br.com.erpweb.view.util.PaginationHelper;
 import br.com.erpweb.session.bean.ProdutoFacade;
+import java.io.ByteArrayInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.PhaseId;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.apache.commons.io.IOUtils;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+import org.primefaces.model.UploadedFile;
 
 @Named("produtoController")
 @SessionScoped
@@ -39,9 +48,12 @@ public class ProdutoController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
     
-    private List<TipoTributacao> tipoTributacao = null;
+    private List<TipoTributacao> listaTipoTributacao = null;
     private List<Grupo> listaGrupo = null;
     private List<SubGrupo> listaSubGrupo = null;
+    private List<Produto> listaProduto = null;
+    
+    private String produto;
 
     @PersistenceContext
     private EntityManager em;
@@ -81,7 +93,7 @@ public class ProdutoController implements Serializable {
 
     public String prepareList() {
         recreateModel();
-        return "List";
+        return "erp_list_produto";
     }
 
     public String prepareView() {
@@ -93,13 +105,13 @@ public class ProdutoController implements Serializable {
     public String prepareCreate() {
         current = new Produto();
         selectedItemIndex = -1;
-        return "Create";
+        return "erp_create_produto";
     }
 
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProdutoCreated"));
+            JsfUtil.addSuccessMessage("Produto Cadastrado com sucesso.");
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -110,14 +122,14 @@ public class ProdutoController implements Serializable {
     public String prepareEdit() {
         current = (Produto) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        return "erp_edit_produto";
     }
 
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProdutoUpdated"));
-            return "View";
+            JsfUtil.addSuccessMessage("Produto Atualizado com sucesso.");
+            return "erp_list_produto";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -130,7 +142,7 @@ public class ProdutoController implements Serializable {
         performDestroy();
         recreatePagination();
         recreateModel();
-        return "List";
+        return "erp_list_produto";
     }
 
     public String destroyAndView() {
@@ -142,7 +154,7 @@ public class ProdutoController implements Serializable {
         } else {
             // all items were removed - go back to list
             recreateModel();
-            return "List";
+            return "erp_list_produto";
         }
     }
 
@@ -188,13 +200,13 @@ public class ProdutoController implements Serializable {
     public String next() {
         getPagination().nextPage();
         recreateModel();
-        return "List";
+        return "erp_list_produto";
     }
 
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return "List";
+        return "erp_list_produto";
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
@@ -207,20 +219,6 @@ public class ProdutoController implements Serializable {
 
     public Produto getProduto(java.lang.Integer id) {
         return ejbFacade.find(id);
-    }
-
-    /**
-     * @return the tipoTributacao
-     */
-    public List<TipoTributacao> getTipoTributacao() {
-        return tipoTributacao;
-    }
-
-    /**
-     * @param tipoTributacao the tipoTributacao to set
-     */
-    public void setTipoTributacao(List<TipoTributacao> tipoTributacao) {
-        this.tipoTributacao = tipoTributacao;
     }
 
     /**
@@ -249,6 +247,48 @@ public class ProdutoController implements Serializable {
      */
     public void setListaSubGrupo(List<SubGrupo> listaSubGrupo) {
         this.listaSubGrupo = listaSubGrupo;
+    }
+
+    /**
+     * @return the listaTipoTributacao
+     */
+    public List<TipoTributacao> getListaTipoTributacao() {
+        return listaTipoTributacao;
+    }
+
+    /**
+     * @param listaTipoTributacao the listaTipoTributacao to set
+     */
+    public void setListaTipoTributacao(List<TipoTributacao> listaTipoTributacao) {
+        this.listaTipoTributacao = listaTipoTributacao;
+    }
+
+    /**
+     * @return the listaProduto
+     */
+    public List<Produto> getListaProduto() {
+        return listaProduto;
+    }
+
+    /**
+     * @param listaProduto the listaProduto to set
+     */
+    public void setListaProduto(List<Produto> listaProduto) {
+        this.listaProduto = listaProduto;
+    }
+
+    /**
+     * @return the produto
+     */
+    public String getProduto() {
+        return produto;
+    }
+
+    /**
+     * @param produto the produto to set
+     */
+    public void setProduto(String produto) {
+        this.produto = produto;
     }
 
     @FacesConverter(forClass = Produto.class)
@@ -292,14 +332,13 @@ public class ProdutoController implements Serializable {
     }
 
     public void lista(){
+        
+        RegimeTributario idRegimeTributario = current.getIdRegimeTributario();
+        
+        Collection<TipoTributacao> tipoTributacao = idRegimeTributario.getTipoTributacaoCollection();
 
-        RegimeTributario regimeTributario = (RegimeTributario) em.createNamedQuery("RegimeTributario.findByIdRegimeTributario")
-                .setParameter("idRegimeTributario", Integer.parseInt(current.getIdRegimeTributario())).getSingleResult();
-        
-        List<TipoTributacao> lista = new ArrayList();
-        lista.addAll(regimeTributario.getTipoTributacaoCollection());
-        
-        setTipoTributacao(lista);
+        listaTipoTributacao = new ArrayList<>();
+        listaTipoTributacao.addAll(tipoTributacao);
         
     }
    
@@ -324,6 +363,41 @@ public class ProdutoController implements Serializable {
         
         
     }
-    
+
+      public void handleFileUpload(FileUploadEvent event) {
+
+        UploadedFile file = event.getFile();
+
+        byte[] dados = null;
+
+        try {
+            dados = IOUtils.toByteArray(file.getInputstream());
+        } catch (IOException ex) {
+
+        }
+        current.setImagem(dados);
+    }
+
+    public StreamedContent getImagem() throws FileNotFoundException {
+
+        FacesContext context = FacesContext.getCurrentInstance();
         
+        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE){
+
+            return new DefaultStreamedContent();
+            
+        } else {
+            
+            String item_id = context.getExternalContext().getRequestParameterMap().get("item_id");
+            Produto produto = (Produto) em.createNamedQuery("Produto.findByIdProduto").setParameter("idProduto", Integer.parseInt(item_id)).getSingleResult();
+            
+            if(produto.getImagem() != null){
+                return new DefaultStreamedContent(new ByteArrayInputStream(produto.getImagem()));
+            } else {
+                return new DefaultStreamedContent();
+            }
+        }
+    }
+      
+    
 }

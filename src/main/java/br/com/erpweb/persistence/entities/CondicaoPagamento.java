@@ -39,6 +39,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CondicaoPagamento.findByTaxaFinanceira", query = "SELECT c FROM CondicaoPagamento c WHERE c.taxaFinanceira = :taxaFinanceira")})
 public class CondicaoPagamento implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCondicaoPagamento")
+    private Collection<PedidoVenda> pedidoVendaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCondicaoPagamento")
     private Collection<NotaFiscal> notaFiscalCollection;
     private static final long serialVersionUID = 1L;
     @Id
@@ -162,6 +164,15 @@ public class CondicaoPagamento implements Serializable {
 
     public void setNotaFiscalCollection(Collection<NotaFiscal> notaFiscalCollection) {
         this.notaFiscalCollection = notaFiscalCollection;
+    }
+
+    @XmlTransient
+    public Collection<PedidoVenda> getPedidoVendaCollection() {
+        return pedidoVendaCollection;
+    }
+
+    public void setPedidoVendaCollection(Collection<PedidoVenda> pedidoVendaCollection) {
+        this.pedidoVendaCollection = pedidoVendaCollection;
     }
     
 }

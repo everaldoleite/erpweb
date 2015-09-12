@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPedidoVendaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_idPedidoVenda}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.idPedidoVenda}" title="#{bundle.ViewPedidoVendaTitle_idPedidoVenda}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_dataAberturaPedido}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.dataAberturaPedido}" title="#{bundle.ViewPedidoVendaTitle_dataAberturaPedido}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_numeroExterno}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.numeroExterno}" title="#{bundle.ViewPedidoVendaTitle_numeroExterno}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_outros}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.outros}" title="#{bundle.ViewPedidoVendaTitle_outros}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_frete}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.frete}" title="#{bundle.ViewPedidoVendaTitle_frete}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_valorFrete}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.valorFrete}" title="#{bundle.ViewPedidoVendaTitle_valorFrete}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_atendimentoParcial}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.atendimentoParcial}" title="#{bundle.ViewPedidoVendaTitle_atendimentoParcial}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_statusAprovacaoFinanceira}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.statusAprovacaoFinanceira}" title="#{bundle.ViewPedidoVendaTitle_statusAprovacaoFinanceira}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_statusAprovacaoComercial}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.statusAprovacaoComercial}" title="#{bundle.ViewPedidoVendaTitle_statusAprovacaoComercial}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_comissaoPrincipal}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.comissaoPrincipal}" title="#{bundle.ViewPedidoVendaTitle_comissaoPrincipal}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_comissaoSubstituto}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.comissaoSubstituto}" title="#{bundle.ViewPedidoVendaTitle_comissaoSubstituto}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_valorTotalProdutos}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.valorTotalProdutos}" title="#{bundle.ViewPedidoVendaTitle_valorTotalProdutos}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_valorTotalServicos}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.valorTotalServicos}" title="#{bundle.ViewPedidoVendaTitle_valorTotalServicos}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_valorTotalPedido}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.valorTotalPedido}" title="#{bundle.ViewPedidoVendaTitle_valorTotalPedido}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_dataAprovacaoFinanceira}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.dataAprovacaoFinanceira}" title="#{bundle.ViewPedidoVendaTitle_dataAprovacaoFinanceira}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_observacaoAprovacaoFinanceira}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.observacaoAprovacaoFinanceira}" title="#{bundle.ViewPedidoVendaTitle_observacaoAprovacaoFinanceira}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_dataAprovacaoComercial}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.dataAprovacaoComercial}" title="#{bundle.ViewPedidoVendaTitle_dataAprovacaoComercial}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_observacaoAprovacaoComercial}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.observacaoAprovacaoComercial}" title="#{bundle.ViewPedidoVendaTitle_observacaoAprovacaoComercial}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_dataEncerramento}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.dataEncerramento}" title="#{bundle.ViewPedidoVendaTitle_dataEncerramento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_totalIPI}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.totalIPI}" title="#{bundle.ViewPedidoVendaTitle_totalIPI}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_totalICMS}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.totalICMS}" title="#{bundle.ViewPedidoVendaTitle_totalICMS}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_dataAgendamento}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.dataAgendamento}" title="#{bundle.ViewPedidoVendaTitle_dataAgendamento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_observacaoNota}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.observacaoNota}" title="#{bundle.ViewPedidoVendaTitle_observacaoNota}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_scoreAprovacaoFinanceira}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.scoreAprovacaoFinanceira}" title="#{bundle.ViewPedidoVendaTitle_scoreAprovacaoFinanceira}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_scoreAprovacaoComercial}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.scoreAprovacaoComercial}" title="#{bundle.ViewPedidoVendaTitle_scoreAprovacaoComercial}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_origemPedido}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.origemPedido}" title="#{bundle.ViewPedidoVendaTitle_origemPedido}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_observacaoInterna}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.observacaoInterna}" title="#{bundle.ViewPedidoVendaTitle_observacaoInterna}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_observacaoCancelamento}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.observacaoCancelamento}" title="#{bundle.ViewPedidoVendaTitle_observacaoCancelamento}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_cotacao}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.cotacao}" title="#{bundle.ViewPedidoVendaTitle_cotacao}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_prazoValidade}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.prazoValidade}" title="#{bundle.ViewPedidoVendaTitle_prazoValidade}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_idTipoPedidoVenda}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.idTipoPedidoVenda}" title="#{bundle.ViewPedidoVendaTitle_idTipoPedidoVenda}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_idStatusPedido}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.idStatusPedido}" title="#{bundle.ViewPedidoVendaTitle_idStatusPedido}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_idCliente}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.idCliente}" title="#{bundle.ViewPedidoVendaTitle_idCliente}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_idVendedor}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.idVendedor}" title="#{bundle.ViewPedidoVendaTitle_idVendedor}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_idVendedorSubstituto}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.idVendedorSubstituto}" title="#{bundle.ViewPedidoVendaTitle_idVendedorSubstituto}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_idCondicaoPagamento}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.idCondicaoPagamento}" title="#{bundle.ViewPedidoVendaTitle_idCondicaoPagamento}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_idUsuarioFinanceiro}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.idUsuarioFinanceiro}" title="#{bundle.ViewPedidoVendaTitle_idUsuarioFinanceiro}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_idUsuarioComercial}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.idUsuarioComercial}" title="#{bundle.ViewPedidoVendaTitle_idUsuarioComercial}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_idContato}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.idContato}" title="#{bundle.ViewPedidoVendaTitle_idContato}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_idUsuarioEncerramento}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.idUsuarioEncerramento}" title="#{bundle.ViewPedidoVendaTitle_idUsuarioEncerramento}"/>
+                    <h:outputText value="#{bundle.ViewPedidoVendaLabel_idRepresentante}"/>
+                    <h:outputText value="#{pedidoVendaController.selected.idRepresentante}" title="#{bundle.ViewPedidoVendaTitle_idRepresentante}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pedidoVendaController.destroyAndView}" value="#{bundle.ViewPedidoVendaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPedidoVendaEditLink}"/>
+                <br />
+                <h:commandLink action="#{pedidoVendaController.prepareCreate}" value="#{bundle.ViewPedidoVendaCreateLink}" />
+                <br />
+                <h:commandLink action="#{pedidoVendaController.prepareList}" value="#{bundle.ViewPedidoVendaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPedidoVendaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

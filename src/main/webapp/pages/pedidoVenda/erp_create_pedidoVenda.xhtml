@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Pedido de Venda"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div style="height: 600px;">
+                <h:form prependId="false" enctype="multipart/form-data">
+                    <p:growl id="msg" globalOnly="false" autoUpdate="true"/>
+                    <p:tabView class="col-md-10">
+                        <p:tab title="Dados Básicos" id="tabbasica" >
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel for="idCliente" value="Cliente:" />&nbsp;
+                                    <p:autoComplete size="99" itemLabel="#{cliente.razaoSocial}" itemValue="#{cliente}" var="cliente" queryDelay="500" id="idCliente" 
+                                                    maxResults="5" value="#{pedidoVendaController.selected.idCliente}" completeMethod="#{clienteController.buscaCliente}">
+                                        <f:param name="parametro" value="#{titulosController.selected.idCliente}" />
+                                    </p:autoComplete>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Data do Pedido:" for="dataAberturaPedido" />
+                                    <p:inputText disabled="true" id="dataAberturaPedido" required="true" value="#{pedidoVendaController.selected.dataAberturaPedido}" class="form-control" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </p:inputText>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Tipo de Pedido: " for="idTipoPedidoVenda" />
+                                    <h:selectOneMenu id="idTipoPedidoVenda" value="#{pedidoVendaController.selected.idTipoPedidoVenda}" required="true" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{tipoPedidoVendaController.data}" var="tipoPedido" itemLabel="#{tipoPedido.descricaoTipoPedidoVenda}" itemValue="#{tipoPedido}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Status: " for="idStatusPedido" />
+                                    <h:selectOneMenu id="idStatusPedido" value="#{pedidoVendaController.selected.idStatusPedido}" required="true" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{statusPedidoController.data}" var="status" itemLabel="#{status.descricaoStatusPedido}" itemValue="#{status}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Cotação:" for="cotacao" />
+                                    <p:selectBooleanCheckbox itemLabel="Cotação Preços" id="cotacao" value="#{pedidoVendaController.selected.cotacao}" class="form-control"/>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Prazo de Validade: (dias)" for="prazoValidade" />
+                                    <p:inputText id="prazoValidade" required="true" value="#{pedidoVendaController.selected.prazoValidade}" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Origem Pedido:" for="origemPedido" />
+                                    <p:inputText id="origemPedido" value="#{pedidoVendaController.selected.origemPedido}" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Representante:" for="idRepresentante" />
+                                    <h:selectOneMenu id="idRepresentante" value="#{pedidoVendaController.selected.idRepresentante}" required="true" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{representantesController.data}" var="representante" itemLabel="#{representante.nomeRepresentante}" itemValue="#{representante}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Vendedor: " for="idVendedor" />
+                                    <h:selectOneMenu id="idVendedor" value="#{pedidoVendaController.selected.idVendedor}" required="true" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{vendedorController.data}" var="vendedor" itemLabel="#{vendedor.nomeVendedor}" itemValue="#{vendedor}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Vendedor Substituto: " for="idVendedorSubstituto" />
+                                    <h:selectOneMenu id="idVendedorSubstituto" value="#{pedidoVendaController.selected.idVendedorSubstituto}" required="true" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{vendedorController.data}" var="vendedorSubstituto" itemLabel="#{vendedorSubstituto.nomeVendedor}" itemValue="#{vendedorSubstituto}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Condição de Pagamento: " for="idCondicaoPagamento" />
+                                    <h:selectOneMenu id="idCondicaoPagamento" value="#{pedidoVendaController.selected.idCondicaoPagamento}" required="true" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{condicaoPagamentoController.data}" var="condicaoPagamento" itemLabel="#{condicaoPagamento.descricaoCondicaoPagamento}" itemValue="#{condicaoPagamento}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Número Externo:" for="numeroExterno" />
+                                    <p:inputText id="numeroExterno" required="true" value="#{pedidoVendaController.selected.numeroExterno}" class="form-control" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Outros:" for="outros" />
+                                    <p:inputText id="outros" required="true" value="#{pedidoVendaController.selected.outros}" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Agendamento:" for="dataAgendamento" />
+                                    <p:calendar id="dataAgendamento" value="#{pedidoVendaController.selected.dataAgendamento}" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Observação Nota:" for="observacaoNota" />
+                                    <p:inputText id="observacaoNota" value="#{pedidoVendaController.selected.observacaoNota}" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Observação Interna:" for="observacaoInterna" />
+                                    <p:inputText id="observacaoInterna" value="#{pedidoVendaController.selected.observacaoInterna}" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Observação Cancelamento:" for="observacaoCancelamento" />
+                                    <p:inputText id="observacaoCancelamento" value="#{pedidoVendaController.selected.observacaoCancelamento}" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:selectBooleanCheckbox itemLabel="Atendimento Parcial" id="atendimentoParcial" value="#{pedidoVendaController.selected.atendimentoParcial}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Valor Total:" for="valorTotalPedido" />
+                                    <p:inputText disabled="true" id="valorTotalPedido" required="true" value="#{pedidoVendaController.selected.valorTotalPedido}" class="form-control" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Total ICMS:" for="totalICMS" />
+                                    <p:inputText disabled="true" id="totalICMS" required="true" value="#{pedidoVendaController.selected.totalICMS}" class="form-control" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Total IPI:" for="totalIPI" />
+                                    <p:inputText disabled="true" id="totalIPI" required="true" value="#{pedidoVendaController.selected.totalIPI}" class="form-control" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Data Encerramento:" for="dataEncerramento" />
+                                    <p:inputText disabled="true" id="dataEncerramento" required="true" value="#{pedidoVendaController.selected.dataEncerramento}" class="form-control" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </p:inputText>
+                                </div>
+                            </div>                            
+                        </p:tab>
+                        <p:tab title="Produtos">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p:outputLabel value="Produto:" for="buscaProduto" />&nbsp;
+                                    <p:inputText size="50" id="buscaProduto" value="#{pedidoVendaController.selected.buscaProduto}" >
+                                        <p:ajax listener="#{pedidoVendaController.buscaProduto}" event="keyup" update="listaItens" />
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <p:spacer />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:dataTable var="produto" id="listaItens" value="#{pedidoVendaController.listaProduto}" emptyMessage="não ha produtos com esse parametro">
+                                        <p:column width="200px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="Produto"/>
+                                            </f:facet>
+                                            <h:outputText value="#{produto.descricaoProduto}" />
+                                        </p:column>                                        
+                                        <p:column style="text-align: right;">
+                                            <f:facet name="header">
+                                                <h:outputText value="Custo"/>
+                                            </f:facet>
+                                            <h:outputText value="R$ #{produto.precoCusto}" >
+                                                <f:convertNumber currencySymbol="R$" minFractionDigits="2" />
+                                            </h:outputText>
+                                        </p:column>
+                                        <p:column style="text-align: right;">
+                                            <f:facet name="header">
+                                                <h:outputText value="$"/>
+                                            </f:facet>
+                                            <p:commandLink immediate="true" title="Incluir" actionListener="#{pedidoVendaController.incluiProduto(produto)}">
+                                                <h:outputText value="9.999,99" />
+                                            </p:commandLink>
+                                        </p:column>
+                                        <p:column style="text-align: right;">
+                                            <f:facet name="header">
+                                                <h:outputText value="$$"/>
+                                            </f:facet>
+                                            <h:outputText value="9.999,99" />
+                                        </p:column>
+                                        <p:column style="text-align: right;">
+                                            <f:facet name="header">
+                                                <h:outputText value="$$$"/>
+                                            </f:facet>
+                                            <h:outputText value="9.999,99" />
+                                        </p:column>
+                                        <p:column style="text-align: right;">
+                                            <f:facet name="header">
+                                                <h:outputText value="$$$$"/>
+                                            </f:facet>
+                                            <h:outputText value="9.999,99" />
+                                        </p:column>
+                                        <p:column style="text-align: right;">
+                                            <f:facet name="header">
+                                                <h:outputText value="$$$$$"/>
+                                            </f:facet>
+                                            <h:outputText value="9.999,99" />
+                                        </p:column>
+                                        <p:column style="text-align: right;">
+                                            <f:facet name="header">
+                                                <h:outputText value="$$$$$$"/>
+                                            </f:facet>
+                                            <h:outputText value="9.999,99" />
+                                        </p:column>
+                                    </p:dataTable>
+                                    
+                                    <p:spacer />
+                                    
+                                    <p:dataTable var="adquiridos" value="#{pedidoVendaController.listaProdutosPedido}" >
+                                        <p:column style="text-align: right;">
+                                            <f:facet name="header">
+                                                <h:outputText value="Qtde"/>
+                                            </f:facet>
+                                            <h:outputText value="#{adquiridos.quantidadeSolicitada}" />
+                                        </p:column>
+                                        <p:column style="text-align: right;">
+                                            <f:facet name="header">
+                                                <h:outputText value="Qtde"/>
+                                            </f:facet>
+                                            <h:outputText value="#{adquiridos.precoLista}" />
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Valor Total de Produtos:" for="valorTotalProdutos" />
+                                    <p:inputText disabled="true" id="valorTotalProdutos" required="true" value="#{pedidoVendaController.selected.valorTotalProdutos}" class="form-control" />
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Serviços">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Valor Total de Serviços:" for="valorTotalServicos" />
+                                    <p:inputText disabled="true" id="valorTotalServicos" required="true" value="#{pedidoVendaController.selected.valorTotalServicos}" class="form-control" />
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Frete">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Frete" for="frete" />
+                                    <h:selectOneMenu id="frete" value="#{pedidoVendaController.selected.frete}" required="true" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItem itemLabel="0 - Por conta do emitente" itemValue="0" />
+                                        <f:selectItem itemLabel="1 - Por conta do remetente" itemValue="1" />
+                                        <f:selectItem itemLabel="2 - Por conta de terceiros" itemValue="2" />
+                                        <f:selectItem itemLabel="9 - Sem frete" itemValue="9" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Valor do Frete:" for="valorFrete" />
+                                    <p:inputText id="valorFrete" required="true" value="#{pedidoVendaController.selected.valorFrete}" class="form-control" onkeypress="return(MascaraMoeda(this, '.', ',', event))" />
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Aprovações">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Data Aprovação Financeira:" for="dataAprovacaoFinanceira" />
+                                    <p:inputText disabled="true" id="dataAprovacaoFinanceira" required="true" value="#{pedidoVendaController.selected.dataAprovacaoFinanceira}" class="form-control" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </p:inputText>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Observação Aprovação Financeira:" for="observacaoAprovacaoFinanceira" />
+                                    <p:inputText id="observacaoAprovacaoFinanceira" value="#{pedidoVendaController.selected.observacaoAprovacaoFinanceira}" class="form-control" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Score Financeiro:" for="scoreAprovacaoFinanceira" />
+                                    <p:inputText disabled="true" id="scoreAprovacaoFinanceira" required="true" value="#{pedidoVendaController.selected.scoreAprovacaoFinanceira}" class="form-control" />
+                                </div>
+                            </div>
+                            <p:spacer />
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Data Aprovação Comercial:" for="dataAprovacaoComercial" />
+                                    <p:inputText disabled="true" id="dataAprovacaoComercial" required="true" value="#{pedidoVendaController.selected.dataAprovacaoComercial}" class="form-control" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </p:inputText>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Observação Aprovação Comercial:" for="observacaoAprovacaoComercial" />
+                                    <p:inputText id="observacaoAprovacaoComercial" required="true" value="#{pedidoVendaController.selected.observacaoAprovacaoComercial}" class="form-control" />
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Score Comercial:" for="scoreAprovacaoComercial" />
+                                    <p:inputText disabled="true" id="scoreAprovacaoComercial" required="true" value="#{pedidoVendaController.selected.scoreAprovacaoComercial}" class="form-control" />
+                                </div>
+                            </div>
+                        </p:tab>                        
+                        <p:tab title="Comissões">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Comissão Principal:" for="comissaoPrincipal" />
+                                    <p:inputText disabled="true" id="comissaoPrincipal" required="true" value="#{pedidoVendaController.selected.comissaoPrincipal}" class="form-control" onkeypress="return(MascaraMoeda(this, '.', ',', event))" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Comissão Substituto:" for="comissaoSubstituto" />
+                                    <p:inputText disabled="true" id="comissaoSubstituto" required="true" value="#{pedidoVendaController.selected.comissaoSubstituto}" class="form-control" onkeypress="return(MascaraMoeda(this, '.', ',', event))" />
+                                </div>
+
+                            </div>                            
+                        </p:tab>                        
+                    </p:tabView>
+                    <div class="col-md-12" style="padding: 10px;">
+                        <div class="col-md-2">
+                            <p:commandButton action="#{produtoController.create}" ajax="false" update="msg" value="Salvar" icon="ui-icon-disk" title="Salvar"/>
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{produtoController.prepareList}" value="Lista"  immediate="true" icon="ui-icon-bookmark" title="Lista" />
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{produtoController.create}" update="msg" value="Comercial" icon="ui-icon-check" />
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{produtoController.create}" update="msg" value="Financeira" icon="ui-icon-check" />
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

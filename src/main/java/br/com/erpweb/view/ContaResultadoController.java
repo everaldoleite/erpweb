@@ -6,7 +6,6 @@ import br.com.erpweb.view.util.PaginationHelper;
 import br.com.erpweb.session.bean.ContaResultadoFacade;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -233,8 +232,4 @@ public class ContaResultadoController implements Serializable {
 
     }
 
-    public List<ContaResultado> getData(){
-        return ejbFacade.findAll();
-    }
-    
 }

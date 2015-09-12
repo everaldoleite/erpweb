@@ -88,6 +88,18 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLocalidadeTitle_idCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLocalidadeTitle_tipoEndereco}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoEndereco}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
                             <h:commandLink action="#{localidadeController.prepareView}" value="#{bundle.ListLocalidadeViewLink}"/>

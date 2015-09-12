@@ -221,10 +221,11 @@
                         <p:tab title="Logotipo" rendered="#{empresaController.pessoaJuridica}">
                             <div class="row">
                                 <div class="col-md-12" style="height: 200px;">
-                                    <p:outputLabel value="Importar Logotipo:" for="imagem" />&nbsp;
                                     <p:fileUpload id="imagem" fileUploadListener="#{empresaController.handleFileUpload}" 
                                                   mode="advanced" dragDropSupport="false" sizeLimit="100000" 
-                                                  fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                                                  fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
+                                                  uploadLabel="Enviar" cancelLabel="Cancelar" label="Escolher"
+                                                  />
                                 </div>
                             </div>
                         </p:tab>

@@ -19,6 +19,8 @@
                     <h:inputText id="idBanco" value="#{bancoController.selected.idBanco}" title="#{bundle.EditBancoTitle_idBanco}" required="true" requiredMessage="#{bundle.EditBancoRequiredMessage_idBanco}"/>
                     <h:outputLabel value="#{bundle.EditBancoLabel_descricaoBanco}" for="descricaoBanco" />
                     <h:inputText id="descricaoBanco" value="#{bancoController.selected.descricaoBanco}" title="#{bundle.EditBancoTitle_descricaoBanco}" />
+                    <h:outputLabel value="#{bundle.EditBancoLabel_imagem}" for="imagem" />
+                    <h:inputTextarea rows="4" cols="30" id="imagem" value="#{bancoController.selected.imagem}" title="#{bundle.EditBancoTitle_imagem}" />
                 </h:panelGrid>
                 <h:commandLink action="#{bancoController.update}" value="#{bundle.EditBancoSaveLink}"/>
                 <br />

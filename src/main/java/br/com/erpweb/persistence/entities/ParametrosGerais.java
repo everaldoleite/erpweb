@@ -53,20 +53,26 @@ public class ParametrosGerais implements Serializable {
     @NotNull
     @Column(name = "idParametros")
     private Integer idParametros;
+    
     @Column(name = "prazoClienteNovo")
     private Short prazoClienteNovo;
+    
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "percentualComissao")
     private BigDecimal percentualComissao;
+    
     @Size(max = 100)
     @Column(name = "caminhoCertificadoCliente")
     private String caminhoCertificadoCliente;
+    
     @Size(max = 100)
     @Column(name = "senhaCertificadoCliente")
     private String senhaCertificadoCliente;
+    
     @Size(max = 100)
     @Column(name = "arquivoCertificados")
     private String arquivoCertificados;
+    
     @Size(max = 100)
     @Column(name = "versaoDados")
     private String versaoDados;
@@ -91,8 +97,6 @@ public class ParametrosGerais implements Serializable {
     private BigDecimal saldoInicial;
     @Column(name = "sla")
     private Character sla;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idParametrosGerais")
-    private Collection<Empresa> empresaCollection;
 
     public ParametrosGerais() {
     }
@@ -219,15 +223,6 @@ public class ParametrosGerais implements Serializable {
 
     public void setSla(Character sla) {
         this.sla = sla;
-    }
-
-    @XmlTransient
-    public Collection<Empresa> getEmpresaCollection() {
-        return empresaCollection;
-    }
-
-    public void setEmpresaCollection(Collection<Empresa> empresaCollection) {
-        this.empresaCollection = empresaCollection;
     }
 
     @Override

@@ -233,7 +233,7 @@ public class CarteiraController implements Serializable {
 
     }
 
-    public List<Carteira> getData(){
+    public List<Carteira> getData() {
         return ejbFacade.findAll();
     }
 

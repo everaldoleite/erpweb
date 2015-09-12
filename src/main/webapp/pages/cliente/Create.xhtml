@@ -132,11 +132,11 @@
                         <f:selectItems value="#{condicaoPagamentoController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateClienteLabel_idListaPrecosProdutos}" for="idListaPrecosProdutos" />
-                    <h:selectOneMenu id="idListaPrecosProdutos" value="#{clienteController.selected.idListaPrecosProdutos}" title="#{bundle.CreateClienteTitle_idListaPrecosProdutos}" >
+                    <h:selectOneMenu id="idListaPrecosProdutos" value="#{clienteController.selected.idListaPrecosProdutos}" title="#{bundle.CreateClienteTitle_idListaPrecosProdutos}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idListaPrecosProdutos}">
                         <f:selectItems value="#{listaPrecoProdutosController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateClienteLabel_idListaPrecosServicos}" for="idListaPrecosServicos" />
-                    <h:selectOneMenu id="idListaPrecosServicos" value="#{clienteController.selected.idListaPrecosServicos}" title="#{bundle.CreateClienteTitle_idListaPrecosServicos}" >
+                    <h:selectOneMenu id="idListaPrecosServicos" value="#{clienteController.selected.idListaPrecosServicos}" title="#{bundle.CreateClienteTitle_idListaPrecosServicos}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idListaPrecosServicos}">
                         <f:selectItems value="#{listaPrecoServicosController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateClienteLabel_idNaturezaOperacao}" for="idNaturezaOperacao" />
@@ -179,10 +179,20 @@
                     <h:inputText id="complemento" value="#{clienteController.selected.complemento}" title="#{bundle.CreateClienteTitle_complemento}" />
                     <h:outputLabel value="#{bundle.CreateClienteLabel_codigoIBGE}" for="codigoIBGE" />
                     <h:inputText id="codigoIBGE" value="#{clienteController.selected.codigoIBGE}" title="#{bundle.CreateClienteTitle_codigoIBGE}" />
-                    <h:outputLabel value="#{bundle.CreateClienteLabel_enderecoCobranca}" for="enderecoCobranca" />
-                    <h:inputText id="enderecoCobranca" value="#{clienteController.selected.enderecoCobranca}" title="#{bundle.CreateClienteTitle_enderecoCobranca}" />
                     <h:outputLabel value="#{bundle.CreateClienteLabel_ufInscricaoEstadual}" for="ufInscricaoEstadual" />
                     <h:inputText id="ufInscricaoEstadual" value="#{clienteController.selected.ufInscricaoEstadual}" title="#{bundle.CreateClienteTitle_ufInscricaoEstadual}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_bloqueioAtendimento}" for="bloqueioAtendimento" />
+                    <h:inputText id="bloqueioAtendimento" value="#{clienteController.selected.bloqueioAtendimento}" title="#{bundle.CreateClienteTitle_bloqueioAtendimento}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_bloqueioVendas}" for="bloqueioVendas" />
+                    <h:inputText id="bloqueioVendas" value="#{clienteController.selected.bloqueioVendas}" title="#{bundle.CreateClienteTitle_bloqueioVendas}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_bloqueioFaturamento}" for="bloqueioFaturamento" />
+                    <h:inputText id="bloqueioFaturamento" value="#{clienteController.selected.bloqueioFaturamento}" title="#{bundle.CreateClienteTitle_bloqueioFaturamento}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_bloqueioComercial}" for="bloqueioComercial" />
+                    <h:inputText id="bloqueioComercial" value="#{clienteController.selected.bloqueioComercial}" title="#{bundle.CreateClienteTitle_bloqueioComercial}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_acessoItensPromocionais}" for="acessoItensPromocionais" />
+                    <h:inputText id="acessoItensPromocionais" value="#{clienteController.selected.acessoItensPromocionais}" title="#{bundle.CreateClienteTitle_acessoItensPromocionais}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_enderecoCobranca}" for="enderecoCobranca" />
+                    <h:inputText id="enderecoCobranca" value="#{clienteController.selected.enderecoCobranca}" title="#{bundle.CreateClienteTitle_enderecoCobranca}" />
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{clienteController.create}" value="#{bundle.CreateClienteSaveLink}" />

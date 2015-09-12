@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Autenticação de Usuário"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div style="height: 600px;">
+                <h:form id="loginForm">          
+                    <p:growl id="msg" showDetail="true" life="3000" />
+                    <p:panel header="Login" style="width: 360px;">
+
+                        <h:panelGrid id="loginPanel" cellpadding="10px;">
+                            <h:outputText value="Usuário" />
+                            <p:inputText id="username" value="#{loginBean.uname}" autocomplete="on"/>
+                            <h:outputText value="Password" />
+                            <p:password id="password" value="#{loginBean.password}" feedback="false" />
+                            <p:commandButton action="#{loginBean.loginProject}" value="Autenticação" update="loginForm" ajax="true" />
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -51,7 +51,7 @@
         <dependency>
             <groupId>org.primefaces.themes</groupId>
             <artifactId>bootstrap</artifactId>
-            <version>1.0.9</version>
+            <version>1.0.10</version>
         </dependency>        
         <dependency>
             <groupId>javax</groupId>
@@ -130,6 +130,7 @@
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
+                    <showDeprecation>false</showDeprecation>
                 </configuration>
             </plugin>
             <plugin>
@@ -178,6 +179,7 @@
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.13.0</version>
                 <configuration>
                     <catalog>src/main/resources/jaxb/catalog.xml</catalog>
                     <catalogResolver>org.jvnet.jaxb2.maven2.resolver.tools.ClasspathCatalogResolver</catalogResolver>

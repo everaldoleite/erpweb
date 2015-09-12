@@ -11,6 +11,7 @@ import br.com.erpweb.util.Util;
 import java.io.IOException;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -406,4 +407,8 @@ public class EmpresaController implements Serializable {
         current.setImagemEmpresa(dados);
     }
 
+    public List<Empresa> getData(){
+        return ejbFacade.findAll();
+    }
+    
 }

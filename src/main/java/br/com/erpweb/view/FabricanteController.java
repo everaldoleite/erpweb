@@ -65,7 +65,7 @@ public class FabricanteController implements Serializable {
 
     public String prepareList() {
         recreateModel();
-        return "List";
+        return "erp_list_fabricante";
     }
 
     public String prepareView() {
@@ -77,13 +77,13 @@ public class FabricanteController implements Serializable {
     public String prepareCreate() {
         current = new Fabricante();
         selectedItemIndex = -1;
-        return "Create";
+        return "erp_create_fabricante";
     }
 
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FabricanteCreated"));
+            JsfUtil.addSuccessMessage("Fabricante cadastrado com sucesso.");
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -94,14 +94,14 @@ public class FabricanteController implements Serializable {
     public String prepareEdit() {
         current = (Fabricante) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        return "erp_edit_fabricante";
     }
 
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FabricanteUpdated"));
-            return "View";
+            JsfUtil.addSuccessMessage("Fabricante atualizado com sucesso.");
+            return "erp_list_fabricante";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -172,13 +172,13 @@ public class FabricanteController implements Serializable {
     public String next() {
         getPagination().nextPage();
         recreateModel();
-        return "List";
+        return "erp_list_fabricante";
     }
 
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return "List";
+        return "erp_list_fabricante";
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {

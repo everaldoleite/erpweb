@@ -233,8 +233,8 @@ public class VendedorController implements Serializable {
 
     }
 
-    public List<Vendedor> getData() {
+    public List<Vendedor> getData(){
         return ejbFacade.findAll();
     }
-
+    
 }

@@ -6,16 +6,20 @@
 package br.com.erpweb.persistence.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,6 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ContaResultado.findByDescricaoConta", query = "SELECT c FROM ContaResultado c WHERE c.descricaoConta = :descricaoConta"),
     @NamedQuery(name = "ContaResultado.findByTipoConta", query = "SELECT c FROM ContaResultado c WHERE c.tipoConta = :tipoConta")})
 public class ContaResultado implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPlanoConta")
+    private Collection<TipoMovimentoEstoque> tipoMovimentoEstoqueCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -108,6 +114,15 @@ public class ContaResultado implements Serializable {
     @Override
     public String toString() {
         return "br.com.erpweb.persistence.entities.ContaResultado[ idPlanoConta=" + idPlanoConta + " ]";
+    }
+
+    @XmlTransient
+    public Collection<TipoMovimentoEstoque> getTipoMovimentoEstoqueCollection() {
+        return tipoMovimentoEstoqueCollection;
+    }
+
+    public void setTipoMovimentoEstoqueCollection(Collection<TipoMovimentoEstoque> tipoMovimentoEstoqueCollection) {
+        this.tipoMovimentoEstoqueCollection = tipoMovimentoEstoqueCollection;
     }
 
 }

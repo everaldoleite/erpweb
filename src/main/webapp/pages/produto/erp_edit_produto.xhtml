@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Cadastro de Produto"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div style="height: 600px;">
+                <h:form prependId="false" enctype="multipart/form-data">
+                    <p:growl id="msg" globalOnly="false" autoUpdate="true"/>
+                    <p:tabView class="col-md-10">
+                        <p:tab title="Dados Básicos" id="tabbasica" >
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Descrição do Produto:" for="descricaoProduto" />
+                                    <p:inputText id="descricaoProduto" maxlength="80" required="true" value="#{produtoController.selected.descricaoProduto}" class="form-control" />
+                                    <p:watermark for="descricaoProduto" value="Ex.: CIMENTO PORTLAND CP-II 50 KG CIMPOR" />                                                                        
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Descrição Resumida do Produto:" for="descricaoResumidaProduto" />
+                                    <p:inputText id="descricaoResumidaProduto" maxlength="40" required="true" value="#{produtoController.selected.descricaoProduto}" class="form-control" />
+                                    <p:watermark for="descricaoResumidaProduto" value="Ex.: CIMENTO CPII 50 KG" />                                                                        
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Part Number:" for="partNumber" />
+                                    <p:inputText id="partNumber" maxlength="15" value="#{produtoController.selected.partNumber}" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Fabricante: " for="idFabricante" />
+                                    <h:selectOneMenu id="idFabricante" value="#{produtoController.selected.idFabricante}" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{fabricanteController.data}" var="fab" itemLabel="#{fab.descricaoFabricante}" itemValue="#{fab}"/>
+                                    </h:selectOneMenu>
+                                </div>                            
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Modelo: " for="modelo" />
+                                    <p:inputText id="modelo" maxlength="20" value="#{produtoController.selected.modelo}" class="form-control" />                                        
+                                    <p:watermark for="modelo" value="Ex.: MODELO 5S, DUAL CHIP" />                                                                                                            
+                                </div>                            
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Categoria: " for="idCategoria" />
+                                    <h:selectOneMenu id="idCategoria" value="#{produtoController.selected.idCategoria}" required="true" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{categoriaController.data}" var="cat" itemLabel="#{cat.descricaoCategoria}" itemValue="#{cat}"/>
+                                        <p:ajax listener="#{produtoController.atualizaGrupos}" update="idGrupo idSubGrupo" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Grupo: " for="idGrupo" />
+                                    <h:selectOneMenu id="idGrupo" value="#{produtoController.selected.idGrupo}" class="form-control" required="true">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{produtoController.listaGrupo}" var="gru" itemLabel="#{gru.descricaoGrupo}" itemValue="#{gru}"/>
+                                        <p:ajax listener="#{produtoController.atualizaSubGrupos}" update="idSubGrupo" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Sub-Grupo: " for="idSubGrupo" />
+                                    <h:selectOneMenu id="idSubGrupo" value="#{produtoController.selected.idSubGrupo}" class="form-control" required="true">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{produtoController.listaSubGrupo}" var="sub" itemLabel="#{sub.descricaoSubGrupo}" itemValue="#{sub}"/>
+                                        <p:ajax />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Marca:" for="marca" />
+                                    <p:inputText id="marca" maxlength="40" required="true" value="#{produtoController.selected.marca}" class="form-control" />
+                                    <p:watermark for="marca" value="Ex.: CIMPOR" />                                                                        
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Cor:" for="cor" />
+                                    <p:inputText id="cor" maxlength="20" value="#{produtoController.selected.cor}" class="form-control" />
+                                    <p:watermark for="cor" value="Ex.: BRANCO" />                                                                        
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Dimensão:" for="dimensao" />
+                                    <p:inputText id="dimensao" autocomplete="off"  maxlength="40" value="#{produtoController.selected.dimensao}" class="form-control" />
+                                    <p:watermark for="dimensao" value="Ex.: 25(A) x 30(C) x 15(P)" />                                                                        
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Peso Líquido: (Kg)" for="pesoLiquido" />
+                                    <p:inputText id="pesoLiquido" autocomplete="off" required="true" value="#{produtoController.selected.pesoLiquido}" onkeypress="return(MascaraPeso(this, moeda))" class="form-control" />
+                                    <p:watermark for="pesoLiquido" value="0,900 kg" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Peso Bruto (Kg):" for="pesoBruto" />
+                                    <p:inputText id="pesoBruto" autocomplete="off" required="true" maxlength="20" value="#{produtoController.selected.pesoBruto}" onkeyup="return(MascaraPeso(this, moeda))" class="form-control" />
+                                    <p:watermark for="pesoBruto" value="Ex.: 1,000" />                                                                        
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Rendimento:" for="rendimento" />
+                                    <p:inputText id="rendimento" autocomplete="off"  maxlength="45" value="#{produtoController.selected.rendimento}" class="form-control" />
+                                    <p:watermark for="rendimento" value="Ex.: 2000 fls" />                                                                        
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Especificação do Produto:" for="especificacaoProduto" />
+                                    <p:inputTextarea id="especificacaoProduto" maxlength="400" value="#{produtoController.selected.especificacaoProduto}" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Ativo" for="ativo" />&nbsp;
+                                    <p:selectBooleanCheckbox id="ativo" value="#{produtoController.selected.ativo}" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Fabricação Própria" for="fabricacaoPropria" />&nbsp;
+                                    <p:selectBooleanCheckbox id="fabricacaoPropria" value="#{produtoController.selected.fabricacaoPropria}" />
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Preços">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Preço de Custo:" for="precoCusto" />&nbsp;
+                                    <p:inputText id="precoCusto" required="true" autocomplete="off" value="#{produtoController.selected.precoCusto}" style="text-align: right;" onkeypress="return(MascaraMoeda(this, '.', ',', event))" >
+                                        <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
+                                    </p:inputText>
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Imagem do Produto">
+                            <div class="row">
+                                <div class="col-md-12" style="height: 200px;">
+                                    <p:fileUpload id="imagem" fileUploadListener="#{produtoController.handleFileUpload}" mode="advanced" 
+                                                  dragDropSupport="false" sizeLimit="50000" fileLimit="1" 
+                                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" uploadLabel="Enviar" cancelLabel="Cancelar" label="Escolher"/>
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Tributação">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h:outputLabel value="Regime Tributário:" for="idRegimeTributario" />&nbsp;*
+                                    <h:selectOneMenu id="idRegimeTributario" value="#{produtoController.selected.idRegimeTributario}" class="form-control" required="true" requiredMessage="Regime Tributário é exigido">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{regimeTributarioController.data}" var="regime" itemLabel="#{regime.descricaoRegimeTributario}" itemValue="#{regime}" />
+                                        <p:ajax listener="#{produtoController.lista}" update="tipoTributacao" />
+                                    </h:selectOneMenu>
+                                </div>                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Situação Tributária: " for="tipoTributacao" />
+                                    <h:selectOneMenu id="tipoTributacao" required="true" requiredMessage="Tipo de Tributação é exigido" value="#{produtoController.selected.idtipoTributacao}" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{produtoController.listaTipoTributacao}" var="trib" itemLabel="#{trib.codigoTipoTributacao} - #{trib.descricaoTipoTributacao}" itemValue="#{trib}" />
+                                    </h:selectOneMenu>
+                                </div>                            
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Origem Mercadoria: " for="idOrigemMercadoria" />
+                                    <h:selectOneMenu id="idOrigemMercadoria" required="true" requiredMessage="Origem da Mercadoria é exigida" value="#{produtoController.selected.idOrigemMercadoria}" class="form-control">
+                                        <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+                                        <f:selectItems value="#{origemMercadoriaController.data}" var="origem" itemLabel="#{origem.codigoOrigemMercadoria} - #{origem.descricaoOrigemMercadoria}" itemValue="#{origem}" />
+                                    </h:selectOneMenu>
+                                </div>                            
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Código NCM: " for="ncm" />
+                                    <p:inputText id="ncm" autocomplete="off" value="#{produtoController.selected.ncm}" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Aliquota ICMS: (%)" for="aliquotaICMS" />
+                                    <p:spinner min="0" max="50" stepFactor="0.25" value="#{produtoController.selected.aliquotaICMS}" id="aliquotaICMS" 
+                                               required="true" requiredMessage="Aliquota ICMS é exigida" >
+                                        <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
+                                    </p:spinner>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Base Cálculo ICMS: (%)" for="baseCalculoICMS" />
+                                    <p:spinner min="0" max="100" stepFactor="0.25" value="#{produtoController.selected.baseCalculoICMS}" id="baseCalculoICMS" 
+                                               required="true" requiredMessage="Base de cálculo é exigida" >
+                                        <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
+                                    </p:spinner>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Isenção: (%)" for="isencaoICMS" />
+                                    <p:spinner min="0" max="100" stepFactor="0.25" value="#{produtoController.selected.isencaoICMS}" id="isencaoICMS" 
+                                               required="true" requiredMessage="Base de cálculo é exigida" >
+                                        <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
+                                    </p:spinner>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Aliquota ICMS - ST: (%)" for="aliquotaICMSST" />
+                                    <p:spinner min="0" max="50" stepFactor="0.25" id="aliquotaICMSST" value="#{produtoController.selected.aliquotaICMSST}" 
+                                               required="true" requiredMessage="Aliquota ICMS ST é exigida">
+                                        <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
+                                    </p:spinner>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Base Cálculo ICMS - ST: (%)" for="baseCalculoICMSST" />
+                                    <p:spinner min="0" max="100" stepFactor="0.25" id="baseCalculoICMSST" value="#{produtoController.selected.baseCalculoICMSST}" 
+                                               required="true" requiredMessage="Base de cálculo é exigida">
+                                        <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
+                                    </p:spinner>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Isenção - ST: (%)" for="isencaoICMSST" />
+                                    <p:spinner min="0" max="100" stepFactor="0.25" id="isencaoICMSST" value="#{produtoController.selected.isencaoICMSST}" 
+                                               required="true" requiredMessage="Base de cálculo é exigida" >
+                                        <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
+                                    </p:spinner>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Aliquota IPI: (%)" for="aliquotaIPI" />
+                                    <p:spinner min="0" max="50" stepFactor="0.25" id="aliquotaIPI" value="#{produtoController.selected.aliquotaIPI}" required="true" requiredMessage="Aliquota ICMS ST é exigida" >
+                                        <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
+                                    </p:spinner>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Base Cálculo IPI: (%)" for="baseCalculoIPI" />
+                                    <p:spinner min="0" max="50" stepFactor="0.25" id="baseCalculoIPI" value="#{produtoController.selected.baseCalculoIPI}" required="true" requiredMessage="Aliquota ICMS ST é exigida" >
+                                        <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
+                                    </p:spinner>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Isenção IPI: (%)" for="isencaoIPI" />
+                                    <p:spinner min="0" max="50" stepFactor="0.25" id="isencaoIPI" value="#{produtoController.selected.isencaoIPI}" required="true" requiredMessage="Aliquota ICMS ST é exigida" >
+                                        <f:convertNumber locale="pt_BR" minFractionDigits="2" groupingUsed="true"/>
+                                    </p:spinner>
+                                </div>
+                            </div>
+                        </p:tab>                        
+                        <p:tab title="Estoques">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Unidade:" for="unidade" />
+                                    <p:inputText id="unidade" maxlength="20" required="true" value="#{produtoController.selected.unidade}" class="form-control" />
+                                    <p:watermark for="unidade" value="Ex.: UNID, KG, PC" />                                                                        
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Unidade Entrada:" for="unidadeEntrada" />
+                                    <p:inputText id="unidadeEntrada" maxlength="20" required="true" value="#{produtoController.selected.unidadeEntrada}" class="form-control" />
+                                    <p:watermark for="unidadeEntrada" value="Ex.: UNID, KG, PC" />                                                                        
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Unidade Estoque:" for="unidadeEstoque" />
+                                    <p:inputText id="unidadeEstoque" maxlength="20" required="true" value="#{produtoController.selected.unidadeEstoque}" class="form-control" />
+                                    <p:watermark for="unidadeEstoque" value="Ex.: UNID, KG, PC" />                                                                        
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:selectBooleanCheckbox id="indicadorEstoque" value="#{produtoController.selected.indicadorEstoque}" />&nbsp;
+                                    <p:outputLabel value="Participa Estoque Físico" for="indicadorEstoque" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:selectBooleanCheckbox id="pedidoAutomatico" value="#{produtoController.selected.pedidoAutomatico}" />&nbsp;
+                                    <p:outputLabel value="Pedido Automático" for="pedidoAutomatico" />
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Data da Ultima Venda:" for="dataUltimaVenda" />
+                                    <p:calendar id="dataUltimaVenda" value="#{produtoController.selected.dataUltimaVenda}" />
+                                </div>
+                            </div>
+                        </p:tab>
+                    </p:tabView>
+                    <div class="col-md-12" style="padding: 10px;">
+                        <div class="col-md-2">
+                            <p:commandButton action="#{produtoController.update}" ajax="false" update="msg" value="Atualizar" icon="ui-icon-disk" title="Atualizar"/>
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{produtoController.prepareList}" value="Lista"  immediate="true" icon="ui-icon-bookmark" title="Lista" />
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

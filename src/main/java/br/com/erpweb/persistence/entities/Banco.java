@@ -35,6 +35,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Banco.findByIdBanco", query = "SELECT b FROM Banco b WHERE b.idBanco = :idBanco"),
     @NamedQuery(name = "Banco.findByDescricaoBanco", query = "SELECT b FROM Banco b WHERE b.descricaoBanco = :descricaoBanco")})
 public class Banco implements Serializable {
+    @Lob
+    @Column(name = "imagem")
+    private byte[] imagem;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idBanco")
     private Collection<ContaCorrente> contaCorrenteCollection;
     
@@ -50,9 +53,6 @@ public class Banco implements Serializable {
     @Column(name = "descricaoBanco")
     private String descricaoBanco;
     
-    @Lob
-    @Column(name = "imagem")
-    private byte[] imagem;    
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idBanco")
     private Collection<Carteira> carteiraCollection;

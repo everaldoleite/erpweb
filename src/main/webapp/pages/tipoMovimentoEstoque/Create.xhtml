@@ -37,7 +37,7 @@
                     <h:inputText id="contaResultado" value="#{tipoMovimentoEstoqueController.selected.contaResultado}" title="#{bundle.CreateTipoMovimentoEstoqueTitle_contaResultado}" />
                     <h:outputLabel value="#{bundle.CreateTipoMovimentoEstoqueLabel_idPlanoConta}" for="idPlanoConta" />
                     <h:selectOneMenu id="idPlanoConta" value="#{tipoMovimentoEstoqueController.selected.idPlanoConta}" title="#{bundle.CreateTipoMovimentoEstoqueTitle_idPlanoConta}" required="true" requiredMessage="#{bundle.CreateTipoMovimentoEstoqueRequiredMessage_idPlanoConta}">
-                        <f:selectItems value="#{planoContasController.itemsAvailableSelectOne}"/>
+                        <f:selectItems value="#{contaResultadoController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
                 <br />

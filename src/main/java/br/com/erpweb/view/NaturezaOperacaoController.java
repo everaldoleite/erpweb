@@ -6,7 +6,6 @@ import br.com.erpweb.view.util.PaginationHelper;
 import br.com.erpweb.session.bean.NaturezaOperacaoFacade;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -77,7 +76,7 @@ public class NaturezaOperacaoController implements Serializable {
     public String prepareCreate() {
         current = new NaturezaOperacao();
         selectedItemIndex = -1;
-        return "erp_create_naturezaOperacao";
+        return "Create";
     }
 
     public String create() {
@@ -232,9 +231,5 @@ public class NaturezaOperacaoController implements Serializable {
         }
 
     }
-    public List<NaturezaOperacao> getData(){
-        return ejbFacade.findAll();
-    }
 
-    
 }

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePedidoVendaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_idPedidoVenda}" for="idPedidoVenda" />
+                    <h:inputText id="idPedidoVenda" value="#{pedidoVendaController.selected.idPedidoVenda}" title="#{bundle.CreatePedidoVendaTitle_idPedidoVenda}" required="true" requiredMessage="#{bundle.CreatePedidoVendaRequiredMessage_idPedidoVenda}"/>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_dataAberturaPedido}" for="dataAberturaPedido" />
+                    <h:inputText id="dataAberturaPedido" value="#{pedidoVendaController.selected.dataAberturaPedido}" title="#{bundle.CreatePedidoVendaTitle_dataAberturaPedido}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_numeroExterno}" for="numeroExterno" />
+                    <h:inputText id="numeroExterno" value="#{pedidoVendaController.selected.numeroExterno}" title="#{bundle.CreatePedidoVendaTitle_numeroExterno}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_outros}" for="outros" />
+                    <h:inputText id="outros" value="#{pedidoVendaController.selected.outros}" title="#{bundle.CreatePedidoVendaTitle_outros}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_frete}" for="frete" />
+                    <h:inputText id="frete" value="#{pedidoVendaController.selected.frete}" title="#{bundle.CreatePedidoVendaTitle_frete}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_valorFrete}" for="valorFrete" />
+                    <h:inputText id="valorFrete" value="#{pedidoVendaController.selected.valorFrete}" title="#{bundle.CreatePedidoVendaTitle_valorFrete}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_atendimentoParcial}" for="atendimentoParcial" />
+                    <h:inputText id="atendimentoParcial" value="#{pedidoVendaController.selected.atendimentoParcial}" title="#{bundle.CreatePedidoVendaTitle_atendimentoParcial}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_statusAprovacaoFinanceira}" for="statusAprovacaoFinanceira" />
+                    <h:inputText id="statusAprovacaoFinanceira" value="#{pedidoVendaController.selected.statusAprovacaoFinanceira}" title="#{bundle.CreatePedidoVendaTitle_statusAprovacaoFinanceira}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_statusAprovacaoComercial}" for="statusAprovacaoComercial" />
+                    <h:inputText id="statusAprovacaoComercial" value="#{pedidoVendaController.selected.statusAprovacaoComercial}" title="#{bundle.CreatePedidoVendaTitle_statusAprovacaoComercial}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_comissaoPrincipal}" for="comissaoPrincipal" />
+                    <h:inputText id="comissaoPrincipal" value="#{pedidoVendaController.selected.comissaoPrincipal}" title="#{bundle.CreatePedidoVendaTitle_comissaoPrincipal}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_comissaoSubstituto}" for="comissaoSubstituto" />
+                    <h:inputText id="comissaoSubstituto" value="#{pedidoVendaController.selected.comissaoSubstituto}" title="#{bundle.CreatePedidoVendaTitle_comissaoSubstituto}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_valorTotalProdutos}" for="valorTotalProdutos" />
+                    <h:inputText id="valorTotalProdutos" value="#{pedidoVendaController.selected.valorTotalProdutos}" title="#{bundle.CreatePedidoVendaTitle_valorTotalProdutos}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_valorTotalServicos}" for="valorTotalServicos" />
+                    <h:inputText id="valorTotalServicos" value="#{pedidoVendaController.selected.valorTotalServicos}" title="#{bundle.CreatePedidoVendaTitle_valorTotalServicos}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_valorTotalPedido}" for="valorTotalPedido" />
+                    <h:inputText id="valorTotalPedido" value="#{pedidoVendaController.selected.valorTotalPedido}" title="#{bundle.CreatePedidoVendaTitle_valorTotalPedido}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_dataAprovacaoFinanceira}" for="dataAprovacaoFinanceira" />
+                    <h:inputText id="dataAprovacaoFinanceira" value="#{pedidoVendaController.selected.dataAprovacaoFinanceira}" title="#{bundle.CreatePedidoVendaTitle_dataAprovacaoFinanceira}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_observacaoAprovacaoFinanceira}" for="observacaoAprovacaoFinanceira" />
+                    <h:inputText id="observacaoAprovacaoFinanceira" value="#{pedidoVendaController.selected.observacaoAprovacaoFinanceira}" title="#{bundle.CreatePedidoVendaTitle_observacaoAprovacaoFinanceira}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_dataAprovacaoComercial}" for="dataAprovacaoComercial" />
+                    <h:inputText id="dataAprovacaoComercial" value="#{pedidoVendaController.selected.dataAprovacaoComercial}" title="#{bundle.CreatePedidoVendaTitle_dataAprovacaoComercial}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_observacaoAprovacaoComercial}" for="observacaoAprovacaoComercial" />
+                    <h:inputText id="observacaoAprovacaoComercial" value="#{pedidoVendaController.selected.observacaoAprovacaoComercial}" title="#{bundle.CreatePedidoVendaTitle_observacaoAprovacaoComercial}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_dataEncerramento}" for="dataEncerramento" />
+                    <h:inputText id="dataEncerramento" value="#{pedidoVendaController.selected.dataEncerramento}" title="#{bundle.CreatePedidoVendaTitle_dataEncerramento}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_totalIPI}" for="totalIPI" />
+                    <h:inputText id="totalIPI" value="#{pedidoVendaController.selected.totalIPI}" title="#{bundle.CreatePedidoVendaTitle_totalIPI}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_totalICMS}" for="totalICMS" />
+                    <h:inputText id="totalICMS" value="#{pedidoVendaController.selected.totalICMS}" title="#{bundle.CreatePedidoVendaTitle_totalICMS}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_dataAgendamento}" for="dataAgendamento" />
+                    <h:inputText id="dataAgendamento" value="#{pedidoVendaController.selected.dataAgendamento}" title="#{bundle.CreatePedidoVendaTitle_dataAgendamento}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_observacaoNota}" for="observacaoNota" />
+                    <h:inputText id="observacaoNota" value="#{pedidoVendaController.selected.observacaoNota}" title="#{bundle.CreatePedidoVendaTitle_observacaoNota}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_scoreAprovacaoFinanceira}" for="scoreAprovacaoFinanceira" />
+                    <h:inputText id="scoreAprovacaoFinanceira" value="#{pedidoVendaController.selected.scoreAprovacaoFinanceira}" title="#{bundle.CreatePedidoVendaTitle_scoreAprovacaoFinanceira}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_scoreAprovacaoComercial}" for="scoreAprovacaoComercial" />
+                    <h:inputText id="scoreAprovacaoComercial" value="#{pedidoVendaController.selected.scoreAprovacaoComercial}" title="#{bundle.CreatePedidoVendaTitle_scoreAprovacaoComercial}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_origemPedido}" for="origemPedido" />
+                    <h:inputText id="origemPedido" value="#{pedidoVendaController.selected.origemPedido}" title="#{bundle.CreatePedidoVendaTitle_origemPedido}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_observacaoInterna}" for="observacaoInterna" />
+                    <h:inputText id="observacaoInterna" value="#{pedidoVendaController.selected.observacaoInterna}" title="#{bundle.CreatePedidoVendaTitle_observacaoInterna}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_observacaoCancelamento}" for="observacaoCancelamento" />
+                    <h:inputText id="observacaoCancelamento" value="#{pedidoVendaController.selected.observacaoCancelamento}" title="#{bundle.CreatePedidoVendaTitle_observacaoCancelamento}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_cotacao}" for="cotacao" />
+                    <h:inputText id="cotacao" value="#{pedidoVendaController.selected.cotacao}" title="#{bundle.CreatePedidoVendaTitle_cotacao}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_prazoValidade}" for="prazoValidade" />
+                    <h:inputText id="prazoValidade" value="#{pedidoVendaController.selected.prazoValidade}" title="#{bundle.CreatePedidoVendaTitle_prazoValidade}" />
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_idTipoPedidoVenda}" for="idTipoPedidoVenda" />
+                    <h:selectOneMenu id="idTipoPedidoVenda" value="#{pedidoVendaController.selected.idTipoPedidoVenda}" title="#{bundle.CreatePedidoVendaTitle_idTipoPedidoVenda}" required="true" requiredMessage="#{bundle.CreatePedidoVendaRequiredMessage_idTipoPedidoVenda}">
+                        <f:selectItems value="#{tipoPedidoVendaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_idStatusPedido}" for="idStatusPedido" />
+                    <h:selectOneMenu id="idStatusPedido" value="#{pedidoVendaController.selected.idStatusPedido}" title="#{bundle.CreatePedidoVendaTitle_idStatusPedido}" required="true" requiredMessage="#{bundle.CreatePedidoVendaRequiredMessage_idStatusPedido}">
+                        <f:selectItems value="#{statusPedidoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_idCliente}" for="idCliente" />
+                    <h:selectOneMenu id="idCliente" value="#{pedidoVendaController.selected.idCliente}" title="#{bundle.CreatePedidoVendaTitle_idCliente}" required="true" requiredMessage="#{bundle.CreatePedidoVendaRequiredMessage_idCliente}">
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_idVendedor}" for="idVendedor" />
+                    <h:selectOneMenu id="idVendedor" value="#{pedidoVendaController.selected.idVendedor}" title="#{bundle.CreatePedidoVendaTitle_idVendedor}" required="true" requiredMessage="#{bundle.CreatePedidoVendaRequiredMessage_idVendedor}">
+                        <f:selectItems value="#{vendedorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_idVendedorSubstituto}" for="idVendedorSubstituto" />
+                    <h:selectOneMenu id="idVendedorSubstituto" value="#{pedidoVendaController.selected.idVendedorSubstituto}" title="#{bundle.CreatePedidoVendaTitle_idVendedorSubstituto}" required="true" requiredMessage="#{bundle.CreatePedidoVendaRequiredMessage_idVendedorSubstituto}">
+                        <f:selectItems value="#{vendedorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_idCondicaoPagamento}" for="idCondicaoPagamento" />
+                    <h:selectOneMenu id="idCondicaoPagamento" value="#{pedidoVendaController.selected.idCondicaoPagamento}" title="#{bundle.CreatePedidoVendaTitle_idCondicaoPagamento}" required="true" requiredMessage="#{bundle.CreatePedidoVendaRequiredMessage_idCondicaoPagamento}">
+                        <f:selectItems value="#{condicaoPagamentoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_idUsuarioFinanceiro}" for="idUsuarioFinanceiro" />
+                    <h:selectOneMenu id="idUsuarioFinanceiro" value="#{pedidoVendaController.selected.idUsuarioFinanceiro}" title="#{bundle.CreatePedidoVendaTitle_idUsuarioFinanceiro}" required="true" requiredMessage="#{bundle.CreatePedidoVendaRequiredMessage_idUsuarioFinanceiro}">
+                        <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_idUsuarioComercial}" for="idUsuarioComercial" />
+                    <h:selectOneMenu id="idUsuarioComercial" value="#{pedidoVendaController.selected.idUsuarioComercial}" title="#{bundle.CreatePedidoVendaTitle_idUsuarioComercial}" required="true" requiredMessage="#{bundle.CreatePedidoVendaRequiredMessage_idUsuarioComercial}">
+                        <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_idContato}" for="idContato" />
+                    <h:selectOneMenu id="idContato" value="#{pedidoVendaController.selected.idContato}" title="#{bundle.CreatePedidoVendaTitle_idContato}" required="true" requiredMessage="#{bundle.CreatePedidoVendaRequiredMessage_idContato}">
+                        <f:selectItems value="#{contatoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_idUsuarioEncerramento}" for="idUsuarioEncerramento" />
+                    <h:selectOneMenu id="idUsuarioEncerramento" value="#{pedidoVendaController.selected.idUsuarioEncerramento}" title="#{bundle.CreatePedidoVendaTitle_idUsuarioEncerramento}" required="true" requiredMessage="#{bundle.CreatePedidoVendaRequiredMessage_idUsuarioEncerramento}">
+                        <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePedidoVendaLabel_idRepresentante}" for="idRepresentante" />
+                    <h:selectOneMenu id="idRepresentante" value="#{pedidoVendaController.selected.idRepresentante}" title="#{bundle.CreatePedidoVendaTitle_idRepresentante}" required="true" requiredMessage="#{bundle.CreatePedidoVendaRequiredMessage_idRepresentante}">
+                        <f:selectItems value="#{representantesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pedidoVendaController.create}" value="#{bundle.CreatePedidoVendaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{pedidoVendaController.prepareList}" value="#{bundle.CreatePedidoVendaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePedidoVendaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

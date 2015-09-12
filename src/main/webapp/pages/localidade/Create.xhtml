@@ -37,6 +37,12 @@
                     <h:inputText id="complemento" value="#{localidadeController.selected.complemento}" title="#{bundle.CreateLocalidadeTitle_complemento}" />
                     <h:outputLabel value="#{bundle.CreateLocalidadeLabel_codigoIBGE}" for="codigoIBGE" />
                     <h:inputText id="codigoIBGE" value="#{localidadeController.selected.codigoIBGE}" title="#{bundle.CreateLocalidadeTitle_codigoIBGE}" />
+                    <h:outputLabel value="#{bundle.CreateLocalidadeLabel_idCliente}" for="idCliente" />
+                    <h:selectOneMenu id="idCliente" value="#{localidadeController.selected.idCliente}" title="#{bundle.CreateLocalidadeTitle_idCliente}" required="true" requiredMessage="#{bundle.CreateLocalidadeRequiredMessage_idCliente}">
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateLocalidadeLabel_tipoEndereco}" for="tipoEndereco" />
+                    <h:inputText id="tipoEndereco" value="#{localidadeController.selected.tipoEndereco}" title="#{bundle.CreateLocalidadeTitle_tipoEndereco}" />
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{localidadeController.create}" value="#{bundle.CreateLocalidadeSaveLink}" />

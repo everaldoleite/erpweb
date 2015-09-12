@@ -76,7 +76,7 @@ public class LocalidadeController implements Serializable {
     public String prepareCreate() {
         current = new Localidade();
         selectedItemIndex = -1;
-        return "erp_create_localidade";
+        return "Create";
     }
 
     public String create() {
@@ -230,16 +230,6 @@ public class LocalidadeController implements Serializable {
             }
         }
 
-    }
-    
-    /**
-     *
-     */
-    public void buscaEndereco(){
-    System.out.println("XXXXXXXXXXXXXXXXXXXXXXX");
-        System.out.println(current);
-        System.out.println(current.getCep());
-    
     }
 
 }

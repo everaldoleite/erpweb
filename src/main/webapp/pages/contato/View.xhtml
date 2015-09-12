@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewContatoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewContatoLabel_codigoCliente}"/>
+                    <h:outputText value="#{contatoController.selected.codigoCliente}" title="#{bundle.ViewContatoTitle_codigoCliente}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_email}"/>
+                    <h:outputText value="#{contatoController.selected.email}" title="#{bundle.ViewContatoTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_celular}"/>
+                    <h:outputText value="#{contatoController.selected.celular}" title="#{bundle.ViewContatoTitle_celular}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_nome}"/>
+                    <h:outputText value="#{contatoController.selected.nome}" title="#{bundle.ViewContatoTitle_nome}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_ramal}"/>
+                    <h:outputText value="#{contatoController.selected.ramal}" title="#{bundle.ViewContatoTitle_ramal}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_departamento}"/>
+                    <h:outputText value="#{contatoController.selected.departamento}" title="#{bundle.ViewContatoTitle_departamento}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_tipoTratamento}"/>
+                    <h:outputText value="#{contatoController.selected.tipoTratamento}" title="#{bundle.ViewContatoTitle_tipoTratamento}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_diaAniversario}"/>
+                    <h:outputText value="#{contatoController.selected.diaAniversario}" title="#{bundle.ViewContatoTitle_diaAniversario}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_telefone}"/>
+                    <h:outputText value="#{contatoController.selected.telefone}" title="#{bundle.ViewContatoTitle_telefone}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_mesAniversario}"/>
+                    <h:outputText value="#{contatoController.selected.mesAniversario}" title="#{bundle.ViewContatoTitle_mesAniversario}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_cpf}"/>
+                    <h:outputText value="#{contatoController.selected.cpf}" title="#{bundle.ViewContatoTitle_cpf}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_posicao}"/>
+                    <h:outputText value="#{contatoController.selected.posicao}" title="#{bundle.ViewContatoTitle_posicao}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_area}"/>
+                    <h:outputText value="#{contatoController.selected.area}" title="#{bundle.ViewContatoTitle_area}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_opcaoRecepcaoEmail}"/>
+                    <h:outputText value="#{contatoController.selected.opcaoRecepcaoEmail}" title="#{bundle.ViewContatoTitle_opcaoRecepcaoEmail}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_idArea}"/>
+                    <h:outputText value="#{contatoController.selected.idArea}" title="#{bundle.ViewContatoTitle_idArea}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_idCliente}"/>
+                    <h:outputText value="#{contatoController.selected.idCliente}" title="#{bundle.ViewContatoTitle_idCliente}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_idPosicao}"/>
+                    <h:outputText value="#{contatoController.selected.idPosicao}" title="#{bundle.ViewContatoTitle_idPosicao}"/>
+                    <h:outputText value="#{bundle.ViewContatoLabel_idContato}"/>
+                    <h:outputText value="#{contatoController.selected.idContato}" title="#{bundle.ViewContatoTitle_idContato}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contatoController.destroyAndView}" value="#{bundle.ViewContatoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewContatoEditLink}"/>
+                <br />
+                <h:commandLink action="#{contatoController.prepareCreate}" value="#{bundle.ViewContatoCreateLink}" />
+                <br />
+                <h:commandLink action="#{contatoController.prepareList}" value="#{bundle.ViewContatoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewContatoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

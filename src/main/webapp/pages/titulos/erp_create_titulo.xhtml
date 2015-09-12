@@ -19,8 +19,8 @@
                         <p:tab title="Titulo">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p:outputLabel value="Empresa Emitente: " for="idEmpresaEmitente" />
-                                    <h:selectOneMenu id="idEmpresaEmitente" value="#{titulosController.selected.idEmpresaEmitente}" class="form-control" required="true">
+                                    <p:outputLabel value="Empresa: " for="idEmpresa" />
+                                    <h:selectOneMenu id="idEmpresa" value="#{titulosController.selected.idEmpresa}" class="form-control" required="true">
                                         <f:selectItem itemLabel="Selecione" itemValue="" />
                                         <f:selectItem itemLabel="EMPRESA 01" itemValue="0" />
                                         <f:selectItem itemLabel="EMPRESA 02" itemValue="1" />
@@ -37,26 +37,30 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
-                                    <p:outputLabel for="idNotaFiscal" value="Nota Fiscal:" />&nbsp;
-                                    <p:autoComplete itemLabel="#{nota.numeroNota}" itemValue="#{nota}" var="nota" queryDelay="500" id="idNotaFiscal" 
-                                                    maxResults="5" value="#{titulosController.selected.idNotaFiscal}" completeMethod="#{titulosController.buscaNotaFiscal()}" class="">
-                                        <f:param name="cliente" value="#{titulosController.selected.idCliente}" />
-                                    </p:autoComplete>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Tipo de Titulo: " for="idTipoTitulo" />
+                                    <h:selectOneMenu id="idTipoTitulo" value="#{titulosController.selected.idTipoTitulo}" class="form-control" required="true">
+                                        <f:selectItem itemLabel="Selecione" itemValue="" />
+                                        <f:selectItems value="#{tipoTituloController.data}" var="tipoTitulo" itemLabel="#{tipoTitulo.descricaoTipoTitulo}" itemValue="#{tipoTitulo}" />
+                                    </h:selectOneMenu>
                                 </div>
                                 <div class="col-md-4">
                                     <p:outputLabel value="Número Nota Fiscal: " for="numeroNF" />
                                     <p:inputText id="numeroNF" autocomplete="off" value="#{titulosController.selected.numeroNF}" />
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <p:outputLabel value="Remessa Bancária: " for="geracaoRemessa" />
                                     <p:selectBooleanCheckbox id="geracaoRemessa" value="#{titulosController.selected.geracaoRemessa}" class="form-control"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <p:outputLabel value="Previsto: " for="previsao" />
+                                    <p:selectBooleanCheckbox id="previsao" value="#{titulosController.selected.previsao}" class="form-control"/>
                                 </div>
                             </div>                            
                             <div class="row">
                                 <div class="col-md-2">
                                     <p:outputLabel value="Parcelas: " for="parcela" />
-                                    <p:inputMask mask="99" id="parcela" autocomplete="off" value="#{titulosController.selected.parcela}" class="form-control"/>
+                                    <p:inputMask mask="99/99" id="parcela" autocomplete="off" value="#{titulosController.selected.parcela}" class="form-control"/>
                                 </div>
                                 <div class="col-md-2">
                                     <p:outputLabel value="Valor: " for="valorBruto" />
@@ -78,10 +82,8 @@
                                 </div>
                                 <div class="col-md-2">
                                     <p:outputLabel value="Localização: " for="localizacao" />
-                                    <h:selectOneMenu id="localizacao" value="#{titulosController.selected.localizacao}" class="form-control" required="true">
-                                        <f:selectItem itemLabel="Selecione" itemValue="" />
+                                    <h:selectOneMenu id="localizacao" disabled="true" value="#{titulosController.selected.localizacao}" class="form-control" required="true">
                                         <f:selectItem itemLabel="CARTEIRA" itemValue="0" />
-                                        <f:selectItem itemLabel="COBRANCA" itemValue="1" />
                                     </h:selectOneMenu>
                                 </div>
                             </div>
@@ -97,8 +99,8 @@
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="col-md-6">
-                                    <p:outputLabel value="Tipo Cobrança: " for="idTipoTitulo" />
-                                    <h:selectOneMenu id="idTipoTitulo" value="#{titulosController.selected.idTipoTitulo}" class="form-control" required="true">
+                                    <p:outputLabel value="Tipo Documento: " for="idEspecieDocumento" />
+                                    <h:selectOneMenu id="idEspecieDocumento" value="#{titulosController.selected.idTipoTitulo}" class="form-control" required="true">
                                         <f:selectItem itemLabel="Selecione" itemValue="" />
                                         <f:selectItem itemLabel="DC - DUPLICATA" itemValue="0" />
                                     </h:selectOneMenu>
@@ -229,12 +231,12 @@
                                     <p:inputText id="valorLiquidado" disabled="true" value="#{titulosController.selected.valorLiquidado}" onkeypress="return(MascaraMoeda(this, '.', ',', event))" />
                                 </div>
                                 <div class="col-md-3">
-                                    <p:outputLabel value="Valor em Aberto:" for="valorEmAberto" />
-                                    <p:inputText id="valorEmAberto" disabled="true" value="#{titulosController.selected.valorEmAberto}" onkeypress="return(MascaraMoeda(this, '.', ',', event))" />
-                                </div>
-                                <div class="col-md-3">
                                     <p:outputLabel value="Saldo em Aberto:" for="saldoEmAberto" />
                                     <p:inputText id="saldoEmAberto" disabled="true" value="#{titulosController.selected.saldoEmAberto}" onkeypress="return(MascaraMoeda(this, '.', ',', event))" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel value="Valor Liquido:" for="valorLiquido" />
+                                    <p:inputText id="valorLiquido" disabled="true" value="#{titulosController.selected.valorLiquido}" onkeypress="return(MascaraMoeda(this, '.', ',', event))" />
                                 </div>
                             </div>
                             <div class="row">
@@ -254,7 +256,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <p:outputLabel value="Conta de Resultado:" for="idCentroResultado" />
-                                    <h:selectOneMenu id="idCondicaoPagamento" value="#{titulosController.selected.idPlanoContas}" required="true" requiredMessage="Centro de Resultado é exigido" class="form-control">
+                                    <h:selectOneMenu id="idCentroResultado" value="#{titulosController.selected.idContaResultado}" required="true" requiredMessage="Centro de Resultado é exigido" class="form-control">
                                         <f:selectItem itemLabel="-- Selecione --" itemValue="" />                                        
                                     </h:selectOneMenu>
                                 </div>

@@ -8,7 +8,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="Grupo de Produtos"></h:outputText>
+            <h:outputText value="Cadastro de Representantes"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <div style="height: 600px;">
@@ -18,19 +18,20 @@
                         <p:tab title="Dados Básicos">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p:outputLabel value="Descrição do Grupo" for="descricaoGrupo" />
-                                    <p:inputText id="descricaoGrupo" maxlength="45" required="true" value="#{grupoController.selected.descricaoGrupo}" class="form-control" />
-                                    <p:watermark for="descricaoGrupo" value="Ex.: GRUPO" />                                                                        
+                                    <p:outputLabel value="Nome Representante:" for="nomeRepresentante" />
+                                    <p:inputText id="nomeRepresentante" autocomplete="off" 
+                                                 value="#{representantesController.selected.nomeRepresentante}" class="form-control" />
                                 </div>
                             </div>
                         </p:tab>
                     </p:tabView>
+
                     <div class="col-md-12" style="padding: 10px;">
                         <div class="col-md-2">
-                            <p:commandButton action="#{grupoController.update}" ajax="false" update="msg" value="Atualizar" icon="ui-icon-disk" title="Salvar"/>
+                            <p:commandButton action="#{representantesController.create}" value="Salvar" update="msg" icon="ui-icon-disk" title="Salvar"/>
                         </div>
                         <div class="col-md-2">
-                            <p:commandButton action="#{grupoController.prepareList}" value="Lista" icon="ui-icon-bookmark" title="Lista" />
+                            <p:commandButton action="#{representantesController.prepareList}" value="Lista"  immediate="true" icon="ui-icon-bookmark" title="Lista" />
                         </div>
                     </div>
                 </h:form>

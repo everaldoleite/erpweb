@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Cadastro de  Usuários "></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div style="height: 600px;">
+                <h:form prependId="false">
+                    <p:growl id="msg"/>
+                    <p:wizard flowListener="#{usuariosController.onFlowProcess}" class="col-md-10">
+                        <p:tab title="Dados Básicos" id="dadosBasicos">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Primeiro Nome:" for="firstName" />
+                                    <p:inputText id="firstName" autocomplete="off" 
+                                                 value="#{usuariosController.selected.firstName}" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Sobrenome:" for="lastName" />
+                                    <p:inputText id="lastName" autocomplete="off" 
+                                                 value="#{usuariosController.selected.lastName}" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="E-mail:" for="email" />
+                                    <p:inputText id="email" autocomplete="off" 
+                                                 value="#{usuariosController.selected.email}" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Nome de Usuário" for="username" />
+                                    <p:inputText id="username" autocomplete="off" disabled="true"
+                                                 value="#{usuariosController.selected.username}" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Senha:" for="password" />
+                                    <p:inputText type="password" id="password" autocomplete="off" 
+                                                 value="#{usuariosController.selected.password}" class="form-control" />
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Endereço" id="localidade">
+                            <div class="row">
+                                <div class="col-md-6">                            
+                                    <p:outputLabel value="CEP:" for="cep" />&nbsp;
+                                    <p:inputText autocomplete="off" required="true" requiredMessage="Cep deve ser informado" 
+                                                 id="cep" value="#{clienteController.selected.cep}" class="form-inline" maxlength="8">
+                                        <p:ajax listener="#{clienteController.buscaEnderecos}" event="keyup" update="tipoLogradouro logradouro bairro cidade uf" />
+                                    </p:inputText>
+                                    <p:watermark  for="cep" value="99999999 (sem traços)" />
+                                    <p:outputLabel value="(Busca Automática)"/>
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">                            
+                                    <p:outputLabel value="Tipo:" for="tipoLogradouro" />
+                                    <p:inputText required="true" id="tipoLogradouro" value="#{localidadeController.selected.tipoLogradouro}" class="form-control"/>
+                                </div>
+                                <div class="col-md-6">                            
+                                    <p:outputLabel value="Logradouro:" for="logradouro" />
+                                    <p:inputText required="true" id="logradouro" value="#{clienteController.selected.logradouro}" class="form-control"/>
+                                </div>                                
+                                <div class="col-md-2">                            
+                                    <p:outputLabel value="Número:" for="numero" />
+                                    <p:inputText required="true" id="numero" value="#{clienteController.selected.numero}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">                            
+                                    <p:outputLabel value="Complemento:" for="complemento" />
+                                    <p:inputText id="complemento" value="#{clienteController.selected.complemento}" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">                            
+                                    <p:outputLabel value="Bairro:" for="bairro" />
+                                    <p:inputText required="true" id="bairro" value="#{clienteController.selected.bairro}" class="form-control" />
+                                </div>
+                                <div class="col-md-3">                            
+                                    <p:outputLabel value="Cidade:" for="cidade" />
+                                    <p:inputText required="true" id="cidade" value="#{clienteController.selected.cidade}" class="form-control"/>
+                                </div>                                
+                                <div class="col-md-2">                            
+                                    <p:outputLabel value="UF:" for="uf" />
+                                    <p:inputText required="true" id="uf" value="#{clienteController.selected.uf}" class="form-control"/>
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Permissões" id="permissao">
+
+                        </p:tab>
+                        <p:tab title="Confirmação" id="confirmacao">
+                            <div class="col-md-12" style="padding: 10px;">
+                                <div class="col-md-2">
+                                    <p:commandButton action="#{usuariosController.create}" value="Salvar" update="msg" icon="ui-icon-disk" title="Salvar"/>
+                                </div>
+                            </div>
+                        </p:tab>
+                    </p:wizard>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

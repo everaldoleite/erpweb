@@ -6,9 +6,7 @@
 package br.com.erpweb.persistence.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,11 +17,9 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -50,13 +46,12 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Empresa.findByCepEmpresa", query = "SELECT e FROM Empresa e WHERE e.cepEmpresa = :cepEmpresa"),
     @NamedQuery(name = "Empresa.findByTelefoneEmpresa", query = "SELECT e FROM Empresa e WHERE e.telefoneEmpresa = :telefoneEmpresa")})
 public class Empresa implements Serializable {
+
     @Lob
     @Column(name = "imagemEmpresa")
     private byte[] imagemEmpresa;
     @Column(name = "opcaoSimplesDANFE")
     private Character opcaoSimplesDANFE;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpresa")
-    private Collection<EmpresaEmitente> empresaEmitenteCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -104,9 +99,6 @@ public class Empresa implements Serializable {
     @Size(max = 45)
     @Column(name = "telefoneEmpresa")
     private String telefoneEmpresa;
-    @JoinColumn(name = "idParametrosGerais", referencedColumnName = "idParametros")
-    @ManyToOne(optional = true)
-    private ParametrosGerais idParametrosGerais;
     @Column(name = "tipoPessoa")
     private Character tipoPessoa;
     @Size(max = 20)
@@ -121,11 +113,11 @@ public class Empresa implements Serializable {
     @Size(max = 45)
     @Column(name = "municipioEmpresa")
     private String municipioEmpresa;
-    
+
     @Size(max = 15)
     @Column(name = "cpfEmpresa")
     private String cpfEmpresa;
-    
+
     @Size(max = 15)
     @Column(name = "rgEmpresa")
     private String rgEmpresa;
@@ -136,8 +128,7 @@ public class Empresa implements Serializable {
 
     @Column(name = "ufInscricaoEstadual")
     private String ufInscricaoEstadual;
-    
-    
+
     public Empresa() {
     }
 
@@ -263,14 +254,6 @@ public class Empresa implements Serializable {
 
     public void setTelefoneEmpresa(String telefoneEmpresa) {
         this.telefoneEmpresa = telefoneEmpresa;
-    }
-
-    public ParametrosGerais getIdParametrosGerais() {
-        return idParametrosGerais;
-    }
-
-    public void setIdParametrosGerais(ParametrosGerais idParametrosGerais) {
-        this.idParametrosGerais = idParametrosGerais;
     }
 
     @Override
@@ -438,16 +421,6 @@ public class Empresa implements Serializable {
         this.ufInscricaoEstadual = ufInscricaoEstadual;
     }
 
-
-    @XmlTransient
-    public Collection<EmpresaEmitente> getEmpresaEmitenteCollection() {
-        return empresaEmitenteCollection;
-    }
-
-    public void setEmpresaEmitenteCollection(Collection<EmpresaEmitente> empresaEmitenteCollection) {
-        this.empresaEmitenteCollection = empresaEmitenteCollection;
-    }
-
     public byte[] getImagemEmpresa() {
         return imagemEmpresa;
     }
@@ -455,5 +428,5 @@ public class Empresa implements Serializable {
     public void setImagemEmpresa(byte[] imagemEmpresa) {
         this.imagemEmpresa = imagemEmpresa;
     }
-    
+
 }

@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -41,13 +42,22 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuarios.findByUsername", query = "SELECT u FROM Usuarios u WHERE u.username = :username"),
     @NamedQuery(name = "Usuarios.findByEtapa", query = "SELECT u FROM Usuarios u WHERE u.etapa = :etapa")})
 public class Usuarios implements Serializable {
+    @JoinColumn(name = "idPerfilUsuario", referencedColumnName = "idPerfilUsuario")
+    @ManyToOne(optional = false)
+    private PerfilUsuario idPerfilUsuario;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarioFinanceiro")
+    private Collection<PedidoVenda> pedidoVendaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarioComercial")
+    private Collection<PedidoVenda> pedidoVendaCollection1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarioEncerramento")
+    private Collection<PedidoVenda> pedidoVendaCollection2;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idUsuario")
     private Integer idUsuario;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 45)
     @Column(name = "email")
     private String email;
@@ -197,6 +207,41 @@ public class Usuarios implements Serializable {
     @Override
     public String toString() {
         return "br.com.erpweb.persistence.entities.Usuarios[ idUsuario=" + idUsuario + " ]";
+    }
+
+    @XmlTransient
+    public Collection<PedidoVenda> getPedidoVendaCollection() {
+        return pedidoVendaCollection;
+    }
+
+    public void setPedidoVendaCollection(Collection<PedidoVenda> pedidoVendaCollection) {
+        this.pedidoVendaCollection = pedidoVendaCollection;
+    }
+
+    @XmlTransient
+    public Collection<PedidoVenda> getPedidoVendaCollection1() {
+        return pedidoVendaCollection1;
+    }
+
+    public void setPedidoVendaCollection1(Collection<PedidoVenda> pedidoVendaCollection1) {
+        this.pedidoVendaCollection1 = pedidoVendaCollection1;
+    }
+
+    @XmlTransient
+    public Collection<PedidoVenda> getPedidoVendaCollection2() {
+        return pedidoVendaCollection2;
+    }
+
+    public void setPedidoVendaCollection2(Collection<PedidoVenda> pedidoVendaCollection2) {
+        this.pedidoVendaCollection2 = pedidoVendaCollection2;
+    }
+
+    public PerfilUsuario getIdPerfilUsuario() {
+        return idPerfilUsuario;
+    }
+
+    public void setIdPerfilUsuario(PerfilUsuario idPerfilUsuario) {
+        this.idPerfilUsuario = idPerfilUsuario;
     }
     
 }

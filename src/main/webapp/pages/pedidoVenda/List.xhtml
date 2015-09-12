@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPedidoVendaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListPedidoVendaEmpty}" rendered="#{pedidoVendaController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{pedidoVendaController.items.rowCount > 0}">
+                <h:outputText value="#{pedidoVendaController.pagination.pageFirstItem + 1}..#{pedidoVendaController.pagination.pageLastItem + 1}/#{pedidoVendaController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{pedidoVendaController.previous}" value="#{bundle.Previous} #{pedidoVendaController.pagination.pageSize}" rendered="#{pedidoVendaController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{pedidoVendaController.next}" value="#{bundle.Next} #{pedidoVendaController.pagination.pageSize}" rendered="#{pedidoVendaController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{pedidoVendaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_idPedidoVenda}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idPedidoVenda}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_dataAberturaPedido}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dataAberturaPedido}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_numeroExterno}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.numeroExterno}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_outros}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.outros}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_frete}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.frete}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_valorFrete}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.valorFrete}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_atendimentoParcial}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.atendimentoParcial}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_statusAprovacaoFinanceira}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.statusAprovacaoFinanceira}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_statusAprovacaoComercial}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.statusAprovacaoComercial}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_comissaoPrincipal}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.comissaoPrincipal}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_comissaoSubstituto}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.comissaoSubstituto}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_valorTotalProdutos}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.valorTotalProdutos}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_valorTotalServicos}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.valorTotalServicos}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_valorTotalPedido}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.valorTotalPedido}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_dataAprovacaoFinanceira}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dataAprovacaoFinanceira}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_observacaoAprovacaoFinanceira}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.observacaoAprovacaoFinanceira}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_dataAprovacaoComercial}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dataAprovacaoComercial}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_observacaoAprovacaoComercial}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.observacaoAprovacaoComercial}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_dataEncerramento}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dataEncerramento}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_totalIPI}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.totalIPI}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_totalICMS}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.totalICMS}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_dataAgendamento}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dataAgendamento}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_observacaoNota}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.observacaoNota}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_scoreAprovacaoFinanceira}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.scoreAprovacaoFinanceira}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_scoreAprovacaoComercial}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.scoreAprovacaoComercial}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_origemPedido}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.origemPedido}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_observacaoInterna}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.observacaoInterna}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_observacaoCancelamento}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.observacaoCancelamento}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_cotacao}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cotacao}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_prazoValidade}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.prazoValidade}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_idTipoPedidoVenda}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idTipoPedidoVenda}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_idStatusPedido}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idStatusPedido}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_idCliente}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idCliente}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_idVendedor}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idVendedor}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_idVendedorSubstituto}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idVendedorSubstituto}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_idCondicaoPagamento}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idCondicaoPagamento}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_idUsuarioFinanceiro}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idUsuarioFinanceiro}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_idUsuarioComercial}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idUsuarioComercial}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_idContato}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idContato}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_idUsuarioEncerramento}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idUsuarioEncerramento}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPedidoVendaTitle_idRepresentante}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idRepresentante}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{pedidoVendaController.prepareView}" value="#{bundle.ListPedidoVendaViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{pedidoVendaController.prepareEdit}" value="#{bundle.ListPedidoVendaEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{pedidoVendaController.destroy}" value="#{bundle.ListPedidoVendaDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{pedidoVendaController.prepareCreate}" value="#{bundle.ListPedidoVendaCreateLink}"/>
+            <br />
+            <br />
+            <h:link outcome="/index" value="#{bundle.ListPedidoVendaIndexLink}"/>
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

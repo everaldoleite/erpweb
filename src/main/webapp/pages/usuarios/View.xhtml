@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUsuariosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_idUsuario}"/>
+                    <h:outputText value="#{usuariosController.selected.idUsuario}" title="#{bundle.ViewUsuariosTitle_idUsuario}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_email}"/>
+                    <h:outputText value="#{usuariosController.selected.email}" title="#{bundle.ViewUsuariosTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_firstName}"/>
+                    <h:outputText value="#{usuariosController.selected.firstName}" title="#{bundle.ViewUsuariosTitle_firstName}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_lastName}"/>
+                    <h:outputText value="#{usuariosController.selected.lastName}" title="#{bundle.ViewUsuariosTitle_lastName}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_password}"/>
+                    <h:outputText value="#{usuariosController.selected.password}" title="#{bundle.ViewUsuariosTitle_password}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_username}"/>
+                    <h:outputText value="#{usuariosController.selected.username}" title="#{bundle.ViewUsuariosTitle_username}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_etapa}"/>
+                    <h:outputText value="#{usuariosController.selected.etapa}" title="#{bundle.ViewUsuariosTitle_etapa}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_idLocalidade}"/>
+                    <h:outputText value="#{usuariosController.selected.idLocalidade}" title="#{bundle.ViewUsuariosTitle_idLocalidade}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{usuariosController.destroyAndView}" value="#{bundle.ViewUsuariosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewUsuariosEditLink}"/>
+                <br />
+                <h:commandLink action="#{usuariosController.prepareCreate}" value="#{bundle.ViewUsuariosCreateLink}" />
+                <br />
+                <h:commandLink action="#{usuariosController.prepareList}" value="#{bundle.ViewUsuariosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewUsuariosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

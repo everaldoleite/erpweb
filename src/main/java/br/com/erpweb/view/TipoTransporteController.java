@@ -6,7 +6,6 @@ import br.com.erpweb.view.util.PaginationHelper;
 import br.com.erpweb.session.bean.TipoTransporteFacade;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -233,8 +232,4 @@ public class TipoTransporteController implements Serializable {
 
     }
 
-    public List<TipoTransporte> getData(){
-        return ejbFacade.findAll();
-    }
-    
 }

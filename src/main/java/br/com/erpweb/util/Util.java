@@ -5,6 +5,9 @@
  */
 package br.com.erpweb.util;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
 /**
@@ -44,12 +47,11 @@ public class Util {
         mascara.put("RO", "999.99999-9");
         mascara.put("RR", "99999999-9");
         mascara.put("AP", "999999999");
-        
+
         return mascara.get(chave);
 
     }
 
-    
     public static int modulo11(String chave) {
         int total = 0;
         int peso = 2;
@@ -66,9 +68,9 @@ public class Util {
     }
 
     public static String lpadTo(String input, int width, char ch) {
-        
+
         String retorno;
-        
+
         StringBuilder sb = new StringBuilder(input.trim());
         while (sb.length() < width) {
             sb.insert(0, ch);
@@ -81,4 +83,13 @@ public class Util {
         return retorno;
     }
 
+    public static String gerarMD5(String senha) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));
+        String crypto = hash.toString(16);
+        if (crypto.length() % 2 != 0) {
+            crypto = "0" + crypto;
+        }
+        return crypto;
+    }
 }

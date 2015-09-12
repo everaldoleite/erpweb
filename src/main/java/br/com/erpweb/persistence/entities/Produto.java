@@ -22,7 +22,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
@@ -39,7 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM Produto p"),
     @NamedQuery(name = "Produto.findByIdProduto", query = "SELECT p FROM Produto p WHERE p.idProduto = :idProduto"),
     @NamedQuery(name = "Produto.findByPartNumber", query = "SELECT p FROM Produto p WHERE p.partNumber = :partNumber"),
-    @NamedQuery(name = "Produto.findByDescricaoProduto", query = "SELECT p FROM Produto p WHERE p.descricaoProduto = :descricaoProduto"),
+    @NamedQuery(name = "Produto.findByDescricaoProduto", query = "SELECT p FROM Produto p WHERE p.descricaoProduto LIKE :descricaoProduto"),
     @NamedQuery(name = "Produto.findByMarca", query = "SELECT p FROM Produto p WHERE p.marca = :marca"),
     @NamedQuery(name = "Produto.findBySituacao", query = "SELECT p FROM Produto p WHERE p.situacao = :situacao"),
     @NamedQuery(name = "Produto.findByUnidadeEstoque", query = "SELECT p FROM Produto p WHERE p.unidadeEstoque = :unidadeEstoque"),
@@ -66,8 +65,6 @@ public class Produto implements Serializable {
     @JoinColumn(name = "idOrigemMercadoria", referencedColumnName = "idOrigemMercadoria")
     @ManyToOne(optional = false)
     private OrigemMercadoria idOrigemMercadoria;
-    @Column(name = "regime")
-    private Character regime;
     @Column(name = "ativo")
     private Boolean ativo;
     @Column(name = "analiseEspecialistaOS")
@@ -122,7 +119,7 @@ public class Produto implements Serializable {
     @Column(name = "calculoPrecoCusto")
     private Character calculoPrecoCusto;
     @Column(name = "pedidoAutomatico")
-    private Character pedidoAutomatico;
+    private Boolean pedidoAutomatico;
     @Column(name = "tipoMoeda")
     private Character tipoMoeda;
     @Column(name = "dataManutencao")
@@ -146,16 +143,15 @@ public class Produto implements Serializable {
     @Column(name = "especificacaoProduto")
     private String especificacaoProduto;
     @Column(name = "indicadorEstoque")
-    private Character indicadorEstoque;
+    private Boolean indicadorEstoque;
     @JoinColumn(name = "idCategoria", referencedColumnName = "idCategoria")
     @ManyToOne(optional = false)
     private Categoria idCategoria;
     @JoinColumn(name = "idGrupo", referencedColumnName = "idGrupo")
     @ManyToOne(optional = false)
     private Grupo idGrupo;
-    @JoinColumn(name = "idNcm", referencedColumnName = "idNcm")
-    @ManyToOne(optional = false)
-    private Ncm idNcm;
+    @Column(name = "ncm")
+    private String ncm;
     @JoinColumn(name = "idSubGrupo", referencedColumnName = "idSubGrupo")
     @ManyToOne(optional = false)
     private SubGrupo idSubGrupo;
@@ -168,8 +164,6 @@ public class Produto implements Serializable {
     @Digits(integer = 11, fraction = 2)
     @Column(name = "precoCusto")
     private BigDecimal precoCusto;
-    @Transient
-    private String idRegimeTributario;
     @Max(value = 100)
     @Column(name = "aliquotaICMS")
     private BigDecimal aliquotaICMS;
@@ -190,7 +184,12 @@ public class Produto implements Serializable {
     @Column(name = "isencaoIPI")
     private BigDecimal isencaoIPI;
     
+    @Column(name = "outrasIPI")
+    private BigDecimal outrasIPI;
     
+    @JoinColumn(name = "idRegimeTributario", referencedColumnName = "idRegimeTributario")
+    @ManyToOne(optional = false)
+    private RegimeTributario idRegimeTributario;
 
     public Produto() {
     }
@@ -279,14 +278,6 @@ public class Produto implements Serializable {
         this.calculoPrecoCusto = calculoPrecoCusto;
     }
 
-    public Character getPedidoAutomatico() {
-        return pedidoAutomatico;
-    }
-
-    public void setPedidoAutomatico(Character pedidoAutomatico) {
-        this.pedidoAutomatico = pedidoAutomatico;
-    }
-
     public Character getTipoMoeda() {
         return tipoMoeda;
     }
@@ -359,14 +350,6 @@ public class Produto implements Serializable {
         this.especificacaoProduto = especificacaoProduto;
     }
 
-    public Character getIndicadorEstoque() {
-        return indicadorEstoque;
-    }
-
-    public void setIndicadorEstoque(Character indicadorEstoque) {
-        this.indicadorEstoque = indicadorEstoque;
-    }
-
     public Categoria getIdCategoria() {
         return idCategoria;
     }
@@ -381,14 +364,6 @@ public class Produto implements Serializable {
 
     public void setIdGrupo(Grupo idGrupo) {
         this.idGrupo = idGrupo;
-    }
-
-    public Ncm getIdNcm() {
-        return idNcm;
-    }
-
-    public void setIdNcm(Ncm idNcm) {
-        this.idNcm = idNcm;
     }
 
     public SubGrupo getIdSubGrupo() {
@@ -565,30 +540,6 @@ public class Produto implements Serializable {
         this.idtipoTributacao = idtipoTributacao;
     }
 
-
-    public Character getRegime() {
-        return regime;
-    }
-
-    public void setRegime(Character regime) {
-        this.regime = regime;
-    }
-
-
-    /**
-     * @return the idRegimeTributario
-     */
-    public String getIdRegimeTributario() {
-        return idRegimeTributario;
-    }
-
-    /**
-     * @param idRegimeTributario the idRegimeTributario to set
-     */
-    public void setIdRegimeTributario(String idRegimeTributario) {
-        this.idRegimeTributario = idRegimeTributario;
-    }
-
     public byte[] getImagem() {
         return imagem;
     }
@@ -729,6 +680,76 @@ public class Produto implements Serializable {
      */
     public void setBaseCalculoIPI(BigDecimal baseCalculoIPI) {
         this.baseCalculoIPI = baseCalculoIPI;
+    }
+
+    /**
+     * @return the idRegimeTributario
+     */
+    public RegimeTributario getIdRegimeTributario() {
+        return idRegimeTributario;
+    }
+
+    /**
+     * @param idRegimeTributario the idRegimeTributario to set
+     */
+    public void setIdRegimeTributario(RegimeTributario idRegimeTributario) {
+        this.idRegimeTributario = idRegimeTributario;
+    }
+
+    /**
+     * @return the indicadorEstoque
+     */
+    public Boolean getIndicadorEstoque() {
+        return indicadorEstoque;
+    }
+
+    /**
+     * @param indicadorEstoque the indicadorEstoque to set
+     */
+    public void setIndicadorEstoque(Boolean indicadorEstoque) {
+        this.indicadorEstoque = indicadorEstoque;
+    }
+
+    /**
+     * @param pedidoAutomatico the pedidoAutomatico to set
+     */
+    public void setPedidoAutomatico(Boolean pedidoAutomatico) {
+        this.pedidoAutomatico = pedidoAutomatico;
+    }
+
+    /**
+     * @return the pedidoAutomatico
+     */
+    public Boolean getPedidoAutomatico() {
+        return pedidoAutomatico;
+    }
+
+    /**
+     * @return the ncm
+     */
+    public String getNcm() {
+        return ncm;
+    }
+
+    /**
+     * @param ncm the ncm to set
+     */
+    public void setNcm(String ncm) {
+        this.ncm = ncm;
+    }
+
+    /**
+     * @return the outrasIPI
+     */
+    public BigDecimal getOutrasIPI() {
+        return outrasIPI;
+    }
+
+    /**
+     * @param outrasIPI the outrasIPI to set
+     */
+    public void setOutrasIPI(BigDecimal outrasIPI) {
+        this.outrasIPI = outrasIPI;
     }
 
 }

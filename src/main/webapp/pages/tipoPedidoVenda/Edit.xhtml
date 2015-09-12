@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTipoPedidoVendaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTipoPedidoVendaLabel_idTipoPedidoVenda}" for="idTipoPedidoVenda" />
+                    <h:inputText id="idTipoPedidoVenda" value="#{tipoPedidoVendaController.selected.idTipoPedidoVenda}" title="#{bundle.EditTipoPedidoVendaTitle_idTipoPedidoVenda}" required="true" requiredMessage="#{bundle.EditTipoPedidoVendaRequiredMessage_idTipoPedidoVenda}"/>
+                    <h:outputLabel value="#{bundle.EditTipoPedidoVendaLabel_descricaoTipoPedidoVenda}" for="descricaoTipoPedidoVenda" />
+                    <h:inputText id="descricaoTipoPedidoVenda" value="#{tipoPedidoVendaController.selected.descricaoTipoPedidoVenda}" title="#{bundle.EditTipoPedidoVendaTitle_descricaoTipoPedidoVenda}" />
+                    <h:outputLabel value="#{bundle.EditTipoPedidoVendaLabel_baixaEstoque}" for="baixaEstoque" />
+                    <h:inputText id="baixaEstoque" value="#{tipoPedidoVendaController.selected.baixaEstoque}" title="#{bundle.EditTipoPedidoVendaTitle_baixaEstoque}" />
+                </h:panelGrid>
+                <h:commandLink action="#{tipoPedidoVendaController.update}" value="#{bundle.EditTipoPedidoVendaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTipoPedidoVendaViewLink}"/>
+                <br />
+                <h:commandLink action="#{tipoPedidoVendaController.prepareList}" value="#{bundle.EditTipoPedidoVendaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTipoPedidoVendaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

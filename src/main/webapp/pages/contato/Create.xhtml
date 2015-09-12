@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateContatoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_codigoCliente}" for="codigoCliente" />
+                    <h:inputText id="codigoCliente" value="#{contatoController.selected.codigoCliente}" title="#{bundle.CreateContatoTitle_codigoCliente}" required="true" requiredMessage="#{bundle.CreateContatoRequiredMessage_codigoCliente}"/>
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{contatoController.selected.email}" title="#{bundle.CreateContatoTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_celular}" for="celular" />
+                    <h:inputText id="celular" value="#{contatoController.selected.celular}" title="#{bundle.CreateContatoTitle_celular}" />
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_nome}" for="nome" />
+                    <h:inputText id="nome" value="#{contatoController.selected.nome}" title="#{bundle.CreateContatoTitle_nome}" />
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_ramal}" for="ramal" />
+                    <h:inputText id="ramal" value="#{contatoController.selected.ramal}" title="#{bundle.CreateContatoTitle_ramal}" />
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_departamento}" for="departamento" />
+                    <h:inputText id="departamento" value="#{contatoController.selected.departamento}" title="#{bundle.CreateContatoTitle_departamento}" />
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_tipoTratamento}" for="tipoTratamento" />
+                    <h:inputText id="tipoTratamento" value="#{contatoController.selected.tipoTratamento}" title="#{bundle.CreateContatoTitle_tipoTratamento}" />
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_diaAniversario}" for="diaAniversario" />
+                    <h:inputText id="diaAniversario" value="#{contatoController.selected.diaAniversario}" title="#{bundle.CreateContatoTitle_diaAniversario}" />
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_telefone}" for="telefone" />
+                    <h:inputText id="telefone" value="#{contatoController.selected.telefone}" title="#{bundle.CreateContatoTitle_telefone}" />
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_mesAniversario}" for="mesAniversario" />
+                    <h:inputText id="mesAniversario" value="#{contatoController.selected.mesAniversario}" title="#{bundle.CreateContatoTitle_mesAniversario}" />
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_cpf}" for="cpf" />
+                    <h:inputText id="cpf" value="#{contatoController.selected.cpf}" title="#{bundle.CreateContatoTitle_cpf}" />
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_posicao}" for="posicao" />
+                    <h:inputText id="posicao" value="#{contatoController.selected.posicao}" title="#{bundle.CreateContatoTitle_posicao}" />
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_area}" for="area" />
+                    <h:inputText id="area" value="#{contatoController.selected.area}" title="#{bundle.CreateContatoTitle_area}" />
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_opcaoRecepcaoEmail}" for="opcaoRecepcaoEmail" />
+                    <h:inputText id="opcaoRecepcaoEmail" value="#{contatoController.selected.opcaoRecepcaoEmail}" title="#{bundle.CreateContatoTitle_opcaoRecepcaoEmail}" />
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_idArea}" for="idArea" />
+                    <h:selectOneMenu id="idArea" value="#{contatoController.selected.idArea}" title="#{bundle.CreateContatoTitle_idArea}" required="true" requiredMessage="#{bundle.CreateContatoRequiredMessage_idArea}">
+                        <f:selectItems value="#{areaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_idCliente}" for="idCliente" />
+                    <h:selectOneMenu id="idCliente" value="#{contatoController.selected.idCliente}" title="#{bundle.CreateContatoTitle_idCliente}" required="true" requiredMessage="#{bundle.CreateContatoRequiredMessage_idCliente}">
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_idPosicao}" for="idPosicao" />
+                    <h:selectOneMenu id="idPosicao" value="#{contatoController.selected.idPosicao}" title="#{bundle.CreateContatoTitle_idPosicao}" required="true" requiredMessage="#{bundle.CreateContatoRequiredMessage_idPosicao}">
+                        <f:selectItems value="#{posicaoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateContatoLabel_idContato}" for="idContato" />
+                    <h:inputText id="idContato" value="#{contatoController.selected.idContato}" title="#{bundle.CreateContatoTitle_idContato}" required="true" requiredMessage="#{bundle.CreateContatoRequiredMessage_idContato}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contatoController.create}" value="#{bundle.CreateContatoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{contatoController.prepareList}" value="#{bundle.CreateContatoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateContatoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

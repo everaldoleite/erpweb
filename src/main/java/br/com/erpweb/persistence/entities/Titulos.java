@@ -57,6 +57,8 @@ public class Titulos implements Serializable {
     @Column(name = "situacao")
     private Character situacao;
     
+    @Column(name="previsao")
+    private Boolean previsao;
     
     @Column(name = "numeroNF")
     private Integer numeroNF;
@@ -114,8 +116,8 @@ public class Titulos implements Serializable {
     @Column(name = "numeroDocumento")
     private String numeroDocumento;
 
-    @Column(name = "valorEmAberto", precision = 11, scale = 2)
-    private BigDecimal valorEmAberto;
+    @Column(name = "valorLiquido", precision = 11, scale = 2)
+    private BigDecimal valorLiquido;
 
     @Column(name = "valorDesconto", precision = 11, scale = 2)
     private BigDecimal valorDesconto;
@@ -164,17 +166,17 @@ public class Titulos implements Serializable {
     @ManyToOne(optional = false)
     private CentroResultado idCentroResultado;
 
-    @JoinColumn(name = "idPlanoContas", referencedColumnName = "idPlanoContas")
+    @JoinColumn(name = "idContaResultado", referencedColumnName = "idPlanoContas")
     @ManyToOne(optional = false)
-    private ContaResultado idPlanoContas;
+    private ContaResultado idContaResultado;
 
     @JoinColumn(name = "idTipoCobranca", referencedColumnName = "idTipoCobranca")
     @ManyToOne(optional = false)
     private TipoCobranca idTipoCobranca;
 
-    @JoinColumn(name = "idEmpresaEmitente", referencedColumnName = "idEmpresaEmitente")
+    @JoinColumn(name = "idEmpresa", referencedColumnName = "idEmpresa")
     @ManyToOne(optional = false)
-    private EmpresaEmitente idEmpresaEmitente;
+    private Empresa idEmpresa;
 
     @JoinColumn(name = "idNotaFiscal", referencedColumnName = "idNotaFiscal")
     @ManyToOne
@@ -521,20 +523,6 @@ public class Titulos implements Serializable {
     }
 
     /**
-     * @return the valorEmAberto
-     */
-    public BigDecimal getValorEmAberto() {
-        return valorEmAberto;
-    }
-
-    /**
-     * @param valorEmAberto the valorEmAberto to set
-     */
-    public void setValorEmAberto(BigDecimal valorEmAberto) {
-        this.valorEmAberto = valorEmAberto;
-    }
-
-    /**
      * @return the valorDesconto
      */
     public BigDecimal getValorDesconto() {
@@ -759,20 +747,6 @@ public class Titulos implements Serializable {
     }
 
     /**
-     * @return the idEmpresaEmitente
-     */
-    public EmpresaEmitente getIdEmpresaEmitente() {
-        return idEmpresaEmitente;
-    }
-
-    /**
-     * @param idEmpresaEmitente the idEmpresaEmitente to set
-     */
-    public void setIdEmpresaEmitente(EmpresaEmitente idEmpresaEmitente) {
-        this.idEmpresaEmitente = idEmpresaEmitente;
-    }
-
-    /**
      * @return the idNotaFiscal
      */
     public NotaFiscal getIdNotaFiscal() {
@@ -815,17 +789,59 @@ public class Titulos implements Serializable {
     }
 
     /**
-     * @param idPlanoContas the idPlanoContas to set
+     * @return the valorLiquido
      */
-    public void setIdPlanoContas(ContaResultado idPlanoContas) {
-        this.idPlanoContas = idPlanoContas;
+    public BigDecimal getValorLiquido() {
+        return valorLiquido;
     }
 
     /**
-     * @return the idPlanoContas
+     * @param valorLiquido the valorLiquido to set
      */
-    public ContaResultado getIdPlanoContas() {
-        return idPlanoContas;
+    public void setValorLiquido(BigDecimal valorLiquido) {
+        this.valorLiquido = valorLiquido;
+    }
+
+    /**
+     * @return the previsao
+     */
+    public Boolean getPrevisao() {
+        return previsao;
+    }
+
+    /**
+     * @param previsao the previsao to set
+     */
+    public void setPrevisao(Boolean previsao) {
+        this.previsao = previsao;
+    }
+
+    /**
+     * @return the idEmpresa
+     */
+    public Empresa getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    /**
+     * @param idEmpresa the idEmpresa to set
+     */
+    public void setIdEmpresa(Empresa idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
+
+    /**
+     * @return the idContaResultado
+     */
+    public ContaResultado getIdContaResultado() {
+        return idContaResultado;
+    }
+
+    /**
+     * @param idContaResultado the idContaResultado to set
+     */
+    public void setIdContaResultado(ContaResultado idContaResultado) {
+        this.idContaResultado = idContaResultado;
     }
 
 }

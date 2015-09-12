@@ -6,7 +6,6 @@ import br.com.erpweb.view.util.PaginationHelper;
 import br.com.erpweb.session.bean.TransportadorFacade;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -231,10 +230,6 @@ public class TransportadorController implements Serializable {
             }
         }
 
-    }
-
-    public List<Transportador> getData() {
-        return ejbFacade.findAll();
     }
 
 }

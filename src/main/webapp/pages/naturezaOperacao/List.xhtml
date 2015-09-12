@@ -256,6 +256,60 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_retemISS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retemISS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_retemINSS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retemINSS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_retemPIS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retemPIS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_retemCOFINS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retemCOFINS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_retemCSLL}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retemCSLL}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_opcaoContasReceber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opcaoContasReceber}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_opcaoComissao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opcaoComissao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_opcaoPermiteAlteracao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opcaoPermiteAlteracao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNaturezaOperacaoTitle_opcaoAtualizaEstoque}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opcaoAtualizaEstoque}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
                             <h:commandLink action="#{naturezaOperacaoController.prepareView}" value="#{bundle.ListNaturezaOperacaoViewLink}"/>

@@ -366,8 +366,6 @@ public class ClienteController implements Serializable {
     
     public List<Cliente> buscaCliente(String parameter){
     
-        //List<Cliente> listaCliente = new ArrayList<>();
-        
         List results = em.createNamedQuery("Cliente.findByRazaoSocial")
                 .setParameter("razaoSocial", "%" + parameter + "%")
                 .getResultList();

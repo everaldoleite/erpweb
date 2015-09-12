@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Venda"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            <div style="height: 600px;">
+                <h:form prependId="false">
+                    <p:growl id="msg"/>
+                    <p:tabView class="col-md-10">
+                        <p:tab title="Venda">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel value="Empresa: " for="idEMPRESA" />
+                                    <h:selectOneMenu id="idEMPRESA" class="form-control" required="true">
+                                        <f:selectItem itemLabel="Selecione" itemValue="" />
+                                        <f:selectItems value="#{empresaController.data}" var="empresa" itemLabel="#{empresa.nomeRazaoSocial}" itemValue="#{empresa}" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel for="idCliente" value="Cliente:" />&nbsp;
+                                    <p:autoComplete size="99" itemLabel="#{cliente.razaoSocial}" itemValue="#{cliente}" var="cliente" queryDelay="500" id="idCliente" 
+                                                    maxResults="5" value="#{titulosController.selected.idCliente}" completeMethod="#{clienteController.buscaCliente}">
+                                        <f:param name="parametro" value="#{titulosController.selected.idCliente}" />
+                                    </p:autoComplete>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p:outputLabel value="Produto:" for="idProduto" />&nbsp;
+                                    <p:inputText size="50" id="idProduto">
+                                        <p:ajax listener="#{produtoController.buscaProduto}" update="listaItens" event="keyup" />
+                                    </p:inputText>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:commandButton immediate="true" value="Procurar" icon="ui-icon-search"/>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:dataGrid var="produto" columns="1" id="listaItens" emptyMessage="Não há produtos selecionados" value="#{produtoController.listaProduto}">
+
+                                        <p:panelGrid columns="3" >
+                                            <h:outputText value="#{produto.descricaoProduto}" />
+                                            <h:outputText value="R$ #{produto.precoCusto}" />
+                                            <p:commandButton title="Adicionar ao Pedido" icon="ui-icon-cart" />
+                                        </p:panelGrid>
+                                    </p:dataGrid>
+                                </div>
+                            </div>
+                        </p:tab>
+                    </p:tabView>
+
+                    <div class="col-md-12" style="padding: 10px;">
+                        <div class="col-md-2">
+                            <p:commandButton action="#{titulosController.create}" value="Salvar" update="msg" icon="ui-icon-disk" title="Salvar"/>
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{titulosController.create}" value="Imprimir" update="msg" icon="ui-icon-print" title="Imprimir"/>
+                        </div>
+                        <div class="col-md-2">
+                            <p:commandButton action="#{titulosController.prepareList}" value="Lista"  immediate="true" icon="ui-icon-bookmark" title="Lista" />
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

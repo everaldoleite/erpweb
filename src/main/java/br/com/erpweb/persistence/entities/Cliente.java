@@ -92,6 +92,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cliente.findByAcessoItensPromocionais", query = "SELECT c FROM Cliente c WHERE c.acessoItensPromocionais = :acessoItensPromocionais"),
     @NamedQuery(name = "Cliente.findByIndicadorProspect", query = "SELECT c FROM Cliente c WHERE c.indicadorProspect = :indicadorProspect")})
 public class Cliente implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
+    private Collection<PedidoVenda> pedidoVendaCollection;
     @Column(name = "bloqueioAtendimento")
     private Boolean bloqueioAtendimento;
     @Column(name = "bloqueioVendas")
@@ -255,10 +257,10 @@ public class Cliente implements Serializable {
     @ManyToOne(optional = false)
     private CondicaoPagamento idCondicaoPagamento;
     @JoinColumn(name = "idListaPrecosProdutos", referencedColumnName = "idListaPrecosProdutos")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private ListaPrecoProdutos idListaPrecosProdutos;
     @JoinColumn(name = "idListaPrecosServicos", referencedColumnName = "idListaPrecosServicos")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private ListaPrecoServicos idListaPrecosServicos;
     @JoinColumn(name = "idNaturezaOperacao", referencedColumnName = "idNaturezaOperacao")
     @ManyToOne
@@ -1058,6 +1060,15 @@ public class Cliente implements Serializable {
 
     public void setLocalidadeCollection(Collection<Localidade> localidadeCollection) {
         this.localidadeCollection = localidadeCollection;
+    }
+
+    @XmlTransient
+    public Collection<PedidoVenda> getPedidoVendaCollection() {
+        return pedidoVendaCollection;
+    }
+
+    public void setPedidoVendaCollection(Collection<PedidoVenda> pedidoVendaCollection) {
+        this.pedidoVendaCollection = pedidoVendaCollection;
     }
 
 }
